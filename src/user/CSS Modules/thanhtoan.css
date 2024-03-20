@@ -1,0 +1,352 @@
+.container-thanhtoan{
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+}
+
+.container-thanhtoan article{
+  width: 65%;
+  height: 100%;
+}
+
+
+
+.container-thanhtoan article .content-article{
+width: 80%;
+height: 100%;
+
+margin-left: 20%;
+display: flex;
+}
+
+.content-top{
+  width: 100%;
+  height: 5vh;
+  background-color: red;
+}
+
+.content-article .content-left{
+  width: 50%;
+}
+
+.logo-content{
+ width: 100%;
+ height: 5vh;
+}
+
+.logo-content img{
+width: 50%;
+cursor: pointer;
+ }
+
+ .content-left form{
+  margin-top: 7vh;
+  
+  width: 100%;
+ }
+
+ .content-left form h1{
+  font-weight: bold;
+  font-size: 0.9vw;
+  margin-bottom: 5px;
+ }
+
+
+.input-container {
+  position: relative;
+  margin-top: 10px;
+  
+}
+
+.input-label {
+  position: absolute;
+  pointer-events: none;
+  left: 8px;
+  top: 15px;
+  transition: 0.2s ease all;
+  color: #7a7a7a;
+}
+
+.input-field {
+  width: 100%;
+  padding:16px 0;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9vw;
+  outline: none;
+}
+.textarea-field {
+text-align: center;
+ height: 60px;
+ width: 100%;
+ padding: 5px;
+ border: 2px solid #ccc;
+ border-radius: 4px;
+  font-size: 0.9vw;
+ outline: none;
+}
+
+.input-field:hover,
+.textarea-field:hover {
+  border: 2px solid #4a91e2af;
+}
+
+.input-field:focus + .input-label,
+.input-field:valid + .input-label,
+.textarea-field:focus + .input-label,
+.textarea-field:valid + .input-label {
+  top: 2px;
+  font-size: 0.5vw;
+  color: #4a90e2;
+}
+
+.content-article .content-right{
+  width: 50%;
+}
+
+.content-right .container-box{
+  margin-top: 15vh;
+  
+  width: 100%;
+}
+
+.container-box .box-vanchuyen,
+.container-box .box-thanhtoan{
+  width: 90%;
+  height: 60px;
+  margin: 50px auto;
+ 
+}
+
+.container-box .box-vanchuyen h1,
+.container-box .box-thanhtoan h1{
+  margin-bottom: 10px;
+  font-weight: 300;
+}
+.container-box .box-vanchuyen .box-title{
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: #d1ecf1;
+  color: #0c5460;
+  font-size: 0.8vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box-thanhtoan input{
+  margin: 0 10px;
+}
+
+
+.box-thanhtoan table{
+  border: 2px solid rgba(128, 128, 128, 0.342);
+  border-radius: 6px;
+  width: 100%;
+ 
+}
+
+
+
+.box-thanhtoan tr td{
+  padding: 10px;
+  font-size: 0.8vw;
+}
+
+
+.container-thanhtoan aside{
+  width: 35%;
+  height: 100%;
+  border-left: 2px solid rgba(128, 128, 128, 0.364);
+}
+
+.container-thanhtoan aside .aside-content{
+  width: 50%;
+  margin-left: 10px;
+  height: 100%;
+}
+
+.aside-content .aside__top{
+  width: 100%;
+  font-size: 0.9vw;
+  padding: 10px 0;
+  border-bottom: 2px solid rgba(128, 128, 128, 0.258);
+}
+
+
+.aside-content .aside__cart {
+  width: 100%;
+  font-size: 0.9vw;
+  padding: 14px 0;
+  margin-bottom: 10px;
+  max-height: 11.99%;
+  overflow-y: auto; /* Cho phép thanh cuộn dọc nếu cần */
+  border-bottom: 1px solid rgba(128, 128, 128, 0.455);
+}
+
+
+.aside-content .aside__cart table{
+  padding: 0 10px;
+  width: 98%;
+  margin: 0 auto;
+}
+
+.aside__cart table #name{
+ font-size: 0.85vw;
+ font-weight: 400;
+ position: relative;
+ left: 10px;
+}
+
+.aside__cart table #price{
+  font-size: 0.85vw;
+  font-weight: 400;
+  color: gray;
+  text-align: center;
+ }
+
+ .aside__cart table #size{
+  margin-left: 5px;
+  font-size: 0.8vw;
+  color: gray;
+  position: relative;
+  left: 10px;
+
+ }
+.aside__cart table #img{
+  width: 20%;
+  position: relative;
+}
+
+.aside__cart table #count{
+  position: absolute;
+  top: -15%;
+  right: -15%;
+  padding: 5px 10px;
+  font-size: 0.6vw;
+  background-color: #4a90e2;
+  border-radius: 100%;
+  color: white;
+  font-weight: bold;
+}
+
+
+
+.aside__cart table #img img{
+  width: 100%;
+}
+
+.aside-content .aside__discount{
+  width: 100%;
+  font-size: 0.9vw;
+  padding: 14px 0;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.258);
+}
+
+.aside-content .aside__discount table{
+  padding: 0 10px;
+  width: 98%;
+  margin: 0 auto;
+}
+
+.aside-content .aside__discount table input{
+  min-width: 200px;
+  padding: 15px 5px;
+  outline: none;
+  border: 1px solid rgba(128, 128, 128, 0.462);
+  border-radius: 4px;
+  font-size: 0.7vw;
+  
+}
+
+.aside-content .aside__discount table button{
+  min-width: 100px;
+  padding: 15px 5px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.7vw;
+  cursor: pointer;
+  transition: 0.6s ;
+}
+
+.aside-content .aside__discount table button:hover{
+  opacity: 0.8;
+}
+
+
+.aside-content .aside__discount table input:hover,
+.aside-content .aside__discount table input:focus
+{
+  border: 1px solid #4a90e2;
+}
+
+
+.aside-content .aside__total{
+  width: 100%;
+  padding: 14px 0;
+ 
+}
+
+.aside-content .aside__total table{
+  padding: 0 10px;
+  width: 98%;
+  margin: 0 auto;
+ 
+}
+
+.aside-content .aside__total table td{
+  padding: 10px 0;
+ 
+}
+
+.aside-content #total__text{
+  color: rgba(128, 128, 128, 0.841);
+  font-size: 0.9vw;
+}
+
+.aside-content #total__price{
+  color: #2a9dcc;
+  font-weight: bold;
+  font-size: 1.1vw;
+  text-align: right;
+
+}
+
+.aside__total #total__back{
+  color: #2a9dcc;
+  font-weight: bold;
+  font-size: 0.6vw;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.5s ;
+}
+
+.aside__total #total__back:hover{
+  text-decoration: underline;
+  color: #0c5460;
+}
+
+.aside__total #total__dathang {
+  text-align: right;
+}
+.aside__total #total__dathang button {
+ 
+  padding: 10px 10px;
+  font-size: 1vw;
+  background-color: #2a9dcc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.aside__total #total__dathang button:hover{
+  background-color: #2390a3a1;
+}

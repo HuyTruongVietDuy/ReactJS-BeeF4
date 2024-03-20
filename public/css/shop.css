@@ -1,0 +1,112 @@
+/* Add these styles to your CSS file */
+.background-Product {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height:51vh;
+    z-index: -1; /* Ensures the video stays behind other content */
+  }
+  
+  .background-Product video {
+    object-fit: cover;
+    width: 100%; /* Điều chỉnh kích thước của thuộc tính cover tại đây */
+    height: 100%; /* Điều chỉnh kích thước của thuộc tính cover tại đây */
+    filter: brightness(70%); /* Điều chỉnh độ sáng nếu cần */
+    transition: filter 0.5s ease; /* Thêm hiệu ứng chuyển động mượt mà */
+  }
+  
+  /* Thêm hiệu ứng hover để thay đổi độ sáng khi di chuột qua (tùy chọn) */
+  .background-Product:hover video {
+    filter: brightness(100%);
+  }
+  
+
+  .nav-product{
+    width: 100%;
+    height: 100px;
+    margin-top: 20px;
+    
+}
+
+.nav-product .Container-item-nav{
+   width: 90%;
+    min-height: 50px;
+   border-bottom:  1px solid black;  
+   margin: 0 auto;
+}
+
+
+.nav-product .item-nav-left{
+  float: left;
+  width: 60%;
+}
+
+
+.item-nav-left #priceFilter,
+.item-nav-left #loaiFilter,
+.item-nav-left #colorFilter,
+.item-nav-right #thutuFilter{
+    width: 12%;
+    font-size: 16px;
+    padding: 8px;
+    border:none;
+    background:none;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 0 5px;
+}
+
+
+
+.item-nav-left #priceFilter{
+    width: 25%;
+
+}
+
+
+
+
+.item-nav-left #colorFilter{
+    width: 14%;
+}
+
+.item-nav-right #thutuFilter{
+    width: 100%;
+    border: 1px solid black;
+    
+}
+
+.item-nav-left #priceFilter option,
+.item-nav-left #loaiFilter option,
+.item-nav-left #colorFilter option{
+  font-size: inherit; /* Kế thừa kích thước chữ từ thẻ select */
+  font-weight: inherit; /* Kế thừa độ đậm từ thẻ select */
+  font-variant: inherit; /* Kế thừa dạng chữ từ thẻ select */
+  min-width: inherit; /* Kế thừa độ rộng tối thiểu từ thẻ select */
+}
+
+#priceFilter option:hover,
+#loaiFilter option:hover,
+#loaiFilter option:hover{
+    background-color: #f0f0f0;
+}
+
+#priceFilter option:checked,
+#loaiFilter option:checked,
+#loaiFilter option:checked{
+    background-color: #e6e6e6;
+    font-weight: bold;
+}
+
+
+/* Optional: Style for the container or surrounding area */
+/* Replace '.container' with the actual class or ID of your container */
+
+.nav-product .item-nav-right{
+   float: right;
+   width: 10%;
+   margin-right: 5px;
+}
+
+

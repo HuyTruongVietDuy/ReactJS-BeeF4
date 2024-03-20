@@ -1,0 +1,318 @@
+
+.admin-table{
+    width: 100%;
+    font-weight: 400;
+
+}
+
+.admin-table table {
+    border-collapse: collapse;
+    width: 100%; /* Độ rộng của bảng */
+}
+
+
+
+
+.admin-table th {
+    border-bottom: 1px solid #000; /* Đường viền dưới cho th và td */
+    padding: 8px; /* Khoảng cách giữa nội dung và viền */
+    text-align: center; 
+}
+
+
+.admin-table td {
+   font-size: 0.8vw;
+    padding:10px 8px; 
+    text-align: center; 
+}
+
+.admin-table td button{
+   margin: 0px 4px;
+   padding: 4px 10px;
+   color: white;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+   transition: background-color 0.3s, color 0.3s, border 0.3s;
+}
+
+.admin-table td #button-xoa{
+    background-color: #FC8019;
+ }
+
+ .admin-table td #button-sua{
+    background-color: #F59E0B;
+ }
+ 
+ .admin-table td #button-xem{
+  background-color: #4b4a49;
+}
+
+
+
+ .admin-table td #button-xoa:hover,
+ .admin-table td #button-sua:hover,
+ .admin-table td #button-xem:hover{
+    opacity: 0.8;
+ }
+  
+
+.admin-table img {
+    width: 60px; /* Độ rộng tối đa của hình ảnh */
+    height: auto; /* Chiều cao tự động điều chỉnh để giữ tỷ lệ khung hình */
+    cursor: pointer;
+    z-index: 1;
+} 
+
+
+.admin-content-component-top .admin-table img{
+  width: 100px;
+}
+
+.admin-table span{
+  margin: 5px 5px;
+  cursor: pointer;
+  font-weight: bold;
+  line-height:2;
+  color: #F59E0B;
+
+}
+
+.admin-table span i{
+  vertical-align:middle ;
+}
+
+.admin-table span:hover{
+ color: gray;
+}
+
+
+.admin-table span:hover{
+ color: gray;
+}
+
+.admin-table .admin-size-checkbox {
+  margin-right: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+
+  width: 30px;
+  height: 30px;
+  vertical-align: sub;
+}
+
+.admin-table #slsp {
+ font-size: 0.8vw;
+ padding: 10px 25px;
+ border-radius: 4px;
+ outline: none;
+ border: none;
+ background-color: rgba(76, 171, 206, 0.236);
+}
+
+.admin-table .color-size {
+  width: 20px;
+  height:20px;
+  border-radius: 50%;
+  top: 19px;
+  position: relative;
+ vertical-align: middle;
+ }
+ 
+
+
+.admin-size-label {
+  margin-right: 12px;
+  font-size: 1.2vw;
+}
+
+ 
+
+
+
+.sidebar-admin-form {
+    position: fixed;
+    top: 0;
+    right: -640px; /* Điều chỉnh giá trị phù hợp với kích thước của sidebar */
+    width: 600px; /* Điều chỉnh độ rộng của sidebar */
+    height: 100%;
+    background-color: white; /* Màu nền của sidebar */
+    transition: right 0.3s ease; /* Hiệu ứng chuyển động */
+    z-index: 9000;
+    padding: 20px; /* Khoảng cách từ nội dung đến viền form */
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .sidebar-admin-form.active {
+    right: 0; /* Hiển thị sidebar khi có class active */
+  }
+  
+  .admin-main-content.dark-overlay,
+  .admin-sidebar.dark-overlay,
+  #admin-header.dark-overlay{
+    background-color: rgba(111, 108, 108, 0.193); /* Màu nền mờ và độ trong suốt */
+    z-index: 2000;
+  
+  }
+
+  /* ListDanhMuc.css */
+
+  .selected-image-container {
+    position: fixed; /* Thiết lập vị trí cố định */
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #0000008e;
+    z-index: 4000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .selected-image-container #selected-content{
+    width: 37%;
+    height: 90%;
+    background-color: white;
+    border-radius: 10px;    
+    animation: slideIn 0.5s ease forwards;
+  }
+
+  .selected-image-container #selected-content .selected-image{
+    width:100%;
+    height: 100%;
+    z-index: 3000;
+    border-radius: 10px;
+  }
+  
+  
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Điều chỉnh khoảng cách từ phân trang đến phần khác của giao diện */
+  }
+  
+  .pagination-container button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+  }
+  
+  .pagination-container button:hover {
+    background-color: #f0f0f0;
+  }
+  
+
+  .admin-edit {
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.413);
+    width: 200%;
+    height: 200%;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.282);
+    z-index: 9999; /* Đảm bảo modal hiển thị trên các phần còn lại của trang */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+  
+
+  .admin-edit .admin-edit-content{
+    min-width: 18%;
+    padding: 40px;
+    min-height: 25%;
+    background-color: #ffffff;
+    border-radius:7px;
+    position: relative;
+    top: 22%;
+    left: 26%;
+    animation: slideIn 0.5s ease forwards;
+  }
+
+  .admin-edit .admin-edit-content #close{
+   position: absolute;
+   right: 2%;
+   top: 0;
+   font-size: 1.5vw;
+   cursor: pointer;
+  }
+
+  .admin-edit .admin-edit-content #close:hover{
+   color: tomato;
+   }
+
+   @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .admin-edit .admin-edit-content .form-admin-edit {
+    margin-top: 20px;
+  }
+
+  .admin-edit .admin-edit-content .form-admin-edit h1 {
+    text-align: center;
+    margin-bottom: 5px;
+    font-weight: 300;
+    color: white; /* Màu chữ */
+    text-shadow: 2px 2px 4px #F59E0B; /* Đổ bóng chữ với màu đen */
+ }
+  .admin-edit .admin-edit-content .form-admin-edit label {
+    margin-bottom: 4px;
+    display: block;
+  }
+  
+  .admin-edit .admin-edit-content .form-admin-edit input[type="text"],
+  .admin-edit .admin-edit-content .form-admin-edit input[type="file"],
+  .admin-edit .admin-edit-content .form-admin-edit select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Phù hợp với padding và border vào kích thước */
+    outline: none;  
+    background-color: rgba(128, 128, 128, 0.222);
+    border: none;
+  }
+  
+  .admin-edit .admin-edit-content .form-admin-edit input[type="text"]:focus,
+  .admin-edit .admin-edit-content .form-admin-edit input[type="file"]:focus {
+   background-color: white;
+   border: 1px solid rgba(128, 128, 128, 0.457);
+  }
+
+  .admin-edit .admin-edit-content .form-admin-edit input[type="submit"] {
+    background-color: #F59E0B;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .admin-edit .admin-edit-content .form-admin-edit input[type="submit"]:hover {
+    background-color: #f59f0b69;
+    color: black;
+  }
+
+
+  .admin-edit #image-preview{
+    width: 80px;
+  }
+  

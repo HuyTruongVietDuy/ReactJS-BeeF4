@@ -1,0 +1,84 @@
+.container-lienhe {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+.header-lienhe , .footer-lienhe {
+    
+    color:black;
+    padding: 20px 0;
+    text-align: center;
+}
+.main-content-lienhe {
+    padding: 20px;
+    background: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.contact-info-lienhe {
+    text-align: left;
+    margin-bottom: 20px;
+    width: 50%;
+    margin-left: 200px;
+
+}
+
+.contact-info-lienhe p {
+    font-size: 1.2vw;
+    margin-bottom: 20px;
+   
+
+}
+.map-container-lienhe {
+    width: 50%;
+    height: 400px; /* Điều chỉnh chiều cao của bản đồ tại đây */
+    margin-bottom: 20px;
+    flex: 1 0 600px; /* Đặt kích thước cố định cho phần bản đồ */
+}
+
+.map-container-lienhe iframe {
+   width: 100%;
+}
+.contact-form-lienhe {
+    width: 100%;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-top: 40px;
+}
+
+.contact-form-lienhe form{
+    width: 50%;
+    margin: 0 auto;
+   
+
+}
+.contact-form-lienhe  label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+.contact-form-lienhe  input[type="text"],
+.contact-form-lienhe  input[type="email"],
+.contact-form-lienhe  textarea {
+    width: 70%;
+    padding: 20px 20px;
+    margin-bottom: 10px;
+    border: 1px solid #cccccc;
+    outline: none;
+   
+}
+.contact-form-lienhe  input[type="submit"] {
+    background: #333;
+    color: #ffffff;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+}
+.contact-form-lienhe  input[type="submit"]:hover {
+    background: #555;
+}

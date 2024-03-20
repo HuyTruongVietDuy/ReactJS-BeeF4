@@ -1,0 +1,87 @@
+
+
+.user-form-dangnhap {
+    width: 50%;
+    margin: 40px auto;
+}
+
+
+.user-form-dangnhap h3 {
+    font-weight: 700;
+    color: black;
+}
+
+.user-form-dangnhap input[type="text"] {
+    display: block;
+    margin: 25px 0;
+    padding: 20px;
+    width: 100%;
+    background-color: #ededed;
+    border: none;
+    color: gray;
+    outline: none; 
+}
+
+.user-form-dangnhap input[type="text"]:focus {
+    background-color: #ffffff;
+    border: 0.5px solid rgba(128, 128, 128, 0.599);
+}
+
+.user-form-dangnhap .box {
+    display: flex;
+}
+
+.user-form-dangnhap button {
+    padding: 8px 25px;
+    background-color: black;
+    color: white;
+    transition: background-color 0.3s, color 0.3s;
+    box-shadow: 0 0 0 0 white; /* Thêm box-shadow với màu trắng và độ blur là 0 */
+    font-size: 0.8vw;
+}
+
+.user-form-dangnhap button:hover {
+    cursor: pointer;
+    color: black;
+    background-color: white;
+    border: 1px solid;
+    box-shadow: 0 0 20px 10px white; /* Thêm box-shadow với màu trắng và độ blur là 20px */
+}
+.user-form-dangnhap p {
+    margin-left: 20px;
+    padding: 5px;
+    width: 500px;
+}
+
+.user-form-dangnhap p a {
+    text-decoration: none;
+    color: black;
+}
+
+.user-form-dangnhap p a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.user-form-dangnhap p span {
+    color: gray;
+    margin: 0 5px;
+}
+
+@media (max-width: 739px) {
+    .user-form-dangnhap {
+        width: 80%;
+    }
+
+    .user-form-dangnhap button {
+        width: 100%;
+    }
+
+    .user-form-dangnhap .box {
+        flex-direction: column;
+    }
+
+    .user-form-dangnhap p {
+        margin: 0;
+    }
+}

@@ -1,0 +1,39 @@
+/* ImagePopup.css */
+    .image-popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.235);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+  .popup-content {
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+   
+  }
+  
+  .popup-content img {
+   min-width: 500px;
+   min-height: 500px;
+  }
+  
+  .popup-content button {
+    margin-top: 10px;
+    position: absolute;
+    right: 10px;
+    top: 0;
+    border: none;
+    background: none;
+    font-size: 1.5vw;
+    cursor: pointer;
+    color: white;
+  }
+
+  .popup-content button:hover {
+    color: tomato;
+  }

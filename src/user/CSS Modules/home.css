@@ -1,0 +1,489 @@
+#main{
+    margin-top: 13vh;
+    min-height: 87vh;
+    padding: 30px 0px;
+    background-color: white;
+    width: 100%;
+    
+}
+
+#container-main{
+    background-color: white;
+}
+.user-banner{
+    position: relative;
+    top: -30px;
+    background-size: cover; /* hiển thị hình nền sao cho toàn bộ phần tử được phủ kín */
+    background-position: center; /* căn chỉnh hình nền ở giữa phần tử */
+    width: 100%; /* đảm bảo rằng phần banner có chiều rộng tương đương với khu vực hiển thị */
+    height: 87vh;
+}
+
+.user-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Đảm bảo hình ảnh được hiển thị đúng tỷ lệ */
+    transition: transform 0.8s ease; /* Hiệu ứng transform với tốc độ 0.8 giây */
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Một overlay mờ màu đen */
+    opacity: 0; /* Ẩn ban đầu */
+    transition: opacity 0.5s ease; /* Hiệu ứng opacity với tốc độ 0.5 giây */
+  }
+  
+  .user-banner:hover .overlay {
+    opacity: 1; /* Khi di chuột qua, overlay sẽ hiển thị */
+  }
+  
+  .banner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Canh giữa văn bản */
+    text-align: center;
+    color: white;
+    z-index: 1; /* Đảm bảo văn bản hiển thị trên hình ảnh */
+    opacity: 0; /* Ẩn ban đầu */
+    transition: opacity 0.5s ease; /* Hiệu ứng opacity với tốc độ 0.5 giây */
+  }
+  
+  .user-banner:hover .banner-text {
+    opacity: 1; /* Khi di chuột qua, văn bản sẽ hiển thị */
+  }
+
+
+.container-slide{
+    width: 100%;
+    height: auto;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-slide h1{
+   font-size: 3vw;
+   position: relative;
+   top: -24px;
+ 
+}
+.container-left{
+    font-size: 36px;
+    width: 39%;
+    display: flex;
+    height: 30vh;
+  justify-content: center;
+  align-items: center;
+
+}
+.container-right {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    width: 60%;
+    height: 30vh;
+    
+}
+
+.container {
+    position: relative; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    
+}
+
+.categories-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    width: 100%;
+    margin: 20px auto;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+    justify-content: center;
+}
+
+@keyframes slideInRight {
+    0% {
+    transform: translateX(100%);
+    opacity: 0;
+    }
+    100% {
+    transform: translateX(0);
+    opacity: 1;
+    }
+}
+
+@keyframes slideOutLeft {
+    0% {
+    transform: translateX(0);
+    opacity: 1;
+    }
+    100% {
+    transform: translateX(-100%);
+    opacity: 0;
+    }
+}
+
+.category {
+    flex: 0 0 12%;
+    padding: 10px 10px;
+    box-sizing: border-box;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0;
+transform: translateX(100%);
+transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+
+}
+
+.category.active {
+    opacity: 1;
+    transform: translateX(0);
+    animation: slideInRight 0.5s ease-in-out;
+}
+
+.category.previous {
+    animation: slideOutLeft 0.5s ease-in-out;
+}
+
+.image-category {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    background-color: #ddd;
+    margin-bottom: 10px;
+}
+
+.image-category img{
+    border-radius: 50%;
+    width: 100%;
+    
+}
+.name-category {
+    text-align: center;
+}
+
+
+
+.button-container button {
+    padding: 5px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #1a1a1a;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 20px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.button-container button:hover {
+  background-color: rgb(54, 54, 54);
+  color: white;
+}
+
+#button-left{
+    position: absolute;
+    left:20px;
+    top:37%;
+    font-weight: bold;
+}
+
+#button-right{
+    position: absolute;
+    right:20px;
+    top:37%;
+}
+
+
+
+.category:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+@media only screen and (max-width: 1316px) {
+    .container-slide{
+       margin-bottom: 5%;
+    }
+
+    
+    .container-slide .container-left{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .container-slide .container-left h1{
+        margin-top: 20%;
+    }
+    .container-left{
+    float: none;
+    font-size: 20px;
+    height: 50px;
+    width: 100%;
+    }
+
+    .container-right {
+        float: none;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        width: 85%;
+        max-height: 30vh;
+    }
+
+    .category {
+        flex: 0 0 20%;
+        padding: 5px 5px;
+        box-sizing: border-box;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+
+    .button-container button {
+      background: none;
+    }
+
+    .button-container button:hover {
+        background: none;
+        color: blanchedalmond;
+      }
+
+    #button-left{
+        position: absolute;
+        left:0;
+        top:34%;
+        font-weight: bold;
+    }
+    
+    #button-right{
+        position: absolute;
+        right: 0px;
+        top:34%;
+    }
+
+    #button-right i, 
+    #button-left i{
+    font-size: 16px;    
+    }
+  }
+  
+
+  .container-new-product{
+    width: 100%;
+    min-height: 500px;
+    overflow: hidden;
+    background-color: white;
+}
+
+.title-new-product {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 50px;
+}
+
+.scroll-wrapper {
+    display: inline-block;
+    white-space: nowrap;
+    animation: scroll 17s linear infinite;
+}
+
+.scroll-text {
+    display: inline-block;
+    opacity: 0; /* Không hiển thị chữ ban đầu */
+    animation: appearAndScroll 20s linear infinite; /* Áp dụng animation */
+    animation-delay: calc(var(--delay) * 0.5s); /* Tính toán độ trễ */
+    margin-right: 200px; /* Khoảng cách giữa các chữ */
+    font-size: 2.8vw;
+    color: white; /* Màu chữ trắng */
+    text-shadow: 2px 2px 0 black,   /* Đổ bóng đen với độ dày là 2px */
+                 -2px 2px 0 black,
+                 2px -2px 0 black,
+                 -2px -2px 0 black;
+}
+
+@keyframes appearAndScroll {
+    0% {
+        transform: translateX(50%);
+        opacity: 0; /* Bắt đầu ẩn đi */
+    }
+    50% {
+        transform: translateX(-50%);
+        opacity: 1; /* Hiển thị chữ */
+    }
+    100% {
+        transform: translateX(-200%);
+        opacity: 1; /* Giữ chữ hiển thị */
+    }
+}
+
+.container-product-show {
+    margin: 5vh auto;
+    width: 96%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-product-show .center-layout{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.product {
+    position: relative;
+    width: calc(25% - 20px);
+    height: 55vh;
+    margin: 1vh; 
+    display: flex;
+    justify-content: center;
+}
+
+.product-image {
+    position: relative;
+    width: 90%;
+    height: 45vh; 
+    overflow: hidden; 
+    display: inline-block;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    transition: opacity 0.5s ease; 
+    border-radius: 4px;
+}
+
+.hover-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+
+}
+
+.product-image:hover .main-image {
+    opacity: 0; 
+}
+
+.product-image:hover .hover-image {
+    opacity: 1; 
+  
+}
+
+.product-image .sold-out{
+    position: absolute;
+    top: 0%;
+    padding: 1% 2.5%;
+    font-size: 0.8vw;
+    background-color: #000;
+    color: white;
+}
+
+.product-button-container {
+    position: absolute;
+    bottom:40%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.product-image:hover .product-button-container {
+    opacity: 1;
+    transform: translate(-50%, -10px);
+}
+
+.product-button-container .buy-now,
+.product-button-container .add-to-cart {
+    width: 100%;
+    padding: 1vh 3.5vh;
+    margin: 0 5px;
+    border: none;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    font-size: 0.7vw;
+}
+
+.product-button-container .buy-now:hover,
+.product-button-container .add-to-cart:hover {
+   opacity: 0.8;
+}
+
+.product-details {
+    position: absolute;
+    bottom: 2vh;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.container-color{
+    width: 100%;
+    height: 2vh;
+    margin-top: 2vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-color #color{
+    cursor: pointer;
+   padding:2px 20px;
+   border-radius: 10%;
+   margin: 0 5px;
+}
+
+.product-name,
+.product-price {
+    font-size: 1vw;
+    font-weight: bold;
+    margin-bottom: 5px;
+    width: 100%;  
+}
+
+.product-price {
+    color: rgb(0, 0, 0);
+    
+}
+
+
+.product-price #gia_khuyenmai{
+ position: absolute;
+ right: 10%;
+}
+

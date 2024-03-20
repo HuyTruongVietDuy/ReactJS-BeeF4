@@ -1,0 +1,262 @@
+
+.home-bill{
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    width: 100%;
+  }
+  
+  
+  .home-bill article{
+    width: 60%;
+    height: 500px;
+    float: left;
+  }
+  
+  .bill-logo{
+    width: 100%;
+   
+    margin-left: 30%;
+    margin-bottom:10px;
+  }
+  
+  .bill-logo img{
+    width: 15%;
+    border-bottom: 2px solid black;
+    border-radius: 4px;
+  }
+  .container-aritcle-thanhtoan{
+    width: 100%;
+    display: flex;
+  }
+
+  .home-bill article form{
+    /* background-color: #3d4246; */
+    width: 35%;
+    min-height: auto;
+    margin-left: 30%;
+    
+  }
+  
+  .thongtin-thanhtoan{
+    width: 35%;
+    min-height: auto;
+    margin-left: 2%;
+  }
+  
+  .thongtin-thanhtoan h1{
+    font-size: 1.2vw;
+    margin-bottom: 20px;
+  }
+  
+  .thongtin-thanhtoan .box-vanchuyen{
+      width: 90%;
+      padding: 20px;
+      background-color:rgba(152, 219, 216, 0.8) ;
+      font-weight: 100;
+      border-radius: 4px;
+      font-size: 0.8vw;
+      color: #0C5460;
+      margin-bottom: 40px;
+  }
+  .home-bill article form h1{ 
+    margin: 10px 0;
+    font-size: 1.2vw;
+  }
+  
+  .home-bill article form input[type='text']{
+    width: 99%;
+    padding: 15px 0;
+  
+    border: 1px solid #b9afaf;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .inp:hover,
+  .inp:focus{
+    outline:solid 2px #2a9dcc;
+  }
+  
+  .home-bill aside{
+    width: 39%;
+    min-height:1000px;
+    border-left: 1px solid rgba(129, 126, 126, 0.5);
+    background-color: #fff;
+    color: #737373;
+   
+    
+  }
+  
+  .home-bill aside .content-bill{
+    width: 60%;
+  
+    height: 200px;
+  }
+  
+  .home-bill aside .content-bill h1{
+   padding: 15px;
+   font-weight: bold;
+   color:#333333;
+   font-size: 1vw;
+   border-bottom: 1px solid rgba(129, 126, 126, 0.5);
+  margin-bottom: 20px;
+  }
+  
+  
+  .home-bill aside .bill-cart{
+    width: 90%;
+    margin: 0 auto;
+    height: 70px;
+    padding: 10px;
+  }
+  
+  .bill-cart-left{
+   width: 65%;
+   float: left;
+  }
+  
+  .bill-cart-left .bill-cart-img{
+    width:20%;
+    height:70px;
+    float: left;
+    margin-right: 20px;
+    position: relative;
+   }
+  
+   .bill-cart-count{
+    font-size: 0.7vw;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    
+    width: 15px;
+    background-color: #2a9dcc;
+    position: absolute;
+    top:-6px;
+    right:-8px;
+    border-radius: 50%;
+   }
+  
+   .bill-cart-left .bill-cart-img img{
+    width:100%;
+    height: 70px;
+    border-radius: 10px;
+   }
+  
+   .bill-cart-left .bill-cart-name{
+    color:#333333;
+    font-weight: bold;
+    font-size: 0.7vw;
+    margin-top: 10px;
+   }
+  
+   .bill-cart-left .bill-cart-size{
+    color:#333333;
+    font-size: 0.7vw;
+    margin-top: 5px;
+   }
+  
+  
+  .bill-cart-right{
+    float: right;
+    font-size: 0.8vw;
+    margin-top: 7%;
+  }
+  
+  .home-bill aside .discount{
+    margin: auto;
+    width: 90%;
+    height: 50px;
+    padding: 15px;
+  }
+  
+  .discount-left{
+    float: left;
+    width: 70%;
+  }
+  
+  .discount-left input{
+    float: left;
+    width: 100%;
+    height: 46px;
+    
+    border-radius: 7px;
+    font-size: 0.7vw;
+    border: 2px solid gray;
+  }
+  
+  .discount-right{
+  float: right;
+  width: 25%;
+  }
+  
+  .discount-right button{
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    border:none;
+    color: white;
+    background-color: #357EBD;
+    opacity:0.4; transition: 0.3s;
+  }
+  
+  .home-bill aside hr{
+    width: 90%;
+    margin: 0 auto;
+    color: rgba(238, 234, 234, 0.1);
+  }
+  
+  .home-bill aside .total{
+    width: 90%;
+    margin: 15px auto;
+    min-height: auto;
+    font-size: 1.1vw;
+  
+  }
+  
+  .total-left{
+    float: left;
+  }
+  
+  .total-right{
+    float: right;
+    color: #2a9dcc;
+    font-weight: bolder;
+  }
+  
+  .total-button{
+    clear: both;
+    width: 90%;
+    margin: 0 auto;
+    height: 50px;
+    font-size: 1.1vw;
+    margin-top: 50px;
+  }
+  
+  .total-button .total-button-left{
+    float: left;
+    color: #2a9dcc;
+    font-size: 0.8vw;
+  }
+  
+  .total-button .total-button-right{
+    float: right;
+  }
+  
+  .total-button .total-button-right button{
+    height: 50px;
+    width: 120px;
+    background-color: #357EBD;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .total-button .total-button-right button:hover{
+    
+    opacity:0.4;
+   
+  }

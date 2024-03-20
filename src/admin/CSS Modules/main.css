@@ -1,0 +1,107 @@
+.container-main-admin{
+    max-height: 100%;
+    width: 100%;
+    display: block;
+    
+}
+
+
+#container-nav-admin{
+padding: 10px 0px;
+width: 100%;
+min-height: auto;
+position: relative;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+#container-nav-admin .nav-left-admin{
+   width: 70%;
+   height: 100%;
+}
+
+#container-nav-admin .nav-left-admin h1 {
+    margin-left: 5%;
+    font-size: 2vw;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.561); /* Màu chữ trắng */
+    
+}
+
+#container-nav-admin .nav-right-admin{
+    width: 30%;
+    height: 100%;
+    z-index: 3000;
+
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    margin-right: 20px;
+ }
+
+ #container-nav-admin .nav-right-admin button{
+    text-align: center;
+    font-weight: bold;
+    width:auto;
+    padding: 10px 15px;
+    background: none;
+    color: #FC8019;
+    border: 1px solid #FC8019;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 400;
+ }
+
+ #container-nav-admin .nav-right-admin i{
+    vertical-align: middle;
+ }
+
+ #container-nav-admin .nav-right-admin button:hover{
+   opacity: 0.7;
+ }
+
+ #container-nav-admin .nav-right-admin select{
+   margin: 0px 5px;
+   padding: 10px 20px;
+   border-radius: 4px;
+   font-size: 0.8vw;
+ }
+
+ #container-nav-admin .nav-right-admin select option{
+   font-size: 0.8vw;
+   padding: 5px;
+  }
+ 
+ 
+.container-main-admin p{
+    width: 100%;
+    max-height: 90%;
+background-color: rgb(183, 3, 3);
+}
+
+.admin-content-component{
+    max-height: 90%;
+    max-width: 100%;
+    padding:20px 40px;
+}
+
+.admin-content-component-top{
+    max-height: 350px;
+    margin-bottom: 20px;
+    min-width: 96%;
+    padding:20px 40px;
+    
+}
+
+
+
+.admin-content-component-bottom{
+    max-height: 400px;
+    background-color: #5749491c;
+    min-width: 96%;
+    padding:10px 40px;
+}
+
+
+

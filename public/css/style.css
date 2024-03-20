@@ -1,0 +1,34 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    
+}
+
+a{
+    color: black;
+}
+
+
+#main {
+    transition: margin-left 0.3s ease-in-out; /* Thêm hiệu ứng chuyển động */
+    margin-left: 0; /* Thiết lập margin-left mặc định */
+}
+
+#sidebar-find.active + #main {
+    margin-left: -20%; /* Kéo main về bên trái khi sidebar mở */
+}
+
+
+
+.user-container-header.darken {
+    filter: brightness(30%); /* Áp dụng bộ lọc tối cho user-container-header */
+}
+
+#main.darken {
+    filter: brightness(30%); /* Áp dụng bộ lọc tối cho main */
+}
+
+footer.darken{
+    filter: brightness(30%); /* Áp dụng bộ lọc tối cho main */
+}
+

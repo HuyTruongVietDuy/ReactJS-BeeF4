@@ -1,0 +1,40 @@
+#form-admin h2 {
+    margin-bottom: 20px; /* Khoảng cách từ tiêu đề đến các phần tử khác */
+  }
+  
+  #form-admin {
+    display: grid; /* Hiển thị các input và label theo lưới */
+    gap: 10px; /* Khoảng cách giữa các input và label */
+    padding-top: 80px;
+  }
+
+ 
+  
+  #form-admin label {
+    font-weight: bold; /* Đậm chữ của label */
+  }
+  
+  #form-admin input[type="text"],
+  #form-admin input[type="number"],
+  #form-admin select {
+    width: 100%; /* Độ rộng của input và select là 100% */
+    padding: 8px; /* Khoảng cách từ nội dung của input và select đến viền */
+    border: 1px solid #ccc; /* Định dạng viền của input và select */
+    border-radius: 3px; /* Bo tròn các góc của input và select */
+    box-sizing: border-box; /* Thiết lập hộp model của input và select */
+  }
+  
+  #form-admin button {
+    padding: 10px 20px; /* Kích thước của nút */
+    background-color: #007bff; /* Màu nền của nút */
+    color: #fff; /* Màu chữ của nút */
+    border: none; /* Loại bỏ viền của nút */
+    border-radius: 3px; /* Bo tròn các góc của nút */
+    cursor: pointer; /* Con trỏ chuột thành dạng bấm được */
+  }
+  
+  #form-admin button:hover {
+    background-color: #0056b3; /* Màu nền của nút khi hover */
+  }
+
+  
