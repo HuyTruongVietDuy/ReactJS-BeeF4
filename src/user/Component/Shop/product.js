@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-function Product({ priceFilter, thutuFilter }) {
+function Product({ priceFilter, thutuFilter, loaiFilter  }) {
   const [productList, setProductList] = useState([]);
   const [colors, setColors] = useState({});
   const [selectedColor, setSelectedColor] = useState({});
@@ -10,7 +10,7 @@ function Product({ priceFilter, thutuFilter }) {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("http://localhost:4000/sanpham/listnew");
+        const response = await fetch("http://localhost:4000/sanpham/listall");
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -60,6 +60,7 @@ function Product({ priceFilter, thutuFilter }) {
     if (priceFilter === "0") {
       return products;
     }
+    
 
     const [minPrice, maxPrice] = priceFilter.split("-").map(parseFloat);
 
@@ -69,6 +70,17 @@ function Product({ priceFilter, thutuFilter }) {
     });
   };
 
+  const filterProductsByLoai = (products, loaiFilter) => {
+    if (loaiFilter === "0") {
+      return products;
+    }
+  
+    return products.filter(product => product.id_danhmuc === parseInt(loaiFilter));
+  };
+  
+
+
+  
   const sortProductsByOrder = (products, thutuFilter) => {
     switch (thutuFilter) {
       case "0": // Không sắp xếp
@@ -85,8 +97,9 @@ function Product({ priceFilter, thutuFilter }) {
   };
 
   const filteredProductsByPrice = filterProductsByPrice(productList, priceFilter);
-  const sortedAndFilteredProducts = sortProductsByOrder(filteredProductsByPrice, thutuFilter);
-
+  const filteredProductsByLoai = filterProductsByLoai(filteredProductsByPrice, loaiFilter);
+  const sortedAndFilteredProducts = sortProductsByOrder(filteredProductsByLoai, thutuFilter);
+  
   return (
     <div className="container-product-show">
       <div className="center-layout">
@@ -101,7 +114,7 @@ function Product({ priceFilter, thutuFilter }) {
                 <button className="buy-now"> Mua Ngay </button>
                 <button className="add-to-cart"> Thêm vào giỏ </button>
               </div>
-              {product.so_luong === 0 || product.so_luong === null ? (
+              {product.tong_so_luong === 0 || product.tong_so_luong === null ? (
                 <div className="sold-out">Hết hàng</div>
               ) : null}
             </Link>

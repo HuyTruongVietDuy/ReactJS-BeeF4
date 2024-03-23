@@ -18,6 +18,7 @@ import ViewCart from "./Component/viewcart";
 import ChiTietSanPham from "./Component/chitietsanpham";
 import Loader from "./Component/Loader";
 import SideBarCart from "./Component/SidebarCart";
+import SideBarSearch from "./Component/SidebarSearch.js";
 import BaoLoi from "./Component/Baoloi";
 import GioiThieu from "./Component/GioiThieu";
 
@@ -38,7 +39,7 @@ function UserIndex() {
 
   setTimeout(() => {
     setLoading(false);
-  }, 1400);
+  }, 1200);
 
   var prevScrollpos = window.pageYOffset;
   var headers = document.getElementsByClassName("user-container-header");
@@ -71,7 +72,7 @@ function UserIndex() {
             <div className="user-logo-header">
               <Link to="/">
                 {" "}
-                <img src="images/logo-header.gif" alt="" />{" "}
+                <img src="./images/logo-header.gif" alt="" />
               </Link>
             </div>
           </div>
@@ -102,17 +103,8 @@ function UserIndex() {
         </header>
       </div>
 
-      <div id="sidebar-find">
-        <span id="closeButton" onClick={SearchIconClick}>
-          &times;
-        </span>
-        <div className="header-side-search">
-          <p>TÌM KIẾM</p>
-        </div>
-        <div className="main-side-search">
-          <input type="text" placeholder="TÌM KIẾM SẢN PHẨM..." />
-        </div>
-      </div>
+      <SideBarSearch onClick={SearchIconClick}/>
+    
 
       <SideBarCart CartIconClick={CartIconClick} />
 
@@ -127,7 +119,7 @@ function UserIndex() {
         ) : (
           <Routes>
             <Route path="/" element={<Home addToCart={addToCart} />} />
-            <Route path="/shop" element={<Shop addToCart={addToCart} />} />
+            <Route path="/shopall" element={<Shop addToCart={addToCart} />} />
             <Route path="/dangnhap" element={<DangNhap />} />
             <Route path="/dangky" element={<DangKy />} />
             <Route path="/quenmatkhau" element={<QuenMatKhau />} />

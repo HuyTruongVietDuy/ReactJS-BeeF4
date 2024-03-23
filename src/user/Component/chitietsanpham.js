@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate  } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { themSP } from "../../redux/cartSlice";
 import { message } from 'antd';
@@ -7,6 +7,7 @@ import { message } from 'antd';
 const ChiTietSanPham = () => {
   const { id_sanpham } = useParams();
   const dispatch = useDispatch();
+  const navigate  = useNavigate();
   const [productDetail, setProductDetail] = useState(null);
   const [colors, setColors] = useState([]);
   const [sizes, setSizes] = useState([]);
@@ -146,7 +147,18 @@ const ChiTietSanPham = () => {
     message.success('Thêm sản phẩm vào giỏ hàng thành công');
   };
   
-
+  const handleMuaNgay = () => {
+    if (!selectedSize) {
+      console.error("No size selected.");
+      message.warning('Vui lòng chọn kích thước trước khi thêm vào giỏ hàng');
+      return;
+    }
+    // Thực hiện thêm vào giỏ hàng
+    handleAddToCart();
+    
+    // Chuyển hướng tới trang thanh toán
+    navigate("/thanhtoan");
+  };
   if (!productDetail) {
     return <div>Loading...</div>;
   }
@@ -218,11 +230,11 @@ const ChiTietSanPham = () => {
               ))}
             </div>
             <div className="add" onClick={handleAddToCart}>Thêm vào giỏ</div>
-            <div className="buy">Mua ngay</div>
+            <div className="buy" onClick={handleMuaNgay}>Mua ngay</div>
             <div className="box-2__detail">
               Chi tiết sản phẩm
               <ul>
-                <li>Chất liệu: Cotton</li>
+                <li>Chất liệu: {productDetail.chatlieu}</li>
                 <li>Relaxed Fit</li>
                 <li>
                   Hình in mặt trước và sau được áp dụng công nghệ in kéo lụa.

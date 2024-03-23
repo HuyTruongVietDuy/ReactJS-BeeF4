@@ -36,7 +36,7 @@ const UserNavMenu = () => {
             </Link>
           </li>
           <li className="has-dropdown">
-            <Link to="/shop" style={{ textDecoration: "none" }}>
+            <Link to="/shopall" style={{ textDecoration: "none" }}>
               Sản Phẩm{" "}
               <span className="material-icons" id="iccon-zoom-center">
                 arrow_drop_down

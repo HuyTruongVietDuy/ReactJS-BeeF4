@@ -84,7 +84,7 @@ function SanPhamNew() {
                 <button className="buy-now"> Mua Ngay </button>
                 <button className="add-to-cart"> Thêm vào giỏ </button>
               </div>
-              {product.so_luong === 0 || product.so_luong === null ? (
+              {product.tong_so_luong === 0 || product.tong_so_luong === null ? (
               <div className="sold-out">Hết hàng</div>
             ) : null}
             </Link>
