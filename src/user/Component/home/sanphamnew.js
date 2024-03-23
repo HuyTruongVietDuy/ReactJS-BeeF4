@@ -1,10 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-function SanPhamNew() {
+import ModalProduct from "../ProductModal";
+import {addToCart} from "../../JS Modules/UserClick";
+function SanPhamNew( ) {
   const [productList, setProductList] = useState([]);
   const [colors, setColors] = useState({}); // State để lưu trữ thông tin màu
   const [selectedColor, setSelectedColor] = useState({}); // State để lưu trữ màu đã chọn cho mỗi sản phẩm
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
+   // Hàm xử lý khi người dùng nhấp vào nút "Thêm vào giỏ"
+   const handleAddToCartClick = () => {
+    // Thực hiện hàm addToCart từ JS module
+    addToCart();
+    
+    // Mở modal bằng cách cập nhật state
+    setIsModalOpen(true);
+  };
+  
   useEffect(() => {
     async function fetchData() {
       try {
@@ -75,19 +87,23 @@ function SanPhamNew() {
         {productList.map((product) => (
           <div className="product" key={product.id_sanpham}>
       
-            <Link to={`/chitietsanpham/${product.id_sanpham}`} className="product-image">
+           
+              <div className="product-image">
+              <Link to={`/chitietsanpham/${product.id_sanpham}`} > 
               <img src={`http://localhost:4000/chitietsanpham/${selectedColor[product.id_sanpham]?.hinh_anh_1}`} alt="" className="main-image" />
               {selectedColor[product.id_sanpham]?.hinh_anh_2 && (
                 <img src={`http://localhost:4000/chitietsanpham/${selectedColor[product.id_sanpham]?.hinh_anh_2}`} alt="" className="hover-image" />
               )}
+              </Link>
               <div className="product-button-container ">
                 <button className="buy-now"> Mua Ngay </button>
-                <button className="add-to-cart"> Thêm vào giỏ </button>
+                <button className="add-to-cart" onClick={handleAddToCartClick}> Thêm vào giỏ </button>
               </div>
               {product.tong_so_luong === 0 || product.tong_so_luong === null ? (
               <div className="sold-out">Hết hàng</div>
             ) : null}
-            </Link>
+            </div>
+           
             
             <div className="product-details">
               <div className="container-color">
@@ -130,6 +146,7 @@ function SanPhamNew() {
         ))}
 
       </div>
+      {isModalOpen && <ModalProduct />}
     </div>
   );
 }

@@ -66,28 +66,28 @@ function Shop({ addToCart }) {
             <div className='nav-top-product'>
             {selectedPriceOption && selectedPriceOption !== "Lọc Giá" && (
                 <div className='choose' >
-                    <div className='choose-top'><span> Bạn chọn </span></div>
+                    <div className='choose-top'><span> Select </span></div>
                     <div className='choose-bottom' style={{background:"#FF5733"}}>{selectedPriceOption}</div>
                 </div>
             )}
 
             {selectedLoaiOption && selectedLoaiOption !== "Loại" && (
                 <div className='choose' >
-                    <div className='choose-top'><span> Bạn chọn </span></div>
+                    <div className='choose-top'><span> Select </span></div>
                     <div className='choose-bottom' style={{background:"#FFC300"}}>{selectedLoaiOption}</div>
                 </div>
             )}
 
             {selectedColorOption && selectedColorOption !== "Màu Sắc" && (
                 <div className='choose' >
-                    <div className='choose-top'><span> Bạn chọn </span></div>
+                    <div className='choose-top'><span> Select </span></div>
                     <div className='choose-bottom' style={{background:"#C70039"}}>{selectedColorOption}</div>
                 </div>
             )}
 
             {selectedThutuOption && selectedThutuOption !== "Thứ Tự" && (
                 <div className='choose'>
-                    <div className='choose-top'><span> Bạn chọn </span></div>
+                    <div className='choose-top'><span> Select </span></div>
                     <div className='choose-bottom' style={{background:"#900C3F"}}>{selectedThutuOption}</div>
                 </div>
             )}

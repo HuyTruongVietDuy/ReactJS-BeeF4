@@ -312,6 +312,7 @@ transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 
 .scroll-text {
     display: inline-block;
+    font-weight: bold;
     opacity: 0; /* Không hiển thị chữ ban đầu */
     animation: appearAndScroll 20s linear infinite; /* Áp dụng animation */
     animation-delay: calc(var(--delay) * 0.5s); /* Tính toán độ trễ */
@@ -327,7 +328,7 @@ transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 @keyframes appearAndScroll {
     0% {
         transform: translateX(50%);
-        opacity: 0; /* Bắt đầu ẩn đi */
+        opacity: 0.8; /* Bắt đầu ẩn đi */
     }
     50% {
         transform: translateX(-50%);

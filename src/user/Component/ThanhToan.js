@@ -375,7 +375,7 @@ function ThanhToan() {
       <aside>
         <div className="aside-content">
           <div className="aside__top">
-            <h1>Đơn hàng ( 1 sản phẩm )</h1>
+          <h1>Đơn hàng ({cart.length} sản phẩm)</h1>
           </div>
           <div className="aside__cart">
             {cart.map((product, index) => (
@@ -431,7 +431,7 @@ function ThanhToan() {
                 </tr>
                 <tr>
                   <td id="total__back">
-                    <Link to="/viewcart">quay về giỏ hàng </Link>
+                    <Link id='link'to="/viewcart">quay về giỏ hàng </Link>
                   </td>
                   <td id="total__dathang">
                     <button onClick={submitData}>Đặt hàng</button>

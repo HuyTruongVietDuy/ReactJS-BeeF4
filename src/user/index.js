@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { FacebookProvider, Page } from "react-facebook";
 import { Routes, Route, Link, Navigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { thoat } from "../redux/authSlice.js";
+import { message } from 'antd';
+
 import {
   SearchIconClick,
   CartIconClick,
@@ -9,8 +13,8 @@ import {
 
 import Home from "./Component/home/home";
 import Shop from "./Component/Shop/shop";
-import DangNhap from "./Component/dangnhap";
-import DangKy from "./Component/dangky";
+import DangNhap from "./Component/login/dangnhap.js";
+import DangKy from "./Component/login/dangky.js";
 import QuenMatKhau from "./Component/quenmatkhau";
 import LienHe from "./Component/LienHe";
 import UserHeaderCenter from "./Component/menu";
@@ -34,8 +38,18 @@ import "./CSS Modules/lienhe.css";
 import "./CSS Modules/viewcart.css";
 import "./CSS Modules/chitietsanpham.css";
 import "./CSS Modules/thanhtoan.css";
+import "./CSS Modules/login-admin.css";
 function UserIndex() {
   const [loading, setLoading] = useState(true); // State to manage loading
+  const daDangNhap = useSelector(state => state.auth.daDangNhap);
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    // Thực hiện các bước cần thiết để đăng xuất, có thể dispatch action thoat
+    dispatch(thoat());
+    message.success('Đăng xuất thành công');
+    window.location.reload();
+  };
 
   setTimeout(() => {
     setLoading(false);
@@ -79,26 +93,37 @@ function UserIndex() {
           <UserHeaderCenter />
 
           <div className="user-header-right">
-            <ul className="user-menu">
-              <li>
-                <a href="/dangnhap">Đăng Nhập </a> <a href="#/">/</a>{" "}
-                <a href="/dangky">Đăng Ký</a>
-              </li>
-              <li>
-                <p onClick={SearchIconClick}>
-                  <i className="material-icons" id="iccon-zoom-center">
-                    search
-                  </i>
-                </p>
-              </li>
-              <li>
-                <p onClick={CartIconClick}>
-                  <i className="material-icons" id="iccon-zoom-center">
-                    shopping_cart
-                  </i>
-                </p>
-              </li>
-            </ul>
+          <ul className="user-menu">
+        {daDangNhap ? (
+          <>
+            <li style={{cursor:'pointer',fontWeight:"bold"}} onClick={handleLogout}>
+              <i className="material-icons">person</i>
+            </li>
+            <li style={{cursor:'pointer'}}>
+              <i className="material-icons">favorite</i>
+            </li>
+          </>
+        ) : (
+          <li>
+            <a href="/dangnhap">Đăng Nhập</a> <span>/</span>
+            <a href="/dangky">Đăng Ký</a>
+          </li>
+        )}
+        <li>
+          <p onClick={SearchIconClick}>
+            <i className="material-icons" id="iccon-zoom-center">
+              search
+            </i>
+          </p>
+        </li>
+        <li>
+          <p onClick={CartIconClick}>
+            <i className="material-icons" id="iccon-zoom-center">
+              shopping_cart
+            </i>
+          </p>
+        </li>
+      </ul>
           </div>
         </header>
       </div>
@@ -118,8 +143,8 @@ function UserIndex() {
           <Loader /> // Render the Loader component if loading is true
         ) : (
           <Routes>
-            <Route path="/" element={<Home addToCart={addToCart} />} />
-            <Route path="/shopall" element={<Shop addToCart={addToCart} />} />
+            <Route path="/" element={<Home/>} />
+            <Route path="/shopall" element={<Shop/>} />
             <Route path="/dangnhap" element={<DangNhap />} />
             <Route path="/dangky" element={<DangKy />} />
             <Route path="/quenmatkhau" element={<QuenMatKhau />} />

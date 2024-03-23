@@ -10,7 +10,8 @@
     color: black;
 }
 
-.user-form-dangky input[type="text"] {
+.user-form-dangky input[type="text"],
+.user-form-dangky input[type="password"]{
     display: block;
     margin: 25px 0;
     padding: 20px;

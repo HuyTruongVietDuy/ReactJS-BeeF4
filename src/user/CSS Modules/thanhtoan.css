@@ -318,7 +318,7 @@ text-align: center;
 
 }
 
-.aside__total #total__back{
+.aside__total #total__back #link{
   color: #2a9dcc;
   font-weight: bold;
   font-size: 0.6vw;

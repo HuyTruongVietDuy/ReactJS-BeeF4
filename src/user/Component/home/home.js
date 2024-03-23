@@ -2,7 +2,7 @@ import React from "react";
 import CategoryShow from "./categoryshow";
 import SanPhamNew from "./sanphamnew";
 
-function Home({ addToCart }) {
+function Home() {
   return (
     <div>
       <div className="user-banner">
@@ -14,7 +14,7 @@ function Home({ addToCart }) {
         </div>
       </div>
       <CategoryShow />
-      <SanPhamNew addToCart={addToCart} />
+      <SanPhamNew  />
     </div>
   );
 }
