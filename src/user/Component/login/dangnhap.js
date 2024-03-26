@@ -51,7 +51,7 @@ const DangNhap = () => {
 
   // Redirect if logged in
   if (loggedIn) {
-    return <Navigate to="/" />; // Use Navigate instead of Redirect
+    return <Navigate to="/user" />; // Use Navigate instead of Redirect
   }
 
   return (

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SearchIconClick } from "../JS Modules/UserClick";
+import { SearchIconClick } from "./JS Modules/UserClick";
 import { Link } from "react-router-dom";
 
 const SideBarSearch = () => {

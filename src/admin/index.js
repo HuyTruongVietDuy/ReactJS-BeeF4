@@ -4,6 +4,7 @@ import { Routes, Route, Link, useLocation } from "react-router-dom";
 import DashBoard from "./Component/Dashboard";
 import ListDanhMuc from "./Component/DanhMuc/DanhSach";
 import ListSanPham from "./Component/SanPham/DanhSach";
+import ListUser from "./Component/TaiKhoan/DanhSach";
 import ListChiTietSanPham from "./Component/ChiTietSanPham/DanhSach";
 import ListMotChiTiet from "./Component/ChiTietSanPham/Listonect";
 import KhoHang from "./Component/KhoHang/DanhSach";
@@ -120,7 +121,7 @@ function AdminIndex() {
                   <i className="material-icons">store</i>
                   <span>Kho Hàng</span>
                 </Link>
-                <Link to="#taikhoan" id="a">
+                <Link to="/admin/danhsachtaikhoan" id="a">
                   <i className="material-icons">person</i>
                   <span>Tài Khoản</span>
                 </Link>
@@ -154,6 +155,7 @@ function AdminIndex() {
               <Route path="/" element={<DashBoard />} />
               <Route path="/danhsachdanhmuc" element={<ListDanhMuc />} />
               <Route path="/danhsachsanpham" element={<ListSanPham />} />
+              <Route path="/danhsachtaikhoan" element={<ListUser />} />
               <Route
                 path="/chitietsanpham/:id_sanpham"
                 element={<ListChiTietSanPham />}

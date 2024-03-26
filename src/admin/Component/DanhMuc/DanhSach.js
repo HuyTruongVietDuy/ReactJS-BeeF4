@@ -57,14 +57,14 @@ const ListDanhMuc = () => {
     fetchData();
   }, [fetchData]);
 
-  const handleAddCategory = async (ten_danhmuc, id_danhmuc_cha, hinhanh) => {
+  const handleAddCategory = async (ten_danhmuc, id_danhmuc_cha, hinhanh,url_category) => {
     // Receive id_Danhmuc as a parameter
     try {
       const formData = new FormData();
       formData.append("ten_danhmuc", ten_danhmuc);
       formData.append("id_danhmuc_cha", id_danhmuc_cha);
       formData.append("hinhanh", hinhanh);
-
+      formData.append('url_category', url_category);
       const response = await fetch("http://localhost:4000/danhmuc/them", {
         method: "POST",
         body: formData, // Use formData instead of JSON.stringify

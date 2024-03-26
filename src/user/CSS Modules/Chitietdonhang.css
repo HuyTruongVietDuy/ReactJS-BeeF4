@@ -1,0 +1,134 @@
+
+.container-chitietdonhang .content {
+    width: 70%;
+    margin: 30px auto;
+}
+
+.container-chitietdonhang .box {
+    display: flex;
+    margin-top: 20px;
+}
+
+.container-chitietdonhang .box-left,
+.container-chitietdonhang .box-right {
+    width: 50%;
+}
+
+.container-chitietdonhang .box-left p,
+.container-chitietdonhang .box-right p {
+    margin: 15px 0;
+    color: gray;
+}
+
+.container-chitietdonhang .box-right {
+    margin-top: 50px;
+}
+
+.container-chitietdonhang .table {
+    width: 100%;
+}
+
+
+
+.container-chitietdonhang .table thead {
+    background-color: rgba(128, 128, 128, 0.131);
+}
+
+
+
+.container-chitietdonhang thead th {
+    border-bottom: 1px solid rgba(207, 205, 205, 0.564);
+    border-collapse: collapse;
+    padding: 10px;
+}
+
+.container-chitietdonhang th {
+    text-align: left;
+    padding: 5px 0;
+}
+
+.container-chitietdonhang .tongthongtin {
+    margin-top: 30px;
+}
+
+.container-chitietdonhang td {
+    padding: 10px 0;
+}
+
+.container-chitietdonhang span {
+    float: right;
+}
+
+.container-chitietdonhang .chuathue,
+.container-chitietdonhang .phivanchuyen,
+.container-chitietdonhang .tong {
+    margin: 15px 0;
+}
+
+.container-chitietdonhang .quaylai {
+    display: inline-block;
+    background-color: goldenrod;
+    padding: 5px;
+    color: white;
+}
+
+@media (max-width: 767px) {
+    .container-chitietdonhang .box {
+        flex-direction: column;
+    }
+
+    .container-chitietdonhang .content {
+        width: 80%;
+    }
+}
+
+.box-product-mini{
+    width: 200px;
+    min-height: 100px;
+    display: flex;
+}
+
+.box-product-mini .left{
+   height: 100px;
+   width: 50%;
+
+}
+
+.box-product-mini .left img{
+    width: 100%;
+    height: 100%;
+ }
+
+ .box-product-mini .right{
+
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+ }
+
+ .box-product-mini .right .top{
+    margin-top: 10%;
+    height: 30%;
+    width: 200%;
+    font-weight: bold;
+    font-size: 0.9vw;
+    color: rgba(0, 0, 0, 0.445);
+    margin-left: 5px;
+ }
+
+ .box-product-mini .right .center{
+    height: 20%;
+   color: rgba(128, 128, 128, 0.498);
+   font-weight: bolder;
+   font-size: 0.8vw;
+   margin-left: 5px;
+ }
+
+ .box-product-mini .right .bottom{
+    margin-top: 10%;
+    height: 20%;
+    color: rgba(128, 128, 128, 0.498);
+    font-weight: bolder;
+    font-size: 0.8vw;
+    margin-left: 5px;
+ }

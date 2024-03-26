@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setDanhMucList } from '../../../redux/danhMucSlice';
-
+import {setDanhMucList  } from '../../../redux/danhMucSlice'; 
 const AddCategory = ({ showForm, toggleForm, handleAddCategory }) => {
   const [tenDanhMuc, setTenDanhMuc] = useState('');
   const [idDanhMucCha, setIdDanhMucCha] = useState('');
   const [hinhanh, setHinhanh] = useState(null); // Thêm state cho hình ảnh
-  const [urlCategory, setUrlCategory] = useState(''); // Thêm state cho url_category
   const [previewImage, setPreviewImage] = useState(null); // Thêm state để hiển thị trước hình ảnh
+
 
   const dispatch = useDispatch();
   const danhMucList = useSelector(state => state.danhMuc.danhMucList);
 
-  useEffect(() => {
+ useEffect(() => {
     const fetchData = async () => {
       try {
         const responseDanhMuc = await fetch('http://localhost:4000/danhmuc/list');
@@ -31,6 +30,7 @@ const AddCategory = ({ showForm, toggleForm, handleAddCategory }) => {
     fetchData();
   }, [dispatch]);
 
+
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setHinhanh(file); // Lưu file vào state hinhanh
@@ -40,13 +40,14 @@ const AddCategory = ({ showForm, toggleForm, handleAddCategory }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    
     try {
       // Gọi hàm xử lý thêm danh mục từ props
-      await handleAddCategory(tenDanhMuc, idDanhMucCha, hinhanh, urlCategory); // Thêm urlCategory vào hàm handleAddCategory
+      await handleAddCategory(tenDanhMuc, idDanhMucCha, hinhanh);
       resetForm();
     } catch (error) {
       console.error('Error adding category:', error.message);
+
     }
 
     // Sau khi xử lý, có thể đóng form
@@ -58,14 +59,13 @@ const AddCategory = ({ showForm, toggleForm, handleAddCategory }) => {
     setTenDanhMuc('');
     setIdDanhMucCha('');
     setHinhanh(null);
-    setUrlCategory(''); // Đặt lại giá trị urlCategory về trống
     setPreviewImage(null);
   };
 
   return (
     <div className={`sidebar-admin-form ${showForm ? 'active' : ''}`}>
       <span id="closeButton" onClick={toggleForm}>&times;</span>
-
+      
       <form onSubmit={handleSubmit} id="form-admin" encType="multipart/form-data">
         <h2>Thêm mới danh mục</h2>
         <label htmlFor="tenDanhMuc">Tên danh mục:</label>
@@ -89,7 +89,8 @@ const AddCategory = ({ showForm, toggleForm, handleAddCategory }) => {
             ))}
           </select>
         )}
-
+        
+        
         <label htmlFor="hinhanh">Hình ảnh:</label> {/* Thêm trường input cho hình ảnh */}
         <input
           type="file"
@@ -99,16 +100,6 @@ const AddCategory = ({ showForm, toggleForm, handleAddCategory }) => {
         />
         {/* Hiển thị trước hình ảnh */}
         {previewImage && <img src={previewImage} alt="Preview" style={{ maxWidth: '100px', maxHeight: '100px' }} />}
-
-        <label htmlFor="urlCategory">URL Category:</label> {/* Thêm trường input cho url_category */}
-        <input
-          type="text"
-          id="urlCategory"
-          value={urlCategory}
-          onChange={(event) => setUrlCategory(event.target.value)}
-          required
-        />
-
         <button type="submit">Thêm mới</button>
       </form>
     </div>

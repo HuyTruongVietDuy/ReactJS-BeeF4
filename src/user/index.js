@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FacebookProvider, Page } from "react-facebook";
-import { Routes, Route, Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { thoat } from "../redux/authSlice.js";
 import { message } from 'antd';
@@ -11,20 +11,10 @@ import {
   addToCart,
 } from "./JS Modules/UserClick";
 
-import Home from "./Component/home/home";
-import Shop from "./Component/Shop/shop";
-import DangNhap from "./Component/login/dangnhap.js";
-import DangKy from "./Component/login/dangky.js";
-import QuenMatKhau from "./Component/quenmatkhau";
-import LienHe from "./Component/LienHe";
-import UserHeaderCenter from "./Component/menu";
-import ViewCart from "./Component/viewcart";
-import ChiTietSanPham from "./Component/chitietsanpham";
-import Loader from "./Component/Loader";
-import SideBarCart from "./Component/SidebarCart";
-import SideBarSearch from "./Component/SidebarSearch.js";
-import BaoLoi from "./Component/Baoloi";
-import GioiThieu from "./Component/GioiThieu";
+import UserHeaderCenter from "./menu.js";
+import SideBarCart from "./SidebarCart.js";
+import SideBarSearch from "./SidebarSearch.js";
+import MainContent from "./Routers.js"; // Import your MainContent component here
 
 import "./CSS Modules/style.css";
 import "./CSS Modules/header.css";
@@ -37,8 +27,10 @@ import "./CSS Modules/forgotpassword.css";
 import "./CSS Modules/lienhe.css";
 import "./CSS Modules/viewcart.css";
 import "./CSS Modules/chitietsanpham.css";
+import "./CSS Modules/Chitietdonhang.css";
 import "./CSS Modules/thanhtoan.css";
 import "./CSS Modules/login-admin.css";
+import "./CSS Modules/userdetail.css";
 function UserIndex() {
   const [loading, setLoading] = useState(true); // State to manage loading
   const daDangNhap = useSelector(state => state.auth.daDangNhap);
@@ -86,7 +78,8 @@ function UserIndex() {
             <div className="user-logo-header">
               <Link to="/">
                 {" "}
-                <img src="./images/logo-header.gif" alt="" />
+                <img src={process.env.PUBLIC_URL + "/images/logo-header.gif"} alt="" />
+
               </Link>
             </div>
           </div>
@@ -96,8 +89,8 @@ function UserIndex() {
           <ul className="user-menu">
         {daDangNhap ? (
           <>
-            <li style={{cursor:'pointer',fontWeight:"bold"}} onClick={handleLogout}>
-              <i className="material-icons">person</i>
+            <li style={{cursor:'pointer',fontWeight:"bold"}} >
+              <Link to='/user'><i className="material-icons">person</i></Link>
             </li>
             <li style={{cursor:'pointer'}}>
               <i className="material-icons">favorite</i>
@@ -105,7 +98,7 @@ function UserIndex() {
           </>
         ) : (
           <li>
-            <a href="/dangnhap">Đăng Nhập</a> <span>/</span>
+            <a href="/dangnhap">Đăng Nhập</a><span>/ </span>
             <a href="/dangky">Đăng Ký</a>
           </li>
         )}
@@ -138,28 +131,7 @@ function UserIndex() {
         <span id="close-notify">X</span>
       </div>
 
-      <main id="main">
-        {loading ? (
-          <Loader /> // Render the Loader component if loading is true
-        ) : (
-          <Routes>
-            <Route path="/" element={<Home/>} />
-            <Route path="/shopall" element={<Shop/>} />
-            <Route path="/dangnhap" element={<DangNhap />} />
-            <Route path="/dangky" element={<DangKy />} />
-            <Route path="/quenmatkhau" element={<QuenMatKhau />} />
-            <Route path="/LienHe" element={<LienHe />} />
-            <Route path="/viewcart" element={<ViewCart />} />
-            <Route path="/gioitieu" element={<GioiThieu />} />
-            <Route
-              path="/chitietsanpham/:id_sanpham"
-              element={<ChiTietSanPham />}
-            />
-            <Route path="/baoloi" element={<BaoLoi />} />
-            <Route path="*" element={<Navigate to="/baoloi" />} />
-          </Routes>
-        )}
-      </main>
+      <MainContent loading={loading} />
 
       <footer>
         <div className="footer-left">

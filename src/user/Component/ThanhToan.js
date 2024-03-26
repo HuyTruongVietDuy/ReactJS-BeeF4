@@ -13,7 +13,7 @@ function ThanhToan() {
   const [loadingDistricts, setLoadingDistricts] = useState(false);
   const [loadingWards, setLoadingWards] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState('COD'); // Khởi tạo giá trị mặc định là COD
-
+  const user = useSelector((state) => state.auth.user);
   const emailRef = useRef(null);
   const hotenRef = useRef(null);
   const sdtRef = useRef(null);
@@ -100,6 +100,7 @@ function ThanhToan() {
       xa: xaValue,
       ghi_chu: ghichuValue,
       total: calculateTotal(),
+      id_user: user.id_user,
       // Các dữ liệu khác (nếu cần)
     };
 
@@ -142,6 +143,8 @@ function ThanhToan() {
       const chiTietDonHangData = {
         id_donhang: id_donhang,
         id_chitietsp: product.id_chitietsp,
+        id_size: product.id_size,
+        ten_sanpham:product.ten_sanpham,
         so_luong: product.soluong,
         gia_ban: product.soluong * product.gia,
       };
@@ -221,6 +224,7 @@ function ThanhToan() {
                   type="text"
                   ref={emailRef}
                   className="input-field"
+                  value={user ? user.email : ""}
                   required
                 />
                 <label htmlFor="email" className="input-label">
@@ -231,6 +235,7 @@ function ThanhToan() {
                 <input
                   type="text"
                   ref={hotenRef}
+                  value={user ? user.ho_ten : ""}
                   className="input-field"
                   required
                 />
@@ -243,6 +248,7 @@ function ThanhToan() {
                   type="text"
                   ref={sdtRef}
                   className="input-field"
+                  value={user ? user.sdt : ""}
                   required
                 />
                 <label htmlFor="sdt" className="input-label">
@@ -254,6 +260,7 @@ function ThanhToan() {
                   type="text"
                   ref={diachiRef}
                   className="input-field"
+                  value={user ? user.diachi : ""}
                   required
                 />
                 <label htmlFor="diachi" className="input-label">
@@ -261,69 +268,105 @@ function ThanhToan() {
                 </label>
               </div>
               <div className="input-container">
-                <select
-                  id="province"
-                  className="input-field"
-                  onChange={handleProvinceChange}
-                  required
-                  ref={tinhRef}
-                >
-                  <option value="" defaultValue></option>
+  <select
+    id="province"
+    className="input-field"
+    onChange={handleProvinceChange}
+    required
+    ref={tinhRef}
+  >
+    {loadingProvinces ? (
+      <option>Đang tải...</option>
+    ) : (
+      <>
+        {user && user.tinh && (
+          <option value={user.tinh} selected>
+            {user.tinh}
+          </option>
+        )}
+        <option value="" disabled={user && !!user.tinh}>
+          {user && user.tinh ? '' : ''}
+        </option>
+        {provinces.map((province) => (
+          <option key={province[0]} value={province[1]}>
+            {province[1]}
+          </option>
+        ))}
+      </>
+    )}
+  </select>
+  <label htmlFor="province" className="input-label">
+    Chọn tỉnh thành
+  </label>
+</div>
 
-                  {loadingProvinces ? (
-                    <option>Đang tải...</option>
-                  ) : (
-                    provinces.map((province) => (
-                      <option key={province[0]} value={province[1]}>
-                        {province[1]}
-                      </option>
-                    ))
-                  )}
-                </select>
-                <label htmlFor="province" className="input-label">
-                  Chọn tỉnh thành
-                </label>
-              </div>
-              <div className="input-container">
-                <select
-                  id="district"
-                  className="input-field"
-                  onChange={handleDistrictChange}
-                  required
-                  ref={huyenRef}
-                >
-                  <option value="" defaultValue></option>
-                  {loadingDistricts ? (
-                    <option>Đang tải...</option>
-                  ) : (
-                    districts.map((district) => (
-                      <option key={district[0]} value={district[1]}>
-                        {district[1]}
-                      </option>
-                    ))
-                  )}
-                </select>
-                <label htmlFor="district" className="input-label">
-                  Chọn quận huyện
-                </label>
-              </div>
-              <div className="input-container">
-                <select id="ward" className="input-field" required ref={xaRef}>
-                  <option value="" defaultValue></option>
-                  {loadingWards ? (
-                    <option>Đang tải...</option>
-                  ) : (
-                    wards.map((ward) => (
-                      <option key={ward[0]} value={ward[1]}>
-                        {ward[1]}
-                      </option>
-                    ))
-                  )}
-                </select>
-                <label htmlFor="ward" className="input-label">
-                  Chọn xã, phường
-                </label>
-              </div>
+<div className="input-container">
+  <select
+    id="district"
+    className="input-field"
+    onChange={handleDistrictChange}
+    required
+    ref={huyenRef}
+  >
+    {loadingDistricts ? (
+      <option>Đang tải...</option>
+    ) : (
+      <>
+        {user && user.huyen && (
+          <option value={user.huyen} selected>
+            {user.huyen}
+          </option>
+        )}
+        <option value="" disabled={user && !!user.huyen}>
+          {user && user.huyen ? '' : ''}
+        </option>
+        {districts.map((district) => (
+          <option key={district[0]} value={district[1]}>
+            {district[1]}
+          </option>
+        ))}
+      </>
+    )}
+  </select>
+  <label htmlFor="district" className="input-label">
+    Chọn quận huyện
+  </label>
+</div>
+
+<div className="input-container">
+  <select
+    id="ward"
+    className="input-field"
+    required
+    ref={xaRef}
+    value={user ? user.xa : ''}
+  >
+    {loadingWards ? (
+      <option>Đang tải...</option>
+    ) : (
+      <>
+        {user && user.xa && (
+          <option value={user.xa} selected>
+            {user.xa}
+          </option>
+        )}
+        <option value="" disabled={user && !!user.xa}>
+          {user && user.xa ? '' : ''}
+        </option>
+        {wards.map((ward) => (
+          <option key={ward[0]} value={ward[1]}>
+            {ward[1]}
+          </option>
+        ))}
+      </>
+    )}
+  </select>
+  <label htmlFor="ward" className="input-label">
+    Chọn xã, phường
+  </label>
+</div>
+
+
               <div className="input-container">
                 <textarea
                   type="text"

@@ -316,3 +316,18 @@
     width: 80px;
   }
   
+ .admin-table .customer {
+    color: blue; /* Màu văn bản cho khách hàng */
+    font-size: 0.8vw;
+  }
+  
+  .admin-table  .employee {
+    color: green; /* Màu văn bản cho nhân viên */
+    font-size: 0.8vw;
+  }
+  
+  .admin-table  .admin {
+    color: red; /* Màu văn bản cho admin */
+    font-size: 0.8vw;
+  }
+  

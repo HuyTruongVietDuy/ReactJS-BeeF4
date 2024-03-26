@@ -33,7 +33,7 @@
 }
 
 .user-header-top p:nth-child(1) {
-    animation-delay: 0s; /* Không có delay cho Content 1 */
+    animation-delay: 0s; /* Không có delay cho hContent 1 */
 }
 .user-header-top p:nth-child(2) {
     animation-delay: 1.5s; /* Delay 2s cho Content 2 */
@@ -106,7 +106,7 @@
   }
   
   .main-menu li Link {
-    color: black;
+    color: white;
     cursor: pointer;
   }
   
@@ -175,6 +175,28 @@
    
    
   }
+
+  .main-menu li.has-dropdown:hover ul.sub-menu #link{
+   color: white;
+   
+   
+  }
+
+  .main-menu li.has-dropdown:hover ul.sub-menu link{
+    display: block;
+    visibility: visible;
+  
+    color: white;
+    font-weight: bolder;
+   
+   
+  }
+
+  .main-menu li.has-dropdown:hover ul.sub-menu #text{
+   color: white;
+   
+   
+  }
   
   .main-menu li.has-dropdown ul.sub-menu li {
     padding: 10px;
@@ -191,6 +213,11 @@
   .main-menu li.has-dropdown ul.sub-menu li.has-submenu {
     position: relative;
   }
+
+  .main-menu li.has-dropdown ul.sub-menu li.has-submenu {
+    position: relative;
+  }
+  
   
   .main-menu li.has-dropdown ul.sub-menu li.has-submenu ul.sub-sub-menu {
     position: absolute;

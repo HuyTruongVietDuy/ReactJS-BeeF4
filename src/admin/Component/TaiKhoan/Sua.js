@@ -7,8 +7,7 @@ const Sua = ({ showEditModal, closeEditModal, selectedDanhMuc, handleEditCategor
     ten_danhmuc: '',
     id_danhmuc_cha: '',
     hinhanh: '',
-    trang_thai: '', // Thêm trạng thái vào state
-    url_category: '' // Thêm url_category vào state
+    trang_thai: '' // Thêm trạng thái vào state
   });
   const [hinhanhCu, setHinhanhCu] = useState('');
   const dispatch = useDispatch();
@@ -40,8 +39,7 @@ useEffect(() => {
         ten_danhmuc: selectedDanhMuc.ten_danhmuc,
         id_danhmuc_cha: selectedDanhMuc.id_danhmuc_cha,
         hinhanh: '', // Đặt lại hình ảnh để không hiển thị hình cũ
-        trang_thai: selectedDanhMuc.trang_thai, // Gán trạng thái hiện tại
-        url_category: selectedDanhMuc.url_category // Gán url_category hiện tại
+        trang_thai: selectedDanhMuc.trang_thai // Gán trạng thái hiện tại
       });
       // Gán hình ảnh cũ nếu có
       if (selectedDanhMuc.hinhanh) {
@@ -78,7 +76,7 @@ useEffect(() => {
       const formData = new FormData();
       formData.append('ten_danhmuc', danhMucData.ten_danhmuc);
       formData.append('trang_thai', danhMucData.trang_thai); // Thêm trạng thái vào FormData
-      formData.append('url_category', danhMucData.url_category); 
+      // Chỉ thêm id_danhmuc_cha vào FormData nếu nó được cung cấp
       if (danhMucData.id_danhmuc_cha) {
         formData.append('id_danhmuc_cha', danhMucData.id_danhmuc_cha);
       }
@@ -135,10 +133,6 @@ useEffect(() => {
                 <option value="1">Ẩn</option>
                 <option value="2">Hiện</option>
               </select>
-
-              <label htmlFor="url_category">URL Category:</label> {/* Thêm trường input cho url_category */}
-              <br />
-              <input type="text" id="url_category" name="url_category" value={danhMucData.url_category} onChange={handleChange} />
 
               <label htmlFor="hinhanh">Hình ảnh:</label>
               <br />

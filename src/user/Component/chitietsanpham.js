@@ -15,6 +15,7 @@ const ChiTietSanPham = () => {
   const [additionalImages, setAdditionalImages] = useState([]);
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null); // Thêm state để lưu trữ hình ảnh được chọn
+  const [selectedSizeId, setSelectedSizeId] = useState(null);
 
   useEffect(() => {
     const fetchProductDetail = async () => {
@@ -102,7 +103,10 @@ const ChiTietSanPham = () => {
       (detail) => detail.id_mau === color.id_mau
     );
     setProductDetail(selectedProductDetail);
-  
+    
+    // Reset kích thước được chọn
+    setSelectedSize(null);
+    
     // Tạo một mảng chứa các hình ảnh từ hinh_anh_1 đến hinh_anh_6
     const newImages = [];
     for (let i = 1; i <= 6; i++) {
@@ -112,7 +116,7 @@ const ChiTietSanPham = () => {
       }
     }
     setAdditionalImages(newImages);
-  
+    
     // Chọn hình ảnh đầu tiên trong mảng làm hình ảnh được chọn
     setSelectedImage(newImages[0]);
   };
@@ -121,6 +125,7 @@ const ChiTietSanPham = () => {
 
   const handleSizeClick = (size) => {
     setSelectedSize(size);
+    setSelectedSizeId(size.id_size);
   };
 
   const handleAddToCart = () => {
@@ -214,8 +219,8 @@ const ChiTietSanPham = () => {
                 <button
                   key={color.id_mau}
                   style={{
-                    border: `0.05px solid ${
-                      color.id_mau === productDetail.id_mau ? "blue" : "black"
+                    border: `0.1px solid ${
+                      color.id_mau === productDetail.id_mau ? "grey" : " #ccc"
                     }`,
                   }}
                   onClick={() => handleColorChange(color)}
@@ -225,10 +230,18 @@ const ChiTietSanPham = () => {
               ))}
             </div>
             <div className="box-2__size">
-              {sizes.map((size) => (
-                <button key={size.id_size} onClick={() => handleSizeClick(size)}>{size.ten_size}</button>
-              ))}
-            </div>
+  {sizes.map((size) => (
+    <button
+      key={size.id_size}
+      onClick={() => handleSizeClick(size)}
+      style={{
+        border: `1px solid ${size.id_size === selectedSizeId ? "grey" : "#ccc"}`,
+      }}
+    >
+      {size.ten_size}
+    </button>
+  ))}
+</div>
             <div className="add" onClick={handleAddToCart}>Thêm vào giỏ</div>
             <div className="buy" onClick={handleMuaNgay}>Mua ngay</div>
             <div className="box-2__detail">
