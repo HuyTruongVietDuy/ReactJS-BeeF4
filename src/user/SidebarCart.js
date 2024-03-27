@@ -51,7 +51,7 @@ const SideBarCart = () => {
               </tr>
               <tr>
                 <td colSpan="5" id="delete-cart">
-                <span onClick={() => dispatch(XoaSP({ id_sp: product.id_sp, id_mau: product.id_mau }))}>X</span>
+                <span onClick={() =>dispatch(XoaSP({ id_sp: product.id_sp, id_mau: product.id_mau, id_size: product.id_size }))}>X</span>
 
                 </td>
               </tr>

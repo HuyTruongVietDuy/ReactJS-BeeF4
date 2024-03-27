@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { message } from 'antd';
 
 const DangKy = () => {
   const hoTenRef = useRef(null);
@@ -13,11 +14,25 @@ const DangKy = () => {
     event.preventDefault(); // Ngăn chặn sự kiện gửi form mặc định
 
     // Lấy giá trị từ các trường nhập liệu sử dụng refs
-    const ho_ten = hoTenRef.current.value;
-    const ten_dangnhap = tenDangNhapRef.current.value;
-    const email = emailRef.current.value;
-    const matkhau = matKhauRef.current.value;
-    const gioi_tinh  = gioiTinhNamRef.current.checked ? 'Nam' : 'Nữ';
+    const ho_ten = hoTenRef.current.value.trim();
+    const ten_dangnhap = tenDangNhapRef.current.value.trim();
+    const email = emailRef.current.value.trim();
+    const matkhau = matKhauRef.current.value.trim();
+    const gioi_tinh = gioiTinhNamRef.current.checked ? 'Nam' : 'Nữ';
+
+    // Kiểm tra validation
+    if (!ho_ten || !ten_dangnhap || !email || !matkhau) {
+      message.error('Vui lòng điền đầy đủ thông tin.');
+      return;
+    }
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      message.error('Email không hợp lệ.');
+      return;
+    }
+    if (matkhau.length < 6) {
+      message.error('Mật khẩu phải có ít nhất 6 ký tự.');
+      return;
+    }
 
     // Gửi yêu cầu POST tới API
     try {
@@ -38,13 +53,16 @@ const DangKy = () => {
       if (response.ok) {
         // Xử lý khi đăng ký thành công
         console.log('Đăng ký thành công!');
+        message.success('Đăng ký thành công!');
       } else {
         // Xử lý khi có lỗi từ phía server
         console.error('Đăng ký thất bại.');
+        message.error('Đăng ký thất bại!');
       }
     } catch (error) {
       // Xử lý khi có lỗi trong quá trình gửi yêu cầu
       console.error('Đã xảy ra lỗi:', error);
+      message.error('Đã xảy ra lỗi!');
     }
   };
 

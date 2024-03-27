@@ -14,6 +14,10 @@ function ThanhToan() {
   const [loadingWards, setLoadingWards] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState('COD'); // Khởi tạo giá trị mặc định là COD
   const user = useSelector((state) => state.auth.user);
+  const [email, setEmail] = useState(user ? user.email : '');
+  const [hoTen, setHoTen] = useState(user ? user.ho_ten : '');
+  const [soDienThoai, setSoDienThoai] = useState(user ? user.sdt : '');
+  const [diaChi, setDiaChi] = useState(user ? user.diachi : '');
   const emailRef = useRef(null);
   const hotenRef = useRef(null);
   const sdtRef = useRef(null);
@@ -40,10 +44,14 @@ function ThanhToan() {
       .then((data) => {
         setProvinces(data);
         setLoadingProvinces(false);
+        setLoadingDistricts(false);
+        setLoadingWards(false);
       })
       .catch((error) => {
         console.error("Lỗi khi tải dữ liệu tỉnh thành:", error);
         setLoadingProvinces(false);
+        setLoadingDistricts(false);
+        setLoadingWards(false);
       });
   }, []);
 
@@ -213,60 +221,64 @@ function ThanhToan() {
           <div className="content-left">
             <div className="logo-content">
               <Link to="/">
-                {" "}
+              
                 <img src="./images/SQBE Logo.png" alt="" />
               </Link>
             </div>
             <form>
               <h1>Thông tin nhận hàng</h1>
               <div className="input-container">
-                <input
-                  type="text"
-                  ref={emailRef}
-                  className="input-field"
-                  value={user ? user.email : ""}
-                  required
-                />
+              <input
+              type="text"
+              ref={emailRef}
+              className="input-field"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              required
+            />
                 <label htmlFor="email" className="input-label">
                   Email
                 </label>
               </div>
               <div className="input-container">
-                <input
-                  type="text"
-                  ref={hotenRef}
-                  value={user ? user.ho_ten : ""}
-                  className="input-field"
-                  required
-                />
+              <input
+              type="text"
+              ref={hotenRef}
+              value={hoTen}
+              className="input-field"
+              onChange={(event) => setHoTen(event.target.value)}
+              required
+            />
                 <label htmlFor="hoten" className="input-label">
                   Họ và tên
                 </label>
               </div>
               <div className="input-container">
-                <input
-                  type="text"
-                  ref={sdtRef}
-                  className="input-field"
-                  value={user ? user.sdt : ""}
-                  required
-                />
+              <input
+                type="text"
+                ref={sdtRef}
+                value={soDienThoai}
+                className="input-field"
+                onChange={(event) => setSoDienThoai(event.target.value)}
+                required
+              />
                 <label htmlFor="sdt" className="input-label">
                   Số điện thoại
                 </label>
               </div>
               <div className="input-container">
-                <input
-                  type="text"
-                  ref={diachiRef}
-                  className="input-field"
-                  value={user ? user.diachi : ""}
-                  required
-                />
-                <label htmlFor="diachi" className="input-label">
-                  Địa chỉ
-                </label>
-              </div>
+              <input
+                type="text"
+                ref={diachiRef}
+                value={diaChi}
+                className="input-field"
+                onChange={(event) => setDiaChi(event.target.value)}
+                required
+              />
+              <label htmlFor="diachi" className="input-label">
+                Địa chỉ
+              </label>
+            </div>
               <div className="input-container">
   <select
     id="province"
@@ -339,7 +351,6 @@ function ThanhToan() {
     className="input-field"
     required
     ref={xaRef}
-    value={user ? user.xa : ''}
   >
     {loadingWards ? (
       <option>Đang tải...</option>

@@ -8,7 +8,7 @@ import { message } from 'antd';
 import {
   SearchIconClick,
   CartIconClick,
-  addToCart,
+  
 } from "./JS Modules/UserClick";
 
 import UserHeaderCenter from "./menu.js";

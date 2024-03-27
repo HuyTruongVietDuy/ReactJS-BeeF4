@@ -18,13 +18,16 @@
     padding: 20px;
     width: 100%;
     background-color: #ededed;
+    border-radius: 10px;
     border: none;
     color: gray;
     outline: none; 
+    transition: 0.4s;
 }
 
-.user-form-dangnhap input[type="text"]:focus {
-    background-color: #ffffff;
+.user-form-dangnhap input[type="text"]:focus,
+.user-form-dangnhap input[type="password"]:focus {
+    background-color: #ededed45;
     border: 0.5px solid rgba(128, 128, 128, 0.599);
 }
 

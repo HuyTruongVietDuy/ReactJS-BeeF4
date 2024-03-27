@@ -5,6 +5,7 @@ import DashBoard from "./Component/Dashboard";
 import ListDanhMuc from "./Component/DanhMuc/DanhSach";
 import ListSanPham from "./Component/SanPham/DanhSach";
 import ListUser from "./Component/TaiKhoan/DanhSach";
+import ListBill from "./Component/DonHang/DanhSach";
 import ListChiTietSanPham from "./Component/ChiTietSanPham/DanhSach";
 import ListMotChiTiet from "./Component/ChiTietSanPham/Listonect";
 import KhoHang from "./Component/KhoHang/DanhSach";
@@ -125,7 +126,7 @@ function AdminIndex() {
                   <i className="material-icons">person</i>
                   <span>Tài Khoản</span>
                 </Link>
-                <Link to="#donhang" id="a">
+                <Link to="/admin/danhsachdonhang" id="a">
                   <i className="material-icons">receipt</i>
                   <span>Đơn Hàng</span>
                 </Link>
@@ -156,6 +157,7 @@ function AdminIndex() {
               <Route path="/danhsachdanhmuc" element={<ListDanhMuc />} />
               <Route path="/danhsachsanpham" element={<ListSanPham />} />
               <Route path="/danhsachtaikhoan" element={<ListUser />} />
+              <Route path="/danhsachdonhang" element={<ListBill />} />
               <Route
                 path="/chitietsanpham/:id_sanpham"
                 element={<ListChiTietSanPham />}
