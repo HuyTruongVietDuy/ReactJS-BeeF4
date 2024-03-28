@@ -9,13 +9,15 @@ import SPTrongLoai from "./Component/SpTrongLoai/shop.js";
 import UserDetail from "./Component/UserDetail";
 import DangNhap from "./Component/login/dangnhap.js";
 import DangKy from "./Component/login/dangky.js";
-import QuenMatKhau from "./Component/quenmatkhau";
+import QuenMatKhau from "./Component/login/quenmatkhau.js";
+import TaoLaiMatKhau from "./Component/login/ThayDoiMatKhau.js";
 import LienHe from "./Component/LienHe";
 import ViewCart from "./Component/viewcart";
 import ChiTietSanPham from "./Component/chitietsanpham";
 import ChiTietDonHang from "./Component/ChiTietDonHang.js";
 import BaoLoi from "./Component/Baoloi";
 import GioiThieu from "./Component/GioiThieu";
+
 import Loader from "./Loader.js"; // Import your Loader component
 
 function MainContent({ loading }) {
@@ -34,9 +36,10 @@ function MainContent({ loading }) {
           <Route path="/dangnhap" element={<DangNhap />} />
           <Route path="/dangky" element={<DangKy />} />
           <Route path="/quenmatkhau" element={<QuenMatKhau />} />
+          <Route path="/taomatkhaumoi/:id_user" element={<TaoLaiMatKhau />} />
           <Route path="/LienHe" element={<LienHe />} />
           <Route path="/viewcart" element={<ViewCart />} />
-          <Route path="/gioitieu" element={<GioiThieu />} />
+          <Route path="/gioithieu" element={<GioiThieu />} />
           <Route
             path="/chitietsanpham/:id_sanpham"
             element={<ChiTietSanPham />}

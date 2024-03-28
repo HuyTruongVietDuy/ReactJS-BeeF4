@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { message, Button } from 'antd';
 
-const ChiTietDonHang = ({ showEditModal, closeEditModal, selectedBill }) => {
+const ChiTietDonHang = ({ showEditModal, closeEditModal, selectedBill, dispatchdata }) => {
   const [orderDetails, setOrderDetails] = useState(null);
 
   useEffect(() => {
@@ -43,6 +43,7 @@ const ChiTietDonHang = ({ showEditModal, closeEditModal, selectedBill }) => {
       }
       closeEditModal();
       message.success('Bạn đã cập nhật trạng thai đơn hàng thành công');
+      dispatchdata();
       // Refresh order details after updating status
       fetchOrderDetails(selectedBill.id_donhang);
     } catch (error) {
@@ -147,7 +148,7 @@ const ChiTietDonHang = ({ showEditModal, closeEditModal, selectedBill }) => {
               <div id='container-button'>
               {selectedBill.tinh_trang === 1 && (
   <>
-    <button id="default" onClick={handleCancel}>Hủy</button>
+    <button id="default" onClick={handleCancel}>Hủy xác nhận</button>
     <button id="primary" onClick={handleConfirm}>Xác Nhận</button>
   </>
 )}

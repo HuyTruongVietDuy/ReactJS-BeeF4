@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import sanPhamReducer from './sanPhamSlice';
 import danhMucReducer from './danhMucSlice';
 import chiTietSanPhamReducer from './ctsanPhamSlice';
+import donhangReducer from './donhangSlice';
 import cartSlice from './cartSlice';
 import authSlice from './authSlice';
 
@@ -13,6 +14,7 @@ export default configureStore({
     danhMuc: danhMucReducer,
     sanPham: sanPhamReducer,
     chiTietSanPham:chiTietSanPhamReducer,
+       donhang: donhangReducer,
     cart: cartSlice,
     auth: authSlice,
   },

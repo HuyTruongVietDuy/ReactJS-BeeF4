@@ -68,10 +68,10 @@ function UserIndex() {
     <div>
       <div className="user-container-header">
         <div className="user-header-top">
-          <p>Content 1</p>
-          <p>Content 2</p>
-          <p>Content 3</p>
-          <p>Content 4</p>
+          <p style={{fontSize:'0.9vw', fontWeight:'100'}}>SQBE</p>
+          <p style={{fontSize:'0.9vw',fontWeight:'100'}}>Hân Hạnh</p>
+          <p style={{fontSize:'0.9vw',fontWeight:'100'}}>Kính Chào</p>
+          <p style={{fontSize:'0.9vw',fontWeight:'100'}}>Qúy Khách</p>
         </div>
         <header id="user-header">
           <div className="user-header-left">

@@ -1,23 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Xem from "./ChiTietDonHang";
-
+import { useSelector, useDispatch } from 'react-redux';
+import { setDonHang } from '../../../redux/donhangSlice';
 const DonHang = () => {
-  const [DonHang, setDonHang] = useState([]);
+  const dispatch = useDispatch();
+  const DonHang = useSelector((state) => state.donhang.donhang);
   const [showEditModal, setShowEditModal] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [selectedBill, setSelectedBill] = useState(null); // To store the selected bill data
+  const [filterState, setFilterState] = useState(null); 
   const itemsPerPage = 10;
 
-  useEffect(() => {
+  const fetchDonHang = useCallback(() => {
     fetch("http://localhost:4000/donhang/")
       .then((response) => response.json())
       .then((data) => {
-        setDonHang(data);
+        dispatch(setDonHang(data)); // dispatch action to set donhang in Redux store
         setTotalPages(Math.ceil(data.length / itemsPerPage));
       })
       .catch((error) => console.error("Error fetching data:", error));
-  }, []);
+  }, [dispatch]);
+
+  useEffect(() => {
+    fetchDonHang();
+  }, [fetchDonHang]);
+
+  const dispatchdata = async () => {
+    fetchDonHang();
+  };
 
   const handleView = (bill) => {
     setSelectedBill(bill); // Set the selected bill data
@@ -28,9 +39,17 @@ const DonHang = () => {
     setShowEditModal(false);
   };
 
+  const handleFilterChange = (event) => {
+    setFilterState(event.target.value);
+  };
+  
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentUsers = DonHang.slice(indexOfFirstItem, indexOfLastItem);
+  let filteredDonHang = DonHang;
+  if (filterState !== null) {
+    filteredDonHang = DonHang.filter(bill => bill.tinh_trang === parseInt(filterState));
+  }
+  const currentUsers = filteredDonHang.slice(indexOfFirstItem, indexOfLastItem);
 
   const changePage = (page) => {
     if (page >= 1 && page <= totalPages) {
@@ -52,6 +71,7 @@ const DonHang = () => {
         showEditModal={showEditModal}
         closeEditModal={closeEditModal}
         selectedBill={selectedBill} // Pass selected bill data to the Xem component
+        dispatchdata={dispatchdata}
       />
       <div id="container-nav-admin">
         <div className="nav-left-admin">
@@ -59,6 +79,13 @@ const DonHang = () => {
         </div>
         <div className="nav-right-admin">
           {/* <button onClick={OpenAdd}> Thêm mới <i className="material-icons">add_circle</i> </button> */}
+          <select onChange={handleFilterChange}>
+            <option value="">Tất cả trạng thái</option>
+            <option value="1">Chờ xử lý</option>
+            <option value="2">Đã tiếp nhận</option>
+            <option value="3">Hoàn thành</option>
+            <option value="4">Đơn hàng bị hủy</option>
+          </select>
         </div>
       </div>
       <div className="admin-content-component">
@@ -89,18 +116,20 @@ const DonHang = () => {
                     : "Trạng thái không xác định"}
                 </td>
                 <td>
-                  {bill.tinh_trang === 1
-                    ? "Chờ xử lý"
-                    : bill.tinh_trang === 2
-                    ? "Đã tiếp nhận"
-                    : bill.tinh_trang === 3
-                    ? "Hoàn thành"
-                    : bill.tinh_trang === 4
-                    ? "Đơn hàng bị hủy"
-                    : "Trạng thái không xác định"}
+                {bill.tinh_trang === 1
+    ? <span style={{ color: '#4CAF50' }}>Chờ xử lý</span>
+    : bill.tinh_trang === 2
+    ? <span style={{ color: '#2196F3' }}>Đã tiếp nhận</span>
+    : bill.tinh_trang === 3
+    ? <span style={{ color: '#8BC34A' }}>Hoàn thành</span>
+    : bill.tinh_trang === 4
+    ? <span style={{ color: '#F44336' }}>Đơn hàng bị hủy</span>
+    : <span>Trạng thái không xác định</span>
+}
+
                 </td>
                 <td>
-                  <span onClick={() => handleView(bill)}>Xét duyệt</span>
+                  <span onClick={() => handleView(bill)}> <i className="material-icons">visibility</i></span>
                 </td>
               </tr>
             ))}
