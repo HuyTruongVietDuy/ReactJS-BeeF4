@@ -3,7 +3,10 @@ import { message } from 'antd';
 
 const AddProduct = ({ showForm, toggleForm, handleAddProduct }) => {
   const [tenSanPham, setTenSanPham] = useState('');
-  const [chatlieu, setChatlieu] = useState(''); // Thêm state cho chatlieu
+  const [chatlieu, setChatlieu] = useState('');
+  const [mota, setMota] = useState(''); // State for mota
+  const [kieuDang, setKieuDang] = useState(''); // State for kieu_dang
+  const [urlProduct, setUrlProduct] = useState(''); // State for url_product
   const [CategoryList, setCategoryList] = useState([]);
   const [selectedDanhMucId, setSelectedDanhMucId] = useState('');
 
@@ -34,15 +37,30 @@ const AddProduct = ({ showForm, toggleForm, handleAddProduct }) => {
     setChatlieu(event.target.value);
   };
 
+  const handleChangeMota = (event) => {
+    setMota(event.target.value);
+  };
+
+  const handleChangeKieuDang = (event) => {
+    setKieuDang(event.target.value);
+  };
+
+  const handleChangeUrlProduct = (event) => {
+    setUrlProduct(event.target.value);
+  };
+
   const handleSubmit = () => {
     if (!tenSanPham) {
       message.error('Vui lòng nhập tên sản phẩm');
       return;
     }
     toggleForm();
-    handleAddProduct(tenSanPham, selectedDanhMucId, chatlieu); // Pass selected danh muc ID and chatlieu to handleAddProduct
-    setTenSanPham(''); // Clear input fields after adding product
+    handleAddProduct(tenSanPham, selectedDanhMucId, chatlieu, mota, kieuDang, urlProduct); // Pass additional fields to handleAddProduct
+    setTenSanPham('');
     setChatlieu('');
+    setMota('');
+    setKieuDang('');
+    setUrlProduct('');
   };
 
   return (
@@ -59,7 +77,7 @@ const AddProduct = ({ showForm, toggleForm, handleAddProduct }) => {
           required
         />
 
-        <label htmlFor="chatlieu">Chất liệu:</label> {/* Thêm trường input cho chất liệu */}
+        <label htmlFor="chatlieu">Chất liệu:</label>
         <input
           type="text"
           id="chatlieu"
@@ -68,37 +86,63 @@ const AddProduct = ({ showForm, toggleForm, handleAddProduct }) => {
           required
         />
 
+        <label htmlFor="mota">Mô tả:</label> {/* Input field for mota */}
+        <input
+          type="text"
+          id="mota"
+          value={mota}
+          onChange={handleChangeMota}
+          required
+        />
+
+        <label htmlFor="kieuDang">Kiểu dáng:</label> {/* Input field for kieu_dang */}
+        <input
+          type="text"
+          id="kieuDang"
+          value={kieuDang}
+          onChange={handleChangeKieuDang}
+          required
+        />
+
+        <label htmlFor="urlProduct">URL sản phẩm:</label> {/* Input field for url_product */}
+        <input
+          type="text"
+          id="urlProduct"
+          value={urlProduct}
+          onChange={handleChangeUrlProduct}
+          required
+        />
+
         <label htmlFor="idDanhMucCha">ID danh mục cha:</label>
         {CategoryList && CategoryList.length > 0 && (
-        <select
-    id="idDanhMucCha"
-    required
-    onChange={(event) => setSelectedDanhMucId(event.target.value)}
->
-    <option value="">Chọn ID danh mục cha</option>
-    {CategoryList.map(danhMuc => {
-        if (danhMuc.id_danhmuc !== null) {
-            if (danhMuc.id_danhmuc_cha) {
-                return (
+          <select
+            id="idDanhMucCha"
+            required
+            onChange={(event) => setSelectedDanhMucId(event.target.value)}
+          >
+            <option value="">Chọn ID danh mục cha</option>
+            {CategoryList.map(danhMuc => {
+              if (danhMuc.id_danhmuc !== null) {
+                if (danhMuc.id_danhmuc_cha) {
+                  return (
                     <option key={danhMuc.id_danhmuc} value={danhMuc.id_danhmuc}>
-                        {danhMuc.id_danhmuc} - {danhMuc.ten_danhmuc}
+                      {danhMuc.id_danhmuc} - {danhMuc.ten_danhmuc}
                     </option>
-                );
-            } else {
-                return (
+                  );
+                } else {
+                  return (
                     <option key={danhMuc.id_danhmuc} value={danhMuc.id_danhmuc} disabled>
-                        {danhMuc.ten_danhmuc}
+                      {danhMuc.ten_danhmuc}
                     </option>
-                );
-            }
-        } else {
-            return null; // Ẩn đi các id_danhmuc có giá trị null
-        }
-    })}
-</select>
-
-      
+                  );
+                }
+              } else {
+                return null;
+              }
+            })}
+          </select>
         )}
+
         <button type="button" onClick={handleSubmit}>Thêm mới</button>
       </form>
     </div>

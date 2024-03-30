@@ -103,6 +103,10 @@ const handleAddConfirmed = async () => {
     return vietnamTime;
   };
 
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
+  };
+
   return (
     <div id="container-main-admin">
     <Sua showEditModal={showEditModal} closeEditModal={closeEditModal} ChiTiet={selectedSanPhamCT}  id_chitietsp={selectedSanPhamCTId} handleEditConfirmed={handleEditConfirmed} />
@@ -134,8 +138,8 @@ const handleAddConfirmed = async () => {
               <tr key={index}>
                 <td>{sanphamct.id_chitietsp}</td>
                 <td>{sanphamct.ten_mau}</td>
-                <td>{sanphamct.gia}</td>
-                <td>{sanphamct.gia_khuyenmai}</td>
+                <td>{formatPrice(sanphamct.gia)}</td>
+                <td>{formatPrice(sanphamct.gia_khuyenmai)}</td>
                 <td>{sanphamct.luot_xem}</td>
                 <td>{formatDateTime(sanphamct.time_add)}</td>
                 <td>{formatDateTime(sanphamct.time_update)}</td>

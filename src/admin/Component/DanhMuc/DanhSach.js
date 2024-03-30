@@ -236,7 +236,7 @@ const ListDanhMuc = () => {
           </tbody>
         </table>
 
-        <div className="pagination-container">
+        <div className="pagination-container" style={{zIndex:"1"}}>
           {Array.from({ length: totalPages }, (_, index) => (
             <button key={index} onClick={() => changePage(index + 1)}>
               {index + 1}

@@ -1,5 +1,6 @@
 // Loader.jsx
 import React from 'react';
+import BaoLoi from './Baoloi';
 
 const Thanks = () => {
   return (
@@ -11,4 +12,4 @@ const Thanks = () => {
   );
 };
 
-export default Thanks;
+export default BaoLoi;

@@ -4,7 +4,10 @@ const SuaProduct = ({ showEditModal, closeEditModal, sanphamID, handleEditProduc
   const [ten_sanpham, setTenSanPham] = useState('');
   const [id_DanhMuc, setIdDanhMuc] = useState('');
   const [chatlieu, setChatlieu] = useState('');
-  const [trang_thai, setTrangThai] = useState(''); // New state for product status
+  const [trang_thai, setTrangThai] = useState('');
+  const [mota, setMota] = useState(''); // State for mota
+  const [kieu_dang, setKieuDang] = useState(''); // State for kieu_dang
+  const [url_product, setUrlProduct] = useState(''); // State for url_product
   const [danhMucList, setDanhMucList] = useState([]);
 
   useEffect(() => {
@@ -12,7 +15,10 @@ const SuaProduct = ({ showEditModal, closeEditModal, sanphamID, handleEditProduc
       setTenSanPham(sanphamID.ten_sanpham || '');
       setIdDanhMuc(sanphamID.id_DanhMuc || '');
       setChatlieu(sanphamID.chatlieu || '');
-      setTrangThai(sanphamID.trang_thai || ''); // Set initial status
+      setTrangThai(sanphamID.trang_thai || '');
+      setMota(sanphamID.mota || ''); // Set initial state for mota
+      setKieuDang(sanphamID.kieu_dang || ''); // Set initial state for kieu_dang
+      setUrlProduct(sanphamID.url_product || ''); // Set initial state for url_product
     }
   }, [sanphamID]);
 
@@ -40,14 +46,15 @@ const SuaProduct = ({ showEditModal, closeEditModal, sanphamID, handleEditProduc
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleEditProduct(sanphamID.id_sanpham, ten_sanpham, id_DanhMuc, chatlieu, trang_thai); // Pass status to handleEditProduct
+    handleEditProduct(sanphamID.id_sanpham, ten_sanpham, id_DanhMuc, chatlieu, trang_thai, mota, kieu_dang, url_product); // Pass additional fields to handleEditProduct
     closeEditModal();
   };
-  
+
   const statusOptions = [
     { value: '1', label: 'Ẩn' },
     { value: '2', label: 'Hiện' },
   ];
+
   return (
     <>
       {showEditModal && (
@@ -56,22 +63,28 @@ const SuaProduct = ({ showEditModal, closeEditModal, sanphamID, handleEditProduc
             <span id="close" onClick={closeEditModal}>x</span>
             <form className="form-admin-edit" onSubmit={handleSubmit}>
               <h1>Sửa Sản Phẩm: {sanphamID.id_sanpham}</h1>
-              <label htmlFor="ten_sanpham">Tên sản phẩm:</label><br/>
-              <input type="text" id="ten_sanpham" name="ten_sanpham" value={ten_sanpham} onChange={(e) => setTenSanPham(e.target.value)} /><br/>
-              <label htmlFor="chatlieu">Chất Liệu:</label><br/>
-              <input type="text" id="chatlieu" name="chatlieu" value={chatlieu} onChange={(e) => setChatlieu(e.target.value)} /><br/>
-              <label htmlFor="id_DanhMuc">Danh mục:</label><br/>
+              <label htmlFor="ten_sanpham">Tên sản phẩm:</label>
+              <input type="text" id="ten_sanpham" name="ten_sanpham" value={ten_sanpham} onChange={(e) => setTenSanPham(e.target.value)} />
+              <label htmlFor="chatlieu">Chất Liệu:</label>
+              <input type="text" id="chatlieu" name="chatlieu" value={chatlieu} onChange={(e) => setChatlieu(e.target.value)} />
+              <label htmlFor="id_DanhMuc">Danh mục:</label>
               <select id="id_DanhMuc" name="id_DanhMuc" value={id_DanhMuc} onChange={(e) => setIdDanhMuc(e.target.value)}>
                 {danhMucList.map(danhMuc => (
                   <option key={danhMuc.id_danhmuc} value={danhMuc.id_danhmuc}>{danhMuc.ten_danhmuc}</option>
                 ))}
-              </select><br/><br/>
-              <label htmlFor="trang_thai">Trạng thái:</label><br/>
+              </select><br/>
+              <label htmlFor="trang_thai">Trạng thái:</label>
               <select id="trang_thai" name="trang_thai" value={trang_thai} onChange={(e) => setTrangThai(e.target.value)}>
                 {statusOptions.map(option => (
                   <option key={option.value} value={option.value}>{option.label}</option>
                 ))}
-              </select><br/><br/>
+              </select>
+              <label htmlFor="mota">Mô tả:</label>
+              <input type="text" id="mota" name="mota" value={mota} onChange={(e) => setMota(e.target.value)} /><br/>
+              <label htmlFor="kieu_dang">Kiểu dáng:</label>
+              <input type="text" id="kieu_dang" name="kieu_dang" value={kieu_dang} onChange={(e) => setKieuDang(e.target.value)} />
+              <label htmlFor="url_product">URL sản phẩm:</label>
+              <input type="text" id="url_product" name="url_product" value={url_product} onChange={(e) => setUrlProduct(e.target.value)} /><br/>
               <input type="submit" value="Submit"/>
             </form>
           </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { message } from 'antd';
 
@@ -7,6 +7,19 @@ const TaoMatKhau = () => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [success, setSuccess] = useState(false);
+
+  // Sử dụng useEffect để theo dõi thời gian và chuyển hướng khi hết hạn
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      // Chuyển hướng đến trang báo lỗi nếu hết hạn và chưa thành công
+      if (!success) {
+        <Navigate to="/baoloi" />;
+      }
+    }, 600000); // Hết hạn sau 10 phút (600000 milliseconds)
+    
+    // Xóa timer khi component unmount
+    return () => clearTimeout(timer);
+  }, [success]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,7 +52,7 @@ const TaoMatKhau = () => {
       if (response.ok) {
         // Thông báo thành công
         message.success(data.message);
-        // Đặt success thành true để hiển thị component Navigate
+        // Đặt success thành true để chuyển hướng đến trang đăng nhập
         setSuccess(true);
       } else {
         // Thông báo lỗi từ máy chủ

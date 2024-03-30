@@ -89,12 +89,14 @@ const SideBarSearch = () => {
                     </Link>
                   </td>
                   <td id="image-product">
+                  <Link to={`/chitietsanpham/${result.id_sanpham}`}>
                     <div className="box-image-search">
                       <img
                         src={`http://localhost:4000/chitietsanpham/${result.hinh_anh_1}`}
                         alt={result.ten_sanpham}
                       />
                     </div>
+                    </Link>
                   </td>
                 </tr>
               ))}

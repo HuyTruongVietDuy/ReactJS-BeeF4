@@ -208,12 +208,31 @@ const ChiTietSanPham = () => {
               {productDetail.id_chitietsp}
             </h2>
             <p className="box-2__price">
-              {" "}
-              {new Intl.NumberFormat("vi-VN", {
-                style: "currency",
-                currency: "VND",
-              }).format(productDetail.gia)}
-            </p>
+  {productDetail.gia_khuyenmai ? (
+    <>
+      <span style={{ textDecoration: 'line-through' }}>
+        {new Intl.NumberFormat('vi-VN', {
+          style: 'currency',
+          currency: 'VND',
+        }).format(productDetail.gia)}
+      </span>
+      {' '}
+      <span>
+        {new Intl.NumberFormat('vi-VN', {
+          style: 'currency',
+          currency: 'VND',
+        }).format(productDetail.gia_khuyenmai)}
+      </span>
+    </>
+  ) : (
+    <span>
+      {new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND',
+      }).format(productDetail.gia)}
+    </span>
+  )}
+</p>
             <div className="box-2__color">
               {colors.map((color) => (
                 <button

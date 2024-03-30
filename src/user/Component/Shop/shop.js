@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SanPham from "./product";
 
-function Shop({ addToCart }) {
+function Shop() {
     const [priceFilter, setPriceFilter] = useState("0");
     const [loaiFilter, setLoaiFilter] = useState("0");
     const [colorFilter, setColorFilter] = useState("0");
@@ -140,7 +140,6 @@ function Shop({ addToCart }) {
 
             {/* Truyền các giá trị lọc vào component SanPham */}
             <SanPham 
-                addToCart={addToCart}
                 priceFilter={priceFilter}
                 loaiFilter={loaiFilter}
                 colorFilter={colorFilter}

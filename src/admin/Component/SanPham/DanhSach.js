@@ -16,7 +16,7 @@ import { setSanPhamList } from '../../../redux/sanPhamSlice';
     const [selectedSanPham, setSelectedSanPham] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const itemsPerPage = 6;
+    const itemsPerPage = 12;
 
     const OpenAdd = () => {
       setShowForm(!showForm);
@@ -61,15 +61,14 @@ import { setSanPhamList } from '../../../redux/sanPhamSlice';
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []); // Gọi fetchData khi component được render lần đầu tiên
   
-    
-    const handleAddProduct = async (ten_sanpham, id_Danhmuc,chatlieu) => { // Receive id_Danhmuc as a parameter
+    const handleAddProduct = async (ten_sanpham, id_Danhmuc, chatlieu, mota, kieu_dang, url_product) => {
       try {
         const response = await fetch('http://localhost:4000/sanpham/them', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ ten_sanpham, id_Danhmuc, chatlieu }) // Include id_Danhmuc in the request body
+          body: JSON.stringify({ ten_sanpham, id_Danhmuc, chatlieu, mota, kieu_dang, url_product }) // Include additional fields in the request body
         });
     
         if (!response.ok) {
@@ -79,7 +78,7 @@ import { setSanPhamList } from '../../../redux/sanPhamSlice';
         const data = await response.json();
         message.success('Thêm mới thành công!');
         console.log('Sản phẩm mới được thêm:', data);
-        
+    
         fetchData();
       } catch (error) {
         console.error('Lỗi khi thêm sản phẩm:', error);
@@ -87,14 +86,15 @@ import { setSanPhamList } from '../../../redux/sanPhamSlice';
       }
     };
     
-    const handleEditProduct = async (sanPhamId, ten_sanpham, id_Danhmuc, chatlieu, trang_thai) => {
+    
+    const handleEditProduct = async (sanPhamId, ten_sanpham, id_Danhmuc, chatlieu, trang_thai, mota, kieu_dang, url_product) => {
       try {
         const response = await fetch(`http://localhost:4000/sanpham/sua/${sanPhamId}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ ten_sanpham, id_Danhmuc, chatlieu,trang_thai })
+          body: JSON.stringify({ ten_sanpham, id_Danhmuc, chatlieu, trang_thai, mota, kieu_dang, url_product }) // Include additional fields in the request body
         });
     
         if (!response.ok) {
@@ -111,6 +111,7 @@ import { setSanPhamList } from '../../../redux/sanPhamSlice';
         message.error('Sửa thất bại!, vui lòng thử lại');
       }
     };
+    
     
     // Hàm mở và đóng modal xóa
     const openDeleteModal = () => {
@@ -167,6 +168,7 @@ import { setSanPhamList } from '../../../redux/sanPhamSlice';
       }
     };
 
+    
     return (
       <div id="container-main-admin">
       <Sua showEditModal={showEditModal} closeEditModal={closeEditModal} sanphamID={selectedSanPham} handleEditProduct={handleEditProduct} />

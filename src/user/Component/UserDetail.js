@@ -30,6 +30,8 @@ const UserDetail = () => {
         dispatch(thoat());
         message.success('Đăng xuất thành công');
         navigate('/dangnhap'); // Redirect to "/dangnhap"
+        window.location.reload();
+        
     };
 
     const formatDateTime = (dateTimeString) => {
@@ -67,7 +69,7 @@ const UserDetail = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {orders.map(order => (
+                            {currentOrders.map(order => ( 
                                     <tr key={order.id_donhang}>
                                         <td>{order.id_donhang}</td>
                                         <td>{formatDateTime(order.ngay_dat)}</td>
@@ -79,9 +81,12 @@ const UserDetail = () => {
                                 ))}
                             </tbody>
                         </table>
+                        <div className='page-phantrang'>
                          {Array.from({ length: Math.ceil(orders.length / ordersPerPage) }, (_, i) => (
+                         
                                 <button key={i + 1} onClick={() => paginate(i + 1)} className={currentPage === i + 1 ? "active" : ""} id='one'>{i + 1}</button>
                             ))}
+                         </div>   
                     </div>
 
                     <div className="box-2">
@@ -91,7 +96,11 @@ const UserDetail = () => {
                         <p>Thành Phố: <span>{user ? user.tinh : ''}</span></p>
                         <p>Quốc gia: <span>Vietnam</span></p>
                         <p>Số điện thoại: <span>{user ? user.sdt : ''}</span></p>
-                        <button  style={{margin:"10px 0"}} onClick={handleLogout}>Thêm/Sửa địa chỉ</button>
+                        <button style={{margin:"10px 0"}}>
+            {user && user.id_user &&
+                <Link to={`/suauser/${user.id_user}`}>Thêm/Sửa địa chỉ</Link>
+            }
+        </button>
                         <button onClick={handleLogout}>Thoát</button>
                     </div>
                 </div>

@@ -45,8 +45,8 @@ const DonHang = () => {
   
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  let filteredDonHang = DonHang;
-  if (filterState !== null) {
+  let filteredDonHang = Array.isArray(DonHang) ? DonHang : [];
+  if (filterState !== null && Array.isArray(DonHang)) {
     filteredDonHang = DonHang.filter(bill => bill.tinh_trang === parseInt(filterState));
   }
   const currentUsers = filteredDonHang.slice(indexOfFirstItem, indexOfLastItem);

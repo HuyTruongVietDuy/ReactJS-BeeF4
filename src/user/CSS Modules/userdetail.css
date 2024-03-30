@@ -54,6 +54,11 @@
         color: gray;
 }
 
+.container-user-detail .page-phantrang {
+ width: 95%;
+ text-align: right;
+
+}
 .container-user-detail #one {
     background-color: black;
     color: white;
@@ -61,8 +66,7 @@
     border: none;
     cursor: pointer;
     margin-top: 20px;
-    float: right;
-    margin-right: 50px;
+    margin-right: 5px;
 }
 
 .container-user-detail .box-2 {
@@ -78,6 +82,7 @@
     font-weight: 505;
     font-size: 0.9vw;
 }
+
 
 .container-user-detail .box-2 button {
     display: block;
@@ -101,4 +106,28 @@
     .container-user-detail .table {
         width: 100%;
     }
+}
+
+.container-user-detail input {
+    padding: 15px;
+    width: 80%;
+    margin: 10px 0;
+    background-color: #ededed;
+    border: none;
+}
+
+.container-user-detail form button {
+    display: block;
+    margin-top: 10px;
+    padding: 13px 24px;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+    border-radius: 4px;
+}
+
+.container-user-detail form button:hover {
+    opacity: 0.7;
 }

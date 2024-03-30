@@ -3,10 +3,10 @@ import { message, Button } from 'antd';
 
 const ChiTietDonHang = ({ showEditModal, closeEditModal, selectedBill, dispatchdata }) => {
   const [orderDetails, setOrderDetails] = useState(null);
+  const [deliveryFailed, setDeliveryFailed] = useState(false);
 
   useEffect(() => {
     if (showEditModal && selectedBill) {
-      // Fetch order details when the modal is shown and selectedBill is available
       fetchOrderDetails(selectedBill.id_donhang);
     }
   }, [showEditModal, selectedBill]);
@@ -18,7 +18,6 @@ const ChiTietDonHang = ({ showEditModal, closeEditModal, selectedBill, dispatchd
         throw new Error('Failed to fetch order details');
       }
       const data = await response.json();
-      console.log(data);
       setOrderDetails(data);
     } catch (error) {
       console.error('Error fetching order details:', error);
@@ -44,7 +43,6 @@ const ChiTietDonHang = ({ showEditModal, closeEditModal, selectedBill, dispatchd
       closeEditModal();
       message.success('Bạn đã cập nhật trạng thai đơn hàng thành công');
       dispatchdata();
-      // Refresh order details after updating status
       fetchOrderDetails(selectedBill.id_donhang);
     } catch (error) {
       console.error('Error updating order status:', error);
@@ -64,7 +62,10 @@ const ChiTietDonHang = ({ showEditModal, closeEditModal, selectedBill, dispatchd
     updateStatus(3); // Hoàn tất đơn hàng: tinh_trang = 3
   };
 
-  // Function to format price in Vietnamese dong
+  const handleDeliveryFailed = () => {
+    setDeliveryFailed(true);
+  };
+
   const formatPrice = (price) => {
     return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
   };
@@ -82,7 +83,7 @@ const ChiTietDonHang = ({ showEditModal, closeEditModal, selectedBill, dispatchd
       {showEditModal && (
         <div className="admin-edit">
           <div className="admin-viewbill-content">
-          <span id="close" onClick={closeEditModal}>
+            <span id="close" onClick={closeEditModal}>
               x
             </span>
             <h1 id="h1">Thông tin đơn hàng: CM{selectedBill.id_donhang}</h1>
@@ -135,9 +136,9 @@ const ChiTietDonHang = ({ showEditModal, closeEditModal, selectedBill, dispatchd
                           </div>
                         </td>
                         <td>PM24{detail.id_donhangchitiet}</td>
-                        <td>{formatPrice(detail.gia_ban)}</td> {/* Format price */}
+                        <td>{formatPrice(detail.gia_ban)}</td>
                         <td>{detail.so_luong}</td>
-                        <td>{formatPrice(detail.so_luong * detail.gia_ban)}</td> {/* Format total price */}
+                        <td>{formatPrice(detail.so_luong * detail.gia_ban)}</td>
                       </tr>
                     ))}
                 </tbody>
@@ -146,26 +147,30 @@ const ChiTietDonHang = ({ showEditModal, closeEditModal, selectedBill, dispatchd
             </div>
             <div className='nav-button'>
               <div id='container-button'>
-              {selectedBill.tinh_trang === 1 && (
-  <>
-    <button id="default" onClick={handleCancel}>Hủy xác nhận</button>
-    <button id="primary" onClick={handleConfirm}>Xác Nhận</button>
-  </>
-)}
-{selectedBill.tinh_trang === 2 && (
-  <button id="primary" onClick={handleComplete}>Hoàn tất đơn hàng</button>
-)}
-{selectedBill.tinh_trang === 4 && (
-  <p style={{ color: 'red' }}>Đơn hàng đã bị hủy</p>
-)}
-{selectedBill.tinh_trang === 3 && (
-  <p style={{ color: 'green' }}>Đơn hàng đã được xử lý hoàn tất</p>
-)}
-
+                {selectedBill.tinh_trang === 1 && (
+                  <>
+                    <button id="default" onClick={handleCancel}>Hủy xác nhận</button>
+                    <button id="primary" onClick={handleConfirm}>Xác Nhận</button>
+                  </>
+                )}
+                {selectedBill.tinh_trang === 2 && (
+                  <>
+                   <button id="default" onClick={handleDeliveryFailed}>Giao hàng không thành công</button>
+                    <button id="primary" onClick={handleComplete}>Hoàn tất đơn hàng</button>
+                   
+                    {deliveryFailed && (
+                      <div style={{ color: 'red' }}>Giao hàng không thành công</div>
+                    )}
+                  </>
+                )}
+                {selectedBill.tinh_trang === 4 && (
+                  <p style={{ color: 'red' }}>Đơn hàng đã bị hủy</p>
+                )}
+                {selectedBill.tinh_trang === 3 && (
+                  <p style={{ color: 'green' }}>Đơn hàng đã được xử lý hoàn tất</p>
+                )}
               </div>
-              
-              
-              </div>
+            </div>
           </div>
         </div>
       )}

@@ -15,6 +15,7 @@ import LienHe from "./Component/LienHe";
 import ViewCart from "./Component/viewcart";
 import ChiTietSanPham from "./Component/chitietsanpham";
 import ChiTietDonHang from "./Component/ChiTietDonHang.js";
+import SuaUser from "./Component/EditUser.js";
 import BaoLoi from "./Component/Baoloi";
 import GioiThieu from "./Component/GioiThieu";
 
@@ -33,6 +34,7 @@ function MainContent({ loading }) {
           {/* <Route path="/:url_category_con" element={<SPTrongLoaiTrongLoai />} /> */}
           <Route path="/user" element={<UserDetail />} />
           <Route path="/chitietdonhang/:id_donhang" element={<ChiTietDonHang />} />
+          <Route path="/suauser/:id_user" element={<SuaUser />} />
           <Route path="/dangnhap" element={<DangNhap />} />
           <Route path="/dangky" element={<DangKy />} />
           <Route path="/quenmatkhau" element={<QuenMatKhau />} />
@@ -40,10 +42,7 @@ function MainContent({ loading }) {
           <Route path="/LienHe" element={<LienHe />} />
           <Route path="/viewcart" element={<ViewCart />} />
           <Route path="/gioithieu" element={<GioiThieu />} />
-          <Route
-            path="/chitietsanpham/:id_sanpham"
-            element={<ChiTietSanPham />}
-          />
+          <Route path="/chitietsanpham/:id_sanpham" element={<ChiTietSanPham />}/>
           <Route path="/baoloi" element={<BaoLoi />} />
           <Route path="*" element={<Navigate to="/baoloi" />} />
         </Routes>

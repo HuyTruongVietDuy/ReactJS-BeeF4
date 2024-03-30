@@ -359,8 +359,8 @@ transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 .product {
     position: relative;
     width: calc(25% - 20px);
-    height: 55vh;
-    margin: 1vh; 
+    height: 60vh;
+    margin: 0.2vh; 
     display: flex;
     justify-content: center;
 }
@@ -368,7 +368,7 @@ transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 .product-image {
     position: relative;
     width: 90%;
-    height: 45vh; 
+    height: 50vh; 
     overflow: hidden; 
     display: inline-block;
 }
@@ -464,9 +464,10 @@ transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 
 .container-color #color{
     cursor: pointer;
-   padding:2px 20px;
-   border-radius: 10%;
+   padding:4px 20px;
+   border-radius: 14%;
    margin: 0 5px;
+    cursor: pointer;
 }
 
 .product-name,
@@ -488,3 +489,157 @@ transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
  right: 10%;
 }
 
+
+
+
+.Container-new {
+    width: 100%;
+    min-height: 400px;
+    background-color: #151514;
+    float: none;
+  
+    display: block;
+    padding: 30px 0px;
+  }
+
+  .Container-new h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    color: white;
+    font-size: 40px;
+    font-weight: bolder;
+    font-style: italic;
+    text-transform: uppercase;
+    text-decoration: underline;
+
+  }
+  
+  .Container-new .Container-News {
+    width: 75%;
+    min-height: 400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .Container-new .Container-News .Box-New {
+    position: relative;
+    width: 25%;
+    height: 350px;
+    background-color: black;
+    margin: 10px 10px;
+    cursor: pointer;
+  }
+  
+  .Container-new .Container-News .Box-New:hover .Image-New  {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+  }
+  
+  .Container-new .Container-News .Box-New:hover .Image-New img {
+    filter: brightness(80%);
+  }
+  
+  .Container-new .Container-News .Box-New .Image-New img {
+    width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: filter 0.3s ease;
+  }
+  
+  .Container-new .Container-News .Box-New .Read-New {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 18px;
+    opacity: 0.5; /* Đảm bảo chữ không bị ảnh hưởng bởi hiệu ứng hover */
+    transition: opacity 0.3s ease;
+    width: 100%;
+    padding: 20px 0;
+    text-align: center;
+    background-color: black;
+    color: black;
+    font-size: 26px;
+    font-weight: bolder;
+    font-style: italic;
+    text-transform: uppercase;
+  }
+  
+  .Container-new .Container-News .Box-New:hover .Read-New {
+    opacity: 1;
+    filter: brightness(100%);
+    transition: opacity 0.3s ease, color 0.3s ease; /* Thêm hiệu ứng chuyển đổi màu chậm */
+    text-decoration: underline;
+    color: white;
+  }
+  
+  .Container-new .Container-News .Box-New .Name-New {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 18px;
+    opacity: 0.7888; /* Đảm bảo chữ không bị ảnh hưởng bởi hiệu ứng hover */
+    transition: opacity 0.3s ease;
+    width: 100%;
+    padding: 20px 0;
+    text-align: center;
+    background-color: #F4F2EE;
+    color: black;
+    font-size:26px ;
+    font-weight: bolder;
+    font-style: italic;
+    text-transform: uppercase;
+}
+
+.Container-new .Container-News .Box-New:hover .Name-New {
+    opacity: 0;
+}
+
+@media only screen and (max-width: 1316px) {
+    .Container-new h1 {
+        font-size: 25px;
+      
+      }
+
+    .Container-new .Container-News {
+        margin: 0 auto;
+        display: contents;
+      
+      }
+
+      .Container-new .Container-News .Box-New {
+        position: relative;
+        width: 100%;
+        margin: 20px 0px;
+        
+      }
+      
+}
+.boxfooter1{
+    width: 100%;
+    height: 100px;
+    padding: 20px 0;
+    /* background-color: #f1f1f1; */
+    display: flex;
+    padding-top: 50px;
+    align-items: center;
+ }
+
+ .boxfooter1 p{
+  margin-left: 15px;
+  font-size: 1.3vw;
+}
+
+.boxfooter1 p span{
+  color: red;
+}

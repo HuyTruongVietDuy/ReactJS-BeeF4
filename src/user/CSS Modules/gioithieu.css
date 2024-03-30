@@ -1,0 +1,66 @@
+/* Reset CSS */
+
+
+.container-gioithieu {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+main {
+    padding: 20px 0;
+}
+
+.container-gioithieu .banner {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 500px; /* Điều chỉnh chiều cao cố định */
+    clear: both;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+
+
+.container-gioithieu .banner img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 500px;
+    object-fit: cover; /* Đảm bảo ảnh luôn được hiển thị mà không bị vặn hoặc căng */}
+
+
+
+.introduce h2 {
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.introduce p {
+    margin-bottom: 20px;
+}
+
+.introduce .image-1 img {
+    width: 33%;
+    height: auto;
+    clear: both;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+.introduce .image-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.introduce .image-2 img {
+    width: 30%;
+    height: auto;
+    clear: both;
+}
