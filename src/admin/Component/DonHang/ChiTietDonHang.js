@@ -142,8 +142,9 @@ const ChiTietDonHang = ({ showEditModal, closeEditModal, selectedBill, dispatchd
                       </tr>
                     ))}
                 </tbody>
-                <p>Tổng Tiền: {formatPrice(selectedBill.total)}</p>
+               
               </table>
+              <p id='total'>Tổng Tiền: {formatPrice(selectedBill.total)}</p>
             </div>
             <div className='nav-button'>
               <div id='container-button'>

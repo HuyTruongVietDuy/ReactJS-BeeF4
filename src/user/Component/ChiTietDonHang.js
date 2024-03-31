@@ -47,10 +47,12 @@ const ChiTietDonHang = () => {
 
     fetchData();
   }, [id_donhang]);
+
+  const chuaThue = donHang && donHang.total * (1 + (donHang.phan_tram || 0) / 100);
   return (
     <div id="container-main">
       <div className="container-chitietdonhang">
-        <div className="content">
+          <div className="content">
           <h3>ĐƠN HÀNG #{id_donhang}</h3>
           <div className="box">
             <div className="box-left">
@@ -131,10 +133,10 @@ const ChiTietDonHang = () => {
 
           <div className="tongthongtin">
             <div className="chuathue">
-              Chưa thuế <span>0đ</span>
+              Chưa thuế:  <span>{formatCurrency(chuaThue)}</span>
             </div>
             <div className="phivanchuyen">
-              Phí vận chuyển <span>0đ</span>
+              Voucher giảm giá:  <span>{donHang && donHang.phan_tram }%</span>
             </div>
             <div className="tong">
               Tổng

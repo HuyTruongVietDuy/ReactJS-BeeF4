@@ -18,6 +18,9 @@ function ThanhToan() {
   const [hoTen, setHoTen] = useState(user ? user.ho_ten : '');
   const [soDienThoai, setSoDienThoai] = useState(user ? user.sdt : '');
   const [diaChi, setDiaChi] = useState(user ? user.diachi : '');
+  const [voucherCode, setVoucherCode] = useState(""); 
+  const [discountPercent, setDiscountPercent] = useState(0);
+  const [idGiamGia, setIdGiamGia] = useState(null);
   const emailRef = useRef(null);
   const hotenRef = useRef(null);
   const sdtRef = useRef(null);
@@ -27,17 +30,55 @@ function ThanhToan() {
   const huyenRef = useRef(null);
   const xaRef = useRef(null);
 
-  // Function to calculate the total price of all items in the cart
   const calculateTotal = () => {
     let total = 0;
     cart.forEach((product) => {
-      total +=
-        product.gia_khuyenmai && product.gia_khuyenmai !== 0
-          ? product.gia_khuyenmai * product.soluong
-          : product.gia * product.soluong;
+      let priceAfterDiscount = 0;
+      if (product.gia_khuyenmai && product.gia_khuyenmai !== 0) {
+        // Nếu có giá khuyến mãi, tính giá sau khi áp dụng phần trăm giảm giá
+        priceAfterDiscount = (product.gia_khuyenmai * (100 - discountPercent) / 100) * product.soluong;
+      } else {
+        // Nếu không có giá khuyến mãi, tính giá gốc sau khi áp dụng phần trăm giảm giá
+        priceAfterDiscount = (product.gia * (100 - discountPercent) / 100) * product.soluong;
+      }
+      total += priceAfterDiscount;
     });
     return total;
   };
+
+  const applyVoucher = () => {
+    fetch(`http://localhost:4000/voucher`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        const matchedVoucher = data.find((voucher) => voucher.ma_giamgia === voucherCode);
+        if (matchedVoucher) {
+          console.log("Kết quả từ API:", matchedVoucher);
+          if (matchedVoucher.trang_thai === 2) {
+            message.warning("Mã giảm giá đã được sử dụng");
+          } else {
+            setDiscountPercent(matchedVoucher.phan_tram);
+            setIdGiamGia(matchedVoucher.id_giamgia);
+            message.success("Áp dụng mã giảm giá thành công");
+          }
+        } else {
+          console.log("Không tìm thấy mã giảm giá trùng khớp");
+          message.error("Không tìm thấy mã giảm giá phù hợp");
+        }
+      })
+      .catch((error) => {
+        console.error("Lỗi khi gọi API:", error);
+        message.error("Đã xảy ra lỗi, vui lòng thử lại sau");
+      });
+  };
+  
+  
+  
+  
   useEffect(() => {
     fetch("http://localhost:4000/donhang/data")
       .then((response) => response.json())
@@ -109,6 +150,7 @@ function ThanhToan() {
       ghi_chu: ghichuValue,
       total: calculateTotal(),
       id_user: user.id_user,
+      id_giamgia: idGiamGia,
       // Các dữ liệu khác (nếu cần)
     };
 
@@ -147,14 +189,16 @@ function ThanhToan() {
 
   const luuchitietdonhang = (id_donhang) => {
     // Lặp qua từng sản phẩm trong giỏ hàng để lưu chi tiết đơn hàng
+    
     cart.forEach((product) => {
+      const gia = product.gia_khuyenmai ? product.gia_khuyenmai : product.gia;
       const chiTietDonHangData = {
         id_donhang: id_donhang,
         id_chitietsp: product.id_chitietsp,
         id_size: product.id_size,
         ten_sanpham:product.ten_sanpham,
         so_luong: product.soluong,
-        gia_ban: product.soluong * product.gia,
+        gia_ban: product.soluong * gia,
       };
 
       // Gửi dữ liệu chi tiết đơn hàng đến backend
@@ -214,6 +258,10 @@ function ThanhToan() {
     setPaymentMethod(e.target.value);
   };
 
+  
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
+  };
   return (
     <div className="container-thanhtoan">
       <article>
@@ -232,7 +280,7 @@ function ThanhToan() {
               type="text"
               ref={emailRef}
               className="input-field"
-              value={email}
+              value={email || ''}
               onChange={(event) => setEmail(event.target.value)}
               required
             />
@@ -244,7 +292,7 @@ function ThanhToan() {
               <input
               type="text"
               ref={hotenRef}
-              value={hoTen}
+              value={hoTen || ''}
               className="input-field"
               onChange={(event) => setHoTen(event.target.value)}
               required
@@ -257,7 +305,7 @@ function ThanhToan() {
               <input
                 type="text"
                 ref={sdtRef}
-                value={soDienThoai}
+                value={soDienThoai || ''}
                 className="input-field"
                 onChange={(event) => setSoDienThoai(event.target.value)}
                 required
@@ -270,7 +318,7 @@ function ThanhToan() {
               <input
                 type="text"
                 ref={diachiRef}
-                value={diaChi}
+                value={diaChi || ''}
                 className="input-field"
                 onChange={(event) => setDiaChi(event.target.value)}
                 required
@@ -436,18 +484,30 @@ function ThanhToan() {
               <table key={index}>
                 <tbody>
                   <tr>
-                    <td id="img" rowspan="2">
-                      <img
-                        src={`http://localhost:4000/chitietsanpham/${product.hinh_anh_1}`}
-                        alt={product.ten_sanpham}
-                      />
-                      <span id="count">{product.soluong}</span>
-                    </td>
+                  <td id="img" rowSpan="3">
+  <img
+    src={`http://localhost:4000/chitietsanpham/${product.hinh_anh_1}`}
+    alt={product.ten_sanpham}
+  />
+  <span id="count">{product.soluong}</span>
+</td>
+
                     <td id="name">{product.ten_sanpham}</td>
-                    <td id="price">{product.gia * product.soluong}</td>
+                  
                   </tr>
                   <tr>
-                    <td id="size">{product.ten_size}</td>
+                  <td id="price">
+      {product.gia_khuyenmai !== null && product.gia_khuyenmai < product.gia ? (
+        <>
+          <del>{formatPrice(product.gia * product.soluong)}</del> {formatPrice(product.gia_khuyenmai * product.soluong)}
+        </>
+      ) : (
+        formatPrice(product.gia * product.soluong)
+      )}
+    </td>
+                  </tr>
+                  <tr>
+                    <td id="size">Size:{product.ten_size}</td>
                   </tr>
                 </tbody>
               </table>
@@ -459,10 +519,15 @@ function ThanhToan() {
               <tbody>
                 <tr>
                   <td>
-                    <input placeholder="Nhập mã giảm giá" />
+                  <input
+        type="text"
+        placeholder="Nhập mã giảm giá"
+        value={voucherCode}
+        onChange={(e) => setVoucherCode(e.target.value)}
+      />
                   </td>
                   <td>
-                    <button>Áp dụng</button>
+                  <button onClick={applyVoucher}>Áp dụng</button>
                   </td>
                 </tr>
               </tbody>
@@ -472,7 +537,15 @@ function ThanhToan() {
           <div className="aside__total">
             <table>
               <tbody>
+              <tr>
+                
+                <td id="total__text">Giảm gíá</td>
+                <td id="total__price">
+    <span>{discountPercent}%</span>
+  </td>
+              </tr>
                 <tr>
+
                   <td id="total__text">Tổng Cộng</td>
                   <td id="total__price">
                     <span>

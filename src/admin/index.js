@@ -9,6 +9,7 @@ import ListBill from "./Component/DonHang/DanhSach";
 import ListChiTietSanPham from "./Component/ChiTietSanPham/DanhSach";
 import ListMotChiTiet from "./Component/ChiTietSanPham/Listonect";
 import KhoHang from "./Component/KhoHang/DanhSach";
+import GiamGia from "./Component/GiamGia/DanhSach";
 import "./CSS Modules/index.css";
 import "./CSS Modules/main.css";
 import "./CSS Modules/style.css";
@@ -130,6 +131,10 @@ function AdminIndex() {
                   <i className="material-icons">receipt</i>
                   <span>Đơn Hàng</span>
                 </Link>
+                <Link to="/admin/danhsachgiamgia" id="a">
+                  <i className="material-icons">local_offer</i>
+                  <span>Voucher giảm giá</span>
+                </Link>
               </div>
             </div>
 
@@ -167,6 +172,7 @@ function AdminIndex() {
                 element={<ListMotChiTiet />}
               />
               <Route path="/khohang" element={<KhoHang />} />
+              <Route path="/danhsachgiamgia" element={<GiamGia />} />
             </Routes>
           </div>
         </div>

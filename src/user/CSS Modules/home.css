@@ -271,6 +271,26 @@ transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
         color: blanchedalmond;
       }
 
+        #button-left{
+            position: absolute;
+            left:0;
+            top:34%;
+            font-weight: bold;
+        }
+        
+        #button-right{
+            position: absolute;
+            right: 0px;
+            top:34%;
+        }
+
+    #button-right i, 
+    #button-left i{
+    font-size: 16px;    
+    }
+  }
+  
+  @media only screen and (max-width: 1316px) {
     #button-left{
         position: absolute;
         left:0;
@@ -284,12 +304,9 @@ transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
         top:34%;
     }
 
-    #button-right i, 
-    #button-left i{
-    font-size: 16px;    
-    }
-  }
-  
+      
+}
+
 
   .container-new-product{
     width: 100%;
