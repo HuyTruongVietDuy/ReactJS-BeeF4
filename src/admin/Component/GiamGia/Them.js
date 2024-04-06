@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { message } from 'antd'; // Import message từ antd để sử dụng thông báo
 
-const AddVoucher = ({ showForm, toggleForm }) => {
+const AddVoucher = ({ showForm, toggleForm, action }) => {
   const [maGiamGia, setMaGiamGia] = useState('');
   const [phanTram, setPhanTram] = useState(0);
   const [soNgay, setSoNgay] = useState('');
@@ -21,7 +21,7 @@ const AddVoucher = ({ showForm, toggleForm }) => {
 
       console.log(response.data);
       message.success('Thêm mới voucher thành công'); // Hiển thị thông báo thành công
-
+      action();
       toggleForm();
     } catch (error) {
       console.error('Error adding voucher:', error);
@@ -35,13 +35,14 @@ const AddVoucher = ({ showForm, toggleForm }) => {
       <form onSubmit={handleSubmit} id="form-admin" encType="multipart/form-data">
         <h2>Thêm mới voucher</h2>
         <label htmlFor="maGiamGia">Mã giảm giá:</label>
-        <input type="text" id="maGiamGia" value={maGiamGia} onChange={(e) => setMaGiamGia(e.target.value)} />
+        <input type="text" id="maGiamGia" value={maGiamGia} onChange={(e) => setMaGiamGia(e.target.value)}  required/>
 
         <label htmlFor="phanTram">Phần trăm giảm:</label>
-        <input type="number" id="phanTram" value={phanTram} onChange={(e) => setPhanTram(e.target.value)} />
+        <input type="number" id="phanTram" min="0" max="100" value={phanTram} onChange={(e) => setPhanTram(e.target.value)} />
+
 
         <label htmlFor="soNgay">Số ngày kết thúc:</label>
-        <select id="soNgay" value={soNgay} onChange={(e) => setSoNgay(e.target.value)}>
+        <select id="soNgay" value={soNgay} onChange={(e) => setSoNgay(e.target.value)} required>
           <option value="">Chọn ngày kết thúc</option>
           <option value="3">3 ngày</option>
           <option value="7">7 ngày</option>

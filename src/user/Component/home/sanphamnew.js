@@ -1,43 +1,50 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback  } from "react";
 import { Link } from "react-router-dom";
 import ModalProduct from "../ProductModal";
 import {addToCart} from "../../JS Modules/UserClick";
+import { useSelector, useDispatch } from 'react-redux';
+import { setNewProducts } from '../../../redux/newProductsSlice';
+import { message } from 'antd';
 function SanPhamNew( ) {
-  const [productList, setProductList] = useState([]);
+  const productList = useSelector((state) => state.newProducts);
+  const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
   const [colors, setColors] = useState({}); // State để lưu trữ thông tin màu
   const [selectedColor, setSelectedColor] = useState({}); // State để lưu trữ màu đã chọn cho mỗi sản phẩm
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalProductId, setModalProductId] = useState(null); 
+
 
    // Hàm xử lý khi người dùng nhấp vào nút "Thêm vào giỏ"
-   const handleAddToCartClick = () => {
+   const handleAddToCartClick = (id_sanpham) => {
     // Thực hiện hàm addToCart từ JS module
     addToCart();
-    
-    // Mở modal bằng cách cập nhật state
-    setIsModalOpen(true);
+    // Truyền id_sanpham vào state để truyền cho ProductModal
+    setModalProductId(id_sanpham);
+   
+    setIsModalOpen(true);  // Mở modal bằng cách cập nhật state
   };
   
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch("http://localhost:4000/sanpham/listnew");
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        setProductList(data);
-        
-        // Lấy thông tin màu cho từng sản phẩm
-        data.forEach(product => {
-          fetchColors(product.id_sanpham);
-        });
-      } catch (error) {
-        console.error("Error fetching product list:", error);
+  
+  const fetchData = useCallback(async () => {
+    try {
+      const response = await fetch("http://localhost:4000/sanpham/listnew");
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
       }
+      const data = await response.json();
+      dispatch(setNewProducts(data)); // Dispatch action để cập nhật danh sách sản phẩm mới
+      data.forEach(product => {
+        fetchColors(product.id_sanpham);
+      });
+    } catch (error) {
+      console.error("Error fetching product list:", error);
     }
+  }, [dispatch]);
 
+  useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
 
   // Hàm để lấy thông tin màu dựa trên id_sanpham
   const fetchColors = async (id_sanpham) => {
@@ -72,18 +79,58 @@ function SanPhamNew( ) {
     }));
   };
 
+
+  const handleFavoriteClick = async (productId, userId) => {
+    
+    try {
+        if (!userId) {
+      // Hiển thị cảnh báo nếu không có người dùng đăng nhập
+      message.warning('Vui lòng đăng nhập tài khoản!!');
+      return;
+    }
+      const response = await fetch(`http://localhost:4000/taikhoan/addfavorite/${productId}/${userId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      fetchData();
+      // Nếu thành công, có thể cập nhật giao diện người dùng hoặc thực hiện các hành động khác nếu cần
+    } catch (error) {
+      console.error('Error adding product to favorites:', error);
+    }
+  };
+  
+
+  const handleRemoveFavoriteClick = async (productId, userId) => {
+    try {
+      const response = await fetch(`http://localhost:4000/taikhoan/removefavorite/${productId}/${userId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      fetchData();
+      // Nếu thành công, có thể cập nhật giao diện người dùng hoặc thực hiện các hành động khác nếu cần
+    } catch (error) {
+      console.error('Error removing product from favorites:', error);
+    }
+  };
+  
+
+
+  
+  
   return (
     <div className="container-product-show">
       <div className="center-layout">
-      <div className="title-new-product">
-      <div className="scroll-wrapper">
-        <div className="scroll-text" >New Arrial</div>
-        <div className="scroll-text" >New Arrial</div>
-        <div className="scroll-text" >New Arrial</div>
-        <div className="scroll-text" >New Arrial</div>
-        <div className="scroll-text" >New Arrial</div>
-      </div>
-    </div>
+    
         {productList.map((product) => (
           <div className="product" key={product.id_sanpham}>
       
@@ -97,8 +144,19 @@ function SanPhamNew( ) {
               </Link>
               <div className="product-button-container ">
                 <button className="buy-now"> Mua Ngay </button>
-                <button className="add-to-cart" onClick={handleAddToCartClick}> Thêm vào giỏ </button>
+                <button className="add-to-cart" onClick={() => handleAddToCartClick(product.id_sanpham)}> Thêm vào giỏ </button>
+               
               </div>
+              <div className="favorite">
+              {user && user.id_user && product.id_user === user.id_user ? (
+  <i className="material-icons" style={{ color: ' rgb(174, 11, 38)' }} onClick={() => handleRemoveFavoriteClick(product.id_sanpham, user.id_user)}>favorite</i>
+) : (
+  <i className="material-icons" onClick={() => handleFavoriteClick(product.id_sanpham, user ? user.id_user : null)}>favorite</i>
+)}
+
+</div>
+
+
               {product.tong_so_luong === 0 || product.tong_so_luong === null ? (
               <div className="sold-out">Hết hàng</div>
             ) : null}
@@ -146,7 +204,7 @@ function SanPhamNew( ) {
         ))}
 
       </div>
-      {isModalOpen && <ModalProduct />}
+      {isModalOpen && <ModalProduct id_sanpham={modalProductId} />}
     </div>
   );
 }

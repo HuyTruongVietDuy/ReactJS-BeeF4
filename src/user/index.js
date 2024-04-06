@@ -8,12 +8,13 @@ import { message } from 'antd';
 import {
   SearchIconClick,
   CartIconClick,
-  
+  addToCart
 } from "./JS Modules/UserClick";
 
 import UserHeaderCenter from "./menu.js";
 import SideBarCart from "./SidebarCart.js";
 import SideBarSearch from "./SidebarSearch.js";
+import ProductModal from "./Component/ProductModal.js";
 import MainContent from "./Routers.js"; // Import your MainContent component here
 
 import "./CSS Modules/style.css";
@@ -36,7 +37,7 @@ function UserIndex() {
   const [loading, setLoading] = useState(true); // State to manage loading
   const daDangNhap = useSelector(state => state.auth.daDangNhap);
   const dispatch = useDispatch();
-
+  const user = useSelector((state) => state.auth.user);
   const handleLogout = () => {
     // Thực hiện các bước cần thiết để đăng xuất, có thể dispatch action thoat
     dispatch(thoat());
@@ -48,32 +49,32 @@ function UserIndex() {
     setLoading(false);
   }, 1200);
 
-  var prevScrollpos = window.pageYOffset;
-  var headers = document.getElementsByClassName("user-container-header");
+  // var prevScrollpos = window.pageYOffset;
+  // var headers = document.getElementsByClassName("user-container-header");
 
-  window.onscroll = function () {
-    var currentScrollPos = window.pageYOffset;
-    if (prevScrollpos > currentScrollPos) {
-      for (var i = 0; i < headers.length; i++) {
-        headers[i].style.top = "0";
-      }
-    } else {
-      for (var i = 0; i < headers.length; i++) {
-        headers[i].style.top = "-20px";
-      }
-    }
-    prevScrollpos = currentScrollPos;
-  };
+  // window.onscroll = function () {
+  //   var currentScrollPos = window.pageYOffset;
+  //   if (prevScrollpos > currentScrollPos) {
+  //     for (var i = 0; i < headers.length; i++) {
+  //       headers[i].style.top = "0";
+  //     }
+  //   } else {
+  //     for (var i = 0; i < headers.length; i++) {
+  //       headers[i].style.top = "-20px";
+  //     }
+  //   }
+  //   prevScrollpos = currentScrollPos;
+  // };
 
   return (
     <div>
       <div className="user-container-header">
-        <div className="user-header-top">
-          <p style={{fontSize:'0.9vw', fontWeight:'100'}}>SQBE</p>
+        {/* <div className="user-header-top">
+          <p style={{fontSize:'0.9vw', fontWeight:'100'}}>hotline:0337-667418</p>
           <p style={{fontSize:'0.9vw',fontWeight:'100'}}>Hân Hạnh</p>
           <p style={{fontSize:'0.9vw',fontWeight:'100'}}>Kính Chào</p>
           <p style={{fontSize:'0.9vw',fontWeight:'100'}}>Qúy Khách</p>
-        </div>
+        </div> */}
         <header id="user-header">
           <div className="user-header-left">
             <div className="user-logo-header">
@@ -90,16 +91,19 @@ function UserIndex() {
           <ul className="user-menu">
         {daDangNhap ? (
           <>
-            <li style={{cursor:'pointer',fontWeight:"bold"}} >
+            <li style={{cursor:'pointer',fontWeight:"bold", verticalAlign:'top'}} >
               <Link to='/user'><i className="material-icons">person</i></Link>
             </li>
-            <li style={{cursor:'pointer'}}>
-              <i className="material-icons">favorite</i>
+            <li style={{cursor:'pointer',fontWeight:"bold", verticalAlign:'top'}} >
+            <Link to={`/sanphamyeuthich/${user ? user.id_user : ''}`}>
+  <i className="material-icons">favorite</i>
+</Link>
+
             </li>
           </>
         ) : (
           <li>
-            <a href="/dangnhap">Đăng Nhập</a><span>/ </span>
+            <a href="/dangnhap">Đăng Nhập</a><span id='spa'>/ </span>
             <a href="/dangky">Đăng Ký</a>
           </li>
         )}
@@ -126,11 +130,7 @@ function UserIndex() {
     
 
       <SideBarCart CartIconClick={CartIconClick} />
-
-      <div id="notify-add-to-cart" className="notify-add-to-cart">
-        Thêm vào giỏ hàng thành công!
-        <span id="close-notify">X</span>
-      </div>
+      <ProductModal />
 
       <MainContent loading={loading} />
 

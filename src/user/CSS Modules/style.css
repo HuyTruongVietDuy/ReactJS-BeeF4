@@ -7,8 +7,11 @@
     
     font-family: 'Montserrat', sans-serif;
     font-size: 1vw;
+   
 }
-
+body{
+    background-color: #00000079;
+}
 a{
     color: black;
     text-decoration: none;
@@ -35,29 +38,53 @@ footer.darken{
 }
 
 /* Home.css */
-.notify-add-to-cart {
+#notify-add-to-cart {
     width: 400px;
     height: 200px;
-    display: none; /* Ẩn thông báo ban đầu */
+    display: none; 
     position: fixed;
-    top: 30%; /* Điều chỉnh vị trí ban đầu */
-    right: 39%; /* Điều chỉnh vị trí ban đầu */
+    top: 30%; 
+    right: 39%; 
     background-color: #ffffff;
     color: rgba(0, 0, 0, 0.818);
     font-family: 100;
     padding: 15px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    z-index:99999;
+    z-index:999;
     animation: slideInFromBottom 0.5s ease-in-out forwards;
     text-align: center;
+ 
 }
 
-.notify-add-to-cart #close-notify {
+#notify-add-to-cart #close-notify {
     position: absolute;
     top: 5px;
     right: 10px;
     cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+#notify-add-to-cart #close-notify:hover {
+  color: red;
+}
+#notify-add-to-cart  .content-addtocart{
+    width: 98%;
+    height: 98%;
+    background-color: red;
+    margin: 0 auto;
+    display: flex;
+}
+
+#notify-add-to-cart  .content-addtocart .left{
+    width: 30%;
+    background-color: #666;
+}
+
+#notify-add-to-cart  .content-addtocart .right{
+    width: 70%;
+    background-color: #4b2a2a;
 }
 
 @keyframes slideInFromRight {
@@ -77,8 +104,8 @@ footer.darken{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%;
-    margin-top: 10%;
+
+    margin-top: 14%;
   }
   
   .loader {
@@ -88,6 +115,7 @@ footer.darken{
     height: 50px;
     -webkit-animation: spin 1s linear infinite; /* Safari */
     animation: spin 1s linear infinite;
+
 }
 
 @keyframes spin {
@@ -137,3 +165,41 @@ footer.darken{
 .error-container .button:hover {
     text-decoration: underline;
 }
+
+/* Thanhs cuộn dọc */
+::-webkit-scrollbar {
+    width: 8px; /* Chiều rộng của thanh cuộn */
+    border-radius: 20px;
+}
+
+/* Đường viền của thanh cuộn */
+::-webkit-scrollbar-track {
+    background-color: black;
+}
+
+/* Thanh cuộn bên trong */
+::-webkit-scrollbar-thumb {
+    background: #ffffff96; /* Màu nền của thanh cuộn khi hover */
+    border-radius: 50px; /* Độ cong của thanh cuộn */
+    border: none;
+    transition: 20s scroll;
+}
+
+/* Thanh cuộn bên trong khi hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Màu nền của thanh cuộn khi hover */
+}
+
+
+.container-category__in{
+    position: relative;
+    top: -20px;
+    width: 70%;
+    height: 200px;
+    background-color: gray;
+    margin:0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

@@ -1,14 +1,16 @@
 #main{
-    margin-top: 13vh;
-    min-height: 87vh;
+    margin-top: 11vh;
+    min-height: 89vh;
     padding: 30px 0px;
     background-color: white;
     width: 100%;
-    
+    position: relative;
+    transition: 0.3s right;
 }
 
 #container-main{
     background-color: white;
+ 
 }
 .user-banner{
     position: relative;
@@ -16,7 +18,7 @@
     background-size: cover; /* hiển thị hình nền sao cho toàn bộ phần tử được phủ kín */
     background-position: center; /* căn chỉnh hình nền ở giữa phần tử */
     width: 100%; /* đảm bảo rằng phần banner có chiều rộng tương đương với khu vực hiển thị */
-    height: 87vh;
+    height: 89vh;
 }
 
 .user-banner img {
@@ -57,6 +59,28 @@
     opacity: 1; /* Khi di chuột qua, văn bản sẽ hiển thị */
   }
 
+  .banner-text button  {
+   width: auto;
+   height: auto;
+   background:none;
+   border: 1px solid white;
+   padding: 10px 12px;
+   margin-top: 20px;
+   cursor: pointer;
+   }
+  .banner-text button #Link {
+    color: white;
+    font-weight: 100;
+    font-size: 0.8vw;
+
+  }
+
+  .banner-text button #Link:hover{
+    color: grey;
+  }
+
+
+
 
 .container-slide{
     width: 100%;
@@ -68,14 +92,14 @@
 }
 
 .container-slide h1{
-   font-size: 3vw;
+   font-size: 2.7vw;
    position: relative;
-   top: -24px;
+   top: -30px;
  
 }
 .container-left{
     font-size: 36px;
-    width: 39%;
+    width: 30%;
     display: flex;
     height: 30vh;
   justify-content: center;
@@ -88,12 +112,12 @@
     flex-direction: column;
     align-items: center;
     height: auto;
-    width: 60%;
+    width: 70%;
     height: 30vh;
     
 }
 
-.container {
+.container-right .container {
     position: relative; 
     display: flex;
     flex-direction: column;
@@ -140,17 +164,13 @@
 
 .category {
     flex: 0 0 12%;
-    padding: 10px 10px;
+    padding: 5px;
+    margin: 5px;
     box-sizing: border-box;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     display: flex;
     flex-direction: column;
     align-items: center;
     cursor: pointer;
-    opacity: 0;
-transform: translateX(100%);
-transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-
 }
 
 .category.active {
@@ -203,21 +223,21 @@ transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 #button-left{
     position: absolute;
     left:20px;
-    top:37%;
+    top:30%;
     font-weight: bold;
 }
 
 #button-right{
     position: absolute;
     right:20px;
-    top:37%;
+    top:30%;
 }
 
 
 
 .category:hover {
     transform: scale(1.1);
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.081);
 }
 
 
@@ -253,6 +273,8 @@ transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
         width: 85%;
         max-height: 30vh;
     }
+
+
 
     .category {
         flex: 0 0 20%;
@@ -322,19 +344,19 @@ transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .scroll-wrapper {
+    width: 100%;
     display: inline-block;
     white-space: nowrap;
-    animation: scroll 17s linear infinite;
+    animation: scroll 19s linear infinite;
 }
 
 .scroll-text {
     display: inline-block;
-    font-weight: bold;
     opacity: 0; /* Không hiển thị chữ ban đầu */
-    animation: appearAndScroll 20s linear infinite; /* Áp dụng animation */
-    animation-delay: calc(var(--delay) * 0.5s); /* Tính toán độ trễ */
+    animation: appearAndScroll 4s linear infinite; /* Áp dụng animation */
+    animation-delay: calc(var(--delay) * 0.10s); /* Tính toán độ trễ */
     margin-right: 200px; /* Khoảng cách giữa các chữ */
-    font-size: 2.8vw;
+    font-size: 4vw;
     color: white; /* Màu chữ trắng */
     text-shadow: 2px 2px 0 black,   /* Đổ bóng đen với độ dày là 2px */
                  -2px 2px 0 black,
@@ -419,10 +441,29 @@ transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 .product-image .sold-out{
     position: absolute;
     top: 0%;
+    left: 0;
     padding: 1% 2.5%;
     font-size: 0.8vw;
     background-color: #000;
     color: white;
+}
+
+.product-image .favorite {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color:white; /* Màu của biểu tượng */
+    cursor: pointer;
+}
+
+.product-image .favorite i {
+    font-size: 2vw;
+    transition: 0.3s;
+}
+
+.product-image .favorite i:hover {
+    font-size: 2vw;
+    color: rgb(151, 54, 70);
 }
 
 .product-button-container {
@@ -457,6 +498,8 @@ transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
     font-size: 0.7vw;
 }
 
+
+
 .product-button-container .buy-now:hover,
 .product-button-container .add-to-cart:hover {
    opacity: 0.8;
@@ -490,7 +533,6 @@ transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 .product-name,
 .product-price {
     font-size: 1vw;
-    font-weight: bold;
     margin-bottom: 5px;
     width: 100%;  
 }

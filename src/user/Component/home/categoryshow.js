@@ -54,7 +54,7 @@ function CategoryShow() {
                         // Kiểm tra nếu trạng thái là hiện và không có id danh mục cha
                         danhMuc.trang_thai === 2 && (
                             <div className={`category ${index >= chiSoHienTai && index < chiSoHienTai + 6 ? 'active' : 'previous'}`} key={danhMuc.id_danhmuc}>
-                                <div className="image-category"><img src={`http://localhost:4000/danhmuc/uploads/${danhMuc.hinhanh}`}/></div>
+                                <div className="image-category"><img src={`http://localhost:4000/danhmuc/uploads/${danhMuc.hinhanh}`} alt=''/></div>
                                 <div className="name-category">{danhMuc.ten_danhmuc}</div>
                             </div>
                         )

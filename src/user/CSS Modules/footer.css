@@ -9,6 +9,8 @@ footer{
     color: white;
     text-align: center;
    justify-content: center;
+   position: relative;
+   transition: right 0.3s ease;
 }
 
 footer p{

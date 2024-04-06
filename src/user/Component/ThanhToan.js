@@ -33,18 +33,17 @@ function ThanhToan() {
   const calculateTotal = () => {
     let total = 0;
     cart.forEach((product) => {
-      let priceAfterDiscount = 0;
+      // Nếu có giá khuyến mãi và giá khuyến mãi khác 0, tính giá sau khi áp dụng phần trăm giảm giá
       if (product.gia_khuyenmai && product.gia_khuyenmai !== 0) {
-        // Nếu có giá khuyến mãi, tính giá sau khi áp dụng phần trăm giảm giá
-        priceAfterDiscount = (product.gia_khuyenmai * (100 - discountPercent) / 100) * product.soluong;
+        total += (product.gia_khuyenmai * (100 - discountPercent) / 100) * product.soluong;
       } else {
-        // Nếu không có giá khuyến mãi, tính giá gốc sau khi áp dụng phần trăm giảm giá
-        priceAfterDiscount = (product.gia * (100 - discountPercent) / 100) * product.soluong;
+        // Nếu không có giá khuyến mãi, tính giá gốc
+        total += product.gia * product.soluong;
       }
-      total += priceAfterDiscount;
     });
     return total;
   };
+  
 
   const applyVoucher = () => {
     fetch(`http://localhost:4000/voucher`)
@@ -67,6 +66,7 @@ function ThanhToan() {
           }
         } else {
           console.log("Không tìm thấy mã giảm giá trùng khớp");
+          setDiscountPercent("");
           message.error("Không tìm thấy mã giảm giá phù hợp");
         }
       })

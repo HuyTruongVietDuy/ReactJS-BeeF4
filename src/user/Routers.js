@@ -13,6 +13,7 @@ import QuenMatKhau from "./Component/login/quenmatkhau.js";
 import TaoLaiMatKhau from "./Component/login/ThayDoiMatKhau.js";
 import LienHe from "./Component/LienHe";
 import ViewCart from "./Component/viewcart";
+import SanPhamYeuThich from "./Component/SanPhamYeuThich.js";
 import ChiTietSanPham from "./Component/chitietsanpham";
 import ChiTietDonHang from "./Component/ChiTietDonHang.js";
 import SuaUser from "./Component/EditUser.js";
@@ -42,6 +43,7 @@ function MainContent({ loading }) {
           <Route path="/LienHe" element={<LienHe />} />
           <Route path="/viewcart" element={<ViewCart />} />
           <Route path="/gioithieu" element={<GioiThieu />} />
+          <Route path="/sanphamyeuthich/:id_user" element={<SanPhamYeuThich />}/>
           <Route path="/chitietsanpham/:id_sanpham" element={<ChiTietSanPham />}/>
           <Route path="/baoloi" element={<BaoLoi />} />
           <Route path="*" element={<Navigate to="/baoloi" />} />

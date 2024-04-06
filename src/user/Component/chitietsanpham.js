@@ -136,6 +136,12 @@ const ChiTietSanPham = () => {
       return;
     }
   
+    // Kiểm tra số lượng sản phẩm của kích thước đã chọn
+    if (selectedSize.so_luong === 0) {
+      message.warning('Sản phẩm đã hết hàng.');
+      return;
+    }
+  
     // Truyền thông tin về số lượng mặc định là 1 của kích thước đã chọn vào thông tin sản phẩm
     const productToAdd = {
       ...productDetail,
@@ -147,10 +153,11 @@ const ChiTietSanPham = () => {
     // Thêm dòng console.log để hiển thị thông tin sản phẩm khi thêm vào giỏ hàng
     console.log("Thông tin sản phẩm đã thêm vào giỏ hàng:", productToAdd);
     dispatch(themSP(productToAdd));
-
+  
     // Hiển thị thông báo khi thêm vào giỏ hàng thành công
     message.success('Thêm sản phẩm vào giỏ hàng thành công');
   };
+  
   
   const handleMuaNgay = () => {
     if (!selectedSize) {

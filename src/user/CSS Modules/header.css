@@ -1,12 +1,12 @@
 .user-container-header{
     position: fixed;
     background-color: #e6e4e4;
-    height: 13vh;
+    height: 11vh;
     width: 100%;
     z-index: 1000;
     top: 0;
-    transition: top 0.3s; 
-   
+
+    transition: right 0.3s ease,top 0.3s;
  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -62,6 +62,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+   
 }
 
 .user-header-left .user-logo-header{
@@ -85,7 +87,7 @@
 }
 
 #user-nav-menu{
-    margin-left: 34%;
+    margin-left: 24%;
 }
   
   .main-menu {
@@ -141,6 +143,11 @@
   /* CSS for submenu (menu cấp 2) */
   .main-menu li.has-dropdown {
     position: relative;
+   
+  }
+
+  .main-menu li.has-dropdown .material-icons {
+    vertical-align: sub;
    
   }
   
@@ -268,28 +275,51 @@
 .user-menu li {
     display: inline-block;
     margin-right: 14px; /* Khoảng cách giữa các mục menu */
-    vertical-align: middle; /* Căn giữa theo chiều dọc */
+    /* vertical-align: middle; Căn giữa theo chiều dọc */
 }
 
 .user-menu li:last-child {
     margin-right: 0; /* Loại bỏ margin phải của mục menu cuối cùng */
 }
 
+.user-menu i{
+  font-size: 1.4vw;
+}
+
+.user-menu i:hover{
+
+  font-weight: bold;
+}
+
+.user-menu li p {
+  font-size: 1.4vw;
+}
+
+#spa{
+  font-size: 0.8vw;
+  vertical-align: text-top;
+  position: relative;
+  top:-1px;
+  margin: 0 2px;
+}
 .user-menu li a {
     color: black; /* Màu chữ */
     text-decoration: none; /* Loại bỏ gạch chân dưới */
     font-weight: 300; 
     display: inline-block; /* Hiển thị các biểu tượng trên cùng một dòng với chữ */
-    vertical-align: middle; /* Căn giữa theo chiều dọc */
+    vertical-align: top;
     line-height: 1; /* Đảm bảo biểu tượng có kích thước ngang bằng với chữ */
-    font-size: 1vw; /* Căn chỉnh kích thước của biểu tượng */
+    font-size: 0.82vw; /* Căn chỉnh kích thước của biểu tượng */
     margin-right: 5px; /* Khoảng cách giữa biểu tượng và chữ */
     transition: all 0.2s ease-in-out;
+  
 }
 
 .user-menu li a:hover {
    font-weight: bold;
 }
+
+
 
 #iccon-zoom-center{
     font-size: 1.4vw;

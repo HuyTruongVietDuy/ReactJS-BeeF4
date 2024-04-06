@@ -2,6 +2,7 @@ import React from "react";
 import CategoryShow from "./categoryshow";
 import SanPhamNew from "./sanphamnew";
 import News from './News';
+import { Link } from "react-router-dom";
 function Home() {
   return (
     <div>
@@ -11,9 +12,19 @@ function Home() {
         <div className="banner-text">
           <h1>Welcome to Our Website</h1>
           <p>SQ&BE Luôn sẵn sàng phục vụ</p>
+          <button> <Link to='/shopall' id='Link'>Mua sắm ngay </Link></button>
         </div>
       </div>
       <CategoryShow />
+      <div className="title-new-product">
+      <div className="scroll-wrapper">
+        <div className="scroll-text" >New Arrial</div>
+        <div className="scroll-text" >New Arrial</div>
+        <div className="scroll-text" >New Arrial</div>
+        <div className="scroll-text" >New Arrial</div>
+        <div className="scroll-text" >New Arrial</div>
+      </div>
+    </div>
       <SanPhamNew  />
       <News />
       

@@ -1,19 +1,19 @@
 // Trong component Product
 import React, { useState, useEffect, useCallback  } from "react";
 import { Link, useParams } from "react-router-dom";
-import ModalProduct from "../ProductModal";
-import {addToCart} from "../../JS Modules/UserClick";
+import ModalProduct from "./ProductModal";
+import {addToCart} from "../JS Modules/UserClick";
 import { useSelector, useDispatch } from 'react-redux';
-import { setNewProducts } from '../../../redux/newProductsSlice';
+import { setNewProducts } from '../../redux/newProductsSlice';
 import { message } from 'antd';
-function Product({  thutuFilter  }) {
+function SanPhamYeuThich({  thutuFilter  }) {
   const productList = useSelector((state) => state.newProducts);
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const [colors, setColors] = useState({});
   const [selectedColor, setSelectedColor] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { url_category } = useParams();
+  const { id_user } = useParams();
   // Hàm xử lý khi người dùng nhấp vào nút "Thêm vào giỏ"
   const handleAddToCartClick = () => {
     // Thực hiện hàm addToCart từ JS module
@@ -26,7 +26,7 @@ function Product({  thutuFilter  }) {
  
   const fetchData = useCallback(async () => {
     try {
-     const response = await fetch(`http://localhost:4000/sanpham/${url_category}`);
+     const response = await fetch(`http://localhost:4000/sanpham/listfavorites/${id_user}`);
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -38,7 +38,7 @@ function Product({  thutuFilter  }) {
     } catch (error) {
       console.error("Error fetching product list:", error);
     }
-  }, [url_category, dispatch]);
+  }, [id_user, dispatch]);
 
   useEffect(() => {
     fetchData();
@@ -148,75 +148,83 @@ function Product({  thutuFilter  }) {
 
   
   return (
-    <div className="container-product-show">
-      <div className="center-layout">
-        {sortedAndFilteredProducts.map((product) => (
-          <div className="product" key={product.id_sanpham}>
-             <div className="product-image">
-              <Link to={`/chitietsanpham/${product.id_sanpham}`} > 
-              <img src={`http://localhost:4000/chitietsanpham/${selectedColor[product.id_sanpham]?.hinh_anh_1}`} alt="" className="main-image" />
-              {selectedColor[product.id_sanpham]?.hinh_anh_2 && (
-                <img src={`http://localhost:4000/chitietsanpham/${selectedColor[product.id_sanpham]?.hinh_anh_2}`} alt="" className="hover-image" />
-              )}
-              </Link>
-              <div className="product-button-container ">
-                <button className="buy-now"> Mua Ngay </button>
-                <button className="add-to-cart" onClick={handleAddToCartClick}> Thêm vào giỏ </button>
+    <div>
+      <h1 style={{ textAlign: 'center', fontSize: '1.4vw' }}> Sản phẩm yêu thích của tôi</h1>
+      <div className="container-product-show">
+        <div className="center-layout">
+          {sortedAndFilteredProducts.map((product) => (
+            <div className="product" key={product.id_sanpham}>
+              <div className="product-image">
+                <Link to={`/chitietsanpham/${product.id_sanpham}`} >
+                  <img src={`http://localhost:4000/chitietsanpham/${selectedColor[product.id_sanpham]?.hinh_anh_1}`} alt="" className="main-image" />
+                  {selectedColor[product.id_sanpham]?.hinh_anh_2 && (
+                    <img src={`http://localhost:4000/chitietsanpham/${selectedColor[product.id_sanpham]?.hinh_anh_2}`} alt="" className="hover-image" />
+                  )}
+                </Link>
+                <div className="product-button-container ">
+                  <button className="buy-now"> Mua Ngay </button>
+                  <button className="add-to-cart" onClick={handleAddToCartClick}> Thêm vào giỏ </button>
+                </div>
+                <div className="favorite">
+                  {user && user.id_user && product.id_user === user.id_user ? (
+                    <i className="material-icons" style={{ color: 'rgb(174, 11, 38)' }} onClick={() => handleRemoveFavoriteClick(product.id_sanpham, user.id_user)}>favorite</i>
+                  ) : (
+                    <i className="material-icons" onClick={() => handleFavoriteClick(product.id_sanpham, user ? user.id_user : null)}>favorite</i>
+                  )}
+                </div>
+                {product.tong_so_luong === 0 || product.tong_so_luong === null ? (
+                  <div className="sold-out">Hết hàng</div>
+                ) : null}
               </div>
-              <div className="favorite">
-              {user && user.id_user && product.id_user === user.id_user ? (
-  <i className="material-icons" style={{ color: 'rgb(174, 11, 38)' }} onClick={() => handleRemoveFavoriteClick(product.id_sanpham, user.id_user)}>favorite</i>
-) : (
-  <i className="material-icons" onClick={() => handleFavoriteClick(product.id_sanpham, user ? user.id_user : null)}>favorite</i>
-)}
-
-</div>
-              {product.tong_so_luong === 0 || product.tong_so_luong === null ? (
-              <div className="sold-out">Hết hàng</div>
-            ) : null}
-            </div>
-            <div className="product-details">
-              <div className="container-color">
-                {colors[product.id_sanpham] && colors[product.id_sanpham].map(color => (
-                  <div
-                    id="color"
-                    key={color.id_mau}
-                    style={{ backgroundColor: color.Ma_mau }}
-                    onClick={() => handleColorSelect(product.id_sanpham, color.id_mau)}
-                  ></div>
-                ))}
-              </div>
-              <div className="product-name">{product.ten_sanpham}</div>
-              <div className="product-price">
-                {product.gia_khuyenmai ? (
-                  <span>
-                    <span style={{ textDecoration: "line-through", color: "tomato" }}>
-                      {parseFloat(product.gia).toLocaleString("vi-VN", {
-                        style: "currency",
-                        currency: "VND",
-                      })}
-                    </span>{" "}
-                    <span id="gia_khuyenmai">
-                      {parseFloat(product.gia_khuyenmai).toLocaleString("vi-VN", {
-                        style: "currency",
-                        currency: "VND",
-                      })}
+              <div className="product-details">
+                <div className="container-color">
+                  {colors[product.id_sanpham] && colors[product.id_sanpham].map(color => (
+                    <div
+                      id="color"
+                      key={color.id_mau}
+                      style={{ backgroundColor: color.Ma_mau }}
+                      onClick={() => handleColorSelect(product.id_sanpham, color.id_mau)}
+                    ></div>
+                  ))}
+                </div>
+                <div className="product-name">{product.ten_sanpham}</div>
+                <div className="product-price">
+                  {product.gia_khuyenmai ? (
+                    <span>
+                      <span style={{ textDecoration: "line-through", color: "tomato" }}>
+                        {parseFloat(product.gia).toLocaleString("vi-VN", {
+                          style: "currency",
+                          currency: "VND",
+                        })}
+                      </span>{" "}
+                      <span id="gia_khuyenmai">
+                        {parseFloat(product.gia_khuyenmai).toLocaleString("vi-VN", {
+                          style: "currency",
+                          currency: "VND",
+                        })}
+                      </span>
                     </span>
-                  </span>
-                ) : (
-                  parseFloat(product.gia).toLocaleString("vi-VN", {
-                    style: "currency",
-                    currency: "VND",
-                  })
-                )}
+                  ) : (
+                    parseFloat(product.gia).toLocaleString("vi-VN", {
+                      style: "currency",
+                      currency: "VND",
+                    })
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+          {sortedAndFilteredProducts.length === 0 && (
+            <div style={{ textAlign: 'center', marginTop: '20px', fontSize: '1.2em' }}>
+              Bạn không có thích sản phẩm nào.........................
+              <p style={{textDecoration:'under-line', color:"blue"}}><Link to='/' style={{ color:"blue"}}> quay trở về trang chủ</Link></p>
+            </div>
+          )}
+        </div>
       </div>
       {isModalOpen && <ModalProduct />}
     </div>
   );
 }
 
-export default Product;
+export default SanPhamYeuThich;

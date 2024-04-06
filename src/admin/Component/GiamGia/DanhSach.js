@@ -1,25 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { setVouchers } from '../../../redux/voucherSlice';
 import Them from "./Them";
 import { toggleForm } from "../../JS Modules/listDanhMucUtils";
 
 const ListDiscountCodes = () => {
-  const [discountCodes, setDiscountCodes] = useState([]);
+  const dispatch = useDispatch();
+  const vouchers = useSelector(state => state.voucher.vouchers); // Lấy danh sách mã giảm giá từ Redux store
+
   const [showForm, setShowForm] = useState(false);
   const [filterStatus, setFilterStatus] = useState(""); // State để lưu trữ trạng thái được chọn từ dropdown
 
-  useEffect(() => {
-    const fetchDiscountCodes = async () => {
-      try {
-        const response = await axios.get('http://localhost:4000/voucher/');
-        setDiscountCodes(response.data);
-      } catch (error) {
-        console.error('Error fetching discount codes:', error);
-      }
-    };
+  const fetchDiscountCodes = useCallback(async () => {
+    try {
+      const response = await axios.get('http://localhost:4000/voucher/');
+      dispatch(setVouchers(response.data));
+    } catch (error) {
+      console.error('Error fetching discount codes:', error);
+    }
+  }, [dispatch]);
 
+  useEffect(() => {
     fetchDiscountCodes();
-  }, []);
+  }, [fetchDiscountCodes]);
+
+  const action = () => {
+    fetchDiscountCodes();
+  };
 
   const OpenAdd = () => {
     setShowForm(!showForm);
@@ -35,18 +43,20 @@ const ListDiscountCodes = () => {
   };
 
   // Hàm xử lý sự kiện khi trạng thái được chọn từ dropdown thay đổi
-  const handleStatusFilterChange = (event) => {
+  const handleStatusFilterChange = useCallback((event) => {
     setFilterStatus(event.target.value);
-  };
+  }, []);
 
   // Hàm để lọc danh sách mã giảm giá theo trạng thái được chọn
-  const filteredDiscountCodes = discountCodes.filter((discountCode) => {
-    if (filterStatus === "") {
-      return true; // Nếu không có trạng thái được chọn thì hiển thị tất cả
-    } else {
-      return discountCode.trang_thai.toString() === filterStatus;
-    }
-  });
+  const filteredDiscountCodes = useCallback(() => {
+    return vouchers.filter((discountCode) => {
+      if (filterStatus === "") {
+        return true; // Nếu không có trạng thái được chọn thì hiển thị tất cả
+      } else {
+        return discountCode.trang_thai.toString() === filterStatus;
+      }
+    });
+  }, [vouchers, filterStatus]);
 
   return (
     <div id="container-main-admin">
@@ -81,7 +91,7 @@ const ListDiscountCodes = () => {
             </tr>
           </thead>
           <tbody>  
-          {filteredDiscountCodes.map((discountCode, index) => (
+          {filteredDiscountCodes().map((discountCode, index) => (
             <tr key={index}>
               <td>{discountCode.id_giamgia}</td>
               <td>{discountCode.ma_giamgia}</td>
@@ -107,6 +117,7 @@ const ListDiscountCodes = () => {
       <Them
         showForm={showForm}
         toggleForm={OpenAdd}
+        action={action}
       />
     </div>
   );
