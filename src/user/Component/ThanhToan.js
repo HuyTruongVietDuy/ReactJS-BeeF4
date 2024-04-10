@@ -270,7 +270,7 @@ function ThanhToan() {
             <div className="logo-content">
               <Link to="/">
               
-                <img src="./images/SQBE Logo.png" alt="" />
+                <img src="./images/SQBE Logo-black.png" alt="" />
               </Link>
             </div>
             <form>

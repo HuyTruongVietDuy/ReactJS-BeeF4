@@ -6,7 +6,7 @@ import {addToCart} from "../../JS Modules/UserClick";
 import { useSelector, useDispatch } from 'react-redux';
 import { setNewProducts } from '../../../redux/newProductsSlice';
 import { message } from 'antd';
-function Product({ priceFilter, thutuFilter, loaiFilter  }) {
+function Product({ priceFilter, thutuFilter, loaiFilter, colorFilter  }) {
   const productList = useSelector((state) => state.newProducts);
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
@@ -61,6 +61,7 @@ function Product({ priceFilter, thutuFilter, loaiFilter  }) {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
+        message.success('Đã thêm vào sản phẩm yêu thích');
         fetchData();
         // Nếu thành công, có thể cập nhật giao diện người dùng hoặc thực hiện các hành động khác nếu cần
       } catch (error) {
@@ -81,6 +82,7 @@ function Product({ priceFilter, thutuFilter, loaiFilter  }) {
           throw new Error('Network response was not ok');
         }
         fetchData();
+        message.success('Đã xóa sản phẩm yêu thích');
         // Nếu thành công, có thể cập nhật giao diện người dùng hoặc thực hiện các hành động khác nếu cần
       } catch (error) {
         console.error('Error removing product from favorites:', error);
@@ -137,27 +139,48 @@ function Product({ priceFilter, thutuFilter, loaiFilter  }) {
     return products.filter(product => product.id_danhmuc === parseInt(loaiFilter));
   };
   
-
-
+  const filterProductsByColor = (products, colorFilter) => {
+    if (colorFilter === "0") {
+      return products; // Trả về tất cả sản phẩm nếu chưa chọn màu sắc
+    }
   
+    // Lọc ra các sản phẩm có màu sắc trùng khớp với màu được chọn
+    const filteredProducts = products.filter(product => {
+      const productColor = product.ten_mau.toLowerCase(); // Chuyển đổi màu sắc sản phẩm thành viết thường
+      const selectedColor = colorFilter.toLowerCase(); // Chuyển đổi màu sắc đã chọn thành viết thường
+      return productColor === selectedColor;
+    });
+    
+  
+  
+    return filteredProducts;
+  };
+  
+
   const sortProductsByOrder = (products, thutuFilter) => {
     switch (thutuFilter) {
-      case "0": // Không sắp xếp
-        return products;
-      case "1": // Mới nhất
-        return products.sort((a, b) => new Date(b.ngay_tao) - new Date(a.ngay_tao));
-      case "2": // Giá tăng dần
-        return products.sort((a, b) => parseFloat(a.gia) - parseFloat(b.gia));
-      case "3": // Giá giảm dần
-        return products.sort((a, b) => parseFloat(b.gia) - parseFloat(a.gia));
-      default:
-        return products;
+        case "1":
+            // Sort by newest
+            return [...products].sort((a, b) => new Date(b.ngay_dang) - new Date(a.ngay_dang));
+        case "2":
+            // Sort by ascending price
+            return [...products].sort((a, b) => parseFloat(a.gia) - parseFloat(b.gia));
+        case "3":
+            // Sort by descending price
+            return [...products].sort((a, b) => parseFloat(b.gia) - parseFloat(a.gia));
+        default:
+            // No sorting
+            return products;
     }
-  };
+};
+
+  
+
 
   const filteredProductsByPrice = filterProductsByPrice(productList, priceFilter);
   const filteredProductsByLoai = filterProductsByLoai(filteredProductsByPrice, loaiFilter);
-  const sortedAndFilteredProducts = sortProductsByOrder(filteredProductsByLoai, thutuFilter);
+  const filteredProductsByColor = filterProductsByColor(filteredProductsByLoai, colorFilter);
+  const sortedAndFilteredProducts = sortProductsByOrder(filteredProductsByColor, thutuFilter);
   
   return (
     <div className="container-product-show">

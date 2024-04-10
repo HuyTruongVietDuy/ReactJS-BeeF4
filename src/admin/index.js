@@ -135,6 +135,11 @@ function AdminIndex() {
                   <i className="material-icons">local_offer</i>
                   <span>Voucher giảm giá</span>
                 </Link>
+                <Link to="/admin/danhsachgiamgia" id="a">
+                <i className="material-icons">bookmark</i>
+                  <span>Bài viết</span>
+                </Link>
+                
               </div>
             </div>
 

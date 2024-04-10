@@ -3,6 +3,7 @@ import { FacebookProvider, Page } from "react-facebook";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { thoat } from "../redux/authSlice.js";
+
 import { message } from 'antd';
 
 import {
@@ -38,6 +39,7 @@ function UserIndex() {
   const daDangNhap = useSelector(state => state.auth.daDangNhap);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
+  const cart = useSelector((state) => state.cart.listSP);
   const handleLogout = () => {
     // Thực hiện các bước cần thiết để đăng xuất, có thể dispatch action thoat
     dispatch(thoat());
@@ -80,8 +82,8 @@ function UserIndex() {
             <div className="user-logo-header">
               <Link to="/">
                 {" "}
-                <img src={process.env.PUBLIC_URL + "/images/logo-header.gif"} alt="" />
-
+                <img src={process.env.PUBLIC_URL + "/images/SQBE Logo-white.png"} alt="" />
+               
               </Link>
             </div>
           </div>
@@ -91,35 +93,42 @@ function UserIndex() {
           <ul className="user-menu">
         {daDangNhap ? (
           <>
-            <li style={{cursor:'pointer',fontWeight:"bold", verticalAlign:'top'}} >
-              <Link to='/user'><i className="material-icons">person</i></Link>
+            <li  >
+              <a href='/user'><i className="material-icons">person</i></a>
             </li>
-            <li style={{cursor:'pointer',fontWeight:"bold", verticalAlign:'top'}} >
-            <Link to={`/sanphamyeuthich/${user ? user.id_user : ''}`}>
+            <li  >
+            <a href={`/sanphamyeuthich/${user ? user.id_user : ''}`}>
   <i className="material-icons">favorite</i>
-</Link>
+</a>
 
             </li>
           </>
         ) : (
           <li>
-            <a href="/dangnhap">Đăng Nhập</a><span id='spa'>/ </span>
+            <a href="/dangnhap">Đăng Nhập /</a>
             <a href="/dangky">Đăng Ký</a>
           </li>
         )}
         <li>
-          <p onClick={SearchIconClick}>
+          <Link to="#" onClick={SearchIconClick}>
             <i className="material-icons" id="iccon-zoom-center">
               search
             </i>
-          </p>
+          </Link>
         </li>
-        <li>
-          <p onClick={CartIconClick}>
-            <i className="material-icons" id="iccon-zoom-center">
+        <li >
+        <Link to="#" >
+          <div id='user-box-cart'>
+            
+          <i className="material-icons" id="iccon-zoom-center" onClick={CartIconClick}>
               shopping_cart
             </i>
-          </p>
+            <div id='count-cart'>  ( {cart.length} ) </div>
+          </div>
+      
+          </Link>
+           
+         
         </li>
       </ul>
           </div>

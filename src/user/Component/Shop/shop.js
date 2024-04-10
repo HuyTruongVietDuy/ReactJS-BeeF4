@@ -119,11 +119,14 @@ function Shop() {
 
                         <select id="colorFilter" onChange={handleColorFilterChange} value={colorFilter}>
                             <option value="0">Màu Sắc</option>
-                            <option value="1">Đỏ</option>
-                            <option value="2">Hồng</option>
-                            <option value="3">Tím</option>
-                            <option value="4">Vàng</option>
-                            <option value="5">Xanh</option>
+                            <option value="đen">Đen</option>
+                            <option value="trắng">Trắng</option>
+                            <option value="đỏ">Đỏ</option>
+                            <option value="xám">Xám</option>
+                            <option value="vàng">Vàng</option>
+                            <option value="xanh">Xanh</option>
+                            <option value="xanh lá">Xanh lá</option>
+                            <option value="hồng">hồng</option>
                         </select>
                     </div>
                     

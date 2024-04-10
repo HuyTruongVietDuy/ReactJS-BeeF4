@@ -24,6 +24,9 @@ const SideBarCart = () => {
       <span id="closeButton" onClick={CartIconClick}>
         &times;
       </span>
+      <div id="logo-find" >
+          <img src="/images/SQBE Logo-grey.png" alt=""/>
+      </div>
       <div className="header-cart-search">
         <p>Giỏ hàng của bạn</p>
       </div>
@@ -46,7 +49,15 @@ const SideBarCart = () => {
               </tr>
               <tr>
                 <td id="col-quanlity-price">
-                  <input type="text" defaultValue={product.soluong} readOnly /> <span>{(product.gia_khuyenmai && product.gia_khuyenmai !== 0 ? product.gia_khuyenmai : product.gia).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</span>
+                <input type="text" defaultValue={product.soluong} readOnly /> 
+  {product.gia_khuyenmai && product.gia_khuyenmai !== 0 ? 
+    <div>
+      <del>{product.gia.toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</del>
+      <span>{product.gia_khuyenmai.toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</span>
+    </div>
+    :
+    <span>{product.gia.toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</span>
+  }
                 </td>
               </tr>
               <tr>

@@ -19,7 +19,7 @@ import ChiTietDonHang from "./Component/ChiTietDonHang.js";
 import SuaUser from "./Component/EditUser.js";
 import BaoLoi from "./Component/Baoloi";
 import GioiThieu from "./Component/GioiThieu";
-
+import ThanhToanSucces from "./Component/ThanhToanSucces.js";
 import Loader from "./Loader.js"; // Import your Loader component
 
 function MainContent({ loading }) {
@@ -32,7 +32,6 @@ function MainContent({ loading }) {
           <Route path="/" element={<Home />} />
           <Route path="/shopall" element={<Shop />} />
           <Route path="/:url_category" element={<SPTrongLoai />} />
-          {/* <Route path="/:url_category_con" element={<SPTrongLoaiTrongLoai />} /> */}
           <Route path="/user" element={<UserDetail />} />
           <Route path="/chitietdonhang/:id_donhang" element={<ChiTietDonHang />} />
           <Route path="/suauser/:id_user" element={<SuaUser />} />
@@ -43,6 +42,7 @@ function MainContent({ loading }) {
           <Route path="/LienHe" element={<LienHe />} />
           <Route path="/viewcart" element={<ViewCart />} />
           <Route path="/gioithieu" element={<GioiThieu />} />
+          <Route path="/thanhtoanthanhcong" element={< ThanhToanSucces/>} />
           <Route path="/sanphamyeuthich/:id_user" element={<SanPhamYeuThich />}/>
           <Route path="/chitietsanpham/:id_sanpham" element={<ChiTietSanPham />}/>
           <Route path="/baoloi" element={<BaoLoi />} />

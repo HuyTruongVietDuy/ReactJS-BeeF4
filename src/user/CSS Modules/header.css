@@ -1,13 +1,20 @@
 .user-container-header{
     position: fixed;
-    background-color: #e6e4e4;
-    height: 11vh;
+    background-color: #000000c3;
+    height: 12vh;
     width: 100%;
     z-index: 1000;
     top: 0;
 
     transition: right 0.3s ease,top 0.3s;
- box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1);
+ box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.753);
+}
+
+.user-container-header a {
+  text-decoration: none;
+  color: white;
+  font-weight: 400;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5); /* Text shadow màu trắng */
 }
 
 #user-header{
@@ -17,10 +24,10 @@
 
 .user-header-top {
     display: flex; /* Sử dụng flexbox để các phần tử con nằm trên cùng một hàng */
-    height: 2vh; /* Đặt chiều cao của .user-header-top */
+    height: 2vh; 
     background-color: black;
-    overflow: hidden; /* Ẩn nội dung vượt quá kích thước */
-    align-items: center; /* Căn giữa dọc các phần tử con */
+    overflow: hidden; 
+    align-items: center; 
 }
 
 .user-header-top p {
@@ -58,7 +65,7 @@
 
 .user-header-left{
     width: 18%;
-    height: 11vh;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -67,20 +74,23 @@
 }
 
 .user-header-left .user-logo-header{
-    width: 50%; 
+    width: 55%; 
     margin: 0 auto; 
-    height: 11vh;
+    height: 80%;
+    
 }
 
 .user-header-left .user-logo-header img{
   width: 100%;
  height: 100%;
+ position: relative;
+ margin-top: 2%;
 }
 
 
 .user-header-center{
     width: 62%;
-    height: 11vh;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: left;
@@ -107,10 +117,7 @@
     right:50%;
   }
   
-  .main-menu li Link {
-    color: white;
-    cursor: pointer;
-  }
+
   
   #iccon-zoom-center{
     font-size: 1.4vw;
@@ -189,7 +196,7 @@
    
   }
 
-  .main-menu li.has-dropdown:hover ul.sub-menu link{
+  .main-menu li.has-dropdown:hover ul.sub-menu li{
     display: block;
     visibility: visible;
   
@@ -266,10 +273,14 @@
 
 .user-header-right{
     width: 20%;
-    height: 11vh;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.user-header-right i{
+ vertical-align: middle;
 }
 
 .user-menu li {
@@ -291,9 +302,7 @@
   font-weight: bold;
 }
 
-.user-menu li p {
-  font-size: 1.4vw;
-}
+/*  */
 
 #spa{
   font-size: 0.8vw;
@@ -303,12 +312,8 @@
   margin: 0 2px;
 }
 .user-menu li a {
-    color: black; /* Màu chữ */
-    text-decoration: none; /* Loại bỏ gạch chân dưới */
     font-weight: 300; 
     display: inline-block; /* Hiển thị các biểu tượng trên cùng một dòng với chữ */
-    vertical-align: top;
-    line-height: 1; /* Đảm bảo biểu tượng có kích thước ngang bằng với chữ */
     font-size: 0.82vw; /* Căn chỉnh kích thước của biểu tượng */
     margin-right: 5px; /* Khoảng cách giữa biểu tượng và chữ */
     transition: all 0.2s ease-in-out;
@@ -348,6 +353,17 @@
     z-index: 1005;
 }
 
+#logo-find {
+width:  20%;
+position: absolute;
+bottom: 5px;
+right: 5px;
+}
+
+#logo-find img {
+width: 100%;
+  
+  }
 #closeButton {
   position: absolute;
   top: 10px;
@@ -464,43 +480,29 @@ text-align: left;
   top: 0;
   right: -26%; /* sidebar bắt đầu ẩn bên phải */
   width: 26%;
-  height: 100%;
+  height: 100vh;
   background-color: #f1f1f1;
   transition: right 0.3s; /* Thêm hiệu ứng chuyển động */
   z-index: 1005;
 }
 
 
-.header-side-search .clone-items-cart {
-  margin: 0 auto  ;
-  max-width: 70%;
-  height: 20vh;
-  background-color: #0000002e;
-  overflow-x: auto; /* Add scrollbar for vertical overflow */
-  overflow-y: auto; /* Add scrollbar for vertical overflow */
-}
 
-.clone-items-cart tbody{
-  position: relative;
-}
-.he
-.header-side-search .clone-items-cart {
-  margin: 0 auto  ;
-  max-width: 70%;
-  max-height: 14vh;
- 
-  overflow-x: auto; /* Add scrollbar for vertical overflow */
-  overflow-y: auto; /* Add scrollbar for vertical overflow */
-}
+
+
  .clone-items-cart {
   margin: 0 auto;
   max-width: 65%;
-  max-height: 17.3vh;
+  max-height: 20vh;
   
   overflow-x: auto; /* Add scrollbar for vertical overflow */
   overflow-y: auto; /* Add scrollbar for vertical overflow */
 }
 
+
+.clone-items-cart tbody{
+  position: relative;
+}
 
 
  .clone-items-cart tr #padding{
@@ -518,26 +520,16 @@ text-align: left;
 }
 
  .clone-items-cart #col-name {
- text-align: center;
-  position: relative;
-  left: -45px;
-  font-size: 0.7vw;
-  font-weight: bolder;
+  text-align: left;
  }
   .clone-items-cart #col-size-color {
   font-size: 0.6vw;
   color: grey;
-  text-align: center;
-  position: relative;
-  left: -30px;
-  top: -5px;
+  text-align: left;
  }
  .clone-items-cart #col-quanlity-price {
   font-size: 0.6vw;
-  text-align: center;
-  position: relative;
-  top:-15px;
-  left: -35px;
+  text-align: left;
  }
  .clone-items-cart #col-quanlity-price input {
   width: 16%;
@@ -547,7 +539,6 @@ text-align: left;
   outline: none;
   font-size: 0.7vw;
   text-align: center;
-  border:  1px solid black;
  }
  
   .clone-items-cart #col-quanlity-price span {
@@ -656,3 +647,26 @@ text-align: left;
   
   
 
+
+
+#user-box-cart{
+
+  position: relative;
+}
+
+
+#user-box-cart{
+
+  position: relative;
+}
+
+#user-box-cart #count-cart{
+  position: absolute;
+  top: -19px;
+  right: -90%;
+  padding: 6px 8px;
+  font-weight: bold;
+  border-radius: 100%;
+  height: auto;
+  font-size: 0.6vw;
+}

@@ -37,8 +37,10 @@
 
 .container-cart-user  .td-1 {
     display: flex;
+    justify-content: center;
+    align-items: center;
     border: none;
-    padding: 5px;
+    
 }
 
 .container-cart-user  .td-1 .img {
@@ -143,6 +145,7 @@
     margin-top: 20px;
     text-transform: uppercase;
     transition: background-color 0.3s, color 0.3s, border 0.3s;
+    font-size: 0.8vw;
 }
 
 .container-cart-user  .continue:hover {

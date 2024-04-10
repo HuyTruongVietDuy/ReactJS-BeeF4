@@ -3,6 +3,7 @@ import React from "react";
 
 const GioiThieu = () => {
   return (
+    <div id='container-main'>
     <main>
       <section class="introduce">
         <div class="container-gioithieu">
@@ -57,6 +58,7 @@ const GioiThieu = () => {
         </div>
       </section>
     </main>
+    </div>
   );
 };
 

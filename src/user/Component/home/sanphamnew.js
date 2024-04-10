@@ -98,6 +98,7 @@ function SanPhamNew( ) {
         throw new Error('Network response was not ok');
       }
       fetchData();
+      message.success('Đã thêm vào sản phẩm yêu thích');
       // Nếu thành công, có thể cập nhật giao diện người dùng hoặc thực hiện các hành động khác nếu cần
     } catch (error) {
       console.error('Error adding product to favorites:', error);
@@ -117,6 +118,7 @@ function SanPhamNew( ) {
         throw new Error('Network response was not ok');
       }
       fetchData();
+      message.success('Đã xóa sản phẩm yêu thích');
       // Nếu thành công, có thể cập nhật giao diện người dùng hoặc thực hiện các hành động khác nếu cần
     } catch (error) {
       console.error('Error removing product from favorites:', error);

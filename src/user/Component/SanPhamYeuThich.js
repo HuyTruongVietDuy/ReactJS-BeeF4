@@ -82,6 +82,7 @@ function SanPhamYeuThich({  thutuFilter  }) {
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
+      message.success('Đã xóa sản phẩm yêu thích');
       fetchData();
       // Nếu thành công, có thể cập nhật giao diện người dùng hoặc thực hiện các hành động khác nếu cần
     } catch (error) {
@@ -148,7 +149,7 @@ function SanPhamYeuThich({  thutuFilter  }) {
 
   
   return (
-    <div>
+    <div id='container-main'>
       <h1 style={{ textAlign: 'center', fontSize: '1.4vw' }}> Sản phẩm yêu thích của tôi</h1>
       <div className="container-product-show">
         <div className="center-layout">
@@ -216,8 +217,8 @@ function SanPhamYeuThich({  thutuFilter  }) {
           ))}
           {sortedAndFilteredProducts.length === 0 && (
             <div style={{ textAlign: 'center', marginTop: '20px', fontSize: '1.2em' }}>
-              Bạn không có thích sản phẩm nào.........................
-              <p style={{textDecoration:'under-line', color:"blue"}}><Link to='/' style={{ color:"blue"}}> quay trở về trang chủ</Link></p>
+              Bạn không có thích sản phẩm nào
+              <p style={{textDecoration:'under-line', color:"blue", marginTop: '20px'}}><Link to='/' style={{ color:"blue"}}> quay trở về trang chủ</Link></p>
             </div>
           )}
         </div>

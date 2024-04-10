@@ -44,6 +44,9 @@ const SideBarSearch = () => {
       <span id="closeButton" onClick={SearchIconClick}>
         &times;
       </span>
+      <div id="logo-find" >
+          <img src="/images/SQBE Logo-grey.png" alt=""/>
+      </div>
       <div className="header-side-search">
         <p>TÌM KIẾM</p>
       </div>
