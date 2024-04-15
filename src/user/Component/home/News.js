@@ -1,26 +1,34 @@
-import React from 'react';
-
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 const News = () => {
+
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+      fetch('http://localhost:4000/baiviet/listbaiviet')
+          .then(response => response.json())
+          .then(data => {
+              // Assuming data is an array of posts, slice it to get the first three posts
+              const firstThreePosts = data.slice(0, 3);
+              setPosts(firstThreePosts);
+          })
+          .catch(error => console.error('Error fetching data:', error));
+  }, []); // Empty dependency array to run effect only once on component mount
+
   return (
     <div className='Container-new'>
     <h1> NEWS SQ&BE </h1>
       <div className='Container-News'>
-      <div className='Box-New'>
-      <div className='Image-New'> <img  src='./images/background2.jpg' alt='NewsImage' /></div>
+      {posts.map((post, index) => (
+          post.trang_thai === 2 && (
+      <div className='Box-New' key={index}>
+      <div className='Image-New'> <img src={`http://localhost:4000/danhmuc/uploads/${post.hinhanh}`} alt='' /></div>
       <div className='Read-New'>Đọc Ngay</div>
-      <div className='Name-New'>Tên Bản Tin</div>
+      <Link to={`/baiviet/${post.url_baiviet}`}> <div className='Name-New'> {post.tieude}</div></Link> 
       </div>
-
-      <div className='Box-New'>
-      <div className='Image-New'> <img  src='./images/background2.jpg' alt='NewsImage' /></div>
-      <div className='Read-New'>Đọc Ngay</div>
-      <div className='Name-New'>Tên Bản Tin</div>
-      </div>  <div className='Box-New'>
-      
-      <div className='Image-New'> <img  src='./images/background2.jpg' alt='NewImage' /></div>
-      <div className='Read-New'>Đọc Ngay</div>
-      <div className='Name-New'>Tên Bản Tin</div>
-      </div>
+     )
+    ))}
+     
       </div>
     
     </div>

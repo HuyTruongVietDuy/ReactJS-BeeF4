@@ -32,19 +32,26 @@ function Shop({ addToCart }) {
 
 
     return (
-        <div>
+        <div id='container-main'>
             <div className="container-category__in">
                
-                {/* Hiển thị danh sách danh mục */}
-                {categories.length >= 4 && categories.every(category => category.hinhanh) && categories.map((category, index) => (
-                <div key={index} className='box-category'>
-                    <div className='box-img'>
-                        <img src={`http://localhost:4000/danhmuc/uploads/${category.hinhanh}`} alt={category.ten_danhmuc}/>
-                    </div>
-                    <div className='box-name'>{category.ten_danhmuc}</div>
-                    <div></div>
+            {categories.map((category, index) => {
+    // Limit the display to a maximum of 6 categories
+    if (index < 6 && category.trang_thai === 2) {
+        return (
+            <div key={index} className='box-category'>
+                <div className='box-img'>
+                    <img src={`http://localhost:4000/danhmuc/uploads/${category.hinhanh}`} alt={category.ten_danhmuc}/>
                 </div>
-            ))}
+                <div className='box-name'>{category.ten_danhmuc}</div>
+                <div></div>
+            </div>
+        );
+    }
+    return null; // If not, return null (don't render anything)
+})}
+
+
 
             </div>
           

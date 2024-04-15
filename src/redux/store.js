@@ -6,6 +6,7 @@ import donhangReducer from './donhangSlice';
 import cartSlice from './cartSlice';
 import authSlice from './authSlice';
 import voucherSlice from './voucherSlice';
+import baivietReducer from './baivietSlice';
 import newProductsReducer from './newProductsSlice';
 
 // Load the auth state from localStorage or use an empty object if it doesn't exist
@@ -19,6 +20,7 @@ export default configureStore({
     donhang: donhangReducer,
     voucher: voucherSlice,
     newProducts: newProductsReducer,
+    baiviet: baivietReducer,
     cart: cartSlice,
     auth: authSlice,
   },

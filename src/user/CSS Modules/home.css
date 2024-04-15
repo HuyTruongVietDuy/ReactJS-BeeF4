@@ -187,9 +187,9 @@
 
 .image-category {
     border-radius: 50%;
-    width: 150px;
-    height: 150px;
-    background-color: #ddd;
+    width: 120px;
+    height: 120px;
+    /* background-color: #ddd; */
     margin-bottom: 10px;
 }
 
@@ -199,7 +199,10 @@
     
 }
 .name-category {
+    margin-top: 30px;
     text-align: center;
+    font-weight: bold;
+   
 }
 
 

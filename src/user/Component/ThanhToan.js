@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate    } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { XoaTatCaSP } from "../../redux/cartSlice";
 import { message } from "antd";
 function ThanhToan() {
   const dispatch = useDispatch();
+  const navigate = useNavigate ();
   const cart = useSelector((state) => state.cart.listSP);
   const [provinces, setProvinces] = useState([]);
   const [districts, setDistricts] = useState([]);
@@ -121,6 +122,7 @@ function ThanhToan() {
       setWards([]);
     }
   };
+
   const submitData = () => {
     if (cart.length === 0) {
       message.error(
@@ -176,9 +178,12 @@ function ThanhToan() {
         luuchitietdonhang(id_donhang); // Gọi hàm luuchitietdonhang và truyền id_donhang vào
         console.log(id_donhang);
         dispatch(XoaTatCaSP());
-        if (paymentMethod === 'VNPAY-QR') { // Chỉ gọi hàm createPaymentUrl nếu phương thức thanh toán là "Thanh toán qua VNPAY-QR"
-          createPaymentUrl(id_donhang, calculateTotal());
-        }
+       // Kiểm tra nếu paymentMethod là 'VNPAY-QR'
+      if (paymentMethod === 'VNPAY-QR') {
+        createPaymentUrl(id_donhang, calculateTotal());
+      } else {
+        navigate(`/thanhtoanthanhcong/${id_donhang}`);
+      }
       })
       .catch((error) => {
         console.error("Error submitting order:", error);

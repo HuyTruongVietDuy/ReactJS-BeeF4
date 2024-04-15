@@ -536,3 +536,102 @@
         background-color: rgba(253, 2, 2, 0.37);
         color: rgba(0, 0, 0, 0.46);
        }
+
+
+       .container-add-news {
+        max-width: 95%;
+        height: 100%;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      
+      .container-add-news label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      
+      .container-add-news input[type="text"],
+      .container-add-news textarea {
+        width: 50%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box; /* Make sure padding and border are included in width */
+      }
+      
+      .container-add-news input[type="submit"] {
+        margin-top: 10px;
+        background-color: #f57b09;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.4s;
+        font-weight: bold;
+      }
+
+      .container-add-news input[type="submit"]:hover {
+        border: 1px solid #f57b09;
+        color:#f57b09 ;
+        background-color: white;
+        font-weight: bold;
+      }
+      
+      /* Styling for ReactQuill */
+      .quill-editor {
+        width: 100%; /* Đặt chiều rộng theo ý muốn */
+        height: 300px; /* Đặt chiều cao theo ý muốn */
+      }
+      
+      .ql-editor {
+        white-space: pre-wrap; /* Hiển thị đầy đủ nội dung */
+      }
+      
+     
+
+      table #new-an{
+        margin:  auto;
+        margin-top: 10px;
+        text-align: center;
+        width: 30%;
+        padding: 2px 2px;
+        border: 1px solid red;
+        border-radius: 7px;
+        color: red;
+        font-weight: bold;
+        font-size: 0.7vw;
+        cursor: pointer;
+        vertical-align: middle;
+      }
+
+      table #new-hien{
+        margin:  auto;
+        margin-top: 10px;
+        text-align: center;
+        width: 30%;
+        padding: 5px 2px;
+        border: 1px solid rgba(0, 255, 17, 0.711);
+        border-radius: 7px;
+        color:  rgba(0, 255, 17, 0.711);
+        font-weight: bold;
+        font-size: 0.7vw;
+        cursor: pointer;
+        vertical-align: middle;
+      }
+
+      table #new-hien i,
+      table #new-an i{
+       vertical-align: middle;
+      }
+
+      
+      table #new-hien:hover,
+      table #new-an:hover{
+       opacity: 0.75;
+      }

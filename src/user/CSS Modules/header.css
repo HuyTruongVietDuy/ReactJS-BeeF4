@@ -1,6 +1,6 @@
 .user-container-header{
     position: fixed;
-    background-color: #000000c3;
+    background-color: #000000e0;
     height: 12vh;
     width: 100%;
     z-index: 1000;
@@ -131,7 +131,7 @@
     width: 100%;
   
     height: 2px;
-    background-color: #000;
+    background-color: white;
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.3s ease-in-out;
@@ -511,12 +511,15 @@ text-align: left;
 
 
  .clone-items-cart #col-image {
- width: 35%;
+ width: 25%;
  height: 100%;
+padding: 0 5px;
 }
 
   .clone-items-cart #col-image img {
   width: 100%;
+
+
 }
 
  .clone-items-cart #col-name {

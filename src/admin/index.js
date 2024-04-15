@@ -10,6 +10,9 @@ import ListChiTietSanPham from "./Component/ChiTietSanPham/DanhSach";
 import ListMotChiTiet from "./Component/ChiTietSanPham/Listonect";
 import KhoHang from "./Component/KhoHang/DanhSach";
 import GiamGia from "./Component/GiamGia/DanhSach";
+import ListBaiViet from "./Component/BaiViet/DanhSach";
+import ThemBaiViet from "./Component/BaiViet/Them";
+import SuaBaiViet from "./Component/BaiViet/Sua";
 import "./CSS Modules/index.css";
 import "./CSS Modules/main.css";
 import "./CSS Modules/style.css";
@@ -73,7 +76,7 @@ function AdminIndex() {
       <header id="admin-header">
         <div className="admin-header-left">
           <div className="admin-logo">
-            <img src="/images/SQBE Logo.png" alt="SQBE Logo" />
+            <img src="/images/SQBE Logo-black.png" alt="SQBE Logo" />
           </div>
         </div>
         <div className="admin-header-center">
@@ -135,7 +138,7 @@ function AdminIndex() {
                   <i className="material-icons">local_offer</i>
                   <span>Voucher giảm giá</span>
                 </Link>
-                <Link to="/admin/danhsachgiamgia" id="a">
+                <Link to="/admin/danhsachbaiviet" id="a">
                 <i className="material-icons">bookmark</i>
                   <span>Bài viết</span>
                 </Link>
@@ -178,6 +181,9 @@ function AdminIndex() {
               />
               <Route path="/khohang" element={<KhoHang />} />
               <Route path="/danhsachgiamgia" element={<GiamGia />} />
+              <Route path="/danhsachbaiviet" element={<ListBaiViet />} />
+              <Route path="/them-bai-viet" element={<ThemBaiViet />} />
+              <Route path="/edit-bai-viet/:id_baiviet" element={<SuaBaiViet />} />
             </Routes>
           </div>
         </div>

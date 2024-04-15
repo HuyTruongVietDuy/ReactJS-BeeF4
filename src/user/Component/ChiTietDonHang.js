@@ -62,12 +62,12 @@ const ChiTietDonHang = () => {
               </p>
               <h3 className="diachithanhtoan">Địa chỉ thanh toán</h3>
               <p>
-                Trạng thái thanh toán:{" "}
+                Trạng thái thanh toán:
                 {donHang &&
                   (donHang.stt_pay === 1 ? "Chưa thanh toán" : "Đã thanh toán")}
               </p>
               <p>
-                Hình thức thanh toán:{" "}
+                Hình thức thanh toán:
                 {donHang &&
                   (donHang.stt_pay === 1 ? "Ship COD" : "chuyển khoản ngân hàng")}
               </p>

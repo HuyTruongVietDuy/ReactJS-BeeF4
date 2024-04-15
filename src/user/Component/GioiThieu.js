@@ -5,10 +5,10 @@ const GioiThieu = () => {
   return (
     <div id='container-main'>
     <main>
-      <section class="introduce">
-        <div class="container-gioithieu">
+      <section className="introduce">
+        <div className="container-gioithieu">
           <h1 style={{fontSize:"2vw", textAlign:"center"}}>Giới thiệu về SQ&BE</h1>
-          <div class="banner" id="bannerImage">
+          <div className="banner" id="bannerImage">
             <img src="./images/banner1.jpg" alt=""></img>
           </div>
           <p>Chúng tôi tự hào là địa chỉ mua sắm lý tưởng cho những ai yêu thích thời trang. Với một loạt các sản
@@ -23,7 +23,7 @@ const GioiThieu = () => {
             năng, đa dạng giá thành... mang lại nhiều sự lựa chọn hơn cho khách hàng.</p>
           <h2>2. Mang đến những sản phẩm thiết kế đa dạng</h2>
           <p>Bắt kịp xu hướng thời trang thế giới nhanh chóng nhất để đưa đến với các tín đồ thời trang Việt Nam</p>
-          <div class="image-1"><img
+          <div className="image-1"><img
             src="./images/introduce1.jpg"
             alt=""></img>
             <img src="./images/introduce2.jpg"
@@ -42,7 +42,7 @@ const GioiThieu = () => {
             bạn sẽ
             trang bị đủ từ đầu đến chân, từ trong ra ngoài, cho đến phụ kiện đi kèm phù hợp với mọi nhu cầu:
             tiệc tùng, lễ hội, du lịch, đến trường hoặc đi làm..v.v..</p>
-          <div class="image-2">
+          <div className="image-2">
             <img src="./images/introduce4.jpg" alt=""></img>
           </div>
           <p>

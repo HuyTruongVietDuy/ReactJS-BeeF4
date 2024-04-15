@@ -13,6 +13,9 @@
 #admin-header{
     height: 10vh;
     display: flex;
+    position: fixed;
+    background-color: #D9D9D9;
+    z-index: 1000;
 }
 
 #admin-header .admin-header-left{
@@ -157,12 +160,14 @@
     height: 100%;
     background-color: #D9D9D9;
     display: flex;
+   
 }
 
 .admin-container .admin-sidebar{
     position: fixed;
     width: 17%;
     height: 89.5vh;
+    margin-top:10vh;
     background-color: #F4F2EE;
     border-top-left-radius: 100px;
 }
@@ -272,6 +277,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 10vh;
 }
 
 .admin-main .admin-main-content{

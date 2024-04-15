@@ -140,7 +140,29 @@ import { setSanPhamList } from '../../../redux/sanPhamSlice';
       }
   };
   
-      
+  const updateStatus = (id_sanpham, newStatus) => {
+    fetch(`http://localhost:4000/sanpham/updatestatus/${id_sanpham}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ trang_thai: newStatus })
+    })
+    .then(response => {
+      if (response.ok) {
+        fetchData();
+        message.success('Cập nhật trạng thái thành công!!');
+      } else {
+        // Xử lý khi fetch không thành công
+        throw new Error('Cập nhật trạng thái không thành công!');
+      }
+    })
+    .catch(error => {
+      // Xử lý khi có lỗi xảy ra trong quá trình fetch
+      console.error('Lỗi khi cập nhật trạng thái:', error);
+      // Có thể hiển thị thông báo lỗi nếu cần
+    });
+  };
 
   const handleDelete = (id) => {
     openDeleteModal();
@@ -204,7 +226,21 @@ import { setSanPhamList } from '../../../redux/sanPhamSlice';
                 <td>{SanPham.ten_sanpham}</td>
                 <td>{SanPham.ten_danhmuc}</td>
                 <td>{SanPham.chatlieu}</td>
-                <td>{SanPham.trang_thai === 1 ? 'Ẩn' : 'Hiện'}</td>
+                <td>
+                  <div>
+                    {SanPham.trang_thai === 1 ? (
+                      <div id="new-an" onClick={() => updateStatus(SanPham.id_sanpham, 2)}>
+                        <i className="material-icons">visibility_off</i>
+                      </div>
+                    ) : SanPham.trang_thai === 2 ? (
+                      <div id="new-hien" onClick={() => updateStatus(SanPham.id_sanpham, 1)}>
+                        <i className="material-icons">visibility</i> 
+                      </div>
+                    ) : (
+                      ''
+                    )}
+                  </div>
+                </td>
                 <td>{formatDateTime(SanPham.time_add)}</td>
                 <td>{formatDateTime(SanPham.time_update)}</td>
                 <td>

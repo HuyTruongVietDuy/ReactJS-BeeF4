@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FacebookProvider, Page } from "react-facebook";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { thoat } from "../redux/authSlice.js";
+import { useSelector } from "react-redux";
 
-import { message } from 'antd';
+
+
 
 import {
   SearchIconClick,
   CartIconClick,
-  addToCart
+  
 } from "./JS Modules/UserClick";
 
 import UserHeaderCenter from "./menu.js";
@@ -29,27 +29,49 @@ import "./CSS Modules/forgotpassword.css";
 import "./CSS Modules/lienhe.css";
 import "./CSS Modules/viewcart.css";
 import "./CSS Modules/chitietsanpham.css";
+import "./CSS Modules/chitietsanphamv2.css";
 import "./CSS Modules/Chitietdonhang.css";
 import "./CSS Modules/thanhtoan.css";
 import "./CSS Modules/login-admin.css";
 import "./CSS Modules/userdetail.css";
 import "./CSS Modules/gioithieu.css";
+import "./CSS Modules/thanhtoansucces.css";
+import "./CSS Modules/baiviet.css";
+import "./CSS Modules/chitietbaiviet.css";
 function UserIndex() {
   const [loading, setLoading] = useState(true); // State to manage loading
   const daDangNhap = useSelector(state => state.auth.daDangNhap);
-  const dispatch = useDispatch();
+
   const user = useSelector((state) => state.auth.user);
   const cart = useSelector((state) => state.cart.listSP);
-  const handleLogout = () => {
-    // Thực hiện các bước cần thiết để đăng xuất, có thể dispatch action thoat
-    dispatch(thoat());
-    message.success('Đăng xuất thành công');
-    window.location.reload();
-  };
 
-  setTimeout(() => {
-    setLoading(false);
-  }, 1200);
+
+  useEffect(() => {
+    // Kiểm tra nếu trình duyệt hỗ trợ navigator.connection
+    if ('connection' in navigator) {
+      // Lấy thông tin về tốc độ mạng hiện tại
+      const connection = navigator.connection;
+      const speedMbps = connection.downlink; // Tốc độ mạng được tính bằng Mbps
+
+      // Tính toán thời gian hiển thị của Loader dựa trên tốc độ mạng
+      const timeToShowLoader = speedMbps < 2 ? 2000 : 1000; // Nếu tốc độ mạng dưới 2 Mbps, hiển thị Loader trong 2 giây, ngược lại hiển thị trong 1 giây
+
+      // Set timeout để tắt Loader sau khoảng thời gian được tính toán
+      const timeoutId = setTimeout(() => {
+        setLoading(false);
+      }, timeToShowLoader);
+
+      // Xóa timeout khi component bị unmounted hoặc tốc độ mạng thay đổi
+      return () => clearTimeout(timeoutId);
+    } else {
+      // Nếu trình duyệt không hỗ trợ navigator.connection, chỉ đơn giản tắt Loader sau 1 giây
+      const timeoutId = setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, []);
 
   // var prevScrollpos = window.pageYOffset;
   // var headers = document.getElementsByClassName("user-container-header");
@@ -94,19 +116,19 @@ function UserIndex() {
         {daDangNhap ? (
           <>
             <li  >
-              <a href='/user'><i className="material-icons">person</i></a>
+              <Link to='/user'><i className="material-icons">person</i></Link>
             </li>
             <li  >
-            <a href={`/sanphamyeuthich/${user ? user.id_user : ''}`}>
+            <Link to={`/sanphamyeuthich/${user ? user.id_user : ''}`}>
   <i className="material-icons">favorite</i>
-</a>
+</Link>
 
             </li>
           </>
         ) : (
           <li>
-            <a href="/dangnhap">Đăng Nhập /</a>
-            <a href="/dangky">Đăng Ký</a>
+            <Link to="/dangnhap">Đăng Nhập /</Link>
+            <Link to="/dangky">Đăng Ký</Link>
           </li>
         )}
         <li>

@@ -1,0 +1,262 @@
+#container-chitietv2{
+    height: 86vh;
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+ }
+ 
+ #container-chitietv2 .left-ctsp{
+     width: 60%;
+     display: flex;
+    
+ }
+ 
+ #container-chitietv2 .left-ctsp .box-left{
+   margin-left:5%;
+    width: 14%;
+    height: 85vh;
+ }
+ 
+ #container-chitietv2 .left-ctsp .box-left .box-image{
+    width:65%;
+  cursor: pointer;
+    margin: 0 auto;
+   margin-bottom: 14px;
+   display: flex;
+  }
+
+  .left-ctsp .box-left  .box-image.selected {
+   /* Kiểu cho box-image khi được chọn */
+   border: 1px solid black;
+ }
+ 
+  #container-chitietv2 .left-ctsp .box-left .box-image img{
+    width: 100%;
+   }
+  
+   #container-chitietv2 .left-ctsp .box-right{
+     width:70%;
+     height: 85vh;
+
+   
+  }
+  #container-chitietv2 .left-ctsp .box-right .box-image-main {
+   margin: 0 auto;
+   max-width: 100%;
+   max-height: 100%;
+   display: flex;
+   flex-direction: column; /* Hiển thị các phần tử theo chiều dọc */
+   align-items: center; /* Căn giữa theo trục ngang */
+   overflow-y: auto;
+   scroll-behavior: smooth;
+   scroll-snap-type: y mandatory;
+   transition: scroll-behavior 1s ease; /* Thêm hiệu ứng transition cho scroll-behavior */
+}
+
+ 
+ 
+ #container-chitietv2 .left-ctsp .box-right .box-image-main img{
+     width: 100%;
+  
+     scroll-snap-align: start;
+  }
+ 
+ /* Tùy chỉnh kiểu dáng của thanh cuộn trên WebKit */
+ #container-chitietv2 .left-ctsp .box-right .box-image-main::-webkit-scrollbar {
+    width: 2px; /* Độ rộng của thanh cuộn */
+ }
+ 
+ #container-chitietv2  .left-ctsp .box-right .box-image-main::-webkit-scrollbar-thumb {
+    background-color: #888; /* Màu nền của thanh cuộn */
+    border-radius: 5px; /* Độ cong góc của thanh cuộn */
+ }
+ 
+ #container-chitietv2 .left-ctsp .box-right .box-image-main::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Màu nền của phần track */
+    border-radius: 5px; /* Độ cong góc của phần track */
+ }
+ 
+ 
+ 
+   
+ 
+ #container-chitietv2 .right-ctsp{
+   
+     width: 45%;
+     font-size: 1.2vw;
+     font-weight: bold;
+ }
+ 
+ #container-chitietv2 .right-ctsp .name-ctsp,
+ #container-chitietv2 .right-ctsp .price-ctsp,
+ #container-chitietv2 .right-ctsp .container-loai{
+   margin-bottom: 20px;
+  }
+  
+
+ 
+   #container-chitietv2 .right-ctsp .name-ctsp{
+    width: 100%;
+    font-size: 1.8vw;
+    font-weight: 500;
+    vertical-align: baseline;
+      font-weight: 450;
+       text-transform: uppercase;
+ }
+ 
+ #container-chitietv2 .right-ctsp .price-ctsp{
+     width: 100%;
+     font-weight: 300;
+   
+  }
+
+  #container-chitietv2 .right-ctsp .price-ctsp{
+   width: 100%;
+   font-weight: 300;
+ 
+} #container-chitietv2 .right-ctsp .price-ctsp span{
+ font-size: 1.4vw;
+ 
+}
+ 
+  #container-chitietv2  .right-ctsp .container-loai-ctsp{
+     width: 100%;
+     min-height: 20px;
+     display: flex;
+     align-items: center;
+     justify-content: left;
+     margin-top: 30px;
+  }
+  
+  #container-chitietv2  .container-loai-ctsp .box-img-loai{
+   
+     border-radius: 8px;
+     max-height: 150px;
+     width: 70px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     cursor: pointer; 
+    
+     margin-right: 10px;
+     margin-bottom: 30px;
+  }
+
+  #container-chitietv2  .container-loai-ctsp .box-img-loai img:hover{
+   border: 2px solid rgba(128, 128, 128, 0.386);
+
+   border-radius: 8px;
+}
+
+ 
+  #container-chitietv2  .container-loai-ctsp .box-img-loai img{
+     height: 100%;
+     width: 100%;
+     padding: 2px;
+     border-radius: 8px;
+  }
+ 
+  #container-chitietv2 #select-size{
+     width: 100%;
+     padding: 3% 4%;
+     border-radius: 6px;
+     font-size: 1vw;
+     color: rgba(128, 128, 128, 0.386);
+     border: 1px solid rgba(180, 179, 179, 0.399);
+     outline: none;
+     margin-bottom: 20px;
+     box-sizing: border-box;
+  }
+ 
+ 
+ 
+ /* Style for selected option */
+ #container-chitietv2 #select-size option:checked {
+     color: rgba(41, 42, 42, 0.557);
+   
+ }
+ 
+ /* Style for non-selected options */
+ #container-chitietv2 #select-size option {
+     color: black; /* Change to whatever color you want */
+     border: 1px solid black;
+     font-weight: bold;
+   
+     
+ }
+
+ 
+ 
+ 
+
+ #container-chitietv2 .button-favorite{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 100%;
+     margin-bottom: 15px;
+ }
+ 
+ #container-chitietv2 .button-favorite button{
+    width: 88%;
+    cursor: pointer;
+    border-radius: 6px;
+    padding: 16px 0;
+    font-size: 1vw;
+    font-weight: bold;
+    color: white;
+    border: none;
+  background-color: black;
+ }
+ 
+ #container-chitietv2 .button-favorite .icon-container{
+     position: relative;
+     margin-top: 2.8%;
+     width: 10%;
+     margin-left: 2%;
+     border: 1px solid rgb(0, 0, 0);
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     border-radius: 6px;
+     cursor: pointer;
+     padding: 16px 0;
+  }
+ 
+  #container-chitietv2  .button-favorite .icon-container i{
+     font-size: 1.2vw;
+  }
+  #container-chitietv2  .button-favorite .icon-container i:hover{
+   color: pink;
+}
+
+  #container-chitietv2 #muangay{
+     width: 100%;
+     padding: 16px 0;
+     color: white;
+     background-color: #60D17D;
+     font-size: 1vw;
+     font-weight: bold;
+     border-radius: 4px;
+     cursor: pointer;
+     border: none;
+  }
+  
+  #container-chitietv2 .mota-sanpham{
+     margin-left: 5%;
+     width: 95%;
+     margin: 15px;
+  }
+ 
+  #container-chitietv2  .mota-sanpham h1{
+     font-size: 1.2vw;
+     margin-bottom: 5px;
+  }
+ 
+  #container-chitietv2 .mota-sanpham ul{
+     font-size: 0.8vw;
+     margin-left: 25px;
+     font-weight: 300;
+  }
+ 
+ 

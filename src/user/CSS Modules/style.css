@@ -13,11 +13,11 @@
     background-color: #00000079;
 } */
 
-/* a{
-    color: black;
+a{
+ 
     text-decoration: none;
  
-} */
+}
 
 
 .user-container-header.darken {
@@ -165,11 +165,13 @@ footer.darken{
 ::-webkit-scrollbar {
     width: 8px; /* Chiều rộng của thanh cuộn */
     border-radius: 20px;
+    scroll-behavior: smooth;
 }
 
 /* Đường viền của thanh cuộn */
 ::-webkit-scrollbar-track {
     background-color: black;
+    scroll-behavior: smooth;
 }
 
 /* Thanh cuộn bên trong */
@@ -178,6 +180,7 @@ footer.darken{
     border-radius: 50px; /* Độ cong của thanh cuộn */
     border: none;
     transition: 20s scroll;
+    scroll-behavior: smooth;
 }
 
 /* Thanh cuộn bên trong khi hover */

@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-const Soluong = ({ productId }) => {
+const Soluong = ({ productId , refreshProductDetails}) => {
   const [productDetails, setProductDetails] = useState(null); // State to store product details
   const [totalQuantityAll, setTotalQuantityAll] = useState(0); // State to store total quantity for all products
 
   useEffect(() => {
     if (productId) {
+      
       fetchProductDetails(productId); // Fetch product details when productId changes
     }
-  }, [productId]);
+  }, [productId, refreshProductDetails]);
 
   // Function to fetch product details from the API
   const fetchProductDetails = async (productId) => {
@@ -27,6 +28,8 @@ const Soluong = ({ productId }) => {
       console.error('Error fetching product details:', error);
     }
   };
+
+
 
   return (
     <div>

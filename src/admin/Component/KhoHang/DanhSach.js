@@ -16,6 +16,11 @@ const KhoHang = () => {
     fetchSizes();
   }, []);
 
+  const refreshProductDetails = () => {
+    if (selectedProduct) {
+      fetchProductDetails(selectedProduct);
+    }
+  };
   const fetchProducts = async () => {
     try {
       const response = await fetch('http://localhost:4000/sanpham/list');
@@ -103,6 +108,10 @@ const KhoHang = () => {
       const data = await response.json();
       console.log(data);
       message.success('Thêm số lượng thành công');
+
+      document.getElementById("slsp").value = ""; // Đặt giá trị của input về rỗng
+    
+      refreshProductDetails();
     } catch (error) {
       console.error('Lỗi:', error);
       message.error('Thêm số lượng Thất bại');
@@ -112,6 +121,7 @@ const KhoHang = () => {
   const handleQuantityChange = (event, productId) => {
     const value = event.target.value;
     setQuantity({ ...quantity, [productId]: value });
+    
   };
 
   const handleSizeChange = (event) => {
@@ -201,7 +211,7 @@ const KhoHang = () => {
 
       
       </div>
-      <SoLuong productId={selectedProduct} />
+      <SoLuong productId={selectedProduct}  refreshProductDetails={refreshProductDetails}/>
     </div>
   );
 };

@@ -145,6 +145,31 @@ const ListDanhMuc = () => {
     }
   };
 
+  const updateStatus = (id_danhmuc, newStatus) => {
+    fetch(`http://localhost:4000/danhmuc/updatestatus/${id_danhmuc}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ trang_thai: newStatus })
+    })
+    .then(response => {
+      if (response.ok) {
+        fetchData();
+        message.success('Cập nhật trạng thái thành công!!');
+      } else {
+        // Xử lý khi fetch không thành công
+        throw new Error('Cập nhật trạng thái không thành công!');
+      }
+    })
+    .catch(error => {
+      // Xử lý khi có lỗi xảy ra trong quá trình fetch
+      console.error('Lỗi khi cập nhật trạng thái:', error);
+      // Có thể hiển thị thông báo lỗi nếu cần
+    });
+  };
+  
+
   return (
     <div id="container-main-admin">
       <Sua
@@ -213,7 +238,21 @@ const ListDanhMuc = () => {
                     alt=""
                   />
                 </td>
-                <td>{danhMuc.trang_thai === 1 ? "Ẩn" : "Hiện"}</td>
+                <td>
+                  <div>
+                    {danhMuc.trang_thai === 1 ? (
+                      <div id="new-an" onClick={() => updateStatus(danhMuc.id_danhmuc, 2)}>
+                        <i className="material-icons">visibility_off</i>
+                      </div>
+                    ) : danhMuc.trang_thai === 2 ? (
+                      <div id="new-hien" onClick={() => updateStatus(danhMuc.id_danhmuc, 1)}>
+                        <i className="material-icons">visibility</i> 
+                      </div>
+                    ) : (
+                      ''
+                    )}
+                  </div>
+                </td>
                 <td>{formatDateTime(danhMuc.time_add)}</td>
                 <td>
                   {danhMuc.time_update

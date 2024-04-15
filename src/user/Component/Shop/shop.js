@@ -5,12 +5,12 @@ function Shop() {
     const [priceFilter, setPriceFilter] = useState("0");
     const [loaiFilter, setLoaiFilter] = useState("0");
     const [colorFilter, setColorFilter] = useState("0");
-    const [thutuFilter, setThutuFilter] = useState("0");
+
     const [categories, setCategories] = useState([]);
     const [selectedPriceOption, setSelectedPriceOption] = useState(null);
     const [selectedLoaiOption, setSelectedLoaiOption] = useState(null);
     const [selectedColorOption, setSelectedColorOption] = useState(null);
-    const [selectedThutuOption, setSelectedThutuOption] = useState(null);
+   
    
     useEffect(() => {
         fetch('http://localhost:4000/danhmuc/list')
@@ -48,10 +48,7 @@ function Shop() {
         setSelectedColorOption(event.target[event.target.selectedIndex].text);
     };
 
-    const handleThutuFilterChange = (event) => {
-        setThutuFilter(event.target.value);
-        setSelectedThutuOption(event.target[event.target.selectedIndex].text);
-    };
+   
 
 
     return (
@@ -66,31 +63,26 @@ function Shop() {
             <div className='nav-top-product'>
             {selectedPriceOption && selectedPriceOption !== "Lọc Giá" && (
                 <div className='choose' >
-                    <div className='choose-top'><span> Select </span></div>
+                    <div className='choose-top'><span> Sản phẩm </span></div>
                     <div className='choose-bottom' style={{background:"#FF5733"}}>{selectedPriceOption}</div>
                 </div>
             )}
 
             {selectedLoaiOption && selectedLoaiOption !== "Loại" && (
                 <div className='choose' >
-                    <div className='choose-top'><span> Select </span></div>
+                    <div className='choose-top'><span> Danh mục </span></div>
                     <div className='choose-bottom' style={{background:"#FFC300"}}>{selectedLoaiOption}</div>
                 </div>
             )}
 
             {selectedColorOption && selectedColorOption !== "Màu Sắc" && (
                 <div className='choose' >
-                    <div className='choose-top'><span> Select </span></div>
+                    <div className='choose-top'><span> Màu </span></div>
                     <div className='choose-bottom' style={{background:"#C70039"}}>{selectedColorOption}</div>
                 </div>
             )}
 
-            {selectedThutuOption && selectedThutuOption !== "Thứ Tự" && (
-                <div className='choose'>
-                    <div className='choose-top'><span> Select </span></div>
-                    <div className='choose-bottom' style={{background:"#900C3F"}}>{selectedThutuOption}</div>
-                </div>
-            )}
+            
         </div>
             <nav className='nav-product'>
            
@@ -131,7 +123,7 @@ function Shop() {
                     </div>
                     
                     <div className='item-nav-right'>
-                        <select id="thutuFilter" onChange={handleThutuFilterChange} value={thutuFilter}>
+                        <select id="thutuFilter" >
                             <option value="0">Thứ Tự</option>
                             <option value="1">Mới Nhất</option>
                             <option value="2">Giá Tăng Dần</option>
@@ -146,7 +138,7 @@ function Shop() {
                 priceFilter={priceFilter}
                 loaiFilter={loaiFilter}
                 colorFilter={colorFilter}
-                thutuFilter={thutuFilter}
+              
             />
         </div>
     );

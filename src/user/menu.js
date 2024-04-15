@@ -55,11 +55,11 @@ const UserNavMenu = () => {
                     // Only render if there are sub-menus
                     return (
                       <li className="has-submenu" key={danhMuc.id_danhmuc}>
-                     <a id='link'href={danhMuc.url_category}>{danhMuc.ten_danhmuc}</a>
+                     <Link id='link'to={danhMuc.url_category}>{danhMuc.ten_danhmuc}</Link>
                         <ul className="sub-sub-menu">
                           {subDanhMucs.map((subDanhMuc) => (
                             <li key={subDanhMuc.id_danhmuc}>
-                             <a id='link' href={subDanhMuc.url_category}>{subDanhMuc.ten_danhmuc}</a>
+                             <Link id='link' to={subDanhMuc.url_category}>{subDanhMuc.ten_danhmuc}</Link>
 
                             </li>
                           ))}
@@ -84,7 +84,7 @@ const UserNavMenu = () => {
             </Link>
           </li>
           <li>
-          <Link to="/">
+          <Link to="/baiviet">
               <span> Bài viết</span>
             </Link>
           </li>

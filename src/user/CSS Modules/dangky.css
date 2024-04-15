@@ -11,7 +11,8 @@
 }
 
 .user-form-dangky input[type="text"],
-.user-form-dangky input[type="password"]{
+.user-form-dangky input[type="password"],
+.user-form-dangky select{
     display: block;
     margin: 25px 0;
     padding: 20px;

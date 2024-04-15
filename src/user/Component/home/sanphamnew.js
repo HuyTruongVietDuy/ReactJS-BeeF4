@@ -132,83 +132,75 @@ function SanPhamNew( ) {
   return (
     <div className="container-product-show">
       <div className="center-layout">
-    
         {productList.map((product) => (
-          <div className="product" key={product.id_sanpham}>
-      
-           
+          product.trang_thai === 2 && (
+            <div className="product" key={product.id_sanpham}>
               <div className="product-image">
-              <Link to={`/chitietsanpham/${product.id_sanpham}`} > 
-              <img src={`http://localhost:4000/chitietsanpham/${selectedColor[product.id_sanpham]?.hinh_anh_1}`} alt="" className="main-image" />
-              {selectedColor[product.id_sanpham]?.hinh_anh_2 && (
-                <img src={`http://localhost:4000/chitietsanpham/${selectedColor[product.id_sanpham]?.hinh_anh_2}`} alt="" className="hover-image" />
-              )}
-              </Link>
-              <div className="product-button-container ">
-                <button className="buy-now"> Mua Ngay </button>
-                <button className="add-to-cart" onClick={() => handleAddToCartClick(product.id_sanpham)}> Thêm vào giỏ </button>
-               
+                <Link to={`/chitietsanpham/${product.url_product}`}>
+                  <img src={`http://localhost:4000/chitietsanpham/${selectedColor[product.id_sanpham]?.hinh_anh_1}`} alt="" className="main-image" />
+                  {selectedColor[product.id_sanpham]?.hinh_anh_2 && (
+                    <img src={`http://localhost:4000/chitietsanpham/${selectedColor[product.id_sanpham]?.hinh_anh_2}`} alt="" className="hover-image" />
+                  )}
+                </Link>
+                <div className="product-button-container">
+                  <button className="buy-now"> Mua Ngay </button>
+                  <button className="add-to-cart" onClick={() => handleAddToCartClick(product.id_sanpham)}> Thêm vào giỏ </button>
+                </div>
+                <div className="favorite">
+                  {user && user.id_user && product.id_user === user.id_user ? (
+                    <i className="material-icons" style={{ color: ' rgb(174, 11, 38)' }} onClick={() => handleRemoveFavoriteClick(product.id_sanpham, user.id_user)}>favorite</i>
+                  ) : (
+                    <i className="material-icons" onClick={() => handleFavoriteClick(product.id_sanpham, user ? user.id_user : null)}>favorite</i>
+                  )}
+                </div>
+                {product.tong_so_luong === 0 || product.tong_so_luong === null ? (
+                  <div className="sold-out">Hết hàng</div>
+                ) : null}
               </div>
-              <div className="favorite">
-              {user && user.id_user && product.id_user === user.id_user ? (
-  <i className="material-icons" style={{ color: ' rgb(174, 11, 38)' }} onClick={() => handleRemoveFavoriteClick(product.id_sanpham, user.id_user)}>favorite</i>
-) : (
-  <i className="material-icons" onClick={() => handleFavoriteClick(product.id_sanpham, user ? user.id_user : null)}>favorite</i>
-)}
-
-</div>
-
-
-              {product.tong_so_luong === 0 || product.tong_so_luong === null ? (
-              <div className="sold-out">Hết hàng</div>
-            ) : null}
-            </div>
-           
-            
-            <div className="product-details">
-              <div className="container-color">
-                {colors[product.id_sanpham] && colors[product.id_sanpham].map(color => (
-                  <div
-                    id="color"
-                    key={color.id_mau}
-                    style={{ backgroundColor: color.Ma_mau }}
-                    onClick={() => handleColorSelect(product.id_sanpham, color.id_mau)}
-                  ></div>
-                ))}
-              </div>
-              <div className="product-name">{product.ten_sanpham}</div>
-              <div className="product-price">
-                {product.gia_khuyenmai ? (
-                  <span>
-                    <span style={{ textDecoration: "line-through", color: "tomato" }}>
-                      {parseFloat(product.gia).toLocaleString("vi-VN", {
-                        style: "currency",
-                        currency: "VND",
-                      })}
-                    </span>{" "}
-                    <span id="gia_khuyenmai">
-                      {parseFloat(product.gia_khuyenmai).toLocaleString("vi-VN", {
-                        style: "currency",
-                        currency: "VND",
-                      })}
+              <div className="product-details">
+                <div className="container-color">
+                  {colors[product.id_sanpham] && colors[product.id_sanpham].map(color => (
+                    <div
+                      id="color"
+                      key={color.id_mau}
+                      style={{ backgroundColor: color.Ma_mau }}
+                      onClick={() => handleColorSelect(product.id_sanpham, color.id_mau)}
+                    ></div>
+                  ))}
+                </div>
+                <div className="product-name">{product.ten_sanpham}</div>
+                <div className="product-price">
+                  {product.gia_khuyenmai ? (
+                    <span>
+                      <span style={{ textDecoration: "line-through", color: "tomato" }}>
+                        {parseFloat(product.gia).toLocaleString("vi-VN", {
+                          style: "currency",
+                          currency: "VND",
+                        })}
+                      </span>{" "}
+                      <span id="gia_khuyenmai">
+                        {parseFloat(product.gia_khuyenmai).toLocaleString("vi-VN", {
+                          style: "currency",
+                          currency: "VND",
+                        })}
+                      </span>
                     </span>
-                  </span>
-                ) : (
-                  parseFloat(product.gia).toLocaleString("vi-VN", {
-                    style: "currency",
-                    currency: "VND",
-                  })
-                )}
+                  ) : (
+                    parseFloat(product.gia).toLocaleString("vi-VN", {
+                      style: "currency",
+                      currency: "VND",
+                    })
+                  )}
+                </div>
               </div>
-
             </div>
-          </div>
+          )
         ))}
-
       </div>
       {isModalOpen && <ModalProduct id_sanpham={modalProductId} />}
     </div>
   );
+  
 }
 
 export default SanPhamNew;

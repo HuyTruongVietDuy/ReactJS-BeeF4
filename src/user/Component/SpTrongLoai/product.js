@@ -153,9 +153,10 @@ function Product({  thutuFilter  }) {
     <div className="container-product-show">
       <div className="center-layout">
         {sortedAndFilteredProducts.map((product) => (
+            product.trang_thai === 2 && (
           <div className="product" key={product.id_sanpham}>
              <div className="product-image">
-              <Link to={`/chitietsanpham/${product.id_sanpham}`} > 
+              <Link to={`/chitietsanpham/${product.url_product}`} > 
               <img src={`http://localhost:4000/chitietsanpham/${selectedColor[product.id_sanpham]?.hinh_anh_1}`} alt="" className="main-image" />
               {selectedColor[product.id_sanpham]?.hinh_anh_2 && (
                 <img src={`http://localhost:4000/chitietsanpham/${selectedColor[product.id_sanpham]?.hinh_anh_2}`} alt="" className="hover-image" />
@@ -214,6 +215,7 @@ function Product({  thutuFilter  }) {
               </div>
             </div>
           </div>
+            )
         ))}
       </div>
       {isModalOpen && <ModalProduct />}

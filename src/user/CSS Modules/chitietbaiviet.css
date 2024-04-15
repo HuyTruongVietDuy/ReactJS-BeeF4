@@ -1,0 +1,139 @@
+
+
+.container-baivietct .content {
+    width: 80%;
+    margin: 30px auto;
+    display: flex;
+}
+
+.container-baivietct h1 {
+  text-align: center;
+  font-size: 2vw;
+  margin-bottom: 20px;
+}
+
+.container-baivietct  .box-1 {
+    width: 75%;
+    min-height: 100vh;
+    margin-top: 50px;
+
+}
+.container-baivietct .baivietlienquan{
+    margin-top: 50px;
+}
+.container-baivietct .baivietlienquan .baiviet{
+    display: flex;
+    justify-content: space-between;
+}
+.container-baivietct .baivietlienquan .baiviet-0{
+    width: 32%;
+    margin: 40px 0;
+}
+
+.container-baivietct .baivietlienquan .baiviet-0 img{
+    width: 100%;
+    height: 300px;
+}
+
+.container-baivietct .box-2 {
+
+    width: 25%;
+   
+}
+.container-baivietctt  .box-2 h2{
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ededed;
+}
+.container-baivietct  .search{
+    margin: 20px 0;
+    border: 1px solid;
+    position: relative;
+    border: none;
+    outline: none;
+}
+.container-baivietct input{
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ededed;
+}
+.container-baivietct .search i{
+    padding: 5px;
+    position: absolute;
+    font-size: 18px;
+    top: 0;
+    right: 0;
+}
+
+.container-baivietct .search i:hover{
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+.container-baivietct  .box-2 ul{
+    padding-top: 20px;
+    border-top: 1px solid #ededed;
+}
+.container-baivietct  .box-2 ul li{
+    font-size: 14px;
+    color: #222;
+    margin: 5px 0;
+    line-height: 25px;
+    font-weight: 100;
+    margin-left: 20px;
+}
+@media (max-width:1400px){
+    .container-baivietct   .content{
+        flex-direction: column;
+    }
+    .container-baivietct   .box-1{
+        width: 100%;
+    }
+    .container-baivietct    .box-2{
+        width: 100%;
+    }
+    .container-baivietct  .baiviet{
+        flex-wrap: wrap;
+    }
+    .container-baivietct  .baiviet-0{
+        width: 45%;
+    }
+    .container-baivietct  .baiviet-0 img{
+        height: 400px;
+    }
+}
+@media (max-width:950px){
+    .container-baivietct  .baiviet{
+        justify-content: center;
+    }
+    .container-baivietct  .baiviet-0{
+        width: 60%;
+    }
+}
+
+@media (max-width:700px){
+    .container-baivietct .baiviet-0{
+        width: 80%;
+    }
+}
+@media (max-width:600px){
+    .baiviet-0{
+        width: 80%;
+    }
+    .baiviet-0 img{
+        height: 300px;
+    }
+}
+@media (max-width:450px){
+    .baiviet-0 img{
+        height: 200px;
+    }
+}
+
+.container-baivietct  .ql-toolbar  {
+    display: none ;
+    border: none;
+}
+
+.container-baivietct .ql-container{
+    border: none;
+} 

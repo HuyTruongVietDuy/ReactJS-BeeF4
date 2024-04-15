@@ -171,6 +171,8 @@ const ChiTietSanPham = () => {
     // Chuyển hướng tới trang thanh toán
     navigate("/thanhtoan");
   };
+
+  
   if (!productDetail) {
     return <div>Loading...</div>;
   }
