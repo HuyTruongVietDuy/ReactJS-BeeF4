@@ -50,6 +50,7 @@ align-items: center;
     border-radius: 6px;
     cursor: pointer;
     font-weight: 400;
+    margin-bottom: 3%;
  }
 
  #container-nav-admin .nav-right-admin i{

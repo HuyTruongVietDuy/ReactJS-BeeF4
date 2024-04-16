@@ -15,7 +15,7 @@ const ListDanhMuc = () => {
   const [selectedDanhMuc, setSelectedDanhMuc] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const itemsPerPage = 7;
+  const itemsPerPage = 5;
 
   const danhMucList = useSelector((state) => state.danhMuc.danhMucList);
   const dispatch = useDispatch();

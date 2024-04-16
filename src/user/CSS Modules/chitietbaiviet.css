@@ -15,7 +15,8 @@
 .container-baivietct  .box-1 {
     width: 75%;
     min-height: 100vh;
-    margin-top: 50px;
+    margin-top: 50px;   
+    
 
 }
 .container-baivietct .baivietlienquan{
@@ -31,9 +32,10 @@
 }
 
 .container-baivietct .baivietlienquan .baiviet-0 img{
-    width: 100%;
+    width: 350px;
     height: 300px;
 }
+
 
 .container-baivietct .box-2 {
 
@@ -116,15 +118,15 @@
     }
 }
 @media (max-width:600px){
-    .baiviet-0{
+    .container-baivietct  .baiviet-0{
         width: 80%;
     }
-    .baiviet-0 img{
+    .container-baivietct  .baiviet-0 img{
         height: 300px;
     }
 }
 @media (max-width:450px){
-    .baiviet-0 img{
+    .container-baivietct .baiviet-0 img{
         height: 200px;
     }
 }

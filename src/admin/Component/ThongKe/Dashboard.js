@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 import Chart from "chart.js/auto";
-
+import CountTotal from './Total'
 const DashBoard = () => {
   const canvasRef = useRef(null); // Tạo một tham chiếu đến phần tử canvas
 
@@ -90,6 +90,7 @@ const DashBoard = () => {
         </div>
       </div>
       <div className="admin-content-component">
+      <CountTotal/>
         <canvas
           ref={canvasRef}
           id="revenueChart"

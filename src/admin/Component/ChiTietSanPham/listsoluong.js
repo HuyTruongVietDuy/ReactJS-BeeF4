@@ -74,7 +74,7 @@ const ListSoLuong = ({ id_chitietsp }) => {
       )}
     </td>
     <td style={{ border: '1px solid #dddddd', textAlign: 'left', padding: '8px' }}>
-      <button onClick={() => handleDelete(item.id_kho)}>Xóa</button>
+      <button id="button-sua"   onClick={() => handleDelete(item.id_kho)}>Xóa</button>
     </td>
   </tr>
 ))}
@@ -84,5 +84,5 @@ const ListSoLuong = ({ id_chitietsp }) => {
     </div>
   );
 };
-
+ 
 export default ListSoLuong;

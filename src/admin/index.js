@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+ import React, { useEffect } from "react";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 
-import DashBoard from "./Component/Dashboard";
+import DashBoard from "./Component/ThongKe/Dashboard";
 import ListDanhMuc from "./Component/DanhMuc/DanhSach";
 import ListSanPham from "./Component/SanPham/DanhSach";
 import ListUser from "./Component/TaiKhoan/DanhSach";
@@ -17,6 +17,7 @@ import "./CSS Modules/index.css";
 import "./CSS Modules/main.css";
 import "./CSS Modules/style.css";
 import "./CSS Modules/form.css";
+import "./CSS Modules/thongke.css";
 
 function AdminIndex() {
   const location = useLocation();

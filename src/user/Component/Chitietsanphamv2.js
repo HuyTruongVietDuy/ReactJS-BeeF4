@@ -247,7 +247,7 @@ const ChiTietSanPham = () => {
           <div className="container-loai-ctsp">
            {colors.map((color, index) => (
   <div key={index} className="box-img-loai" >
-    <img src={`http://localhost:4000/chitietsanpham/${color.hinh_anh_1}`} alt="" style={{ border: selectedColorIndex === index ? '2px solid rgba(128, 128, 128, 0.386)' : 'none' }} onClick={() => handleColorClick(index)}/>
+    <img src={`http://localhost:4000/chitietsanpham/${color.hinh_anh_6}`} alt="" style={{ border: selectedColorIndex === index ? '2px solid rgba(128, 128, 128, 0.386)' : 'none' }} onClick={() => handleColorClick(index)}/>
   </div>
 ))}
           </div>

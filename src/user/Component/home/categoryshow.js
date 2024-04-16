@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-
+import {Link} from 'react-router-dom';
 function CategoryShow() {
     const [chiSoHienTai, setChiSoHienTai] = useState(0);
     const [tongSoDanhMuc, setTongSoDanhMuc] = useState(0);
@@ -55,7 +55,8 @@ function CategoryShow() {
                         danhMuc.trang_thai === 2 && (
                             <div className={`category ${index >= chiSoHienTai && index < chiSoHienTai + 6 ? 'active' : 'previous'}`} key={danhMuc.id_danhmuc}>
                                 <div className="image-category"><img src={`http://localhost:4000/danhmuc/uploads/${danhMuc.hinhanh}`} alt=''/></div>
-                                <div className="name-category">{danhMuc.ten_danhmuc}</div>
+                                <div className="name-category"><Link to={`/${danhMuc.url_category}`}>{danhMuc.ten_danhmuc}</Link></div>
+                            
                             </div>
                         )
                     )}

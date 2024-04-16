@@ -10,22 +10,42 @@ const KhoHang = () => {
   const [sizes, setSizes] = useState([]);
   const [quantity, setQuantity] = useState({});
   const [selectedSize, setSelectedSize] = useState('');
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('');
 
+  const fetchCategories = async () => {
+    try {
+      const response = await fetch('http://localhost:4000/danhmuc/list');
+      if (!response.ok) {
+        throw new Error('Lỗi khi fetch danh sách danh mục');
+      }
+      const data = await response.json();
+      if (data.success) {
+        setCategories(data.danhMucList); // Assuming danhMucList contains the categories array
+      } else {
+        throw new Error(data.message); // Handle any error message from the server
+      }
+    } catch (error) {
+      console.error('Lỗi:', error);
+    }
+  };
+  
   useEffect(() => {
-    fetchProducts();
+    fetchCategories();
+    fetchProductsByCategory();
     fetchSizes();
-  }, []);
+  }, [selectedCategory]); // Thêm selectedCategory vào mảng dependency của useEffect
 
   const refreshProductDetails = () => {
     if (selectedProduct) {
       fetchProductDetails(selectedProduct);
     }
   };
-  const fetchProducts = async () => {
+  const fetchProductsByCategory = async () => { // Loại bỏ tham số categoryId
     try {
-      const response = await fetch('http://localhost:4000/sanpham/list');
+      const response = await fetch(`http://localhost:4000/sanpham/list/${selectedCategory}`);
       if (!response.ok) {
-        throw new Error('Lỗi khi fetch dữ liệu');
+        throw new Error('Lỗi khi fetch sản phẩm theo danh mục');
       }
       const data = await response.json();
       setProducts(data);
@@ -33,6 +53,7 @@ const KhoHang = () => {
       console.error('Lỗi:', error);
     }
   };
+  
 
   const fetchSizes = async () => {
     try {
@@ -54,16 +75,33 @@ const KhoHang = () => {
         throw new Error('Lỗi khi fetch chi tiết sản phẩm');
       }
       const data = await response.json();
-      setSelectedDetail(data.productDetails[0].id_chitietsp);
-      const defaultQuantity = {};
-      data.productDetails.forEach(detail => {
-        defaultQuantity[detail.id_chitietsp] = 0;
-      });
-      setQuantity(defaultQuantity);
-      setProductDetails(data.productDetails);
+      console.log(data);
+      if (data.productDetails && data.productDetails.length > 0) { // Kiểm tra xem productDetails có tồn tại và không rỗng không
+        setSelectedDetail(data.productDetails[0].id_chitietsp);
+        const defaultQuantity = {};
+        data.productDetails.forEach(detail => {
+          defaultQuantity[detail.id_chitietsp] = 0;
+        });
+        setQuantity(defaultQuantity);
+        setProductDetails(data.productDetails);
+      } else {
+        setProductDetails([]);
+      }
     } catch (error) {
       console.error('Lỗi:', error);
       setProductDetails([]);
+    }
+  };
+
+
+  const handleCategoryChange = (event) => {
+    const selectedCategoryId = event.target.value;
+    setSelectedCategory(selectedCategoryId);
+    // Fetch danh sách sản phẩm thuộc danh mục đã chọn
+    if (selectedCategoryId !== '') {
+      fetchProductsByCategory(); // Loại bỏ tham số
+    } else {
+      setProducts([]); // Nếu không chọn danh mục nào thì reset danh sách sản phẩm
     }
   };
 
@@ -71,11 +109,12 @@ const KhoHang = () => {
     const selectedProductId = event.target.value;
     setSelectedProduct(selectedProductId);
     if (selectedProductId !== '') {
-      fetchProductDetails(selectedProductId);
+      fetchProductDetails(selectedProductId); // Loại bỏ tham số
     } else {
       setProductDetails([]);
     }
   };
+  
 
   const handleAddQuantity = async (idChitietsp, idMau) => {
     console.log('id_chitietsp:', idChitietsp);
@@ -136,6 +175,12 @@ const KhoHang = () => {
           <h1> Quản lí kho hàng</h1>
         </div>
         <div className='nav-right-admin'>
+        <select onChange={handleCategoryChange}>
+  <option value="">Chọn Danh Mục</option>
+  {categories.map(category => (
+    <option key={category.id_danhmuc} value={category.id_danhmuc}>{category.ten_danhmuc}</option>
+  ))}
+</select>
           <select onChange={handleProductChange}>
             <option value=""> Chọn Tên Sản Phẩm</option>
             {products.map(product => (

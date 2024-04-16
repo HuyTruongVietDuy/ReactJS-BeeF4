@@ -14,8 +14,10 @@ function Shop({ addToCart }) {
             .then(data => {
                 // Kiểm tra xem danh sách danh mục tồn tại và là một mảng
                 if (data && Array.isArray(data.danhMucList)) {
-                    // Cập nhật state với danh sách danh mục
-                    setCategories(data.danhMucList);
+                    // Xáo trộn mảng danh mục
+                    const shuffledCategories = shuffleArray(data.danhMucList);
+                    // Cập nhật state với danh sách danh mục đã xáo trộn
+                    setCategories(shuffledCategories);
                 } else {
                     console.error('Invalid categories data:', data);
                 }
@@ -25,6 +27,25 @@ function Shop({ addToCart }) {
             });
     }, [url_category]); // Thêm url_category vào dependencies để useEffect được gọi lại khi url_category thay đổi
     
+    // Hàm xáo trộn mảng
+    const shuffleArray = (array) => {
+        let currentIndex = array.length, temporaryValue, randomIndex;
+      
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+      
+          // Pick a remaining element...
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex -= 1;
+      
+          // And swap it with the current element.
+          temporaryValue = array[currentIndex];
+          array[currentIndex] = array[randomIndex];
+          array[randomIndex] = temporaryValue;
+        }
+      
+        return array;
+      }
 
     const handleThutuFilterChange = (event) => {
         setThutuFilter(event.target.value);
@@ -43,8 +64,8 @@ function Shop({ addToCart }) {
                 <div className='box-img'>
                     <img src={`http://localhost:4000/danhmuc/uploads/${category.hinhanh}`} alt={category.ten_danhmuc}/>
                 </div>
-                <div className='box-name'>{category.ten_danhmuc}</div>
-                <div></div>
+                <div className='box-name'><Link to={`/${category.url_category}`}>{category.ten_danhmuc}</Link></div>
+
             </div>
         );
     }

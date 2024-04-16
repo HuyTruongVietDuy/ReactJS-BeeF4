@@ -23,11 +23,13 @@ const BaiVietRanDom = () => {
             {/* Map through the posts and render each one */}
             {posts.map((post, index) => (
                   post.trang_thai === 2 && (
-                <div key={index} className={`baiviet-${index}`}>
+                <div key={index}>
+                <div  className='baiviet-0'>
                      <Link to={`/baiviet/${post.url_baiviet}`}>
                    <img src={`http://localhost:4000/danhmuc/uploads/${post.hinhanh}`} alt='' />
                     {post.tieude}
                     </Link>
+                </div>
                 </div>
              )
             ))}

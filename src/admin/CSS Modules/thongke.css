@@ -1,0 +1,105 @@
+.count-total{
+    width: 100%;
+    min-height: 5vh;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    margin-bottom: 3%;
+    
+}
+
+.count-total #box{
+  margin: 0 1.5%;
+  width: 20%;
+  height: 200px;
+  border-radius: 7px;
+  position: relative;
+}
+
+.count-total #box #top{
+   height: 75%;
+   width: 100%;
+
+   display: flex;
+  }
+
+  .count-total #box #top .left{
+    height: 100%;
+    width: 50%;
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   }
+
+   .count-total #box #top .left i{
+    color: white;
+    font-weight: bold;
+    font-size: 6vw;
+   }
+
+   .count-total #box #top .right{
+    height: 100%;
+    width: 50%;
+   
+   
+   }
+
+   .count-total #box #top .right .top{
+    height: 65%;
+    width: 100%;
+    
+    display: flex;
+    font-size: 1vw;
+    justify-content: center;
+    align-items: center;
+    color: white;
+   }
+
+   .count-total #box #top .right .bottom{
+    height: 35%;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+   
+   }
+
+
+  .count-total #box #bottom{
+    height: 25%;
+    width: 100%;
+   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+   }
+
+   
+  .count-total #box #bottom a{
+   cursor: pointer;
+  font-weight: bold;
+   transition: 0.3s text-decoration;
+   }
+
+   .count-total #box #bottom a:hover{
+    text-decoration: underline;
+    }
+ 
+    #info-total{
+      position: absolute;
+      bottom: 5%;
+      right: 4%;
+      vertical-align: super;
+    }
+
+    #info-total i{
+     position: relative;
+     cursor: pointer;
+     
+    }
+

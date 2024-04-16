@@ -457,7 +457,7 @@
     position: absolute;
     top: 5px;
     right: 5px;
-    color:white; /* Màu của biểu tượng */
+    color:rgba(197, 197, 197, 0.743); /* Màu của biểu tượng */
     cursor: pointer;
 }
 
