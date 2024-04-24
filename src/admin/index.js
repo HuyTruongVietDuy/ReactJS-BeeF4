@@ -13,6 +13,10 @@ import GiamGia from "./Component/GiamGia/DanhSach";
 import ListBaiViet from "./Component/BaiViet/DanhSach";
 import ThemBaiViet from "./Component/BaiViet/Them";
 import SuaBaiViet from "./Component/BaiViet/Sua";
+import Thongketong from "./Component/ThongKe/thongke-total";
+import Thongkeproduct from "./Component/ThongKe/thongke-product";
+import Thongkecategory from "./Component/ThongKe/thongke-category";
+import ThongkeUser from "./Component/ThongKe/thongke-user";
 import "./CSS Modules/index.css";
 import "./CSS Modules/main.css";
 import "./CSS Modules/style.css";
@@ -185,6 +189,10 @@ function AdminIndex() {
               <Route path="/danhsachbaiviet" element={<ListBaiViet />} />
               <Route path="/them-bai-viet" element={<ThemBaiViet />} />
               <Route path="/edit-bai-viet/:id_baiviet" element={<SuaBaiViet />} />
+              <Route path="/thongke-total" element={<Thongketong />} />
+              <Route path="/thongke-product" element={<Thongkeproduct />} />
+              <Route path="/thongke-category" element={<Thongkecategory />} />
+              <Route path="/thongke-user" element={<ThongkeUser />} />
             </Routes>
           </div>
         </div>

@@ -611,6 +611,7 @@ text-align: left;
  color: white;
  font-weight: bold;
  transition: background-color 0.3s ease;
+ cursor: pointer;
 }
 
 
@@ -623,9 +624,10 @@ text-align: left;
   background-color: black;
   font-weight: bold;
   transition: background-color 1s ease;
+  cursor: pointer;
 }
-#sidebar-cart .container-button #btn-right #Link,
-#sidebar-cart .container-button #btn-left #Link{
+#sidebar-cart .container-button #btn-right,
+#sidebar-cart .container-button #btn-left{
   color: white;
   font-size: 0.7vw;
   border: none;

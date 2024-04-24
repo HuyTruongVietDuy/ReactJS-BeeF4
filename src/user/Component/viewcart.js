@@ -1,12 +1,12 @@
 import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { XoaSP, SuaSL } from "../../redux/cartSlice";
-import { Link } from 'react-router-dom';
-
+import { Link,  useNavigate } from "react-router-dom";
+import { message } from "antd";
 const ViewCart = () => {
   const cart = useSelector((state) => state.cart.listSP);
   const dispatch = useDispatch();
-
+  const navigate = useNavigate ();
   // Function to calculate the total price of all items in the cart
   const calculateTotal = () => {
     let total = 0;
@@ -28,8 +28,15 @@ const decreaseQuantity = (product) => {
   }
 };
 
-
+const handleCheckout = () => {
+  if (cart.length === 0) {
+    message.info("Giỏ hàng của bạn đang trống."); // Hiển thị thông báo nếu giỏ hàng trống
+  } else {
+    navigate(`/thanhtoan`);
+  }
+};
   return (
+    <div id='container-main'>
     <div className="container-cart-user">
       <div className="box">
         <h2>Giỏ hàng</h2>
@@ -83,13 +90,14 @@ const decreaseQuantity = (product) => {
               <span>Tổng tiền</span> <span>{calculateTotal().toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</span>
             </div>
             <div className="pay">
-            <Link to="/thanhtoan"> <div className="payment"> THANH TOÁN</div></Link>
+           <div className="payment" onClick={handleCheckout}> THANH TOÁN</div>
             </div>
           </div>
         </div>
         <br/>
         <Link to="/shop" className="continue">Tiếp tục mua sắm</Link>
       </div>
+    </div>
     </div>
   );
 };

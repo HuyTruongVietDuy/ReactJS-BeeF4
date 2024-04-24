@@ -1,0 +1,17 @@
+/* Dashboard.css */
+
+.dashboard-card {
+    background-color: #f0f2f5; /* Màu nền của các card */
+    border-radius: 8px; /* Độ cong góc của các card */
+    font-weight: bold;
+  }
+  
+  .dashboard-card .ant-statistic-content-value {
+    color: #1890ff; /* Màu chữ của giá trị */
+  }
+  
+  .dashboard-card .ant-statistic-content-title {
+    color: #000; /* Màu chữ của tiêu đề */
+    
+  }
+  

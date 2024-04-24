@@ -60,13 +60,16 @@ function Shop({ addToCart }) {
     // Limit the display to a maximum of 6 categories
     if (index < 6 && category.trang_thai === 2) {
         return (
+          
             <div key={index} className='box-category'>
+                  <Link to={`/${category.url_category}`}>
                 <div className='box-img'>
                     <img src={`http://localhost:4000/danhmuc/uploads/${category.hinhanh}`} alt={category.ten_danhmuc}/>
                 </div>
-                <div className='box-name'><Link to={`/${category.url_category}`}>{category.ten_danhmuc}</Link></div>
-
+                <div className='box-name'>{category.ten_danhmuc}</div>
+                </Link>
             </div>
+            
         );
     }
     return null; // If not, return null (don't render anything)
@@ -79,7 +82,7 @@ function Shop({ addToCart }) {
             <nav className='nav-product'>
                 <div className='Container-item-nav'  style={{borderBottom:"none"}}>
                 <div className='item-left-right'>
-                      <h1>Sản Phẩm loại: {url_category}</h1>
+                  
                     </div>
                     <div className='item-nav-right'>
                         {/* Dropdown để lọc sản phẩm */}

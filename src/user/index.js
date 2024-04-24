@@ -15,7 +15,7 @@ import {
 import UserHeaderCenter from "./menu.js";
 import SideBarCart from "./SidebarCart.js";
 import SideBarSearch from "./SidebarSearch.js";
-import ProductModal from "./Component/ProductModal.js";
+
 import MainContent from "./Routers.js"; // Import your MainContent component here
 
 import "./CSS Modules/style.css";
@@ -94,6 +94,7 @@ function UserIndex() {
   return (
     <div>
       <div className="user-container-header">
+        
         {/* <div className="user-header-top">
           <p style={{fontSize:'0.9vw', fontWeight:'100'}}>hotline:0337-667418</p>
           <p style={{fontSize:'0.9vw',fontWeight:'100'}}>Hân Hạnh</p>
@@ -140,16 +141,16 @@ function UserIndex() {
           </Link>
         </li>
         <li >
-        <Link to="#" >
+       <Link to="#"  onClick={CartIconClick}>
           <div id='user-box-cart'>
             
-          <i className="material-icons" id="iccon-zoom-center" onClick={CartIconClick}>
+          <i className="material-icons" id="iccon-zoom-center">
               shopping_cart
             </i>
             <div id='count-cart'>  ( {cart.length} ) </div>
           </div>
       
-          </Link>
+          </Link> 
            
          
         </li>
@@ -161,8 +162,12 @@ function UserIndex() {
       <SideBarSearch onClick={SearchIconClick}/>
     
 
-      <SideBarCart CartIconClick={CartIconClick} />
-      <ProductModal />
+      <SideBarCart CartIconClick={CartIconClick}  />
+      <div id="notify-add-to-cart" className="notify-add-to-cart">
+      Thêm vào giỏ hàng thành công
+    
+      <span id="close-notify">X</span>
+    </div>
 
       <MainContent loading={loading} />
 

@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useParams, useNavigate  } from "react-router-dom";
 import { message } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
-import { themSP } from "../../redux/cartSlice";
+import { themSP } from "../../../redux/cartSlice";
+import SanPhamTrongChiTiet from "./product";
 const ChiTietSanPham = () => {
   const { url_product } = useParams();
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const ChiTietSanPham = () => {
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
   const [selectedSize, setSelectedSize] = useState(null); 
   const user = useSelector((state) => state.auth.user);
+
   
   const fetchProduct = useCallback(async () => {
     try {
@@ -283,6 +285,7 @@ const ChiTietSanPham = () => {
           </div>  
         </div>
       </div>
+      <SanPhamTrongChiTiet/>
     </div>
   );
 };

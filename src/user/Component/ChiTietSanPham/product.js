@@ -1,9 +1,8 @@
 // Trong component Product
 import React, { useState, useEffect, useCallback  } from "react";
 import { Link } from "react-router-dom";
-import ModalProduct from "../modal-addcart";
-import ModalProductBuy from "../modal-buy";
-
+import ModalProduct from "../ProductModal";
+import {addToCart} from "../../JS Modules/UserClick";
 import { useSelector, useDispatch } from 'react-redux';
 import { setNewProducts } from '../../../redux/newProductsSlice';
 import { message } from 'antd';
@@ -13,27 +12,15 @@ function Product({ priceFilter, thutuFilter, loaiFilter, colorFilter  }) {
   const dispatch = useDispatch();
   const [colors, setColors] = useState({});
   const [selectedColor, setSelectedColor] = useState({});
-  const [showModal, setShowModal] = useState(false);
-  const [modalProductId, setModalProductId] = useState(null); 
-  const [modalBuyProductId, setModalBuyProductId] = useState(null); 
-  // Hàm mở modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-   
-  const handleBuy = (id_sanpham) => {
-    setModalBuyProductId(id_sanpham);
-    setShowModal(true);
-  };
-
-  const handleAddToCart = (id_sanpham) => {
-    setModalProductId(id_sanpham); // Thiết lập id_sanpham cho modal
-    setShowModal(true);
-  };
-
-  // Hàm đóng modal
-  const handleCloseModal = () => {
-    setShowModal(false);
-    setModalBuyProductId(null);
-    setModalProductId(null); // Xóa id_sanpham khi đóng modal
+  // Hàm xử lý khi người dùng nhấp vào nút "Thêm vào giỏ"
+  const handleAddToCartClick = () => {
+    // Thực hiện hàm addToCart từ JS module
+    addToCart();
+    
+    // Mở modal bằng cách cập nhật state
+    setIsModalOpen(true);
   };
   
 
@@ -130,75 +117,15 @@ function Product({ priceFilter, thutuFilter, loaiFilter, colorFilter  }) {
     }));
   };
 
-  const filterProductsByPrice = (products, priceFilter) => {
-    if (priceFilter === "0") {
-      return products;
-    }
-    
-
-    const [minPrice, maxPrice] = priceFilter.split("-").map(parseFloat);
-
-    return products.filter(product => {
-      const productPrice = parseFloat(product.gia);
-      return productPrice >= minPrice && productPrice <= maxPrice;
-    });
-  };
-
-  const filterProductsByLoai = (products, loaiFilter) => {
-    if (loaiFilter === "0") {
-      return products;
-    }
-  
-    return products.filter(product => product.id_danhmuc === parseInt(loaiFilter));
-  };
-  
-  const filterProductsByColor = (products, colorFilter) => {
-    if (colorFilter === "0") {
-      return products; // Trả về tất cả sản phẩm nếu chưa chọn màu sắc
-    }
-  
-    // Lọc ra các sản phẩm có màu sắc trùng khớp với màu được chọn
-    const filteredProducts = products.filter(product => {
-      const productColor = product.ten_mau.toLowerCase(); // Chuyển đổi màu sắc sản phẩm thành viết thường
-      const selectedColor = colorFilter.toLowerCase(); // Chuyển đổi màu sắc đã chọn thành viết thường
-      return productColor === selectedColor;
-    });
-    
-  
-  
-    return filteredProducts;
-  };
-  
-
-  const sortProductsByOrder = (products, thutuFilter) => {
-    switch (thutuFilter) {
-        case "1":
-            // Sort by newest
-            return [...products].sort((a, b) => new Date(b.ngay_dang) - new Date(a.ngay_dang));
-        case "2":
-            // Sort by ascending price
-            return [...products].sort((a, b) => parseFloat(a.gia) - parseFloat(b.gia));
-        case "3":
-            // Sort by descending price
-            return [...products].sort((a, b) => parseFloat(b.gia) - parseFloat(a.gia));
-        default:
-            // No sorting
-            return products;
-    }
-};
-
-  
-
-
-  const filteredProductsByPrice = filterProductsByPrice(productList, priceFilter);
-  const filteredProductsByLoai = filterProductsByLoai(filteredProductsByPrice, loaiFilter);
-  const filteredProductsByColor = filterProductsByColor(filteredProductsByLoai, colorFilter);
-  const sortedAndFilteredProducts = sortProductsByOrder(filteredProductsByColor, thutuFilter);
   
   return (
+<div>
+<h1 style={{marginLeft:'12%',marginTop:'4%'}}><p style={{fontSize:'1.7vw'}}>Sản phẩm liên quan</p></h1> <br/>
     <div className="container-product-show">
+  
       <div className="center-layout">
-        {sortedAndFilteredProducts.map((product) => (
+       
+        {productList.map((product) => (
            product.trang_thai === 2 && (
           <div className="product" key={product.id_sanpham}>
              <div className="product-image">
@@ -209,8 +136,8 @@ function Product({ priceFilter, thutuFilter, loaiFilter, colorFilter  }) {
               )}
               </Link>
               <div className="product-button-container ">
-              <button className="buy-now"  onClick={() => handleBuy(product.id_sanpham)}> Mua Ngay </button>
-              <button className="add-to-cart"   onClick={() => handleAddToCart(product.id_sanpham)}> Thêm vào giỏ </button>
+                <button className="buy-now"> Mua Ngay </button>
+                <button className="add-to-cart" onClick={handleAddToCartClick}> Thêm vào giỏ </button>
               </div>
               <div className="favorite">
               {user && user.id_user && product.id_user === user.id_user ? (
@@ -264,8 +191,8 @@ function Product({ priceFilter, thutuFilter, loaiFilter, colorFilter  }) {
            )
         ))}
       </div>
-      <ModalProduct onClose={handleCloseModal} show={showModal} productId={modalProductId} />
-      <ModalProductBuy onClose={handleCloseModal} show={showModal} productId={modalBuyProductId} />
+      {isModalOpen && <ModalProduct />}
+    </div>
     </div>
   );
 }

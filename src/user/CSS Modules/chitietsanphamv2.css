@@ -211,9 +211,8 @@
  
  #container-chitietv2 .button-favorite .icon-container{
      position: relative;
-     margin-top: 2.8%;
      width: 10%;
-     margin-left: 2%;
+      margin-left: 2%;
      border: 1px solid rgb(0, 0, 0);
      display: flex;
      align-items: center;

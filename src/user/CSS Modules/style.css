@@ -201,33 +201,187 @@ footer.darken{
     align-items: center;
 }
 
-.container-category__in .box-category{
+.container-category__in .box-category {
     width: 12%;
     height: 90%;
-   
     margin: 0 10px;
-}
-
-
-.container-category__in .box-category .box-img{
-   height: 80%;
-   width: 100%;
+    position: relative; /* Đặt vị trí tương đối để xử lý các phần tử con */
+  }
   
-}
-
-.container-category__in .box-category .box-img img{
+  .box-category:hover .box-img::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
- }
-
-.container-category__in .box-category .box-name{
-    height: 20%;
-    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Màu nền khi hover */
+    z-index: 1; /* Đảm bảo layer trên cùng */
+    transition: opacity 0.3s ease; /* Hiệu ứng chuyển đổi */
+    opacity: 0.7; /* Độ mờ mặc định */
+  }
   
-    font-size: 0.9vw;
+  .box-category .box-img {
+    position: relative; /* Đặt vị trí tương đối để xử lý các phần tử con */
+  }
+  
+  .box-category .box-img img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+  
+  .box-category .box-name {
+    text-align: center;
+    margin-top: 5px;
+  }
+  
+  .box-category .box-img::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0); /* Màu nền mặc định */
+    z-index: 1; /* Đảm bảo layer trên cùng */
+    transition: opacity 0.3s ease; /* Hiệu ứng chuyển đổi */
+    opacity: 0; /* Ẩn mặc định */
+  }
+  
+/* Lớp phủ modal */
+.modal-overlay {
+    position: fixed; /* Giữ modal luôn trên cùng */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Màu tối nhẹ để làm mờ nền */
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; /* Đặt modal vào giữa */
+    z-index: 1000; /* Đảm bảo modal nằm trên cùng */
+  }
+  
+  /* Nội dung modal */
+  .modal-content {
+    position: relative;
+    width: 500px;
+    height: 220px;
+    background: rgb(255, 255, 255);
+    padding: 20px;
+    display: flex;
+    border-radius: 10px; /* Bo góc cho modal */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Đổ bóng */
+    animation: fadeIn 0.3s ease-in-out; /* Hiệu ứng khi modal xuất hiện */
+  }
+  
+  
+
+  
+    /* Nội dung modal */
+    .modal-content .left {
+        width: 30%;
+        height: 100%;
+        background-color: #00000006;
+        display: flex;
+        justify-content: center;
+            align-items: center;
+      }
+      .modal-content .left img{
+       width: 90%;
+      }
+
+      .modal-content .right {
+        width: 70%;
+        height: 100%;
+        /* background-color: #706d6d; */
+      }
+
+      .modal-content .right .name-product {
+        width: 100%;
+        font-size: 1vw;
+        margin-left: 15px;
+        margin-bottom: 15px;
+        font-weight: bold;
+      }
+
+      .modal-content .right .price-product {
+        width: 100%;
+        font-size: 1vw;
+        margin-left: 15px;
+        margin-bottom: 12px;
+        
+      }
+
+      .modal-content .right .color-product {
+        width: 100%;
+        font-size: 1vw;
+        margin-left: 15px;
+        margin-bottom: 12px;
+        
+      }
+      .modal-content .right #select-size{
+       border: none;
+       outline: none;
+      }
+
+  
+  /* Hiệu ứng cho modal */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9); /* Giảm kích thước ban đầu */
+    }
+    to {
+      opacity: 1;
+      transform: scale(1); /* Tăng kích thước đến 100% */
+    }
+  }
+  
+  /* Nút đóng modal */
+  .modal-content button {
+    position: absolute;
+    left: 15px;
+    top: 5px;
+    border: none;
+    background:none;
+    font-weight: bold;
     cursor: pointer;
- }
- 
+  }
+
+  .modal-content button:hover {
+ color: tomato;
+ background: none;
+  }
+
+
+  .modal-content #add-to-cart {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    padding: 8px 20px;
+    background-color: #000;
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.7vw;
+    transition: 0.3s;
+  }
+
+  .modal-content #add-to-cart:hover {
+    border:  1px solid black;
+    background: none;
+    color: black;
+  }
+
+
+
+
+
+
+
+
+
+

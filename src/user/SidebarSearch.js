@@ -66,7 +66,7 @@ const SideBarSearch = () => {
               {searchResults.map((result, index) => (
                 <tr key={index}>
                   <td id="name_price-product">
-                    <Link to={`/chitietsanpham/${result.id_sanpham}`}>
+                    <Link to={`/chitietsanpham/${result.url_product}`}>
                       <span>{result.ten_sanpham}</span> <br />
                       <span>
                         {result.gia_khuyenmai ? (
@@ -92,7 +92,7 @@ const SideBarSearch = () => {
                     </Link>
                   </td>
                   <td id="image-product">
-                  <Link to={`/chitietsanpham/${result.id_sanpham}`}>
+                  <Link to={`/chitietsanpham/${result.url_product}`}>
                     <div className="box-image-search">
                       <img
                         src={`http://localhost:4000/chitietsanpham/${result.hinh_anh_1}`}

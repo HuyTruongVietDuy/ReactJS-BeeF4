@@ -12,7 +12,7 @@ import TaoLaiMatKhau from "./Component/login/ThayDoiMatKhau.js";
 import LienHe from "./Component/LienHe";
 import ViewCart from "./Component/viewcart";
 import SanPhamYeuThich from "./Component/SanPhamYeuThich.js";
-import ChiTietSanPham from "./Component/Chitietsanphamv2.js";
+import ChiTietSanPham from "./Component/ChiTietSanPham/Chitietsanphamv2.js";
 import ChiTietDonHang from "./Component/ChiTietDonHang.js";
 import SuaUser from "./Component/EditUser.js";
 import BaoLoi from "./Component/Baoloi";
@@ -33,6 +33,7 @@ function MainContent({ loading }) {
 
   return (
     <main id="main">
+        
       {loading ? (
         <Loader /> // Render the Loader component if loading is true
       ) : (

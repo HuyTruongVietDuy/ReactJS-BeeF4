@@ -103,3 +103,51 @@
      
     }
 
+.dasboard-container{
+  width: 100%;
+  min-height: 300px;
+
+  display: flex;
+}
+
+.dasboard-container h1{
+  margin-left: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: orangered;
+}
+
+.dasboard-container .dashboard-left{
+  width: 40%;
+  min-height: 300px;
+ 
+}
+
+
+.dasboard-container .dashboard-right{
+  width: 59%;
+  margin-left: 1%;
+  min-height: 300px;
+}
+
+.dasboard-container .donhangmoinhat{
+  
+}
+
+#fontsize-8vw{
+  font-size: 0.8vw;
+}
+
+#fontsize-7vw{
+  font-size: 0.7vw;
+}
+
+table #pd-cxl{
+  font-size: 0.55vw;
+  padding: 4px;
+  border: 1px solid red;
+  color: rgba(255, 0, 0, 0.656);
+  border-radius: 7px;
+  font-weight: bold;
+  cursor: pointer;
+}

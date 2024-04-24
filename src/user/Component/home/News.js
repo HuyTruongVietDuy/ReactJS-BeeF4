@@ -20,7 +20,7 @@ const News = () => {
     <h1> NEWS SQ&BE </h1>
       <div className='Container-News'>
       {posts.map((post, index) => (
-      <div className='Box-New'>
+      <div className='Box-New' key={index}>
       <div className='Image-New'> <img src={`http://localhost:4000/danhmuc/uploads/${post.hinhanh}`} alt='' /></div>
       <div className='Read-New'>Đọc Ngay</div>
       <div className='Name-New'><Link to={`/baiviet/${post.url_baiviet}`}>{post.tieude}</Link></div>

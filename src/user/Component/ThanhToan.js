@@ -58,8 +58,8 @@ function ThanhToan() {
         const matchedVoucher = data.find((voucher) => voucher.ma_giamgia === voucherCode);
         if (matchedVoucher) {
           console.log("Kết quả từ API:", matchedVoucher);
-          if (matchedVoucher.trang_thai === 2) {
-            message.warning("Mã giảm giá đã được sử dụng");
+          if (matchedVoucher.trang_thai === 2 || matchedVoucher.tinh_trang === 2) {
+            message.warning("Mã giảm giá đã được sử dụng & không hoạt động");
           } else {
             setDiscountPercent(matchedVoucher.phan_tram);
             setIdGiamGia(matchedVoucher.id_giamgia);
@@ -70,6 +70,8 @@ function ThanhToan() {
           setDiscountPercent("");
           message.error("Không tìm thấy mã giảm giá phù hợp");
         }
+
+      
       })
       .catch((error) => {
         console.error("Lỗi khi gọi API:", error);

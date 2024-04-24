@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback  } from "react";
 import { Link } from "react-router-dom";
-import ModalProduct from "../ProductModal";
-import {addToCart} from "../../JS Modules/UserClick";
+import ModalProduct from "../modal-addcart";
+import ModalProductBuy from "../modal-buy";
+
 import { useSelector, useDispatch } from 'react-redux';
 import { setNewProducts } from '../../../redux/newProductsSlice';
 import { message } from 'antd';
@@ -9,22 +10,32 @@ function SanPhamNew( ) {
   const productList = useSelector((state) => state.newProducts);
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
+ 
   const [colors, setColors] = useState({}); // State để lưu trữ thông tin màu
   const [selectedColor, setSelectedColor] = useState({}); // State để lưu trữ màu đã chọn cho mỗi sản phẩm
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [modalProductId, setModalProductId] = useState(null); 
+  const [modalBuyProductId, setModalBuyProductId] = useState(null); 
+  // Hàm mở modal
 
-
-   // Hàm xử lý khi người dùng nhấp vào nút "Thêm vào giỏ"
-   const handleAddToCartClick = (id_sanpham) => {
-    // Thực hiện hàm addToCart từ JS module
-    addToCart();
-    // Truyền id_sanpham vào state để truyền cho ProductModal
-    setModalProductId(id_sanpham);
    
-    setIsModalOpen(true);  // Mở modal bằng cách cập nhật state
+  const handleBuy = (id_sanpham) => {
+    setModalBuyProductId(id_sanpham);
+    setShowModal(true);
   };
-  
+
+  const handleAddToCart = (id_sanpham) => {
+    setModalProductId(id_sanpham); // Thiết lập id_sanpham cho modal
+    setShowModal(true);
+  };
+
+  // Hàm đóng modal
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setModalBuyProductId(null);
+    setModalProductId(null); // Xóa id_sanpham khi đóng modal
+  };
+
   
   const fetchData = useCallback(async () => {
     try {
@@ -143,8 +154,8 @@ function SanPhamNew( ) {
                   )}
                 </Link>
                 <div className="product-button-container">
-                  <button className="buy-now"> Mua Ngay </button>
-                  <button className="add-to-cart" onClick={() => handleAddToCartClick(product.id_sanpham)}> Thêm vào giỏ </button>
+                  <button className="buy-now"  onClick={() => handleBuy(product.id_sanpham)}> Mua Ngay </button>
+                  <button className="add-to-cart"   onClick={() => handleAddToCart(product.id_sanpham)}> Thêm vào giỏ </button>
                 </div>
                 <div className="favorite">
                   {user && user.id_user && product.id_user === user.id_user ? (
@@ -197,7 +208,8 @@ function SanPhamNew( ) {
           )
         ))}
       </div>
-      {isModalOpen && <ModalProduct id_sanpham={modalProductId} />}
+      <ModalProduct onClose={handleCloseModal} show={showModal} productId={modalProductId} />
+      <ModalProductBuy onClose={handleCloseModal} show={showModal} productId={modalBuyProductId} />
     </div>
   );
   

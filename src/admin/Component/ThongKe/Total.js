@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Tooltip } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { Link } from 'react-router-dom'
 const CountQuantity = () => {
     const [data, setData] = useState(0);
     useEffect(() => {
@@ -34,7 +35,7 @@ const CountQuantity = () => {
                     </div>
                 </div>
                 <div id='bottom'>
-                    <a href="/%" style={{color:'rgb(13, 123, 233)'}}> Xem chi tiết</a>
+                    <Link to="/admin/thongke-total" style={{color:'rgb(13, 123, 233)'}}> Xem chi tiết</Link>
                 </div>
             </div>
             
@@ -49,7 +50,7 @@ const CountQuantity = () => {
                     </div>
                 </div>
                 <div id='bottom'>
-                    <a href="/%" style={{color:'rgb(19, 219, 119)'}}> Xem chi tiết</a>
+                    <Link to="/admin/thongke-product" style={{color:'rgb(19, 219, 119)'}}> Xem chi tiết</Link>
                     {/* Hiển thị Tooltip khi hover vào biểu tượng cảnh báo */}
                     {data.lowStockProducts !== 0 && (
     <Tooltip title={`Có ${data.lowStockProducts} sản phẩm sắp hết hàng`}>
@@ -73,7 +74,7 @@ const CountQuantity = () => {
                     </div>
                 </div>
                 <div id='bottom'>
-                    <a href="/%" style={{color:'rgb(237, 191, 5)'}}> Xem chi tiết</a>
+                    <Link to="/admin/thongke-category" style={{color:'rgb(237, 191, 5)'}}> Xem chi tiết</Link>
                 </div>
             </div>
 
@@ -88,7 +89,7 @@ const CountQuantity = () => {
                     </div>
                 </div>
                 <div id='bottom'>
-                    <a href="/%" style={{color:' rgb(229, 40, 6)'}}> Xem chi tiết</a>
+                    <Link to="/admin/thongke-user" style={{color:' rgb(229, 40, 6)'}}> Xem chi tiết</Link>
                 </div>
             </div>
         </div>

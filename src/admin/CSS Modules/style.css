@@ -14,9 +14,11 @@
 
 
 .admin-table th {
-    border-bottom: 1px solid #000; /* Đường viền dưới cho th và td */
+    border-bottom: 1px solid #00000028; /* Đường viền dưới cho th và td */
     padding: 8px; /* Khoảng cách giữa nội dung và viền */
     text-align: center; 
+    background-color: #00000028;
+    border-radius: 4px;
 }
 
 
@@ -150,9 +152,10 @@
   
   .admin-main-content.dark-overlay,
   .admin-sidebar.dark-overlay,
-  #admin-header.dark-overlay{
+  #admin-header.dark-overlay,
+  .admin-main-content img{
     background-color: rgba(111, 108, 108, 0.193); /* Màu nền mờ và độ trong suốt */
-    z-index: 2000;
+    z-index: 99999;
   
   }
 
