@@ -55,7 +55,7 @@ const handleCheckout = () => {
                 <tr key={index}>
                   <td className="td td-1">
                     <div className="img">
-                      <img src={`http://localhost:4000/chitietsanpham/${product.hinh_anh_1}`} alt={product.name} />
+                      <img src={`https://api.sqbe.store/chitietsanpham/${product.hinh_anh_1}`} alt={product.name} />
                     </div>
                     <div className="information">
                       <div className="information-name">{product.ten_sanpham}</div>

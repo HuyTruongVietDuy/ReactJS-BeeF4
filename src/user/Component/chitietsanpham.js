@@ -21,7 +21,7 @@ const ChiTietSanPham = () => {
     const fetchProductDetail = async () => {
       try {
         const response = await fetch(
-          `http://localhost:4000/chitietsanpham/list/${id_sanpham}`
+          `https://api.sqbe.store/chitietsanpham/list/${id_sanpham}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch product detail");
@@ -56,7 +56,7 @@ const ChiTietSanPham = () => {
     const fetchColors = async () => {
       try {
         const response = await fetch(
-          `http://localhost:4000/sanpham/colors/${id_sanpham}`
+          `https://api.sqbe.store/sanpham/colors/${id_sanpham}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch colors");
@@ -77,7 +77,7 @@ const ChiTietSanPham = () => {
         // Assuming productDetail is available here
         if (productDetail) {
           const response = await fetch(
-            `http://localhost:4000/sanpham/sizes/${productDetail.id_chitietsp}`
+            `https://api.sqbe.store/sanpham/sizes/${productDetail.id_chitietsp}`
           );
           if (!response.ok) {
             throw new Error("Failed to fetch sizes");
@@ -188,7 +188,7 @@ const ChiTietSanPham = () => {
             </ul>
             <div className="img">
               <img
-                src={`http://localhost:4000/chitietsanpham/${selectedImage}`} // Sử dụng selectedImage thay vì productDetail.hinh_anh_1
+                src={`https://api.sqbe.store/chitietsanpham/${selectedImage}`} // Sử dụng selectedImage thay vì productDetail.hinh_anh_1
                 alt=""
               />
             </div>
@@ -200,7 +200,7 @@ const ChiTietSanPham = () => {
                   onClick={() => handleImageClick(image)}
                 >
                   <img
-                    src={`http://localhost:4000/chitietsanpham/${image}`}
+                    src={`https://api.sqbe.store/chitietsanpham/${image}`}
                     alt=""
                     style={{
                       border: image === selectedImage ? "2px solid blue" : "none" // Hiển thị khung viền màu xanh cho hình ảnh được chọn

@@ -54,7 +54,7 @@ const SideBarCart = () => {
               <tr>
                 <td id="col-image" rowSpan="5">
                   <img
-                    src={`http://localhost:4000/chitietsanpham/${product.hinh_anh_1}`}
+                    src={`https://api.sqbe.store/chitietsanpham/${product.hinh_anh_1}`}
                     alt="Product"
                   />
                 </td>

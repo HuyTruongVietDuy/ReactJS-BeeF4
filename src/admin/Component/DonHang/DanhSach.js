@@ -13,7 +13,7 @@ const DonHang = () => {
   const itemsPerPage = 10;
 
   const fetchDonHang = useCallback(() => {
-    fetch("http://localhost:4000/donhang/")
+    fetch("https://api.sqbe.store/donhang/")
       .then((response) => response.json())
       .then((data) => {
         dispatch(setDonHang(data)); // dispatch action to set donhang in Redux store

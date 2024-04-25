@@ -47,7 +47,7 @@ function ThanhToan() {
   
 
   const applyVoucher = () => {
-    fetch(`http://localhost:4000/voucher`)
+    fetch(`https://api.sqbe.store/voucher`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -83,7 +83,7 @@ function ThanhToan() {
   
   
   useEffect(() => {
-    fetch("http://localhost:4000/donhang/data")
+    fetch("https://api.sqbe.store/donhang/data")
       .then((response) => response.json())
       .then((data) => {
         setProvinces(data);
@@ -159,7 +159,7 @@ function ThanhToan() {
     };
 
     // Gửi dữ liệu đơn hàng đến backend
-    fetch("http://localhost:4000/donhang/luudonhang", {
+    fetch("https://api.sqbe.store/donhang/luudonhang", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -209,7 +209,7 @@ function ThanhToan() {
       };
 
       // Gửi dữ liệu chi tiết đơn hàng đến backend
-      fetch("http://localhost:4000/donhang/luuchitietdonhang", {
+      fetch("https://api.sqbe.store/donhang/luuchitietdonhang", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -235,7 +235,7 @@ function ThanhToan() {
 
   const createPaymentUrl = (id_donhang, total) => {
     // Gửi dữ liệu đơn hàng đến backend
-    fetch("http://localhost:4000/payment/create_payment_url", {
+    fetch("https://api.sqbe.store/payment/create_payment_url", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -493,7 +493,7 @@ function ThanhToan() {
                   <tr>
                   <td id="img" rowSpan="3">
   <img
-    src={`http://localhost:4000/chitietsanpham/${product.hinh_anh_1}`}
+    src={`https://api.sqbe.store/chitietsanpham/${product.hinh_anh_1}`}
     alt={product.ten_sanpham}
   />
   <span id="count">{product.soluong}</span>

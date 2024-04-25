@@ -21,7 +21,7 @@ const ListChiTietSanPham = () => {
   
   const fetchData = useCallback(async () => {
     try {
-      const response = await fetch(`http://localhost:4000/chitietsanpham/list/${id_sanpham}`);
+      const response = await fetch(`https://api.sqbe.store/chitietsanpham/list/${id_sanpham}`);
       if (response.ok) {
         const data = await response.json();
         dispatch(setChiTietSanPhamList(data));
@@ -73,7 +73,7 @@ const ListChiTietSanPham = () => {
 
     const handleDeleteConfirmed = async (id) => {
       try {
-          const response = await fetch(`http://localhost:4000/chitietsanpham/delete/${selectedSanPhamCTId}`, {
+          const response = await fetch(`https://api.sqbe.store/chitietsanpham/delete/${selectedSanPhamCTId}`, {
               method: 'DELETE',
           });
           if (!response.ok) {

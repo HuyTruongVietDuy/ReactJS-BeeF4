@@ -26,7 +26,7 @@ const AddProduct = ({ showForm, toggleForm, id, handleAddConfirmed, fetchdtb }) 
 
   const handleAddProduct = async (gia, giaKhuyenMai, maMau, tenMau) => {
     try {
-      const response = await axios.post('http://localhost:4000/chitietsanpham/add', {
+      const response = await axios.post('https://api.sqbe.store/chitietsanpham/add', {
         id_sanpham: id,
         gia: gia,
         gia_khuyenmai: giaKhuyenMai,

@@ -13,7 +13,7 @@ const AddVoucher = ({ showForm, toggleForm, action }) => {
     ngayKetThuc.setDate(ngayKetThuc.getDate() + parseInt(soNgay)); // Parse soNgay thành số nguyên
 
     try {
-      const response = await axios.post('http://localhost:4000/voucher/add-voucher', {
+      const response = await axios.post('https://api.sqbe.store/voucher/add-voucher', {
         ma_giamgia: maGiamGia,
         phan_tram: phanTram,
         ngay_ket_thuc: ngayKetThuc

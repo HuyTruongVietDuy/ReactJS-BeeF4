@@ -5,7 +5,7 @@ const News = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-      fetch('http://localhost:4000/baiviet/listbaiviet')
+      fetch('https://api.sqbe.store/baiviet/listbaiviet')
           .then(response => response.json())
           .then(data => {
               // Assuming data is an array of posts, slice it to get the first three posts
@@ -21,7 +21,7 @@ const News = () => {
       <div className='Container-News'>
       {posts.map((post, index) => (
       <div className='Box-New' key={index}>
-      <div className='Image-New'> <img src={`http://localhost:4000/danhmuc/uploads/${post.hinhanh}`} alt='' /></div>
+      <div className='Image-New'> <img src={`https://api.sqbe.store/danhmuc/uploads/${post.hinhanh}`} alt='' /></div>
       <div className='Read-New'>Đọc Ngay</div>
       <div className='Name-New'><Link to={`/baiviet/${post.url_baiviet}`}>{post.tieude}</Link></div>
       </div>

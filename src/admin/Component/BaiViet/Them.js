@@ -23,7 +23,7 @@ const Them = () => {
     formData.append('url_baiviet', urlBaiviet); // Append URL of the article to the form data
 
     try {
-      const response = await fetch('http://localhost:4000/baiviet/addbaiviet', {
+      const response = await fetch('https://api.sqbe.store/baiviet/addbaiviet', {
         method: 'POST',
         body: formData,
       });

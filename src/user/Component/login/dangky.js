@@ -36,7 +36,7 @@ const DangKy = () => {
 
     // Gửi yêu cầu POST tới API
     try {
-      const response = await fetch('http://localhost:4000/taikhoan/dangky', {
+      const response = await fetch('https://api.sqbe.store/taikhoan/dangky', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

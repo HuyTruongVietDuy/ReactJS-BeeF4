@@ -9,7 +9,7 @@ function Shop({ addToCart }) {
     
     useEffect(() => {
         // Fetch danh mục theo url_category
-        fetch(`http://localhost:4000/danhmuc/${url_category}`)
+        fetch(`https://api.sqbe.store/danhmuc/${url_category}`)
             .then(response => response.json())
             .then(data => {
                 // Kiểm tra xem danh sách danh mục tồn tại và là một mảng
@@ -64,7 +64,7 @@ function Shop({ addToCart }) {
             <div key={index} className='box-category'>
                   <Link to={`/${category.url_category}`}>
                 <div className='box-img'>
-                    <img src={`http://localhost:4000/danhmuc/uploads/${category.hinhanh}`} alt={category.ten_danhmuc}/>
+                    <img src={`https://api.sqbe.store/danhmuc/uploads/${category.hinhanh}`} alt={category.ten_danhmuc}/>
                 </div>
                 <div className='box-name'>{category.ten_danhmuc}</div>
                 </Link>

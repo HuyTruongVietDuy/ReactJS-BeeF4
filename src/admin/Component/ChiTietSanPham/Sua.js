@@ -20,7 +20,7 @@ const SuaProduct = ({ showEditModal, closeEditModal, ChiTiet, id_chitietsp, hand
     e.preventDefault();
     // Submit form data to server
     const formData = { gia, gia_khuyenmai: giaKhuyenMai, ten_mau: tenMau, ma_mau: maMau };
-    fetch(`http://localhost:4000/chitietsanpham/edit/${ChiTiet.id_chitietsp}`, {
+    fetch(`https://api.sqbe.store/chitietsanpham/edit/${ChiTiet.id_chitietsp}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'

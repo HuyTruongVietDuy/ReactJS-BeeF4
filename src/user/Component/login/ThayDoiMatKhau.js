@@ -37,7 +37,7 @@ const TaoMatKhau = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:4000/taikhoan/reset-password/${id_user}`, {
+      const response = await fetch(`https://api.sqbe.store/taikhoan/reset-password/${id_user}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -27,10 +27,10 @@ const ThanhToanSucces = () => {
     const fetchData = async () => {
       try {
         const donhangResponse = await fetch(
-          `http://localhost:4000/donhang/${id_donhang}`
+          `https://api.sqbe.store/donhang/${id_donhang}`
         );
         const chitietDonhangResponse = await fetch(
-          `http://localhost:4000/donhang/listchitietdonhang/${id_donhang}`
+          `https://api.sqbe.store/donhang/listchitietdonhang/${id_donhang}`
         );
 
         if (!donhangResponse.ok || !chitietDonhangResponse.ok) {
@@ -81,7 +81,7 @@ const ThanhToanSucces = () => {
           {chitietDonHang &&
                 chitietDonHang.map((product, index) => (
             <div className="thongtinsanpham" key={index}>
-              <img src={`http://localhost:4000/chitietsanpham/${product.hinh_anh_1}`}  alt="" />
+              <img src={`https://api.sqbe.store/chitietsanpham/${product.hinh_anh_1}`}  alt="" />
               <div className="tensanphamsoluong">
                 <div className="tensanpham">{product.ten_sanpham}</div>
                 <div className="soluong">số lượng: {product.so_luong} / size: {product.ten_size} / màu: {product.ten_mau} </div>

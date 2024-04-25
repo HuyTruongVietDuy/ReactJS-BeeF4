@@ -25,10 +25,10 @@ const ChiTietDonHang = () => {
     const fetchData = async () => {
       try {
         const donhangResponse = await fetch(
-          `http://localhost:4000/donhang/${id_donhang}`
+          `https://api.sqbe.store/donhang/${id_donhang}`
         );
         const chitietDonhangResponse = await fetch(
-          `http://localhost:4000/donhang/listchitietdonhang/${id_donhang}`
+          `https://api.sqbe.store/donhang/listchitietdonhang/${id_donhang}`
         );
 
         if (!donhangResponse.ok || !chitietDonhangResponse.ok) {
@@ -109,7 +109,7 @@ const ChiTietDonHang = () => {
                       <div className="box-product-mini">
                         <div className="left">
                           <img
-                            src={`http://localhost:4000/chitietsanpham/${product.hinh_anh_1}`}
+                            src={`https://api.sqbe.store/chitietsanpham/${product.hinh_anh_1}`}
                             alt=""
                           />
                         </div>

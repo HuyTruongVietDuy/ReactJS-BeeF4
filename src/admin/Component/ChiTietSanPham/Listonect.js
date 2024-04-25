@@ -38,7 +38,7 @@ const ListMotChiTiet = () => {
 
   const handleDelete = (id_mau, imageNumber) => {
     // Gửi yêu cầu PUT đến endpoint để gỡ bỏ hình ảnh cụ thể
-    fetch(`http://localhost:4000/chitietsanpham/removeimage/${id_mau}/${imageNumber}`, {
+    fetch(`https://api.sqbe.store/chitietsanpham/removeimage/${id_mau}/${imageNumber}`, {
       method: 'PUT',
     })
     .then(response => {
@@ -68,7 +68,7 @@ const ListMotChiTiet = () => {
 
   const fetchData = useCallback(async () => {
     try {
-      const response = await fetch(`http://localhost:4000/chitietsanpham/listonect/${id_chitietsp}`);
+      const response = await fetch(`https://api.sqbe.store/chitietsanpham/listonect/${id_chitietsp}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -128,9 +128,9 @@ const ListMotChiTiet = () => {
                       {color[`hinh_anh_${number}`] ? (
                         <td>
                           <img
-                            src={`http://localhost:4000/chitietsanpham/${color[`hinh_anh_${number}`]}`}
+                            src={`https://api.sqbe.store/chitietsanpham/${color[`hinh_anh_${number}`]}`}
                             alt=""
-                            onClick={() => handleImageClick(`http://localhost:4000/chitietsanpham/${color[`hinh_anh_${number}`]}`)}
+                            onClick={() => handleImageClick(`https://api.sqbe.store/chitietsanpham/${color[`hinh_anh_${number}`]}`)}
                           />
                           <p>
                             {color[`hinh_anh_${number}`] && (

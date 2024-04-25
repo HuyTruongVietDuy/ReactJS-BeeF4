@@ -9,7 +9,7 @@ const ChiTietBaiViet = () => {
 
   useEffect(() => {
     // Fetch dữ liệu của bài viết dựa trên url_baiviet từ API
-    fetch(`http://localhost:4000/baiviet/url/${url_baiviet}`)
+    fetch(`https://api.sqbe.store/baiviet/url/${url_baiviet}`)
         .then(response => response.json())
         .then(data => {
             // Lưu trữ dữ liệu của bài viết vào state

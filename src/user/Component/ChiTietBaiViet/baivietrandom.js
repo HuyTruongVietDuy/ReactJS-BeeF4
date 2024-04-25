@@ -4,7 +4,7 @@ const BaiVietRanDom = () => {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:4000/baiviet/listbaiviet')
+        fetch('https://api.sqbe.store/baiviet/listbaiviet')
             .then(response => response.json())
             .then(data => {
                 // Assuming data is an array of posts, slice it to get the first three posts
@@ -26,7 +26,7 @@ const BaiVietRanDom = () => {
                 <div key={index}>
                 <div  className='baiviet-0'>
                      <Link to={`/baiviet/${post.url_baiviet}`}>
-                   <img src={`http://localhost:4000/danhmuc/uploads/${post.hinhanh}`} alt='' />
+                   <img src={`https://api.sqbe.store/danhmuc/uploads/${post.hinhanh}`} alt='' />
                     {post.tieude}
                     </Link>
                 </div>

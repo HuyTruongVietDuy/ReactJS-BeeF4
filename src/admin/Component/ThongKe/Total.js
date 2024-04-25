@@ -6,7 +6,7 @@ const CountQuantity = () => {
     const [data, setData] = useState(0);
     useEffect(() => {
         // Địa chỉ endpoint API bạn muốn gọi
-        const apiUrl = "http://localhost:4000/thongke/total";
+        const apiUrl = "https://api.sqbe.store/thongke/total";
     
         // Gọi API sử dụng fetch
         fetch(apiUrl)

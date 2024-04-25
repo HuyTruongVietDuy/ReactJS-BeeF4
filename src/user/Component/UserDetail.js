@@ -16,7 +16,7 @@ const UserDetail = () => {
     useEffect(() => {
         if (user) {
             // Fetch orders for the current user
-            axios.get(`http://localhost:4000/donhang/listdh/${user.id_user}`)
+            axios.get(`https://api.sqbe.store/donhang/listdh/${user.id_user}`)
                 .then(response => {
                     setOrders(response.data);
                 })

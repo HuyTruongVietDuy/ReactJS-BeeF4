@@ -26,7 +26,7 @@ function Product({ priceFilter, thutuFilter, loaiFilter, colorFilter  }) {
 
   const fetchData = useCallback(async () => {
     try {
-        const response = await fetch("http://localhost:4000/sanpham/listall");
+        const response = await fetch("https://api.sqbe.store/sanpham/listall");
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -52,7 +52,7 @@ function Product({ priceFilter, thutuFilter, loaiFilter, colorFilter  }) {
         message.warning('Vui lòng đăng nhập tài khoản!!');
         return;
       }
-        const response = await fetch(`http://localhost:4000/taikhoan/addfavorite/${productId}/${userId}`, {
+        const response = await fetch(`https://api.sqbe.store/taikhoan/addfavorite/${productId}/${userId}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ function Product({ priceFilter, thutuFilter, loaiFilter, colorFilter  }) {
   
     const handleRemoveFavoriteClick = async (productId, userId) => {
       try {
-        const response = await fetch(`http://localhost:4000/taikhoan/removefavorite/${productId}/${userId}`, {
+        const response = await fetch(`https://api.sqbe.store/taikhoan/removefavorite/${productId}/${userId}`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
@@ -91,7 +91,7 @@ function Product({ priceFilter, thutuFilter, loaiFilter, colorFilter  }) {
 
   const fetchColors = async (id_sanpham) => {
     try {
-      const response = await fetch(`http://localhost:4000/sanpham/colors/${id_sanpham}`);
+      const response = await fetch(`https://api.sqbe.store/sanpham/colors/${id_sanpham}`);
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -130,9 +130,9 @@ function Product({ priceFilter, thutuFilter, loaiFilter, colorFilter  }) {
           <div className="product" key={product.id_sanpham}>
              <div className="product-image">
               <Link to={`/chitietsanpham/${product.url_product}`} > 
-              <img src={`http://localhost:4000/chitietsanpham/${selectedColor[product.id_sanpham]?.hinh_anh_1}`} alt="" className="main-image" />
+              <img src={`https://api.sqbe.store/chitietsanpham/${selectedColor[product.id_sanpham]?.hinh_anh_1}`} alt="" className="main-image" />
               {selectedColor[product.id_sanpham]?.hinh_anh_2 && (
-                <img src={`http://localhost:4000/chitietsanpham/${selectedColor[product.id_sanpham]?.hinh_anh_6}`} alt="" className="hover-image" />
+                <img src={`https://api.sqbe.store/chitietsanpham/${selectedColor[product.id_sanpham]?.hinh_anh_6}`} alt="" className="hover-image" />
               )}
               </Link>
               <div className="product-button-container ">

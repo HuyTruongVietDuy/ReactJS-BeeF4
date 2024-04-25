@@ -14,7 +14,7 @@ const ListUser = () => {
   const [articleToDeleteId, setArticleToDeleteId] = useState(null);
 
   const fetchData = useCallback(() => {
-    fetch('http://localhost:4000/baiviet/listbaiviet')
+    fetch('https://api.sqbe.store/baiviet/listbaiviet')
       .then(response => response.json())
       .then(data => {
         dispatch(setBaivietList(data));
@@ -44,7 +44,7 @@ const ListUser = () => {
   };
 
   const updateStatus = (id_baiviet, newStatus) => {
-    fetch(`http://localhost:4000/baiviet/updatestatus/${id_baiviet}`, {
+    fetch(`https://api.sqbe.store/baiviet/updatestatus/${id_baiviet}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ const ListUser = () => {
   };
 
   const deleteConfirmed = (id_baiviet) => {
-    fetch(`http://localhost:4000/baiviet/delete/${id_baiviet}`, {
+    fetch(`https://api.sqbe.store/baiviet/delete/${id_baiviet}`, {
       method: 'DELETE'
     })
     .then(response => {
@@ -115,7 +115,7 @@ const ListUser = () => {
                 <td>{news.id_baiviet}</td>
                 <td>{news.tieude}</td>
                 <td>
-                  <img src={`http://localhost:4000/baiviet/uploads/${news.hinhanh}`} alt="Hình ảnh" />
+                  <img src={`https://api.sqbe.store/baiviet/uploads/${news.hinhanh}`} alt="Hình ảnh" />
                 </td>
                 <td>{formatDateTime(news.time_add)}</td>
                 <td>{formatDateTime(news.time_update)}</td>

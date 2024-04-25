@@ -29,7 +29,7 @@ const Sua = ({ showEditModal, closeEditModal, editData, number,fetchdtb }) => {
     const formData = new FormData();
     formData.append(`image${number}`, image);
 
-    fetch(`http://localhost:4000/chitietsanpham/updateimage/${editData.id_mau}`, {
+    fetch(`https://api.sqbe.store/chitietsanpham/updateimage/${editData.id_mau}`, {
       method: 'PUT',
       body: formData
     })
@@ -64,7 +64,7 @@ const Sua = ({ showEditModal, closeEditModal, editData, number,fetchdtb }) => {
               <h1>Sửa / Thêm hình ảnh: {number}</h1>
               <label htmlFor={`image${number}`}>Sửa/Thêm Hình ảnh {number}:</label><br/>
               {previewImage && <img src={previewImage} alt="Preview" style={{ width: '100px', height: '100px' }} />} 
-              {!previewImage && oldImage && <img src={`http://localhost:4000/chitietsanpham/${oldImage}`} alt="Old Image" style={{ width: '200px', height: '200px' }} />}
+              {!previewImage && oldImage && <img src={`https://api.sqbe.store/chitietsanpham/${oldImage}`} alt="Old Image" style={{ width: '200px', height: '200px' }} />}
               <input type="file" id={`image${number}`} name={`image${number}`} onChange={handleImageChange} /><br/><br/>
               <input type="submit" value="Submit"/>
             </form>

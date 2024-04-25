@@ -15,7 +15,7 @@ const KhoHang = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch('http://localhost:4000/danhmuc/list');
+      const response = await fetch('https://api.sqbe.store/danhmuc/list');
       if (!response.ok) {
         throw new Error('Lỗi khi fetch danh sách danh mục');
       }
@@ -43,7 +43,7 @@ const KhoHang = () => {
   };
   const fetchProductsByCategory = async () => { // Loại bỏ tham số categoryId
     try {
-      const response = await fetch(`http://localhost:4000/sanpham/list/${selectedCategory}`);
+      const response = await fetch(`https://api.sqbe.store/sanpham/list/${selectedCategory}`);
       if (!response.ok) {
         throw new Error('Lỗi khi fetch sản phẩm theo danh mục');
       }
@@ -57,7 +57,7 @@ const KhoHang = () => {
 
   const fetchSizes = async () => {
     try {
-      const response = await fetch('http://localhost:4000/khohang/listsize');
+      const response = await fetch('https://api.sqbe.store/khohang/listsize');
       if (!response.ok) {
         throw new Error('Lỗi khi fetch danh sách kích thước');
       }
@@ -70,7 +70,7 @@ const KhoHang = () => {
 
   const fetchProductDetails = async (productId) => {
     try {
-      const response = await fetch(`http://localhost:4000/chitietsanpham/list/${productId}`);
+      const response = await fetch(`https://api.sqbe.store/chitietsanpham/list/${productId}`);
       if (!response.ok) {
         throw new Error('Lỗi khi fetch chi tiết sản phẩm');
       }
@@ -133,7 +133,7 @@ const KhoHang = () => {
     return; // Ngăn chặn việc gửi request nếu chưa chọn size
   }
     try {
-      const response = await fetch(`http://localhost:4000/khohang/add-quantity/${idChitietsp}`, {
+      const response = await fetch(`https://api.sqbe.store/khohang/add-quantity/${idChitietsp}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

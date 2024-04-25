@@ -6,7 +6,7 @@ const DashBoardRight = () => {
 
     useEffect(() => {
         // Fetch dữ liệu thống kê từ API khi component được mount
-        fetch('http://localhost:4000/thongke/thong-ke-theo-thang')
+        fetch('https://api.sqbe.store/thongke/thong-ke-theo-thang')
             .then(response => response.json())
             .then(data => {
                 setMonthlyStatistics(data);

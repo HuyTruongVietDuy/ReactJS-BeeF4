@@ -8,7 +8,7 @@ function CategoryShow() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:4000/danhmuc/list');
+                const response = await fetch('https://api.sqbe.store/danhmuc/list');
                 if (!response.ok) {
                     throw new Error('Failed to fetch categories');
                 }
@@ -55,7 +55,7 @@ function CategoryShow() {
                         danhMuc.trang_thai === 2 && (
                             <Link to={`/${danhMuc.url_category}`} key={index}>
                             <div className={`category ${index >= chiSoHienTai && index < chiSoHienTai + 6 ? 'active' : 'previous'}`} key={danhMuc.id_danhmuc}>
-                                <div className="image-category"><img src={`http://localhost:4000/danhmuc/uploads/${danhMuc.hinhanh}`} alt=''/></div>
+                                <div className="image-category"><img src={`https://api.sqbe.store/danhmuc/uploads/${danhMuc.hinhanh}`} alt=''/></div>
                                 <div className="name-category">{danhMuc.ten_danhmuc}</div>
                             
                             </div>

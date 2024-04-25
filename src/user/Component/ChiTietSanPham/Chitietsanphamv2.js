@@ -22,7 +22,7 @@ const ChiTietSanPham = () => {
   
   const fetchProduct = useCallback(async () => {
     try {
-      const response = await fetch(`http://localhost:4000/chitietsanpham/listct/${url_product}`);
+      const response = await fetch(`https://api.sqbe.store/chitietsanpham/listct/${url_product}`);
       if (!response.ok) {
         throw new Error('Failed to fetch product');
       }
@@ -33,7 +33,7 @@ const ChiTietSanPham = () => {
 
         const images = [];
         for (let i = 1; i <= 6; i++) {
-          images.push(`http://localhost:4000/chitietsanpham/${data.productDetails[0][`hinh_anh_${i}`]}`);
+          images.push(`https://api.sqbe.store/chitietsanpham/${data.productDetails[0][`hinh_anh_${i}`]}`);
         }
         setImageList(images);
         // Mặc định chọn hình ảnh đầu tiên khi dữ liệu được tải thành công
@@ -56,7 +56,7 @@ const ChiTietSanPham = () => {
     const fetchColors = async () => {
       try {
         const response = await fetch(
-          `http://localhost:4000/sanpham/colors-ct/${url_product}`
+          `https://api.sqbe.store/sanpham/colors-ct/${url_product}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch colors");
@@ -77,7 +77,7 @@ const ChiTietSanPham = () => {
       try {
         if (productDetail) {
           const response = await fetch(
-            `http://localhost:4000/sanpham/sizes/${productDetail.id_chitietsp}`
+            `https://api.sqbe.store/sanpham/sizes/${productDetail.id_chitietsp}`
           );
           if (!response.ok) {
             throw new Error("Failed to fetch sizes");
@@ -104,7 +104,7 @@ const ChiTietSanPham = () => {
     
     const colorImages = [];
     for (let i = 1; i <= 6; i++) {
-      colorImages.push(`http://localhost:4000/chitietsanpham/${selectedColor[`hinh_anh_${i}`]}`);
+      colorImages.push(`https://api.sqbe.store/chitietsanpham/${selectedColor[`hinh_anh_${i}`]}`);
     }
     setImageList(colorImages);
     setSelectedImageIndex(0); // Reset to display the first image of the newly selected color
@@ -169,7 +169,7 @@ const ChiTietSanPham = () => {
       message.warning('Vui lòng đăng nhập tài khoản!!');
       return;
     }
-      const response = await fetch(`http://localhost:4000/taikhoan/addfavorite/${productId}/${userId}`, {
+      const response = await fetch(`https://api.sqbe.store/taikhoan/addfavorite/${productId}/${userId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -189,7 +189,7 @@ const ChiTietSanPham = () => {
 
   const handleRemoveFavoriteClick = async (productId, userId) => {
     try {
-      const response = await fetch(`http://localhost:4000/taikhoan/removefavorite/${productId}/${userId}`, {
+      const response = await fetch(`https://api.sqbe.store/taikhoan/removefavorite/${productId}/${userId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -249,7 +249,7 @@ const ChiTietSanPham = () => {
           <div className="container-loai-ctsp">
            {colors.map((color, index) => (
   <div key={index} className="box-img-loai" >
-    <img src={`http://localhost:4000/chitietsanpham/${color.hinh_anh_6}`} alt="" style={{ border: selectedColorIndex === index ? '2px solid rgba(128, 128, 128, 0.386)' : 'none' }} onClick={() => handleColorClick(index)}/>
+    <img src={`https://api.sqbe.store/chitietsanpham/${color.hinh_anh_6}`} alt="" style={{ border: selectedColorIndex === index ? '2px solid rgba(128, 128, 128, 0.386)' : 'none' }} onClick={() => handleColorClick(index)}/>
   </div>
 ))}
           </div>
