@@ -85,8 +85,8 @@ const Modal = ({ onClose, show, productId }) => {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <h1>Thêm vào giỏ hàng</h1>
-      <button onClick={onClose}>X</button>
+        <h1>Thêm vào giỏ hàng <i class="material-icons">add_shopping_cart</i></h1>
+        <div className='container'>
         <div className='left'>
         <img src={`http://localhost:4000/chitietsanpham/${product.hinh_anh_1}`} alt=""  />
         </div>
@@ -106,9 +106,14 @@ const Modal = ({ onClose, show, productId }) => {
 
           </select></div>
 </div>
-        
-
+        </div>
+      
+       
+       <div id='container-button'>
+       <span id='add-to-cart' onClick={onClose}>Hủy</span>
         <span id='add-to-cart' onClick={handleAddToCart}>Xác nhận</span>
+       </div>
+       
    
       </div>
    

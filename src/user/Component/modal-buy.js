@@ -9,7 +9,7 @@ const Modal = ({ onClose, show, productId }) => {
   const [selectedSize, setSelectedSize] = useState('');
   const dispatch = useDispatch();
   const navigate  = useNavigate();
-  const cart = useSelector((state) => state.cart.listSP);
+
   useEffect(() => {
     if (show) {
       fetch(`http://localhost:4000/chitietsanpham/listctsp/${productId}`)
@@ -88,7 +88,8 @@ const Modal = ({ onClose, show, productId }) => {
     <div className="modal-overlay">
       
       <div className="modal-content">
-      <button onClick={onClose}>X</button>
+      <h1>Mua ngay <i class="material-icons">store</i></h1>
+        <div className='container'>
         <div className='left'>
         <img src={`http://localhost:4000/chitietsanpham/${product.hinh_anh_1}`} alt=""  />
         </div>
@@ -108,9 +109,11 @@ const Modal = ({ onClose, show, productId }) => {
 
           </select></div>
 </div>
-        
-
+        </div>
+        <div id='container-button'>
+       <span id='add-to-cart' onClick={onClose}>Hủy</span>
         <span id='add-to-cart' onClick={handleAddToCart}>Xác nhận</span>
+       </div>
    
       </div>
    

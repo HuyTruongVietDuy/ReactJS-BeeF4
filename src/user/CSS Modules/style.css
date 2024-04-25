@@ -267,10 +267,10 @@ footer.darken{
   .modal-content {
     position: relative;
     width: 500px;
-    height: 220px;
+    height: 240px;
     background: rgb(255, 255, 255);
     padding: 20px;
-    display: flex;
+
     border-radius: 10px; /* Bo góc cho modal */
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Đổ bóng */
     animation: fadeIn 0.3s ease-in-out; /* Hiệu ứng khi modal xuất hiện */
@@ -278,7 +278,24 @@ footer.darken{
   
   
 
-  
+  .modal-content .container{
+    display: flex;
+  }
+
+  .modal-content h1{
+    position: relative;
+    text-align: center;
+    top: -13px;
+    font-size: 0.7vw;
+    color: rgba(112, 112, 112, 0.647);
+    word-wrap: normal;
+    vertical-align: sub;
+  }
+
+
+  .modal-content h1 i{
+    vertical-align: middle;
+  }
     /* Nội dung modal */
     .modal-content .left {
         width: 30%;
@@ -339,27 +356,18 @@ footer.darken{
     }
   }
   
-  /* Nút đóng modal */
-  .modal-content button {
-    position: absolute;
-    left: 15px;
-    top: 5px;
-    border: none;
-    background:none;
-    font-weight: bold;
-    cursor: pointer;
-  }
 
   .modal-content button:hover {
  color: tomato;
  background: none;
   }
 
-
-  .modal-content #add-to-cart {
+.modal-content #container-button{
     position: absolute;
     bottom: 10px;
     right: 10px;
+  }
+  .modal-content #add-to-cart {
     padding: 8px 20px;
     background-color: #000;
     color: white;
@@ -368,6 +376,7 @@ footer.darken{
     cursor: pointer;
     font-size: 0.7vw;
     transition: 0.3s;
+    margin: 0 3px;
   }
 
   .modal-content #add-to-cart:hover {

@@ -14,28 +14,35 @@ function Product({  thutuFilter  }) {
   const [selectedColor, setSelectedColor] = useState({});
 
   const { url_category } = useParams();
-  const [showModal, setShowModal] = useState(false);
-  const [modalProductId, setModalProductId] = useState(null); 
+
+    const [showBuyModal, setShowBuyModal] = useState(false);
   const [modalBuyProductId, setModalBuyProductId] = useState(null); 
+  const [showAddToCartModal, setShowAddToCartModal] = useState(false);
+  const [modalAddCartProductId, setAddCartProductId] = useState(null); 
   // Hàm mở modal
 
    
   const handleBuy = (id_sanpham) => {
     setModalBuyProductId(id_sanpham);
-    setShowModal(true);
+    setShowBuyModal(true);
   };
-
+  
   const handleAddToCart = (id_sanpham) => {
-    setModalProductId(id_sanpham); // Thiết lập id_sanpham cho modal
-    setShowModal(true);
+    setAddCartProductId(id_sanpham);
+    setShowAddToCartModal(true);
   };
+  
 
-  // Hàm đóng modal
-  const handleCloseModal = () => {
-    setShowModal(false);
+  const handleCloseBuyModal = () => {
+    setShowBuyModal(false);
     setModalBuyProductId(null);
-    setModalProductId(null); // Xóa id_sanpham khi đóng modal
   };
+  
+  const handleCloseAddToCartModal = () => {
+    setShowAddToCartModal(false);
+    setAddCartProductId(null);
+  };
+  
  
   const fetchData = useCallback(async () => {
     try {
@@ -231,8 +238,8 @@ function Product({  thutuFilter  }) {
             )
         ))}
       </div>
-      <ModalProduct onClose={handleCloseModal} show={showModal} productId={modalProductId} />
-      <ModalProductBuy onClose={handleCloseModal} show={showModal} productId={modalBuyProductId} />
+      <ModalProduct onClose={handleCloseAddToCartModal} show={showAddToCartModal} productId={modalAddCartProductId} />
+<ModalProductBuy onClose={handleCloseBuyModal} show={showBuyModal} productId={modalBuyProductId} />
     </div>
   );
 }

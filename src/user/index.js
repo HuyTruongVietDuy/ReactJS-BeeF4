@@ -15,8 +15,9 @@ import {
 import UserHeaderCenter from "./menu.js";
 import SideBarCart from "./SidebarCart.js";
 import SideBarSearch from "./SidebarSearch.js";
+import MainContent from "./Routers.js";
+import FacebookMsg from "./Component/Message.js";
 
-import MainContent from "./Routers.js"; // Import your MainContent component here
 
 import "./CSS Modules/style.css";
 import "./CSS Modules/header.css";
@@ -168,7 +169,11 @@ function UserIndex() {
     
       <span id="close-notify">X</span>
     </div>
-
+   
+        {/* pageId="105011498981016
+        appId="262708290168837" */}
+  
+        <FacebookMsg/>
       <MainContent loading={loading} />
 
       <footer>

@@ -1,8 +1,10 @@
 // Trong component Product
 import React, { useState, useEffect, useCallback  } from "react";
 import { Link, useParams } from "react-router-dom";
-import ModalProduct from "./ProductModal";
-import {addToCart} from "../JS Modules/UserClick";
+
+import ModalProduct from "./modal-addcart";
+import ModalProductBuy from "./modal-buy";
+
 import { useSelector, useDispatch } from 'react-redux';
 import { setNewProducts } from '../../redux/newProductsSlice';
 import { message } from 'antd';
@@ -12,15 +14,33 @@ function SanPhamYeuThich({  thutuFilter  }) {
   const dispatch = useDispatch();
   const [colors, setColors] = useState({});
   const [selectedColor, setSelectedColor] = useState({});
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const { id_user } = useParams();
-  // Hàm xử lý khi người dùng nhấp vào nút "Thêm vào giỏ"
-  const handleAddToCartClick = () => {
-    // Thực hiện hàm addToCart từ JS module
-    addToCart();
-    
-    // Mở modal bằng cách cập nhật state
-    setIsModalOpen(true);
+  
+  
+  const [showBuyModal, setShowBuyModal] = useState(false);
+  const [modalBuyProductId, setModalBuyProductId] = useState(null); 
+  const [showAddToCartModal, setShowAddToCartModal] = useState(false);
+  const [modalAddCartProductId, setAddCartProductId] = useState(null);
+
+  const handleBuy = (id_sanpham) => {
+    setModalBuyProductId(id_sanpham);
+    setShowBuyModal(true);
+  };
+  
+  const handleAddToCart = (id_sanpham) => {
+    setAddCartProductId(id_sanpham);
+    setShowAddToCartModal(true);
+  };
+  
+
+  const handleCloseBuyModal = () => {
+    setShowBuyModal(false);
+    setModalBuyProductId(null);
+  };
+  
+  const handleCloseAddToCartModal = () => {
+    setShowAddToCartModal(false);
+    setAddCartProductId(null);
   };
   
  
@@ -163,8 +183,8 @@ function SanPhamYeuThich({  thutuFilter  }) {
                   )}
                 </Link>
                 <div className="product-button-container ">
-                  <button className="buy-now"> Mua Ngay </button>
-                  <button className="add-to-cart" onClick={handleAddToCartClick}> Thêm vào giỏ </button>
+                <button className="buy-now"  onClick={() => handleBuy(product.id_sanpham)}> Mua Ngay </button>
+                <button className="add-to-cart"   onClick={() => handleAddToCart(product.id_sanpham)}> Thêm vào giỏ </button>
                 </div>
                 <div className="favorite">
                   {user && user.id_user && product.id_user === user.id_user ? (
@@ -223,7 +243,8 @@ function SanPhamYeuThich({  thutuFilter  }) {
           )}
         </div>
       </div>
-      {isModalOpen && <ModalProduct />}
+      <ModalProduct onClose={handleCloseAddToCartModal} show={showAddToCartModal} productId={modalAddCartProductId} />
+<ModalProductBuy onClose={handleCloseBuyModal} show={showBuyModal} productId={modalBuyProductId} />
     </div>
   );
 }

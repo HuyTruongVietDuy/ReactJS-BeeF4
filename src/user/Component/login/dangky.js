@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { message } from 'antd';
 
 const DangKy = () => {
@@ -9,7 +9,7 @@ const DangKy = () => {
   const matKhauRef = useRef(null);
   const gioiTinhNamRef = useRef(null);
   const gioiTinhNuRef = useRef(null);
-
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault(); // Ngăn chặn sự kiện gửi form mặc định
 
@@ -53,6 +53,7 @@ const DangKy = () => {
       if (response.ok) {
         // Xử lý khi đăng ký thành công
         console.log('Đăng ký thành công!');
+        navigate('/dangnhap');
         message.success('Đăng ký thành công!');
       } else {
         // Xử lý khi có lỗi từ phía server
