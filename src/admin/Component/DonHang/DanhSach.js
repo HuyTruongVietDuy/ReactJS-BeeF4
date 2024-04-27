@@ -68,7 +68,7 @@ const DonHang = () => {
   return (
     <div id="container-main-admin">
       <Xem
-        showEditModal={showEditModal}
+        showViewModal={showViewModal} // Truyền showEditModal vào dưới dạng showViewModal
         closeEditModal={closeEditModal}
         selectedBill={selectedBill} // Pass selected bill data to the Xem component
         dispatchdata={dispatchdata}
