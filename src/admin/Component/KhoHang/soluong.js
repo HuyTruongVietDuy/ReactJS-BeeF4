@@ -15,7 +15,7 @@ const Soluong = ({ productId , refreshProductDetails}) => {
   // Function to fetch product details from the API
   const fetchProductDetails = async (productId) => {
     try {
-      const response = await fetch(`http://localhost:4000/khohang/totalquanlity/${productId}`);
+      const response = await fetch(`https://api.sqbe.store/khohang/totalquanlity/${productId}`);
       if (!response.ok) {
         throw new Error('Failed to fetch product details');
       }

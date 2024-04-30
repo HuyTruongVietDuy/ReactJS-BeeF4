@@ -13,7 +13,7 @@ const AddProduct = ({ showForm, toggleForm, handleAddProduct }) => {
   useEffect(() => {
     const fetchDataDM = async () => {
       try {
-        const response = await fetch('http://localhost:4000/danhmuc/list');
+        const response = await fetch('https://api.sqbe.store/danhmuc/list');
         if (!response.ok) {
           throw new Error('Failed to fetch danh muc list');
         }

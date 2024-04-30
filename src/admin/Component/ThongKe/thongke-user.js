@@ -9,9 +9,9 @@ const DashBoard = () => {
   const [lowStockProducts, setLowStockProducts] = useState([]); // New state for low-stock products
 
   useEffect(() => {
-    const apiUrlTotal = "http://localhost:4000/thongke/total";
-    const apiUrlSanPham = "http://localhost:4000/thongke/getusers";
-    const apiUrlLowStock = "http://localhost:4000/thongke/getusers-role"; // Endpoint for low-stock products
+    const apiUrlTotal = "https://api.sqbe.store/thongke/total";
+    const apiUrlSanPham = "https://api.sqbe.store/thongke/getusers";
+    const apiUrlLowStock = "https://api.sqbe.store/thongke/getusers-role"; // Endpoint for low-stock products
   
     fetch(apiUrlTotal)
       .then((response) => response.json())

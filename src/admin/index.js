@@ -211,7 +211,7 @@ function AdminIndex() {
               <Route path="/thongke-product" element={<Thongkeproduct />} />
               <Route path="/thongke-category" element={<Thongkecategory />} />
               <Route path="/thongke-user" element={<ThongkeUser />} />
-              <Route />
+            
             </Routes>
           </div>
         </div>

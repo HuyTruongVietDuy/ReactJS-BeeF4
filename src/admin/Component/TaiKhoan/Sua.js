@@ -17,7 +17,7 @@ const Sua = ({ showEditModal, closeEditModal, selectedDanhMuc, handleEditCategor
 useEffect(() => {
     const fetchData = async () => {
       try {
-        const responseDanhMuc = await fetch('http://localhost:4000/danhmuc/list');
+        const responseDanhMuc = await fetch('https://api.sqbe.store/danhmuc/list');
         if (!responseDanhMuc.ok) {
           throw new Error('Failed to fetch danh muc list');
         }
@@ -43,7 +43,7 @@ useEffect(() => {
       });
       // Gán hình ảnh cũ nếu có
       if (selectedDanhMuc.hinhanh) {
-        setHinhanhCu(`http://localhost:4000/danhmuc/uploads/${selectedDanhMuc.hinhanh}`);
+        setHinhanhCu(`https://api.sqbe.store/danhmuc/uploads/${selectedDanhMuc.hinhanh}`);
       }
     }
   }, [selectedDanhMuc]);
@@ -85,7 +85,7 @@ useEffect(() => {
         formData.append('hinhanh', danhMucData.hinhanh);
       }
 
-      const response = await fetch(`http://localhost:4000/danhmuc/sua/${selectedDanhMuc.id_danhmuc}`, {
+      const response = await fetch(`https://api.sqbe.store/danhmuc/sua/${selectedDanhMuc.id_danhmuc}`, {
         method: 'PUT',
         body: formData
       });

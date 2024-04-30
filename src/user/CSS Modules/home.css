@@ -36,6 +36,7 @@
 }
 .user-banner{
     position: relative;
+    margin: 0 auto;
     top: -30px;
     background-size: cover; /* hiển thị hình nền sao cho toàn bộ phần tử được phủ kín */
     background-position: center; /* căn chỉnh hình nền ở giữa phần tử */
@@ -106,15 +107,100 @@
 
   @media only screen and (max-width: 954px) {
     .user-banner{
-        height: 100vh;
+        height: 60vh;
+        margin-top: 10vh;
     }
     .user-banner img {
         width: 100%;
-        height: 100vh;
+        padding: 0%;
       }
     
 }
 
+@media only screen and (max-width: 800px) {
+    
+
+    .user-banner{
+        height: 60vh;
+        margin-top: 9vh;
+       
+    }
+    .user-banner img {
+        width: 100%;
+        padding: 0% 0;
+      }
+    
+
+
+      .banner-text {
+        font-size: 2vw;
+       }
+     
+}
+
+
+@media only screen and (max-width: 662px) {
+    
+
+    .user-banner{
+        height: 50vh;
+        margin-top: 9vh;
+       
+    }
+    .user-banner img {
+        width: 100%;
+        padding: 0% 0;
+      }
+    
+
+
+      .banner-text {
+        font-size: 2vw;
+       }
+     
+}
+
+@media only screen and (max-width: 564px) {
+    
+
+    .user-banner{
+        height: 40vh;
+        margin-top: 9vh;
+       
+    }
+    .user-banner img {
+        width: 100%;
+        padding: 0% 0;
+      }
+    
+
+
+      .banner-text {
+        font-size: 2vw;
+       }
+     
+}
+
+@media only screen and (max-width: 400px) {
+    
+
+    .user-banner{
+        height: 35vh;
+        margin-top: 9vh;
+       
+    }
+    .user-banner img {
+        width: 100%;
+        padding: 0% 0;
+      }
+    
+
+
+      .banner-text {
+        font-size: 2vw;
+       }
+     
+}
 
 .container-slide{
     width: 100%;
@@ -320,7 +406,8 @@
       font-size: 2vw;
        
     }
-    
+
+   
 }
 
 
@@ -562,6 +649,11 @@
  right: 10%;
 }
 
+@media only screen and (max-width: 1320px){
+    .product-image .sold-out{
+        font-size: 1.5vw;
+       }
+    }
 
 @media only screen and (max-width: 1112px){
     .product {
@@ -839,15 +931,60 @@
     .product-price #gia_khuyenmai{
         position: absolute;
         right: 0;
-        font-size: 2.5vw;
+        font-size: 1.8vw; 
        }
        
        .product-price span{
       
-        font-size: 2.5vw; 
+        font-size: 1.8vw; 
        }
-    
+
+       .Container-new .Container-News .Box-New {
+        margin: 20px auto;
+        width: 70%;
+      }
+      
+      .Container-new .Container-News .Box-New  {
+        margin: 20px auto;
+        width: 60%;
+      }
+      
+   
+      .Container-new .Container-News .Box-New .Image-New img {
+        width: 100%;
+        padding: 0%;
+      }
+      
+ 
 }
+    
+@media only screen and (max-width: 642px) {
+    .product-price #gia_khuyenmai{
+        position: absolute;
+        right: 0;
+        font-size: 2.2vw; 
+       }
+       
+       .product-price span{
+      
+        font-size: 2.2vw; 
+       }
+}
+
+@media only screen and (max-width: 400px) {
+    .product-price #gia_khuyenmai{
+        position: absolute;
+        right: 0;
+        font-size: 2.4vw; 
+       }
+       
+       .product-price span{
+      font-size: 2.4vw; 
+       }
+}
+
+
+
 .boxfooter1{
     width: 100%;
     height: 100px;

@@ -5,7 +5,7 @@ const BaiVietChildren = () => {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:4000/baiviet/listbaiviet')
+        fetch('https://api.sqbe.store/baiviet/listbaiviet')
             .then(response => response.json())
             .then(data => {
                 // Set 'posts' to the data returned from the API

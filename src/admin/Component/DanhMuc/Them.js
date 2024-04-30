@@ -15,7 +15,7 @@ const AddCategory = ({ showForm, toggleForm, handleAddCategory }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const responseDanhMuc = await fetch('http://localhost:4000/danhmuc/list');
+        const responseDanhMuc = await fetch('https://api.sqbe.store/danhmuc/list');
         if (!responseDanhMuc.ok) {
           throw new Error('Failed to fetch danh muc list');
         }

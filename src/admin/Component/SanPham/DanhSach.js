@@ -39,7 +39,7 @@ import { setSanPhamList } from '../../../redux/sanPhamSlice';
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const fetchData = useCallback(async () => {
       try {
-        const response = await fetch('http://localhost:4000/sanpham/list');
+        const response = await fetch('https://api.sqbe.store/sanpham/list');
         if (!response.ok) {
           throw new Error('Failed to fetch sản phẩm list');
         }
@@ -63,7 +63,7 @@ import { setSanPhamList } from '../../../redux/sanPhamSlice';
   
     const handleAddProduct = async (ten_sanpham, id_Danhmuc, chatlieu, mota, kieu_dang, url_product) => {
       try {
-        const response = await fetch('http://localhost:4000/sanpham/them', {
+        const response = await fetch('https://api.sqbe.store/sanpham/them', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -89,7 +89,7 @@ import { setSanPhamList } from '../../../redux/sanPhamSlice';
     
     const handleEditProduct = async (sanPhamId, ten_sanpham, id_Danhmuc, chatlieu, trang_thai, mota, kieu_dang, url_product) => {
       try {
-        const response = await fetch(`http://localhost:4000/sanpham/sua/${sanPhamId}`, {
+        const response = await fetch(`https://api.sqbe.store/sanpham/sua/${sanPhamId}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'
@@ -124,7 +124,7 @@ import { setSanPhamList } from '../../../redux/sanPhamSlice';
 
     const handleDeleteConfirmed = async (id) => {
       try {
-          const response = await fetch(`http://localhost:4000/sanpham/xoa/${id}`, {
+          const response = await fetch(`https://api.sqbe.store/sanpham/xoa/${id}`, {
               method: 'DELETE',
           });
           if (!response.ok) {
@@ -141,7 +141,7 @@ import { setSanPhamList } from '../../../redux/sanPhamSlice';
   };
   
   const updateStatus = (id_sanpham, newStatus) => {
-    fetch(`http://localhost:4000/sanpham/updatestatus/${id_sanpham}`, {
+    fetch(`https://api.sqbe.store/sanpham/updatestatus/${id_sanpham}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

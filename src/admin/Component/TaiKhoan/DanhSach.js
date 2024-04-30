@@ -7,7 +7,7 @@ const ListUser = () => {
   const itemsPerPage = 10;
 
   useEffect(() => {
-    fetch('http://localhost:4000/taikhoan/listtaikhoan')
+    fetch('https://api.sqbe.store/taikhoan/listtaikhoan')
       .then(response => response.json())
       .then(data => {
         setUsers(data);

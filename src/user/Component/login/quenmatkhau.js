@@ -12,7 +12,7 @@ const QuenMatKhau = () => {
     message.info(' Vui lòng đợi...', 2);
     try {
  
-      const response = await axios.post('http://localhost:4000/taikhoan/forgot-password', { email });
+      const response = await axios.post('https://api.sqbe.store/taikhoan/forgot-password', { email });
       
     
       

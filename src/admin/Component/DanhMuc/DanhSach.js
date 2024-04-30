@@ -41,7 +41,7 @@ const ListDanhMuc = () => {
 
   const fetchData = useCallback(async () => {
     try {
-      const response = await fetch("http://localhost:4000/danhmuc/list");
+      const response = await fetch("https://api.sqbe.store/danhmuc/list");
       if (!response.ok) {
         throw new Error("Failed to fetch danh muc list");
       }
@@ -65,7 +65,7 @@ const ListDanhMuc = () => {
       formData.append("id_danhmuc_cha", id_danhmuc_cha);
       formData.append("hinhanh", hinhanh);
       formData.append('url_category', url_category);
-      const response = await fetch("http://localhost:4000/danhmuc/them", {
+      const response = await fetch("https://api.sqbe.store/danhmuc/them", {
         method: "POST",
         body: formData, // Use formData instead of JSON.stringify
       });
@@ -98,7 +98,7 @@ const ListDanhMuc = () => {
 
   const handleDeleteConfirmed = async (id) => {
     try {
-      const response = await fetch(`http://localhost:4000/danhmuc/xoa/${id}`, {
+      const response = await fetch(`https://api.sqbe.store/danhmuc/xoa/${id}`, {
         method: "DELETE",
       });
       if (!response.ok) {
@@ -146,7 +146,7 @@ const ListDanhMuc = () => {
   };
 
   const updateStatus = (id_danhmuc, newStatus) => {
-    fetch(`http://localhost:4000/danhmuc/updatestatus/${id_danhmuc}`, {
+    fetch(`https://api.sqbe.store/danhmuc/updatestatus/${id_danhmuc}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -229,12 +229,12 @@ const ListDanhMuc = () => {
                 <td
                   onClick={() =>
                     handleImageClick(
-                      `http://localhost:4000/danhmuc/uploads/${danhMuc.hinhanh}`
+                      `https://api.sqbe.store/danhmuc/uploads/${danhMuc.hinhanh}`
                     )
                   }
                 >
                   <img
-                    src={`http://localhost:4000/danhmuc/uploads/${danhMuc.hinhanh}`}
+                    src={`https://api.sqbe.store/danhmuc/uploads/${danhMuc.hinhanh}`}
                     alt=""
                   />
                 </td>

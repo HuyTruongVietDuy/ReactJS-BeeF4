@@ -9,8 +9,8 @@ const DashBoard = () => {
   
 
   useEffect(() => {
-    const apiUrlTotal = "http://localhost:4000/thongke/total";
-    const apiDanhMuc = "http://localhost:4000/thongke/getdanhmucandsum";
+    const apiUrlTotal = "https://api.sqbe.store/thongke/total";
+    const apiDanhMuc = "https://api.sqbe.store/thongke/getdanhmucandsum";
     
   
     fetch(apiUrlTotal)

@@ -13,7 +13,7 @@ function Shop() {
    
    
     useEffect(() => {
-        fetch('http://localhost:4000/danhmuc/list')
+        fetch('https://api.sqbe.store/danhmuc/list')
             .then(response => response.json())
             .then(data => {
                 // Check if danhMucList exists and is an array

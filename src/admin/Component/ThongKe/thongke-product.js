@@ -9,9 +9,9 @@
     const [lowStockProducts, setLowStockProducts] = useState([]); // New state for low-stock products
 
     useEffect(() => {
-      const apiUrlTotal = "http://localhost:4000/thongke/total";
-      const apiUrlSanPham = "http://localhost:4000/thongke/thongketheo-sanpham";
-      const apiUrlLowStock = "http://localhost:4000/thongke/low-stock-products"; // Endpoint for low-stock products
+      const apiUrlTotal = "https://api.sqbe.store/thongke/total";
+      const apiUrlSanPham = "https://api.sqbe.store/thongke/thongketheo-sanpham";
+      const apiUrlLowStock = "https://api.sqbe.store/thongke/low-stock-products"; // Endpoint for low-stock products
     
       fetch(apiUrlTotal)
         .then((response) => response.json())

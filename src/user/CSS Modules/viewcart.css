@@ -164,9 +164,19 @@
         width: 90%;
         height: 100%;
     }
+    .continue{
+        display: none;
+    }
+
+    
 }
 
 @media (max-width: 767px) {
+
+    
+.container-cart-user  th {
+    font-size: 2vw;
+}
     .container-cart-user   .box {
         width: 80%;
     }
@@ -203,8 +213,40 @@
     }
 
     .container-cart-user  .continue {
-        margin-top: 50px;
-        width: 100%;
+        display: none;
+    }
+
+    .container-cart-user  .payment {
+        font-size: 2.5vw;
+       
+     }
+     .amount span{
+       font-size: 2vw;
+     }
+     .amount input{
+        font-size: 2vw;
+        font-weight: bold;
+        border: none;
+     }
+
+     .td-3{
+        width:20% ;
+        font-size: 2.2vw;
+     }
+
+     .container-cart-user  .total  span{
+       font-size: 3vw;
+    }
+
+    .information-name{
+        font-size: 2vw;
+    }
+    .information-size{
+        font-size: 2vw;
+    }
+
+    .information-price{
+        font-size: 2vw;
     }
 }
 

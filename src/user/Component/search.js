@@ -48,7 +48,7 @@ const Search = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:4000/sanpham/listall`);
+      const response = await fetch(`https://api.sqbe.store/sanpham/listall`);
       if (!response.ok) {
         throw new Error("Error fetching search results");
       }
@@ -66,7 +66,7 @@ const Search = () => {
 
   const fetchColors = async (id_sanpham) => {
     try {
-      const response = await fetch(`http://localhost:4000/sanpham/colors/${id_sanpham}`);
+      const response = await fetch(`https://api.sqbe.store/sanpham/colors/${id_sanpham}`);
       if (!response.ok) {
         throw new Error("Error fetching product colors");
       }
@@ -125,13 +125,13 @@ const Search = () => {
                 <div className="product-image">
                   <Link to={`/chitietsanpham/${product.url_product}`}>
                     <img
-                      src={`http://localhost:4000/chitietsanpham/${selectedColor[product.id_sanpham]?.hinh_anh_6}`}
+                      src={`https://api.sqbe.store/chitietsanpham/${selectedColor[product.id_sanpham]?.hinh_anh_6}`}
                       alt=""
                       className="main-image"
                     />
                     {selectedColor[product.id_sanpham]?.hinh_anh_2 && (
                       <img
-                        src={`http://localhost:4000/chitietsanpham/${selectedColor[product.id_sanpham]?.hinh_anh_2}`}
+                        src={`https://api.sqbe.store/chitietsanpham/${selectedColor[product.id_sanpham]?.hinh_anh_2}`}
                         alt=""
                         className="hover-image"
                       />

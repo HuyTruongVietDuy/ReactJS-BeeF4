@@ -19,7 +19,7 @@ const SideBarSearch = () => {
         return;
       }
 
-      const response = await fetch(`http://localhost:4000/sanpham/listall?q=${query}`);
+      const response = await fetch(`https://api.sqbe.store/sanpham/listall?q=${query}`);
       const data = await response.json();
 
       // Filter the results based on the product name
@@ -95,7 +95,7 @@ const SideBarSearch = () => {
                   <Link to={`/chitietsanpham/${result.url_product}`}>
                     <div className="box-image-search">
                       <img
-                        src={`http://localhost:4000/chitietsanpham/${result.hinh_anh_1}`}
+                        src={`https://api.sqbe.store/chitietsanpham/${result.hinh_anh_1}`}
                         alt={result.ten_sanpham}
                       />
                     </div>

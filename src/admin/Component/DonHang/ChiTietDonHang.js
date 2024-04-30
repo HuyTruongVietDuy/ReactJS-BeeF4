@@ -13,7 +13,7 @@ const ChiTietDonHang = ({ showViewModal, closeViewModal, selectedBill, dispatchd
 
   const fetchOrderDetails = async (id_donhang) => {
     try {
-      const response = await fetch(`http://localhost:4000/donhang/listchitietdonhang/${id_donhang}`);
+      const response = await fetch(`https://api.sqbe.store/donhang/listchitietdonhang/${id_donhang}`);
       if (!response.ok) {
         throw new Error('Failed to fetch order details');
       }
@@ -27,7 +27,7 @@ const ChiTietDonHang = ({ showViewModal, closeViewModal, selectedBill, dispatchd
 
   const updateStatus = async (newStatus) => {
     try {
-      const response = await fetch(`http://localhost:4000/donhang/update-tinh-trang/${selectedBill.id_donhang}`, {
+      const response = await fetch(`https://api.sqbe.store/donhang/update-tinh-trang/${selectedBill.id_donhang}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -134,7 +134,7 @@ const ChiTietDonHang = ({ showViewModal, closeViewModal, selectedBill, dispatchd
                           <div className="box-product">
                             <div className="left">
                               <div className="box-img">
-                                <img src={`http://localhost:4000/chitietsanpham/${detail.hinh_anh_1}`} alt={detail.ten_mau} />
+                                <img src={`https://api.sqbe.store/chitietsanpham/${detail.hinh_anh_1}`} alt={detail.ten_mau} />
                               </div>
                             </div>
                             <div className="right">

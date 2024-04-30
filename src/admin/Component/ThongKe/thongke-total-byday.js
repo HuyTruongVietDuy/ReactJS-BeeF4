@@ -27,7 +27,7 @@ const DashBoard = () => {
         const formattedEndDate = encodeURIComponent(endDate.toISOString());
         
         // Gọi API để lấy dữ liệu thống kê
-        axios.get(`http://localhost:4000/thongke/thong-ke-doanh-thu?start_date=${formattedStartDate}&end_date=${formattedEndDate}`)
+        axios.get(`https://api.sqbe.store/thongke/thong-ke-doanh-thu?start_date=${formattedStartDate}&end_date=${formattedEndDate}`)
             .then(response => {
                 const { totalRevenue } = response.data;
                 setTotalRevenue(totalRevenue);

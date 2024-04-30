@@ -6,7 +6,7 @@ const DashBoardLeft = () => {
     const [latestOrder, setLatestOrder] = useState(null);
 
     useEffect(() => {
-        fetch('http://localhost:4000/thongke/don-hang-moi-nhat')
+        fetch('https://api.sqbe.store/thongke/don-hang-moi-nhat')
             .then(response => response.json())
             .then(data => {
                 // Cập nhật state với dữ liệu nhận được từ API

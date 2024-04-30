@@ -34,7 +34,7 @@ const SuaDonHang = ({ showEditModal, closeEditModal, selectedBill, donhangID, di
 
   // Tải dữ liệu tỉnh thành khi component được mount
   useEffect(() => {
-    fetch("http://localhost:4000/donhang/data")
+    fetch("https://api.sqbe.store/donhang/data")
       .then((response) => response.json())
       .then((data) => {
         setProvinces(data);
@@ -105,7 +105,7 @@ const SuaDonHang = ({ showEditModal, closeEditModal, selectedBill, donhangID, di
 
     try {
       const response = await fetch(
-        `http://localhost:4000/donhang/update-address/${donhangID}`,
+        `https://api.sqbe.store/donhang/update-address/${donhangID}`,
         {
           method: 'PUT',
           headers: {

@@ -12,7 +12,7 @@ const Modal = ({ onClose, show, productId }) => {
 
   useEffect(() => {
     if (show) {
-      fetch(`http://localhost:4000/chitietsanpham/listctsp/${productId}`)
+      fetch(`https://api.sqbe.store/chitietsanpham/listctsp/${productId}`)
         .then((response) => response.json())
         .then((data) => {
           const productDetails = data.productDetails;
@@ -59,7 +59,7 @@ const Modal = ({ onClose, show, productId }) => {
       try {
         if (productId) {
           const response = await fetch(
-            `http://localhost:4000/sanpham/sizes/${product.id_chitietsp}`
+            `https://api.sqbe.store/sanpham/sizes/${product.id_chitietsp}`
           );
           if (!response.ok) {
             throw new Error("Failed to fetch sizes");
@@ -91,7 +91,7 @@ const Modal = ({ onClose, show, productId }) => {
       <h1>Mua ngay <i class="material-icons">store</i></h1>
         <div className='container'>
         <div className='left'>
-        <img src={`http://localhost:4000/chitietsanpham/${product.hinh_anh_1}`} alt=""  />
+        <img src={`https://api.sqbe.store/chitietsanpham/${product.hinh_anh_1}`} alt=""  />
         </div>
         <div className='right'> 
         <div className='name-product'> {product.ten_sanpham}</div>

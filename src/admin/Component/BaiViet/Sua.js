@@ -14,7 +14,7 @@ const Sua = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/baiviet/${id_baiviet}`);
+        const response = await fetch(`https://api.sqbe.store/baiviet/${id_baiviet}`);
         if (!response.ok) {
           throw new Error('Failed to fetch article');
         }
@@ -48,7 +48,7 @@ const Sua = () => {
         formData.append('hinhanh', image);
       }
 
-      const response = await fetch(`http://localhost:4000/baiviet/editbaiviet/${id_baiviet}`, {
+      const response = await fetch(`https://api.sqbe.store/baiviet/editbaiviet/${id_baiviet}`, {
         method: 'PUT',
         body: formData
       });
@@ -90,7 +90,7 @@ const Sua = () => {
               {oldImage && (
                 <div>
                   <label>Hình ảnh cũ:</label><br />
-                  <img src={`http://localhost:4000/baiviet/uploads/${oldImage}`} alt="Hình ảnh cũ" style={{ maxWidth: "200px" }} />
+                  <img src={`https://api.sqbe.store/baiviet/uploads/${oldImage}`} alt="Hình ảnh cũ" style={{ maxWidth: "200px" }} />
                 </div>
               )}
               <label>Chọn hình ảnh mới:</label>

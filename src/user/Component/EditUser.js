@@ -23,7 +23,7 @@ const EditUs = () => {
     if (user && user.id_user) {
       const fetchUserInfo = async () => {
         try {
-          const response = await axios.get(`http://localhost:4000/taikhoan/user/${user.id_user}`);
+          const response = await axios.get(`https://api.sqbe.store/taikhoan/user/${user.id_user}`);
           
           if (response.status === 200) {
             const userData = response.data;
@@ -59,7 +59,7 @@ const EditUs = () => {
     e.preventDefault(); // Ngăn việc tải lại trang
     
     try {
-      const response = await axios.patch(`http://localhost:4000/taikhoan/update-user/${user.id_user}`, {
+      const response = await axios.patch(`https://api.sqbe.store/taikhoan/update-user/${user.id_user}`, {
         ho_ten: tenTaiKhoan,
         diachi: diaChi,
         tinh: tinh,

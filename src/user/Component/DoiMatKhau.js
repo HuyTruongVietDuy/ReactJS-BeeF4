@@ -25,7 +25,7 @@ const DoiMatKhau = () => {
 
     try {
         const response = await axios.post(
-          `http://localhost:4000/taikhoan/change-password/${user.id_user}`, 
+          `https://api.sqbe.store/taikhoan/change-password/${user.id_user}`, 
           {
             oldPassword,
             newPassword,

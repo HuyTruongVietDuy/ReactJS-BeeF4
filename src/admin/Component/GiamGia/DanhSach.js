@@ -14,7 +14,7 @@ const ListDiscountCodes = () => {
 
   const fetchDiscountCodes = useCallback(async () => {
     try {
-      const response = await axios.get('http://localhost:4000/voucher/');
+      const response = await axios.get('https://api.sqbe.store/voucher/');
       dispatch(setVouchers(response.data));
     } catch (error) {
       console.error('Error fetching discount codes:', error);

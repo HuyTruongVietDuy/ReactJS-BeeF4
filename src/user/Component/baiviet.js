@@ -5,7 +5,7 @@ const BaiViet = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:4000/baiviet/listbaiviet')
+    fetch('https://api.sqbe.store/baiviet/listbaiviet')
       .then(response => response.json())
       .then(data => setPosts(data))
       .catch(error => console.error('Error fetching data:', error));
@@ -25,7 +25,7 @@ const BaiViet = () => {
                 <div className="img">
               
                  
-                        <img src={`http://localhost:4000/danhmuc/uploads/${post.hinhanh}`} alt='' />
+                        <img src={`https://api.sqbe.store/danhmuc/uploads/${post.hinhanh}`} alt='' />
                   
                
                 </div>

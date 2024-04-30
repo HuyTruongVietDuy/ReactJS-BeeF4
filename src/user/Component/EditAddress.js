@@ -22,7 +22,7 @@ const EditAddress = () => {
   const sdtRef = useRef(null);
   const [errors, setErrors] = useState({});
   useEffect(() => {
-    fetch("http://localhost:4000/donhang/data")
+    fetch("https://api.sqbe.store/donhang/data")
       .then((response) => response.json())
       .then((data) => {
         setProvinces(data);
@@ -110,7 +110,7 @@ const EditAddress = () => {
         sdt: sdtRef.current.value
       };
       try {
-        const response = await fetch(`http://localhost:4000/donhang/update-address/${id_donhang}`, {
+        const response = await fetch(`https://api.sqbe.store/donhang/update-address/${id_donhang}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'

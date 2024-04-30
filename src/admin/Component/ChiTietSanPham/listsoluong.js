@@ -6,7 +6,7 @@ const ListSoLuong = ({ id_chitietsp }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/khohang/quanlykho/${id_chitietsp}`);
+        const response = await fetch(`https://api.sqbe.store/khohang/quanlykho/${id_chitietsp}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -25,7 +25,7 @@ const ListSoLuong = ({ id_chitietsp }) => {
 
   const handleDelete = async (id_kho) => { // Thay đổi tham số từ id_size sang id_kho
     try {
-      const response = await fetch(`http://localhost:4000/khohang/quanlykho/${id_kho}`, { // Sửa đường dẫn API để gọi đến router xóa với id_kho
+      const response = await fetch(`https://api.sqbe.store/khohang/quanlykho/${id_kho}`, { // Sửa đường dẫn API để gọi đến router xóa với id_kho
         method: 'DELETE'
       });
       if (!response.ok) {

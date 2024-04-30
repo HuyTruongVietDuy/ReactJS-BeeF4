@@ -13,7 +13,7 @@ const MenuApp = () => {
 
   const fetchDanhMucList = async () => {
     try {
-      const response = await fetch("http://localhost:4000/danhmuc/list");
+      const response = await fetch("https://api.sqbe.store/danhmuc/list");
       const data = await response.json();
 
       if (data.success) {
