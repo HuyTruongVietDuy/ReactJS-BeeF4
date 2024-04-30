@@ -77,6 +77,10 @@
     margin-left: 2%;
 }
 
+.container-user-detail .box-2-mb {
+display: none;
+}
+
 .container-user-detail .box-2 p {
     margin: 10px 0;
     color: #333;
@@ -97,18 +101,70 @@
     cursor: pointer;
 }
 
-@media(max-width:1024px) {
+@media(max-width:1400px) {
+    .container-user-detail .box-2 p {
+      font-size: 1.4vw;
+    }
+}
+
+@media(max-width:898px) {
     .container-user-detail .content {
-        flex-direction: column;
-        width: 90%;
+        width: 100%;
+         display: flex; /* Sử dụng Flexbox */
+         flex-direction: column; /* Sắp xếp theo chiều dọc */
+         width: 100%; /* Chiếm toàn bộ chiều rộng */
+     }
+     .container-user-detail .box-1 {
+        width: 95%;
+        margin: 0 auto
     }
 
-    .container-user-detail .box-1 {
-        width: 100%;
+    .container-user-detail .box-1 h1 {
+       font-size: 3vw;
     }
+    .container-user-detail .box-1 th,
+    .container-user-detail .box-1 td {
+       font-size: 1.7vw;
+    }
+    #xct a{
+        font-size: 1.5vw;
+    }
+    .container-user-detail .box-2 {
+      display: none;
+    }
+    .container-user-detail .box-2-mb {
+        display: block;
+        margin-left: 5%;
+        margin-bottom: 2%;
+      }
 
-    .container-user-detail .table {
-        width: 100%;
+      .container-user-detail .box-2-mb p {
+        font-size: 2vw;
+        margin-bottom: 5px;
+      }
+
+      .container-user-detail .box-2-mb span {
+        font-size: 2vw;
+        margin-bottom: 5px;
+      }
+
+
+      .container-user-detail .box-2-mb h1 {
+        font-size: 3vw;
+        margin-bottom: 10px;
+      }
+
+      .container-user-detail .box-2-mb button {
+        display: block;
+        padding: 5px 10px;
+        margin: 5px 0;
+        background-color: white;
+        border: 1px solid rgb(229, 229, 229);
+        cursor: pointer;
+        font-size: 2vw;
+    }
+    .container-user-detail .box-2-mb button a {
+        font-size: 2vw;
     }
 }
 

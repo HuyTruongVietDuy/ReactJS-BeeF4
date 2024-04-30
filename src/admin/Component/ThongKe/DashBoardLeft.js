@@ -13,7 +13,7 @@ const DashBoardLeft = () => {
                 setLatestOrder(data);
             })
             .catch(error => {
-                console.error('Lỗi khi lấy đơn hàng mới nhất:', error);
+            
             });
     }, []);
 

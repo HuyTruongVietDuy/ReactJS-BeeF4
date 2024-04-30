@@ -2,9 +2,8 @@
 
 
 .container-gioithieu {
-    width: 80%;
-    margin: auto;
-    overflow: hidden;
+    max-width: 80%; /* Không vượt quá 80% chiều rộng */
+  
 }
 
 /* main {
@@ -31,15 +30,23 @@
     height: 500px;
     object-fit: cover; /* Đảm bảo ảnh luôn được hiển thị mà không bị vặn hoặc căng */}
 
+    .introduce {
+        display: flex;
+        flex-direction: column; /* Sắp xếp theo chiều dọc */
+        justify-content: center;
+        align-items: center;
+    }
+    
 
-
-.introduce h2 {
+.introduce h1 {
+    text-align: center;
     margin-bottom: 20px;
     font-size: 20px;
 }
 
 .introduce p {
     margin-bottom: 20px;
+    font-size: 2vw;
 }
 
 .introduce .image-1 img {
@@ -51,16 +58,58 @@
 }
 
 
+
 .introduce .image-2 {
     display: flex;
+    flex-direction: row; /* Sắp xếp theo chiều ngang */
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
-    margin-top: 20px;
 }
-
 .introduce .image-2 img {
     width: 30%;
     height: auto;
     clear: both;
+}
+
+/* Các điểm ngắt thông dụng */
+@media (max-width: 1200px) {
+    .introduce h2 {
+     font-size: 4vw;
+    }
+    .container-gioithieu {
+        width: 90%; /* Thay đổi chiều rộng khi màn hình nhỏ hơn */
+    }
+
+    .introduce .image-1 img {
+        width: 50%; /* Điều chỉnh kích thước hình ảnh */
+    }
+
+    .introduce .image-2 img {
+        width: 40%; /* Điều chỉnh kích thước hình ảnh */
+    }
+}
+
+@media (max-width: 768px) {
+    .introduce h1 {
+        font-size: 4vw;
+       }
+    .container-gioithieu {
+        width: 100%; /* Chiếm toàn bộ chiều rộng */
+    }
+
+    .introduce .image-1 img {
+        width: 100%; /* Hình ảnh chiếm toàn bộ chiều rộng */
+    }
+
+    .introduce .image-2 {
+        flex-direction: column; /* Xếp theo chiều dọc */
+    }
+
+    .introduce .image-2 img {
+        width: 70%; /* Điều chỉnh kích thước hình ảnh */
+    }
+    .introduce p {
+        margin-bottom: 20px;
+        font-size: 3vw;
+    }
 }

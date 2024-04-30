@@ -5,7 +5,7 @@ function Shop() {
     const [priceFilter, setPriceFilter] = useState("0");
     const [loaiFilter, setLoaiFilter] = useState("0");
     const [colorFilter, setColorFilter] = useState("0");
-
+    const [thutuFilter, setThutuFilter] = useState("0");
     const [categories, setCategories] = useState([]);
     const [selectedPriceOption, setSelectedPriceOption] = useState(null);
     const [selectedLoaiOption, setSelectedLoaiOption] = useState(null);
@@ -48,16 +48,24 @@ function Shop() {
         setSelectedColorOption(event.target[event.target.selectedIndex].text);
     };
 
+    const handleThutuFilterChange = (event) => {
+        setThutuFilter(event.target.value); // Sử dụng hàm setter để cập nhật giá trị
+    };
    
 
 
     return (
         <div>
             <div className='background-Product'>
-                <video autoPlay loop muted>
-                    <source src="./images/3003166451.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
+            <video
+      autoPlay
+      loop
+      muted
+      style={{ pointerEvents: 'none' }} // Vô hiệu hóa các sự kiện nhấp chuột
+    >
+      <source src="./images/3003166451.mp4" type="video/mp4" />
+      Trình duyệt của bạn không hỗ trợ thẻ video.
+    </video>
             </div>
            
             <div className='nav-top-product'>
@@ -123,7 +131,7 @@ function Shop() {
                     </div>
                     
                     <div className='item-nav-right'>
-                        <select id="thutuFilter" >
+                    <select id="thutuFilter" onChange={handleThutuFilterChange} value={thutuFilter}> {/* Thêm onChange */}
                             <option value="0">Thứ Tự</option>
                             <option value="1">Mới Nhất</option>
                             <option value="2">Giá Tăng Dần</option>
@@ -138,7 +146,7 @@ function Shop() {
                 priceFilter={priceFilter}
                 loaiFilter={loaiFilter}
                 colorFilter={colorFilter}
-              
+                thutuFilter={thutuFilter}
             />
         </div>
     );

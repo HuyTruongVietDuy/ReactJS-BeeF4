@@ -53,8 +53,27 @@ const UserDetail = () => {
         <div id="container-main">
             <div className="container-user-detail">
                 <div className="content">
+                <div className="box-2-mb">
+                        <h1>Tài khoản của tôi</h1>
+                        <p>Tên tài khoản: <span>{user ? user.ho_ten : ''}</span></p>
+                        <p>Địa chỉ: <span>{user ? user.diachi : ''}</span></p>
+                        <p>Thành Phố: <span>{user ? user.tinh : ''}</span></p>
+                        <p>Quốc gia: <span>Vietnam</span></p>
+                        <p>Số điện thoại: <span>{user ? user.sdt : ''}</span></p>
+                        <button style={{margin:"10px 0"}}>
+            {user && user.id_user &&
+                <Link to={`/suauser/${user.id_user}`}>Thêm/Sửa địa chỉ</Link>
+            }
+        </button>
+        <button style={{margin:"10px 0"}}>
+            {user && user.id_user &&
+                <Link to={`/thaydoimatkhau`}>Thay đổi mật khẩu</Link>
+            }
+        </button>
+                        <button onClick={handleLogout}>Thoát</button>
+                    </div>
                     <div className="box-1">
-                        <h1>THÔNG TIN TÀI KHOẢN</h1>
+                        <h1>Thông tin đơn hàng</h1>
                         <p className="xinchao">Xin chào, {user ? user.ho_ten : ''}</p>
                         <p id='dhgn'>Đơn hàng gần nhất</p>
                         <table className="table">
@@ -99,6 +118,11 @@ const UserDetail = () => {
                         <button style={{margin:"10px 0"}}>
             {user && user.id_user &&
                 <Link to={`/suauser/${user.id_user}`}>Thêm/Sửa địa chỉ</Link>
+            }
+        </button>
+        <button style={{margin:"10px 0"}}>
+            {user && user.id_user &&
+                <Link to={`/thaydoimatkhau`}>Thay đổi mật khẩu</Link>
             }
         </button>
                         <button onClick={handleLogout}>Thoát</button>

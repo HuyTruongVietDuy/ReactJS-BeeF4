@@ -59,6 +59,8 @@ const ThanhToanSucces = () => {
       </div>
       <h2>cảm ơn bạn đã đặt hàng!</h2>
       <p><Link to="/">Quay lại trang chủ</Link></p>
+     
+
       <div className="content">
         <div className="content-left">
           <p>Mã đơn hàng: <span> Spa{donHang && donHang.id_donhang}</span> - <span> {donHang ? formatDateTime(donHang.ngay_dat) : "Chưa cập nhật"}</span></p>

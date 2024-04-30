@@ -7,8 +7,6 @@ export const ProtectedRoute = () => {
   const user = useSelector(state => state.auth.user);
 
 
-  console.log("daDangNhap=", daDangNhap);
-  console.log("user=", user);
 
   if (!daDangNhap) {
     // Nếu người dùng chưa đăng nhập, chuyển hướng đến trang đăng nhập

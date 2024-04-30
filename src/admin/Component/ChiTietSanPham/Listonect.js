@@ -27,10 +27,10 @@ const ListMotChiTiet = () => {
 
   const handleEdit = (id_mau, hinh_anh, imageNumber) => {
     setShowEditModal(true);
-    setSelectedImageNumber(imageNumber);
-    setEditData({ id_mau: id_mau, hinh_anh: hinh_anh });
-    console.log( imageNumber)
+    setSelectedImageNumber(imageNumber); // Số thứ tự của hình ảnh
+    setEditData({ id_mau: id_mau, hinh_anh: hinh_anh }); // Dữ liệu chỉnh sửa
   };
+  
   
   const closeEditModal = () => {
     setShowEditModal(false);

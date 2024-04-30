@@ -56,25 +56,24 @@ const ListUser = () => {
             </tr>
           </thead>
           <tbody>
-            {currentUsers.map(user => (
-              <tr key={user.id}>
-                <td>{user.id_user}</td>
-                <td>{user.ho_ten}</td>
-                <td>{user.email}</td>
-                <td>{user.sdt}</td>
-                <td>{user.gioi_tinh}</td>
-                <td>{formatDateTime(user.login_in)}</td>
-                <td>
-  {user.role === 1 && <span className="customer">Khách hàng</span>}
-  {user.role === 2 && <span className="employee">Nhân viên</span>}
-  {user.role === 3 && <span className="admin">Admin</span>}
-</td>
+  {currentUsers.map((user) => (
+    <tr key={user.id_user}>
+      <td>{user.id_user}</td>
+      <td>{user.ho_ten}</td>
+      <td>{user.email}</td>
+      <td>{user.sdt}</td>
+      <td>{user.gioi_tinh}</td>
+      <td>{formatDateTime(user.login_in)}</td>
+      <td>
+        {user.role === 1 && <span className="customer">Khách hàng</span>}
+        {user.role === 2 && <span className="employee">Nhân viên</span>}
+        {user.role === 3 && <span className="admin">Admin</span>}
+      </td>
+    </tr>
+  ))}
+</tbody>
 
 
-                {/* Thêm các cột khác tương ứng với dữ liệu người dùng */}
-              </tr>
-            ))}
-          </tbody>
         </table>
         <div className="pagination-container">
           {Array.from({ length: totalPages }, (_, index) => (

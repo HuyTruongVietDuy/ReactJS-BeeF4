@@ -26,19 +26,25 @@ function Product({ priceFilter, thutuFilter, loaiFilter, colorFilter  }) {
 
   const fetchData = useCallback(async () => {
     try {
-        const response = await fetch("http://localhost:4000/sanpham/listall");
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        dispatch(setNewProducts(data)); // Dispatch action để cập nhật danh sách sản phẩm mới
-        data.forEach(product => {
-          fetchColors(product.id_sanpham);
-        });
-      } catch (error) {
-        console.error("Error fetching product list:", error);
+      const response = await fetch("http://localhost:4000/sanpham/listall");
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
       }
-    }, [ dispatch]);
+      const data = await response.json();
+  
+      // Chỉ lấy 4 sản phẩm đầu tiên
+      const limitedData = data.slice(0, 4);
+  
+      dispatch(setNewProducts(limitedData)); // Dispatch action để cập nhật danh sách sản phẩm mới với số lượng giới hạn
+  
+      limitedData.forEach((product) => {
+        fetchColors(product.id_sanpham); // Fetch màu của 4 sản phẩm đầu tiên
+      });
+    } catch (error) {
+      console.error("Failed to fetch products", error);
+    }
+  }, [dispatch]);
+  
   
     useEffect(() => {
       fetchData();

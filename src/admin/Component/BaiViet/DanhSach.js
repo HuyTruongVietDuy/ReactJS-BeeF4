@@ -158,7 +158,7 @@ const ListUser = () => {
       </div>
       <Modal
         title="Xác nhận xóa"
-        visible={isModalVisible}
+        open={isModalVisible}
         onCancel={() => setIsModalVisible(false)}
         onOk={() => {
           deleteConfirmed(articleToDeleteId);

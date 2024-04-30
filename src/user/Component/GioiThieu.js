@@ -7,7 +7,7 @@ const GioiThieu = () => {
     <main>
       <section className="introduce">
         <div className="container-gioithieu">
-          <h1 style={{fontSize:"2vw", textAlign:"center"}}>Giới thiệu về SQ&BE</h1>
+          <h1 >Giới thiệu về SQ&BE</h1>
           <div className="banner" id="bannerImage">
             <img src="./images/banner1.jpg" alt=""></img>
           </div>
@@ -17,8 +17,8 @@ const GioiThieu = () => {
           <p>Bên cạnh đó, dịch vụ chăm sóc khách hàng của chúng tôi luôn sẵn lòng hỗ trợ bạn mọi lúc, mọi nơi.
             Chúng tôi tin rằng sự hài lòng của bạn chính là thành công của chúng tôi.</p>
           <p>Hãy khám phá và mua sắm ngay hôm nay để trải nghiệm không gian mua sắm trực tuyến tuyệt vời tại <b><i>Shop Quần Áo SQ&BE</i></b></p>
-          <h2>1. <b>SQ&BE</b>Mang đến những sản phẩm Chất Lượng Tốt với Giá Thành Rẻ</h2>
-          <p><b>SQ&BE</b>luôn nghiên cứu, phát triển mỗi ngày để mang đến những sản phẩm đa dạng về chất liệu,
+          <h2>1. SQ&BE Mang đến những sản phẩm Chất Lượng Tốt với Giá Thành Rẻ</h2>
+          <p><b>SQ&BE</b> luôn nghiên cứu, phát triển mỗi ngày để mang đến những sản phẩm đa dạng về chất liệu,
             nhiều tính
             năng, đa dạng giá thành... mang lại nhiều sự lựa chọn hơn cho khách hàng.</p>
           <h2>2. Mang đến những sản phẩm thiết kế đa dạng</h2>

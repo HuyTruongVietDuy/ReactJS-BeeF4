@@ -19,8 +19,15 @@
     
 
 }
+.container-baivietct .box-1 h1{
+    font-size: 3vw;
+}
 .container-baivietct .baivietlienquan{
     margin-top: 50px;
+}
+
+.container-baivietct .baivietlienquan h3{
+    font-size: 2.8vw;
 }
 .container-baivietct .baivietlienquan .baiviet{
     display: flex;
@@ -102,6 +109,16 @@
     .container-baivietct  .baiviet-0 img{
         height: 400px;
     }
+    p,em{
+        font-size: 3vw;
+    }
+
+    h1{
+        font-size: 12;
+    }
+    .container-baivietct .baivietlienquan a{
+       font-size: 2vw;
+    }
 }
 @media (max-width:950px){
     .container-baivietct  .baiviet{
@@ -110,12 +127,25 @@
     .container-baivietct  .baiviet-0{
         width: 60%;
     }
+    p,em{
+        font-size: 4vw;
+    }
+
+    h1{
+        font-size: 12;
+    }
+    .container-baivietct .baivietlienquan a{
+        font-size: 2vw;
+     }
 }
 
 @media (max-width:700px){
     .container-baivietct .baiviet-0{
         width: 80%;
     }
+    .container-baivietct .baivietlienquan a{
+        font-size: 2vw;
+     }
 }
 @media (max-width:600px){
     .container-baivietct  .baiviet-0{
@@ -124,11 +154,33 @@
     .container-baivietct  .baiviet-0 img{
         height: 300px;
     }
+    p,em{
+        font-size: 4vw;
+    }
+
+    h1{
+        font-size: 12;
+    }
+    .container-baivietct .baivietlienquan a{
+        font-size: 2vw;
+     }
+    
 }
 @media (max-width:450px){
     .container-baivietct .baiviet-0 img{
         height: 200px;
     }
+
+    p,em{
+        font-size: 4vw;
+    }
+
+    h1{
+        font-size: 12;
+    }
+    .container-baivietct .baivietlienquan a{
+        font-size: 2vw;
+     }
 }
 
 .container-baivietct  .ql-toolbar  {

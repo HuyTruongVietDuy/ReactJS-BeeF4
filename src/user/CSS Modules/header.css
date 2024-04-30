@@ -666,12 +666,309 @@ text-align: left;
 }
 
 #user-box-cart #count-cart{
+  width: 50px;
   position: absolute;
-  top: -19px;
-  right: -90%;
+  top: -70%;
+  right: -120%;
   padding: 6px 8px;
   font-weight: bold;
   border-radius: 100%;
   height: auto;
-  font-size: 0.6vw;
+  font-size: 0.55vw;
+  text-align: center;
 }
+
+@media only screen and (max-width: 1690px) {
+  #user-box-cart #count-cart{
+    top: -80%;
+  }
+}
+
+
+@media only screen and (max-width: 1512px) {
+  #user-box-cart #count-cart{
+    top: -90%;
+    right: -140%;
+  }
+}
+
+
+@media only screen and (max-width: 1154px) {
+  #user-box-cart #count-cart{
+    top: -90%;
+    right: -170%;
+  }
+}
+
+@media only screen and (max-width: 1078px) {
+  #user-box-cart #count-cart{
+    top: -100%;
+   
+  }
+}
+
+#mb-user-header{
+  display: none;
+}
+
+.app{
+  display: none;
+}
+
+@media only screen and (max-width: 1349px) {
+ #user-header{
+  display: none;
+ }
+
+ #mb-user-header{
+  display: block;
+  height: 100%;
+  width: 100%;
+  display: flex;
+ }
+
+ #mb-user-header .left{
+ width: 30%;
+ height: 100%;
+ display: flex;
+ align-items: center;
+
+ }
+
+ #mb-user-header .left i{
+font-weight: bold;
+font-size: 5vw;
+margin-left: 20px;
+color: white;
+  }
+ 
+
+ #mb-user-header .center{
+  width: 40%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+
+  #mb-user-header .center a{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+
+    #mb-user-header .center img{
+      width: 40%;
+      
+      }
+  #mb-user-header .right{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    }
+
+    #mb-user-header ul{
+    display: inline-flex;
+    margin-right: 20px;
+      }
+    #mb-user-header li{
+      margin-left: 14px;
+      position: relative;
+      }
+
+      #mb-user-header .right #user-box-cart i{
+       font-size: 3vw;
+  
+        }
+        #mb-user-header .right #user-box-cart #count-cart{
+          top: -64%;
+          right: -100%;
+          font-size: 1vw;
+           }
+
+           .app {
+            position: relative;
+            display: block;
+          }
+          
+           .menu-icon {
+            cursor: pointer; /* Để con trỏ chuột thay đổi khi di chuột qua */
+          }
+          
+          .app .sidebar {
+            position: fixed; /* Giữ sidebar cố định khi cuộn trang */
+            top: 0;
+            left: -80%; /* Đặt sidebar ra ngoài màn hình ở bên trái */
+            width: 80%; /* Chiều rộng của sidebar */
+            height: 100%; /* Chiều cao đầy đủ */
+            background-color: #0e0d0dbd; /* Màu nền của sidebar */
+            transition: left 0.3s; /* Tạo hiệu ứng chuyển động */
+            z-index: 4000;
+          }
+          
+          .app .sidebar.open {
+            left: 0; /* Di chuyển sidebar vào màn hình */
+          }
+
+          .close-icon{
+            position: absolute;
+            right: 0;
+            font-weight: bold;
+            top: 0.5%;
+            color: white;
+          }
+          
+          
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 50px;
+  max-height: 95vh;
+  overflow-y: auto; 
+}
+
+.menu-item {
+  position: relative;
+  cursor: pointer;
+  padding: 10px;
+  color: white;
+  border-bottom: 1px solid #ccc;
+  transition: background-color 0.3s ease; 
+  font-size: 4vw;
+}
+.menu-list i{
+  position: relative;
+  top: -4px;
+  font-size: 5vw;
+  font-weight: bold;
+ }
+
+.menu-item:hover {
+  background-color: #3d3d3d9c;
+}
+
+.submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out; 
+  color: white;
+
+}
+
+
+.submenu.open {
+  max-height: 500px; /* Adjust the maximum height as needed */
+  
+}
+
+.submenu .menu-item {
+  padding-left: 20px; /* Adjust the indentation for submenu items */
+  
+}
+
+.sub-submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  
+}
+
+.sub-submenu.open {
+  max-height: 500px; /* Adjust the maximum height as needed */
+}
+
+.sub-submenu .menu-item {
+  padding-left: 40px; /* Adjust the indentation for sub-submenu items */
+}
+
+.sub-submenu li {
+  list-style: none;
+  padding: 8px;
+  margin-left: 20px;
+  transition: background-color 0.3s ease; 
+  font-size: 3.5vw;
+  color: white;
+}
+
+.sub-submenu li:hover {
+  background-color: #919191a9;
+}
+  
+}
+
+
+@media only screen and (max-width: 654px) {
+  #mb-user-header .left i{
+    font-size: 7vw;
+      }
+      #mb-user-header .center img{
+        width: 60%;
+        }
+
+        #mb-user-header .right #user-box-cart i{
+          font-size: 5vw;
+     
+           }
+           #mb-user-header .right #user-box-cart #count-cart{
+             top: -64%;
+             right: -100%;
+             font-size: 2vw;
+              }
+
+          #mb-user-header .right li{
+            margin-left: 10px;
+          }
+          #mb-user-header .right li i{
+          font-size: 3vw;
+          }
+}
+
+@media only screen and (max-width: 490px) {
+  #mb-user-header .left i{
+    font-size: 8vw;
+      }
+
+      #mb-user-header .center img{
+        width: 70%;
+        }
+
+        #mb-user-header .right #user-box-cart i{
+          font-size: 7vw;
+     
+           }
+           #mb-user-header .right #user-box-cart #count-cart{
+             top: -50%;
+             right: -80%;
+             font-size: 2vw;
+              }
+              #mb-user-header .right li i{
+                font-size: 4vw;
+                }
+}
+
+@media only screen and (max-width: 390px) {
+  #mb-user-header .left i{
+    font-size: 8vw;
+      }
+
+      #mb-user-header .center img{
+        width: 70%;
+        }
+
+        #mb-user-header .right #user-box-cart i{
+          font-size: 7vw;
+     
+           }
+           #mb-user-header .right #user-box-cart #count-cart{
+             top: -60%;
+             right: -90%;
+             font-size: 2vw;
+              }
+}
+
+/* App.css */
+

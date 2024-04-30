@@ -1,5 +1,5 @@
  import React, { useEffect } from "react";
-import { Routes, Route, Link, useLocation } from "react-router-dom";
+import { Routes, Route, Link, useLocation,useNavigate } from "react-router-dom";
 
 import DashBoard from "./Component/ThongKe/Dashboard";
 import ListDanhMuc from "./Component/DanhMuc/DanhSach";
@@ -22,9 +22,21 @@ import "./CSS Modules/main.css";
 import "./CSS Modules/style.css";
 import "./CSS Modules/form.css";
 import "./CSS Modules/thongke.css";
-
+import { message } from 'antd';
+import { useSelector, useDispatch } from "react-redux";
+import { thoat } from "../redux/authSlice";
 function AdminIndex() {
   const location = useLocation();
+  const user = useSelector((state) => state.auth.user);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(thoat());
+    message.success('Đăng xuất thành công');
+    navigate('/login-admin'); // Redirect to "/dangnhap"
+    window.location.reload();
+    
+};
   useEffect(() => {
     // Function to update date and time
     function updateDateTime() {
@@ -102,7 +114,13 @@ function AdminIndex() {
             <div className="box-user-left">
               <i className="material-icons">person</i>
             </div>
-            <div className="box-user-right">ADMIN</div>
+            <div className="box-user-right">
+    {user.role === 3
+      ? "Admin"
+      : user.role === 2
+      ? "Staff"
+      : "Unknown Role"}
+  </div>
           </div>
         </div>
       </header>
@@ -162,7 +180,7 @@ function AdminIndex() {
                 <sub>
                   <i className="material-icons">exit_to_app</i>
                 </sub>
-                <span>Đăng Xuất</span>
+                <span onClick={handleLogout}>Đăng Xuất</span>
               </a>
             </div>
           </div>

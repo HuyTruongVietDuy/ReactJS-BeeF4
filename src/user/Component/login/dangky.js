@@ -80,7 +80,7 @@ const DangKy = () => {
    
         <button type="submit">ĐĂNG KÝ</button>
         <div className="return">
-          <Link to="/"><sub><i className="material-icons">arrow_back</i></sub> Quay lại trang chủ</Link>
+          <Link to="/"><i className="material-icons">arrow_back</i> <sup>Quay lại trang chủ</sup></Link>
         </div>
       </form>
     </div>

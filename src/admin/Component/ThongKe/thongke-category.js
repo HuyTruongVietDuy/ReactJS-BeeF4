@@ -6,7 +6,7 @@ const DashBoard = () => {
   // Define the state variables
   const [data, setData] = useState({});
   const [sanPham, setSanPham] = useState([]);
-  const [lowStockProducts, setLowStockProducts] = useState([]); // New state for low-stock products
+  
 
   useEffect(() => {
     const apiUrlTotal = "http://localhost:4000/thongke/total";
@@ -19,7 +19,7 @@ const DashBoard = () => {
         setData(data);
       })
       .catch((error) => {
-        console.error("Error fetching total data:", error);
+      
       });
   
     fetch(apiDanhMuc)
@@ -28,7 +28,7 @@ const DashBoard = () => {
         setSanPham(data);
       })
       .catch((error) => {
-        console.error("Error fetching product data:", error);
+     
       });
   
    
@@ -79,7 +79,12 @@ const DashBoard = () => {
           <Col span={15}>
             {/* Bảng để hiển thị danh sách sản phẩm */}
             <h3>Thống kê tổng số sản phẩm trong danh mục</h3>
-            <Table columns={columns} dataSource={sanPham} rowKey="id_sanpham" />
+            <Table 
+  columns={columns} 
+  dataSource={sanPham} 
+  rowKey="id_danhmuc" // Sử dụng giá trị duy nhất cho rowKey
+/>
+
           </Col>
           <Col span={9}>
             {/* <h3>Sản phẩm sắp hết hàng & hết hàng</h3> */}

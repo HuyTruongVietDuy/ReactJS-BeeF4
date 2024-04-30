@@ -47,13 +47,19 @@ const ChiTietDonHang = () => {
 
     fetchData();
   }, [id_donhang]);
-
+  const tinhTrang = donHang && donHang.tinh_trang;
+  const tinhTrangText = {
+    1: 'Đang chờ xác nhận',
+    2: 'Đã xác nhận',
+    3: 'Hoàn thành',
+    4: 'Đã bị hủy',
+  };
   const chuaThue = donHang && donHang.total * (1 + (donHang.phan_tram || 0) / 100);
   return (
     <div id="container-main">
       <div className="container-chitietdonhang">
           <div className="content">
-          <h3>ĐƠN HÀNG #{id_donhang}</h3>
+          <h1>ĐƠN HÀNG #{id_donhang}</h1>
           <div className="box">
             <div className="box-left">
               <p className="ngaytao">
@@ -81,7 +87,9 @@ const ChiTietDonHang = () => {
             </div>
             <div className="box-right">
               <h3>Địa chỉ giao hàng</h3>
-              <p>Tình trạng giao hàng: Chưa giao hàng</p>
+              <p>
+      Tình trạng giao hàng: {tinhTrang ? tinhTrangText[tinhTrang] : 'Không xác định'}
+    </p>
               <p>{donHang && donHang.ho_ten}</p>
               <p>
                 {donHang && donHang.tinh} - {donHang && donHang.huyen} -{" "}

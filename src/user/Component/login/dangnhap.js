@@ -73,15 +73,7 @@ const DangNhap = () => {
         {error && <div style={{ color: 'red' }}>{error}</div>} {/* Display error message */}
       </form>
 
-      <div className="title-new-product" style={{ marginTop: '150px' }}>
-        <div className="scroll-wrapper">
-          <div className="scroll-text">Login Account</div>
-          <div className="scroll-text">Login Account</div>
-          <div className="scroll-text">Login Account</div>
-          <div className="scroll-text">Login Account</div>
-          <div className="scroll-text">Login Asccount</div>
-        </div>
-      </div>
+      
     </div>
   );
 };

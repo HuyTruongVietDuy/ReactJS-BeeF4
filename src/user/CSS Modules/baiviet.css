@@ -87,4 +87,8 @@
     .container-baiviet .img{
         height: 400px;
     }
+
+    .container-baiviet button{
+       font-size: 2vw;
+    }
 }

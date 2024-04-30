@@ -54,7 +54,7 @@
 .user-form-dangnhap p {
     margin-left: 20px;
     padding: 5px;
-    width: 500px;
+    width: auto;
 }
 
 .user-form-dangnhap p a {
@@ -72,7 +72,7 @@
     margin: 0 5px;
 }
 
-@media (max-width: 739px) {
+@media (max-width: 957px) {
     .user-form-dangnhap {
         width: 80%;
     }
@@ -87,5 +87,59 @@
 
     .user-form-dangnhap p {
         margin: 0;
+    }
+
+    .user-form-dangnhap h3 {
+        font-weight: 700;
+        font-size: 3vw;
+    }
+    
+.user-form-dangnhap button {
+    width: 100%;
+    padding: 14px 0;
+    font-size: 2vw;
+    font-weight: bold;
+}
+
+.user-form-dangnhap input[type="text"],
+.user-form-dangnhap input[type="password"] {
+   padding: 25px 25px;
+   font-size: 3vw;
+}
+
+
+.user-form-dangnhap p  a{
+    font-size: 2vw;
+}
+.user-form-dangnhap p  span{
+    font-size: 1.8vw;
+}
+}
+
+@media (max-width: 739px) {
+    .user-form-dangnhap {
+        width: 80%;
+    }
+
+    .user-form-dangnhap button {
+        width: 100%;
+        font-weight: bold;
+    }
+
+    .user-form-dangnhap .box {
+        flex-direction: column;
+    }
+
+    .user-form-dangnhap p {
+        margin: 0;
+    }
+
+    .user-form-dangnhap h3 {
+        font-weight: 700;
+        font-size: 3vw;
+    }
+
+    .user-form-dangnhap button {
+        width: 100%;
     }
 }

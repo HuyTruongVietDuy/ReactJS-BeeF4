@@ -12,7 +12,7 @@ const News = () => {
               const firstThreePosts = data.slice(0, 3);
               setPosts(firstThreePosts);
           })
-          .catch(error => console.error('Error fetching data:', error));
+       
   }, []); // Empty dependency array to run effect only once on component mount
 
   return (

@@ -12,12 +12,12 @@
     text-transform: uppercase;
 }
 
-.container-cart-user  table,
-.container-cart-user  th,
-.container-cart-user  td {
-    border: 1px solid #0000001a;
-    ;
+.container-cart-user table{
     border-collapse: collapse;
+}
+.container-cart-user  th{
+    border-bottom: 1px solid rgba(128, 128, 128, 0.797);
+    
 }
 
 .container-cart-user  th {

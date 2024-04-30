@@ -80,8 +80,6 @@ function ThanhToan() {
   };
   
   
-  
-  
   useEffect(() => {
     fetch("http://localhost:4000/donhang/data")
       .then((response) => response.json())
@@ -126,12 +124,12 @@ function ThanhToan() {
   };
 
   const submitData = () => {
+    // Kiểm tra nếu giỏ hàng trống
     if (cart.length === 0) {
-      message.error(
-        "Giỏ hàng của bạn đang trống. Vui lòng thêm sản phẩm vào giỏ hàng trước khi đặt hàng."
-      );
+      message.error("Giỏ hàng của bạn đang trống. Vui lòng thêm sản phẩm vào giỏ hàng trước khi đặt hàng.");
       return;
     }
+  
     // Lấy giá trị của các trường từ các ref
     const emailValue = emailRef.current.value;
     const hotenValue = hotenRef.current.value;
@@ -141,7 +139,13 @@ function ThanhToan() {
     const huyenValue = huyenRef.current.value;
     const xaValue = xaRef.current.value;
     const ghichuValue = ghichuRef.current.value;
-
+  
+    // Kiểm tra các trường bắt buộc
+    if (!emailValue || !hotenValue || !sdtValue || !diachiValue || !tinhValue || !huyenValue || !xaValue) {
+      message.error("Vui lòng nhập đầy đủ thông tin trước khi đặt hàng.");
+      return; // Không tiếp tục gửi dữ liệu
+    }
+  
     // Tạo object chứa thông tin đơn hàng
     const orderData = {
       email: emailValue,
@@ -151,13 +155,12 @@ function ThanhToan() {
       tinh: tinhValue,
       huyen: huyenValue,
       xa: xaValue,
-      ghi_chu: ghichuValue,
+      ghi_chu: ghichuValue, // Ghi chú không bắt buộc
       total: calculateTotal(),
       id_user: user.id_user,
       id_giamgia: idGiamGia,
-      // Các dữ liệu khác (nếu cần)
     };
-
+  
     // Gửi dữ liệu đơn hàng đến backend
     fetch("http://localhost:4000/donhang/luudonhang", {
       method: "POST",
@@ -174,26 +177,22 @@ function ThanhToan() {
       })
       .then((data) => {
         message.success("Lưu đơn hàng thành công");
-        console.log("Order submitted successfully:", data);
-        // Xử lý phản hồi thành công từ máy chủ
         const id_donhang = data.id_donhang; // Lấy id_donhang từ phản hồi
-        luuchitietdonhang(id_donhang); // Gọi hàm luuchitietdonhang và truyền id_donhang vào
-        console.log(id_donhang);
-        dispatch(XoaTatCaSP());
-       // Kiểm tra nếu paymentMethod là 'VNPAY-QR'
-      if (paymentMethod === 'VNPAY-QR') {
-        createPaymentUrl(id_donhang, calculateTotal());
-      } else {
-        navigate(`/thanhtoanthanhcong/${id_donhang}`);
-      }
+        luuchitietdonhang(id_donhang); // Gọi hàm để lưu chi tiết đơn hàng
+        dispatch(XoaTatCaSP()); // Xóa giỏ hàng sau khi lưu thành công
+  
+        // Điều hướng tùy thuộc vào phương thức thanh toán
+        if (paymentMethod === 'VNPAY-QR') {
+          createPaymentUrl(id_donhang, calculateTotal());
+        } else {
+          navigate(`/thanhtoanthanhcong/${id_donhang}`);
+        }
       })
       .catch((error) => {
         console.error("Error submitting order:", error);
-        message.error("Lưu đơn hàng thất bại");
-        // Xử lý lỗi
+        message.error("Lưu đơn hàng thất bại"); // Hiển thị thông báo lỗi
       });
   };
-
   const luuchitietdonhang = (id_donhang) => {
     // Lặp qua từng sản phẩm trong giỏ hàng để lưu chi tiết đơn hàng
     
@@ -272,6 +271,7 @@ function ThanhToan() {
   return (
     <div className="container-thanhtoan">
       <article>
+        
         <div className="content-article">
           <div className="content-left">
             <div className="logo-content">
@@ -280,7 +280,13 @@ function ThanhToan() {
                 <img src="./images/SQBE Logo-black.png" alt="" />
               </Link>
             </div>
+         
+
+        
             <form>
+            <div className="aside__top_mb">
+          <h2>Đơn hàng ({cart.length} sản phẩm)</h2>
+          </div>
               <h1>Thông tin nhận hàng</h1>
               <div className="input-container">
               <input
@@ -477,9 +483,33 @@ function ThanhToan() {
                   </tbody>
                 </table>
               </div>
-            </div>
-          </div>
+              <div className="mb-voucher">
+        <div id="left">
+        <input
+        type="text"
+        placeholder="Nhập mã giảm giá"
+        value={voucherCode}
+        onChange={(e) => setVoucherCode(e.target.value)}
+      />
         </div>
+        <div id='right'>
+         <button onClick={applyVoucher}>Áp dụng</button>
+        </div>
+      </div>
+              <span id='mb-total'>
+                      {calculateTotal().toLocaleString("vi-VN", {
+                        style: "currency",
+                        currency: "VND",
+                      })}
+                    </span>
+              <div className='dathang-mb' onClick={submitData}> Đặt HÀNG </div>
+              <Link to='/viewcart' className="return-cart">  Quay về giỏ hàng</Link>
+            </div>
+            
+          </div>
+          
+        </div>
+      
       </article>
       <aside>
         <div className="aside-content">

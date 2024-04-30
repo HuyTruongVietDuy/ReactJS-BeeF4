@@ -17,7 +17,7 @@ import SideBarCart from "./SidebarCart.js";
 import SideBarSearch from "./SidebarSearch.js";
 import MainContent from "./Routers.js";
 import FacebookMsg from "./Component/Message.js";
-
+import MenuApp from "./menu-app.js";
 
 import "./CSS Modules/style.css";
 import "./CSS Modules/header.css";
@@ -44,8 +44,26 @@ function UserIndex() {
   const [loading, setLoading] = useState(true); // State to manage loading
   const daDangNhap = useSelector(state => state.auth.daDangNhap);
 
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
   const user = useSelector((state) => state.auth.user);
   const cart = useSelector((state) => state.cart.listSP);
+
+  // Hàm toggle sidebar
+ // Hàm toggle sidebar
+  const toggleSidebar = () => {
+    setSidebarOpen(!isSidebarOpen);
+
+    // Chuyển đổi lớp 'darken' cho các phần tử khác
+    const containerHeader = document.querySelector('.user-container-header');
+    const main = document.getElementById('main');
+    const footer = document.querySelector('footer');
+
+    if (containerHeader && main && footer) {
+      containerHeader.classList.toggle('darken');
+      main.classList.toggle('darken');
+      footer.classList.toggle('darken');
+    }
+  };
 
 
   useEffect(() => {
@@ -102,13 +120,57 @@ function UserIndex() {
           <p style={{fontSize:'0.9vw',fontWeight:'100'}}>Kính Chào</p>
           <p style={{fontSize:'0.9vw',fontWeight:'100'}}>Qúy Khách</p>
         </div> */}
+        <header id='mb-user-header'>
+          <div className="left">
+          <i className="material-icons menu-icon" onClick={toggleSidebar}>menu</i>
+
+          </div>
+          <div className="center">
+          <Link to="/">
+              
+              <img src={process.env.PUBLIC_URL + "/images/SQBE Logo-white.png"} alt="" />
+            
+            </Link>
+          </div>
+          <div className="right">
+            <ul>
+      {daDangNhap && ( // Hiển thị nếu đã đăng nhập
+        <>
+          <li>
+            <Link to="/user">
+              <i className="material-icons">person</i>
+            </Link>
+          </li>
+          <li>
+            <Link to={`/sanphamyeuthich/${user ? user.id_user : ''}`}>
+              <i className="material-icons">favorite</i>
+            </Link>
+          </li>
+        </>
+      )}
+      {/* Các mục điều hướng khác luôn hiển thị */}
+      <li>
+        <Link to="/search">
+          <i className="material-icons">search</i>
+        </Link>
+      </li>
+      <li>
+        <Link to="/viewcart">
+          <i className="material-icons">shopping_cart</i>
+        </Link>
+      </li>
+      
+    </ul>
+          </div>
+        </header>
+
         <header id="user-header">
           <div className="user-header-left">
             <div className="user-logo-header">
               <Link to="/">
-                {" "}
+              
                 <img src={process.env.PUBLIC_URL + "/images/SQBE Logo-white.png"} alt="" />
-               
+              
               </Link>
             </div>
           </div>
@@ -164,6 +226,15 @@ function UserIndex() {
     
 
       <SideBarCart CartIconClick={CartIconClick}  />
+
+      <div className="app">
+      {/* Nếu isSidebarOpen là true, thêm class 'open' để mở sidebar */}
+      <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
+      <i className="material-icons close-icon" onClick={toggleSidebar}>close</i>
+        <MenuApp/>
+      </div>
+    </div>
+
       <div id="notify-add-to-cart" className="notify-add-to-cart">
       Thêm vào giỏ hàng thành công
     
@@ -177,6 +248,7 @@ function UserIndex() {
       <MainContent loading={loading} />
 
       <footer>
+        <div className="container-footer">
         <div className="footer-left">
           <p>Địa chỉ cửa hàng</p>
           <ul>
@@ -185,8 +257,9 @@ function UserIndex() {
             <li>Site Map</li>
           </ul>
         </div>
+
         <div className="footer-center">
-          <p>Chinh sách</p>
+          <p>Chính sách</p>
           <ul>
             <li> Chính sách bảo mật</li>
             <li> FAQ</li>
@@ -199,14 +272,12 @@ function UserIndex() {
           <p>Mạng xã hội</p>
           <ul>
             <li>
-              {" "}
               <span className="material-icons">facebook</span>{" "}
             </li>
             <li>
               <i className="material-icons">play_circle_filled</i>{" "}
             </li>
             <li>
-              {" "}
               <span className="material-icons">alternate_email</span>{" "}
             </li>
           </ul>
@@ -222,6 +293,8 @@ function UserIndex() {
             </FacebookProvider>
           </div>
         </div>
+        </div>
+     
         <div className="footer-bottom">
           <p>@ Team ‘ Bee F4 ’ for with love</p>
         </div>

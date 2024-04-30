@@ -4,64 +4,68 @@ footer{
     background-color: #212121;
     min-height: auto;
     width: 100%;
-    clear: both;
+   
     padding-top: 40px;
     color: white;
-    text-align: center;
-   justify-content: center;
+
    position: relative;
    transition: right 0.3s ease;
 }
 
+footer .container-footer{
+    width: 100%;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
 footer p{
     font-weight: bold;
     font-size: 18px;
+    text-align: center;
 }
 
+footer ul,
+footer #FacebookProvider{
+    text-align: center;
+    list-style: none;
+}
+
+footer ul li{
+    margin: 10px 0;
+}
 footer .footer-left{
-
- width: 20%;
- margin-left: 15%;
-
-float: left;
+ width: 33%;
 }
 
-footer .footer-left ul li{
-    list-style: none;
-  font-size: 14px;
-  margin: 8px 0px;
-   }
 
-.footer-center{
-
-    width: 20%;
-    float: left;
-    margin-left: 5%;
+footer .footer-center{
+    width: 33%;
 }
 
-footer .footer-center ul li{
-    list-style: none;
-    font-size: 14px;
-    margin: 8px 0px;
-     }
-  
+
 
 .footer-right{
-    margin-right: 15%;
-    width: 25%;
-  
-    float: right;
+  width: 36%;
+text-align: center;
 }
 
 .footer-right ul{
-    display: inline-flex;
-    list-style: none;
+    width: 36%;
+    display: inline-block;
+   margin-bottom: 10px;
+  }
+
+  .footer-right ul li{
+    margin: 10px 5px;
+   display: inline-flex;
+  }
+  
+  
+footer li:hover{
+    text-decoration: underline;
 }
 
-.footer-right ul li{
-    margin: 0 10px;
-    font-size: 30px;
-}
 
 .fb-page{
     clear: both;
@@ -69,10 +73,9 @@ footer .footer-center ul li{
 }
 
 .footer-bottom{
-    clear: both;
+    
     border-top: 1px solid white;
     width: 100%;
-    margin-top: 250px;
     line-height: 50px;
     display: block;
 }
@@ -83,66 +86,37 @@ footer .footer-center ul li{
     text-align: left;
 }
 
-@media only screen and (max-width: 1088px) {
+@media only screen and (max-width: 947px) {
+    .container-footer {
+    display: flex; /* Sử dụng Flexbox */
+    flex-direction: column; /* Sắp xếp theo chiều dọc */
+    font-size: 3vw;
+    }
+    .container-footer p{
+        font-size: 4vw;
+       
+    }
+    .container-footer li{
+        font-size: 3vw;
+        margin: 3%;
+    }
+    footer .footer-left{
+        width: 100%;
+        border-bottom: 1px solid white;
+        padding: 20px 0;
+    }
 
-footer{
-    padding-top: 30px;
-    min-height: 200px;
-    align-items: center;
-    
-}
+    footer .footer-center{
+        width: 100%;
+        border-bottom: 1px solid white;
+        padding: 20px 0;
+    }
 
-.footer-left, .footer-center, .footer-right{
-    float: none;
-    flex-direction: column;
-    
-}
-
-footer .footer-left,
-.footer-center{
-    width: 100%;
-    margin-left: 0%;
-    padding: 0 10% 0 25%;
-    margin-bottom:30px;
-    border-bottom: 1px solid gray;
-   }
-
-.footer-right{
-    text-align: center;
-    width: 100%;
-}
-
-.footer-left ul,
-.footer-center ul,
-.footer-right  ul{
-    list-style: none;
-    margin-bottom: 20px;
-   }
-
-   footer .footer-left ul li,
-   footer .footer-center ul li,
-   footer .footer-right ul li{
-    font-size: 2.5vw;
-   }
-
-   footer p{
-    font-weight: bold;
-    font-size: 3.7vw;
-    padding: 15px;
-}
-   
-#FacebookProvider{
-    display: none;
-}
-
-footer .footer-bottom{
-    clear: both;
-    border-top: 1px solid white;
-    width: 100%;
-    margin-top: 10px;
-    display: block;
-    padding-bottom: 0px;
-    text-align: left;
-}
+    footer .footer-right{
+        padding: 20px 0;
+        width: 100%;
+    }
 
 }
+
+

@@ -19,7 +19,7 @@ const SideBarSearch = () => {
         return;
       }
 
-      const response = await fetch(`http://localhost:4000/sanpham/listnew?q=${query}`);
+      const response = await fetch(`http://localhost:4000/sanpham/listall?q=${query}`);
       const data = await response.json();
 
       // Filter the results based on the product name

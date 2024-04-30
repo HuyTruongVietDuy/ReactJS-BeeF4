@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Xem from "./ChiTietDonHang";
+import SuaDonHang from "./Sua";
 import { useSelector, useDispatch } from 'react-redux';
 import { setDonHang } from '../../../redux/donhangSlice';
 const DonHang = () => {
   const dispatch = useDispatch();
   const DonHang = useSelector((state) => state.donhang.donhang);
+  const [showViewModal, setShowViewModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -31,8 +33,20 @@ const DonHang = () => {
   };
 
   const handleView = (bill) => {
-    setSelectedBill(bill); // Set the selected bill data
-    setShowEditModal(true);
+    console.log("handleView called", bill);
+    setSelectedBill(bill);
+    setShowViewModal(true);
+  };
+  
+
+  const closeViewModal = () => {
+    setShowViewModal(false);
+  };
+
+  const handleEdit = (bill) => {
+    setSelectedBill(bill); // Lưu đơn hàng đang được chỉnh sửa
+    setShowEditModal(true); // Mở modal
+    
   };
 
   const closeEditModal = () => {
@@ -68,11 +82,18 @@ const DonHang = () => {
   return (
     <div id="container-main-admin">
       <Xem
-        showEditModal={showEditModal}
-        closeEditModal={closeEditModal}
-        selectedBill={selectedBill} // Pass selected bill data to the Xem component
-        dispatchdata={dispatchdata}
-      />
+  showViewModal={showViewModal} // Truyền showEditModal vào dưới dạng showViewModal
+  closeViewModal={closeViewModal}
+  selectedBill={selectedBill}
+  dispatchdata={dispatchdata}
+/>
+<SuaDonHang
+showEditModal={showEditModal} 
+closeEditModal={closeEditModal} 
+selectedBill={selectedBill} 
+donhangID={selectedBill ? selectedBill.id_donhang : null} 
+dispatchdata={dispatchdata}
+/>
       <div id="container-nav-admin">
         <div className="nav-left-admin">
           <h1> Quản lí đơn hàng</h1>
@@ -112,7 +133,7 @@ const DonHang = () => {
                   {bill.stt_pay === 1
                     ? "Chưa thanh toán"
                     : bill.stt_pay === 2
-                    ? "Đã thanh toán"
+                    ? "Đã thanh toán" 
                     : "Trạng thái không xác định"}
                 </td>
                 <td>
@@ -129,8 +150,13 @@ const DonHang = () => {
 
                 </td>
                 <td>
-                  <span onClick={() => handleView(bill)}> <i className="material-icons">visibility</i></span>
-                </td>
+  <span onClick={() => handleView(bill)}> 
+    <i className="material-icons">visibility</i>
+  </span>
+  <span onClick={() => handleEdit(bill)}> 
+    <i className="material-icons">edit</i>
+  </span>
+</td>
               </tr>
             ))}
           </tbody>

@@ -254,6 +254,7 @@ footer.darken{
     position: fixed; /* Giữ modal luôn trên cùng */
     top: 0;
     left: 0;
+  
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5); /* Màu tối nhẹ để làm mờ nền */
@@ -269,8 +270,8 @@ footer.darken{
     width: 500px;
     height: 240px;
     background: rgb(255, 255, 255);
-    padding: 20px;
-
+    padding: 10px;
+    
     border-radius: 10px; /* Bo góc cho modal */
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Đổ bóng */
     animation: fadeIn 0.3s ease-in-out; /* Hiệu ứng khi modal xuất hiện */
@@ -285,7 +286,7 @@ footer.darken{
   .modal-content h1{
     position: relative;
     text-align: center;
-    top: -13px;
+    top: -6px;
     font-size: 0.7vw;
     color: rgba(112, 112, 112, 0.647);
     word-wrap: normal;
@@ -385,9 +386,70 @@ footer.darken{
     color: black;
   }
 
+.container-search{
+  width: 100%;
+  display: none;
+}
 
+.container-search h1{
+ text-align: center;
+}
 
+.container-search{
+  display: none;
+}
+@media (max-width: 1350px) {
+  .container-search{
+    display: block;
+  }
+  .container-search h1{
+    font-size: 2vw;
+    margin-bottom: 20px;
+   }
 
+   .container-search .box-search-component{
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    position: relative;
+   }
+   .container-search .box-search-component input{
+   width: 80%;
+   padding: 20px 20px;
+   border-radius: 4px;
+   font-size: 1.5vw;
+   outline: none;
+   border: none;
+   background-color: #000000bb;
+   color: white;
+  
+   }
+
+   .container-search .box-search-component i{
+  position: absolute;
+  right: 12%;
+  font-weight: bold;
+  color: white;
+  font-size: 3vw;
+  cursor: pointer;
+    }
+}
+@media (max-width: 600px) {
+  .container-search .box-search-component input{
+    width: 100%;
+    }
+
+    .container-search .box-search-component i{
+      position: absolute;
+      right: 2%;
+      font-weight: bold;
+      color: white;
+      font-size: 3vw;
+      cursor: pointer;
+        }
+}
 
 
 

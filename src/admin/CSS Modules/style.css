@@ -638,3 +638,10 @@
       table #new-an:hover{
        opacity: 0.75;
       }
+
+      .admin-size-label{
+        font-size: 1vw;
+        vertical-align: super;
+      }
+
+      

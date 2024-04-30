@@ -22,7 +22,8 @@ import ThanhToanSucces from "./Component/ThanhToanSucces.js";
 import EditAddress from "./Component/EditAddress.js";
 import Loader from "./Loader.js"; // Import your Loader component
 import ChiTietBaiViet from "./Component/ChiTietBaiViet/ChiTietBaiViet.js";
-
+import Search from "./Component/search.js";
+import ThayDoiMatKhau from "./Component/DoiMatKhau.js";
 function MainContent({ loading }) {
   const navigate = useNavigate();
 
@@ -53,9 +54,11 @@ function MainContent({ loading }) {
           <Route path="/lienhe" element={<LienHe />} />
           <Route path="/viewcart" element={<ViewCart />} />
           <Route path="/gioithieu" element={<GioiThieu />} />
+          <Route path="/thaydoimatkhau" element={<ThayDoiMatKhau />} />
           <Route path="/edit-address/:id_donhang" element={<EditAddress/>} />
           <Route path="/thanhtoanthanhcong/:id_donhang" element={< ThanhToanSucces/>} />
           <Route path="/sanphamyeuthich/:id_user" element={<SanPhamYeuThich />}/>
+          <Route path="/search" element={<Search />}/>
           {/* <Route path="/chitietsanpham/:id_sanpham" element={<ChiTietSanPham />}/> */}
           <Route path="/chitietsanpham/:url_product" element={<ChiTietSanPham />}/>
           <Route path="/baoloi" element={<BaoLoi />} />

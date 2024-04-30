@@ -43,6 +43,8 @@
    
 }
 
+
+
 .user-banner img {
     width: 100%;
     height: 100%;
@@ -102,6 +104,16 @@
   }
 
 
+  @media only screen and (max-width: 954px) {
+    .user-banner{
+        height: 100vh;
+    }
+    .user-banner img {
+        width: 100%;
+        height: 100vh;
+      }
+    
+}
 
 
 .container-slide{
@@ -246,92 +258,69 @@
 }
 
 
-@media only screen and (max-width: 1316px) {
+@media only screen and (max-width: 954px) {
+   
     .container-slide{
-       margin-bottom: 5%;
-    }
-
-    
-    .container-slide .container-left{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    .container-slide .container-left h1{
-        margin-top: 20%;
+     
+        display: block;
+      
     }
     .container-left{
-    float: none;
-    font-size: 20px;
-    height: 50px;
-    width: 100%;
-    }
-
-    .container-right {
-        float: none;
-        margin: 0 auto;
+        font-size: 36px;
+        width: 100%;
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        height: auto;
-        width: 85%;
-        max-height: 30vh;
+        height: 50px;
+        margin: 2% 0;
     }
-
-
-
-    .category {
-        flex: 0 0 20%;
-        padding: 5px 5px;
-        box-sizing: border-box;
-        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    .container-left h1{
+       font-size: 5vw;
     }
-
-
-    .button-container button {
-      background: none;
+    .container-right{
+        font-size: 36px;
+        width: 100%;
+        display: flex;
+        position: relative;
+        top: -50px;
     }
-
-    .button-container button:hover {
-        background: none;
-        color: blanchedalmond;
-      }
-
-        #button-left{
-            position: absolute;
-            left:0;
-            top:34%;
-            font-weight: bold;
-        }
-        
-        #button-right{
-            position: absolute;
-            right: 0px;
-            top:34%;
-        }
-
-    #button-right i, 
-    #button-left i{
-    font-size: 16px;    
-    }
-  }
-  
-  @media only screen and (max-width: 1316px) {
     #button-left{
-        position: absolute;
-        left:0;
-        top:34%;
-        font-weight: bold;
+        display: none;
     }
     
     #button-right{
-        position: absolute;
-        right: 0px;
-        top:34%;
+      display: none;
     }
+    
+}
 
-      
+@media only screen and (max-width: 538px){
+    .category {
+        flex: 0 0 12%;
+        padding: 5px;
+        margin: 2px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+    }
+    .image-category {
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        /* background-color: #ddd; */
+        margin-bottom: 10px;
+    }
+    
+    .image-category img{
+        border-radius: 50%;
+        width: 100%;
+        
+    }
+    .name-category {
+      font-size: 2vw;
+       
+    }
+    
 }
 
 
@@ -383,7 +372,27 @@
         opacity: 1; /* Giữ chữ hiển thị */
     }
 }
+@media only screen and (max-width: 954px) {
+   
+    .scroll-text {
+        display: inline-block;
+      
+        font-size: 8vw;
+       
+    }
+    
+}
 
+@media only screen and (max-width: 550px) {
+   
+    .scroll-text {
+        display: inline-block;
+      
+        font-size: 15vw;
+       
+    }
+    
+}
 .container-product-show {
     margin: 5vh auto;
     width: 96%;
@@ -554,7 +563,143 @@
 }
 
 
+@media only screen and (max-width: 1112px){
+    .product {
+        position: relative;
+        width: calc(33.33% - 20px); /* 3 sản phẩm trên 1 dòng */
+        height: 60vh;
+        margin: 0.2vh; 
+        display: flex;
+        justify-content: center;
+    }
+    .product-name,
+.product-price {
+    font-size: 1.5vw;
+    margin-bottom: 5px;
+    width: 100%;  
+}
+.product-image .favorite i {
+    font-size: 4vw;
 
+}
+
+.product-image .sold-out{
+ font-size: 1.5vw;
+}
+
+}
+
+@media only screen and (max-width: 862px){
+    .product {
+        position: relative; width: calc(50% - 20px); /* Chiếm khoảng 50% chiều rộng, với một chút không gian trừ đi */
+        height: 61vh;
+        margin: 0.2vh 10px; /* Điều chỉnh khoảng cách giữa các sản phẩm */
+      
+    }
+
+    .product-name,
+    .product-price {
+    font-size: 2vw;
+    margin-bottom: 5px;
+    width: 100%;  
+}
+.product-image .favorite i {
+    font-size: 5vw;
+
+}
+
+.product-image .sold-out{
+    font-size: 2vw;
+   }
+   
+}
+
+
+@media only screen and (max-width: 600px){
+    .product {
+      
+        width: calc(50% - 10px); /* Chiếm khoảng 50% chiều rộng, với một chút không gian trừ đi */
+        height: 51.5vh;
+        margin: 4px 2px; /* Điều chỉnh khoảng cách giữa các sản phẩm */
+    
+    }
+    .product-image {
+     
+        width: 100%; 
+        height: 40vh;
+    }
+    .product-image img {
+     
+        width: 90%; 
+   
+    }
+
+    .product-name,
+    .product-price {
+    font-size: 2.5vw;
+    margin-bottom: 5px;
+    width: 100%;  
+}
+.product-image .favorite i {
+    font-size: 5vw;
+
+}
+
+.product-image .favorite {
+    position: absolute;
+    top: 5px;
+    right: 25px;
+    color:rgba(197, 197, 197, 0.743); /* Màu của biểu tượng */
+    cursor: pointer;
+}
+.product-image .sold-out{
+    font-size: 2.5vw;
+   }
+   
+}
+
+@media only screen and (max-width: 548px){
+    .product {
+      
+        width: calc(50% - 40px); /* Chiếm khoảng 50% chiều rộng, với một chút không gian trừ đi */
+        height: 49.5vh;
+        margin: 4px 10px; /* Điều chỉnh khoảng cách giữa các sản phẩm */
+    
+    }
+    .product-image {
+     
+        width: 100%; 
+   
+    }
+    .product-image img {
+        width: 100%; 
+        height: 40vh;
+    }
+
+    .product-name,
+    .product-price {
+    font-size: 2.5vw;
+    margin-bottom: 5px;
+    width: 100%;  
+}
+
+.product-image .favorite i {
+    font-size: 8vw;
+
+}
+
+.product-image .favorite {
+    position: absolute;
+    top: 5px;
+    right: 0;
+    color:rgba(197, 197, 197, 0.743); /* Màu của biểu tượng */
+    cursor: pointer;
+}
+.product-image .sold-out{
+    font-size:3vw;
+   }
+   
+}
 
 .Container-new {
     width: 100%;
@@ -687,7 +832,21 @@
         margin: 20px 0px;
         
       }
+      .Container-new .Container-News .Box-New .Name-New  a{
+      font-size: 4vw;
+    }
+
+    .product-price #gia_khuyenmai{
+        position: absolute;
+        right: 0;
+        font-size: 2.5vw;
+       }
+       
+       .product-price span{
       
+        font-size: 2.5vw; 
+       }
+    
 }
 .boxfooter1{
     width: 100%;

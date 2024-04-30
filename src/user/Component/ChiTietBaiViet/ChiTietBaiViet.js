@@ -29,7 +29,9 @@ const ChiTietBaiViet = () => {
   value={baiviet && baiviet.textare ? baiviet.textare : ''}
   readOnly={true}
   theme="snow"
-/>
+  className="my-custom-quill" /* Thêm lớp CSS tùy chỉnh */
+ />
+
 
     <BaiVietRanDom/>
         </div>

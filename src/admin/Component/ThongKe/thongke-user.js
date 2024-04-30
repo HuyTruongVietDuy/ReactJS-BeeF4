@@ -19,7 +19,7 @@ const DashBoard = () => {
         setData(data);
       })
       .catch((error) => {
-        console.error("Error fetching total data:", error);
+      
       });
   
     fetch(apiUrlSanPham)
@@ -28,7 +28,7 @@ const DashBoard = () => {
         setSanPham(data);
       })
       .catch((error) => {
-        console.error("Error fetching product data:", error);
+       
       });
   
     // Fetch low-stock products
@@ -38,7 +38,8 @@ const DashBoard = () => {
         setLowStockProducts(data); // Set low-stock products data
       })
       .catch((error) => {
-        console.error("Error fetching low-stock products:", error);
+      
+        
       });
   }, []);
 

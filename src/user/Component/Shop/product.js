@@ -18,6 +18,14 @@ function Product({ priceFilter, thutuFilter, loaiFilter, colorFilter  }) {
   const [showAddToCartModal, setShowAddToCartModal] = useState(false);
   const [modalAddCartProductId, setAddCartProductId] = useState(null); 
   const [modalBuyProductId, setModalBuyProductId] = useState(null); 
+
+    // Tạo trạng thái để quản lý số lượng sản phẩm hiển thị
+    const [visibleProductsCount, setVisibleProductsCount] = useState(8);
+
+    const handleViewMoreClick = () => {
+      setVisibleProductsCount((prevCount) => prevCount + 8); // Tăng thêm 8 sản phẩm
+    };
+  
   // Hàm mở modal
   // Hàm mở modal
 
@@ -181,7 +189,7 @@ function Product({ priceFilter, thutuFilter, loaiFilter, colorFilter  }) {
     switch (thutuFilter) {
         case "1":
             // Sort by newest
-            return [...products].sort((a, b) => new Date(b.ngay_dang) - new Date(a.ngay_dang));
+            return [...products].sort((a, b) => new Date(b.time_add) - new Date(a.ngay_dang));
         case "2":
             // Sort by ascending price
             return [...products].sort((a, b) => parseFloat(a.gia) - parseFloat(b.gia));
@@ -197,6 +205,7 @@ function Product({ priceFilter, thutuFilter, loaiFilter, colorFilter  }) {
   
 
 
+  // Lọc và sắp xếp sản phẩm như ban đầu
   const filteredProductsByPrice = filterProductsByPrice(productList, priceFilter);
   const filteredProductsByLoai = filterProductsByLoai(filteredProductsByPrice, loaiFilter);
   const filteredProductsByColor = filterProductsByColor(filteredProductsByLoai, colorFilter);
@@ -205,14 +214,16 @@ function Product({ priceFilter, thutuFilter, loaiFilter, colorFilter  }) {
   return (
     <div className="container-product-show">
       <div className="center-layout">
-        {sortedAndFilteredProducts.map((product) => (
+      {sortedAndFilteredProducts
+          .slice(0, visibleProductsCount) // Chỉ hiển thị số lượng sản phẩm theo trạng thái
+          .map((product) => (
            product.trang_thai === 2 && (
           <div className="product" key={product.id_sanpham}>
              <div className="product-image">
               <Link to={`/chitietsanpham/${product.url_product}`} > 
-              <img src={`http://localhost:4000/chitietsanpham/${selectedColor[product.id_sanpham]?.hinh_anh_1}`} alt="" className="main-image" />
+              <img src={`http://localhost:4000/chitietsanpham/${selectedColor[product.id_sanpham]?.hinh_anh_6}`} alt="" className="main-image" />
               {selectedColor[product.id_sanpham]?.hinh_anh_2 && (
-                <img src={`http://localhost:4000/chitietsanpham/${selectedColor[product.id_sanpham]?.hinh_anh_6}`} alt="" className="hover-image" />
+                <img src={`http://localhost:4000/chitietsanpham/${selectedColor[product.id_sanpham]?.hinh_anh_1}`} alt="" className="hover-image" />
               )}
               </Link>
               <div className="product-button-container ">
@@ -270,7 +281,13 @@ function Product({ priceFilter, thutuFilter, loaiFilter, colorFilter  }) {
           </div>
            )
         ))}
+            {visibleProductsCount < sortedAndFilteredProducts.length && (
+          <div id='view-more-product'>
+            <button onClick={handleViewMoreClick}>Xem thêm</button> {/* Thêm sự kiện onClick */}
+          </div>
+        )}
       </div>
+     
       <ModalProduct onClose={handleCloseAddToCartModal} show={showAddToCartModal} productId={modalAddCartProductId} />
 <ModalProductBuy onClose={handleCloseBuyModal} show={showBuyModal} productId={modalBuyProductId} />
     </div>

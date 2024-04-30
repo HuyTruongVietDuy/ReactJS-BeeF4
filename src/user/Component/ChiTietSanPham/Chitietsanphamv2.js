@@ -18,7 +18,7 @@ const ChiTietSanPham = () => {
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
   const [selectedSize, setSelectedSize] = useState(null); 
   const user = useSelector((state) => state.auth.user);
-
+  const [initialProductDetail, setInitialProductDetail] = useState(null);
   
   const fetchProduct = useCallback(async () => {
     try {
@@ -42,7 +42,7 @@ const ChiTietSanPham = () => {
         throw new Error('No product details found');
       }
     } catch (error) {
-      console.error('Error fetching product:', error);
+     
       message.error('Failed to fetch product details');
     }
   }, [url_product]);
@@ -63,9 +63,9 @@ const ChiTietSanPham = () => {
         }
         const data = await response.json();
         setColors(data);
-        console.log(data);
+      
       } catch (error) {
-        console.error("Error fetching colors:", error);
+      
       }
     };
 
@@ -84,16 +84,15 @@ const ChiTietSanPham = () => {
           }
           const data = await response.json();
           setSizes(data);
-          console.log(data);
+         
         }
       } catch (error) {
-        console.error("Error fetching sizes:", error);
+      
       }
     };
 
     fetchSizes();
   }, [productDetail]);
-
   const handleColorClick = (index) => {
     setSelectedColorIndex(index);
     const selectedColor = colors[index];
@@ -108,7 +107,10 @@ const ChiTietSanPham = () => {
     }
     setImageList(colorImages);
     setSelectedImageIndex(0); // Reset to display the first image of the newly selected color
-  };
+    
+    setSelectedSize(null); // Reset selected size when switching colors
+};
+
   
 
   const scrollToImage = (index) => {
@@ -150,7 +152,7 @@ const ChiTietSanPham = () => {
   
   const handleMuaNgay = () => {
     if (!selectedSize) {
-      console.error("No size selected.");
+   
       message.warning('Vui lòng chọn kích thước trước khi thêm vào giỏ hàng');
       return;
     }
@@ -182,7 +184,7 @@ const ChiTietSanPham = () => {
       message.success('Đã thêm vào sản phẩm yêu thích');
       // Nếu thành công, có thể cập nhật giao diện người dùng hoặc thực hiện các hành động khác nếu cần
     } catch (error) {
-      console.error('Error adding product to favorites:', error);
+     
     }
   };
   
@@ -202,7 +204,7 @@ const ChiTietSanPham = () => {
       message.success('Đã xóa sản phẩm yêu thích');
       // Nếu thành công, có thể cập nhật giao diện người dùng hoặc thực hiện các hành động khác nếu cần
     } catch (error) {
-      console.error('Error removing product from favorites:', error);
+     
     }
   };
   
@@ -267,7 +269,7 @@ const ChiTietSanPham = () => {
           <div className="button-favorite">
           <button onClick={handleAddToCart}>Thêm vào giỏ hàng</button>
             {user && user.id_user && productDetail.id_user === user.id_user ? (
- <div className="icon-container" style={{ color: ' rgb(174, 11, 38)' }} onClick={() => handleRemoveFavoriteClick(productDetail.id_sanpham, user.id_user)}> <i className="material-icons" >favorite</i></div>     
+ <div className="icon-container" style={{border: "1px solid pink"}} onClick={() => handleRemoveFavoriteClick(productDetail.id_sanpham, user.id_user)}> <i className="material-icons" style={{ color: ' pink' }}>favorite</i></div>     
 ) : (
   <div className="icon-container" onClick={() => handleFavoriteClick(productDetail.id_sanpham, user ? user.id_user : null)}> <i className="material-icons" >favorite_outline</i></div>     
 )}
@@ -285,6 +287,8 @@ const ChiTietSanPham = () => {
           </div>  
         </div>
       </div>
+
+     
       <SanPhamTrongChiTiet/>
     </div>
   );

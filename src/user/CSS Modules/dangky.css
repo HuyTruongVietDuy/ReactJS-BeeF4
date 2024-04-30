@@ -10,9 +10,18 @@
     color: black;
 }
 
+.user-form-dangky input[type="radio"]{
+    width: 20px;
+    height: 20px;
+  vertical-align: top;
+}
+
+.user-form-dangky label{
+    font-size: 1vw;
+    vertical-align: middle;
+}
 .user-form-dangky input[type="text"],
-.user-form-dangky input[type="password"],
-.user-form-dangky select{
+.user-form-dangky input[type="password"]{
     display: block;
     margin: 25px 0;
     padding: 20px;
@@ -27,6 +36,9 @@
     background-color: #ededed41;
     border: 0.5px solid rgba(128, 128, 128, 0.599);
     outline: none; 
+}
+input[type="radio"]:checked {
+    accent-color: black;
 }
 
 .user-form-dangky label {
@@ -62,6 +74,49 @@
 
 .user-form-dangky .return i {
     margin-right: 20px;
+    vertical-align: sub;
+}
+
+@media (max-width: 957px) {
+    .user-form-dangky {
+        width: 80%;
+    }
+    .user-form-dangky button {
+    width: 100%;
+    font-size: 2vw;
+    }
+    .user-form-dangky input[type="text"],
+    .user-form-dangky input[type="password"]{
+    font-size: 2vw;
+
+}
+
+.user-form-dangky h3 {
+    font-size: 3vw;
+}
+
+.user-form-dangky input[type="radio"]{
+    margin-bottom: 20px;
+    vertical-align: top;
+}
+
+.user-form-dangky label{
+    font-size: 3vw;
+    vertical-align: top;
+   
+}
+.user-form-dangky .return i {
+    margin-right: 20px;
+    vertical-align: sub;
+    font-size: 8vw;
+}
+.user-form-dangky .return sup {
+    margin-right: 20px;
+    vertical-align: sup;
+    font-size: 4vw;
+    position: relative;
+    top: 40%;
+}
 }
 
 @media (max-width: 739px) {
@@ -72,4 +127,6 @@
     .user-form-dangky button {
         width: 100%;
     }
+
+ 
 }

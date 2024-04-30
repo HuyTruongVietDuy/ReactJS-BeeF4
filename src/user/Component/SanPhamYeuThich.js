@@ -176,10 +176,10 @@ function SanPhamYeuThich({  thutuFilter  }) {
           {sortedAndFilteredProducts.map((product) => (
             <div className="product" key={product.id_sanpham}>
               <div className="product-image">
-                <Link to={`/chitietsanpham/${product.id_sanpham}`} >
-                  <img src={`http://localhost:4000/chitietsanpham/${selectedColor[product.id_sanpham]?.hinh_anh_1}`} alt="" className="main-image" />
+                <Link to={`/chitietsanpham/${product.url_product}`} >
+                  <img src={`http://localhost:4000/chitietsanpham/${selectedColor[product.id_sanpham]?.hinh_anh_6}`} alt="" className="main-image" />
                   {selectedColor[product.id_sanpham]?.hinh_anh_2 && (
-                    <img src={`http://localhost:4000/chitietsanpham/${selectedColor[product.id_sanpham]?.hinh_anh_6}`} alt="" className="hover-image" />
+                    <img src={`http://localhost:4000/chitietsanpham/${selectedColor[product.id_sanpham]?.hinh_anh_1}`} alt="" className="hover-image" />
                   )}
                 </Link>
                 <div className="product-button-container ">

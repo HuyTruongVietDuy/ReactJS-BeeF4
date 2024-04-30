@@ -38,15 +38,24 @@ const ChiTietDonHang = ({ showViewModal, closeViewModal, selectedBill, dispatchd
       });
 
       if (!response.ok) {
-        throw new Error('Failed to update order status');
+        const responseData = await response.json();
+        if (responseData.message === "Không đủ số lượng trong kho") {
+          // Cảnh báo người dùng về tình trạng không đủ số lượng
+          message.warning("Không đủ số lượng trong kho để xác nhận đơn hàng");
+        } else {
+          throw new Error("Failed to update order status");
+        }
+      } else {
+        // Nếu thành công, tiếp tục xử lý
+        closeViewModal();
+        message.success("Bạn đã cập nhật trạng thái đơn hàng thành công");
+        dispatchdata();
+        fetchOrderDetails(selectedBill.id_donhang);
       }
-      closeViewModal();
-      message.success('Bạn đã cập nhật trạng thai đơn hàng thành công');
-      dispatchdata();
-      fetchOrderDetails(selectedBill.id_donhang);
     } catch (error) {
       console.error('Error updating order status:', error);
-      message.error('Failed to update order status');
+      closeViewModal();
+      message.error("Không đủ số lượng trong kho để xác nhận đơn hàng");
     }
   };
 

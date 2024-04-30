@@ -16,7 +16,7 @@ import { setSanPhamList } from '../../../redux/sanPhamSlice';
     const [selectedSanPham, setSelectedSanPham] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const itemsPerPage = 7;
+    const itemsPerPage = 6;
 
     const OpenAdd = () => {
       setShowForm(!showForm);

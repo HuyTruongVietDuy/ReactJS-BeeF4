@@ -18,7 +18,7 @@ function CategoryShow() {
                 setTongSoDanhMuc(danhMucList.length);
                 setDanhSachDanhMuc(danhMucList);
             } catch (error) {
-                console.error('Error fetching categories:', error);
+               
             }
         };
     

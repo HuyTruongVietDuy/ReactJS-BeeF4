@@ -1,177 +1,210 @@
 import React, { useState, useEffect } from 'react';
-import { message, Button } from 'antd';
+import { message } from 'antd'; // Sử dụng Ant Design để hiển thị thông báo
 
-const ChiTietDonHang = ({ showViewModal, closeViewModal, selectedBill, dispatchdata }) => {
-  const [orderDetails, setOrderDetails] = useState(null);
-  const [deliveryFailed, setDeliveryFailed] = useState(false);
+const SuaDonHang = ({ showEditModal, closeEditModal, selectedBill, donhangID, dispatchdata }) => {
+  // Trạng thái ban đầu
+  const [provinces, setProvinces] = useState([]);
+  const [districts, setDistricts] = useState([]);
+  const [wards, setWards] = useState([]);
 
+  const [loadingProvinces, setLoadingProvinces] = useState(true);
+  const [loadingDistricts, setLoadingDistricts] = useState(false);
+  const [loadingWards, setLoadingWards] = useState(false);
+
+  const [address, setAddress] = useState({
+    diachi: '',
+    tinh: '',
+    huyen: '',
+    xa: '',
+    sdt: '',
+  });
+
+  // Khi modal được mở và có hóa đơn được chọn, cập nhật địa chỉ
   useEffect(() => {
-    if (showViewModal && selectedBill) {
-      fetchOrderDetails(selectedBill.id_donhang);
-    }
-  }, [showViewModal, selectedBill]);
-
-  const fetchOrderDetails = async (id_donhang) => {
-    try {
-      const response = await fetch(`http://localhost:4000/donhang/listchitietdonhang/${id_donhang}`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch order details');
-      }
-      const data = await response.json();
-      setOrderDetails(data);
-    } catch (error) {
-      console.error('Error fetching order details:', error);
-      message.error('Failed to fetch order details');
-    }
-  };
-
-  const updateStatus = async (newStatus) => {
-    try {
-      const response = await fetch(`http://localhost:4000/donhang/update-tinh-trang/${selectedBill.id_donhang}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          tinh_trang: newStatus,
-        }),
+    if (showEditModal && selectedBill) {
+      setAddress({
+        diachi: selectedBill.diachi || '',
+        tinh: selectedBill.tinh || '',
+        huyen: selectedBill.huyen || '',
+        xa: selectedBill.xa || '',
+        sdt: selectedBill.sdt || '',
       });
-
-      if (!response.ok) {
-        throw new Error('Failed to update order status');
-      }
-      closeViewModal();
-      message.success('Bạn đã cập nhật trạng thai đơn hàng thành công');
-      dispatchdata();
-      fetchOrderDetails(selectedBill.id_donhang);
-    } catch (error) {
-      console.error('Error updating order status:', error);
-      message.error('Failed to update order status');
     }
-  };
+  }, [showEditModal, selectedBill]);
 
-  const handleConfirm = () => {
-    updateStatus(2); // Xác nhận đơn hàng: tinh_trang = 2
-  };
+  // Tải dữ liệu tỉnh thành khi component được mount
+  useEffect(() => {
+    fetch("http://localhost:4000/donhang/data")
+      .then((response) => response.json())
+      .then((data) => {
+        setProvinces(data);
+        setLoadingProvinces(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching province data:", error);
+        message.error("Lỗi khi tải dữ liệu tỉnh/thành phố.");
+        setLoadingProvinces(false);
+      });
+  }, []);
 
-  const handleCancel = () => {
-    updateStatus(4); // Hủy đơn hàng: tinh_trang = 4
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setAddress((prevAddress) => ({
+      ...prevAddress,
+      [name]: value,
+    }));
   };
-
-  const handleComplete = () => {
-    updateStatus(3); // Hoàn tất đơn hàng: tinh_trang = 3
+  const handleProvinceChange = (e) => {
+    const selectedProvince = e.target.value;
+    setLoadingDistricts(true); // Bắt đầu tải dữ liệu huyện/quận
+  
+    const selectedProvinceData = provinces.find((province) => province[1] === selectedProvince);
+  
+    if (selectedProvinceData && selectedProvinceData[4]) {
+      setDistricts(selectedProvinceData[4]);
+    } else {
+      setDistricts([]);
+    }
+  
+    setWards([]); // Reset danh sách xã/phường khi thay đổi tỉnh
+    setLoadingDistricts(false);
+  
+    setAddress((prevAddress) => ({
+      ...prevAddress,
+      tinh: selectedProvince,
+      huyen: '',
+      xa: '',
+    }));
   };
-
-  const handleDeliveryFailed = () => {
-    setDeliveryFailed(true);
+  
+  const handleDistrictChange = (e) => {
+    const selectedDistrict = e.target.value;
+    setLoadingWards(true);
+  
+    const selectedDistrictData = districts.find((district) => district[1] === selectedDistrict);
+  
+    if (selectedDistrictData && selectedDistrictData[4]) {
+      setWards(selectedDistrictData[4]);
+    } else {
+      setWards([]);
+    }
+  
+    setLoadingWards(false);
+  
+    setAddress((prevAddress) => ({
+      ...prevAddress,
+      huyen: selectedDistrict,
+      xa: '',
+    }));
   };
+  
 
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
-  };
+  // Gửi yêu cầu cập nhật địa chỉ
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Ngăn chặn hành vi mặc định của form
 
-  const formatDateTime = (dateTimeString) => {
-    if (!dateTimeString) return "Chưa cập nhật";
-    const vietnamTime = new Date(dateTimeString).toLocaleString("en-US", {
-      timeZone: "Asia/Ho_Chi_Minh",
-    });
-    return vietnamTime;
+    try {
+      const response = await fetch(
+        `http://localhost:4000/donhang/update-address/${donhangID}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(address), // Gửi dữ liệu địa chỉ
+        }
+      );
+
+      const result = await response.json();
+
+      if (response.ok) {
+        message.success(result.message); // Hiển thị thông báo thành công
+        dispatchdata(); // Cập nhật lại dữ liệu
+        closeEditModal(); // Đóng modal sau khi cập nhật thành công
+      } else {
+        message.error(result.message); // Hiển thị thông báo lỗi
+      }
+    } catch (error) {
+      console.error('Error updating address:', error);
+      message.error('Lỗi khi cập nhật địa chỉ');
+    }
   };
 
   return (
     <>
-      {showViewModal && (
+      {showEditModal && (
         <div className="admin-edit">
-          <div className="admin-viewbill-content">
-            <span id="close" onClick={closeViewModal}>
+          <div className="admin-edit-content">
+            <span id="close" onClick={closeEditModal}>
               x
             </span>
-            <h1 id="h1">Thông tin đơn hàng: CM{selectedBill.id_donhang}</h1>
-            <div className="viewbill-top">
-              <div className="left">
-                <h1>Thông tin giao hàng</h1>
-                <p>Người đặt: <span> {selectedBill.hoten}</span></p>
-                <p>Email: <span> {selectedBill.email} </span></p>
-                <p>Số điện thoại: <span> {selectedBill.sdt}</span></p>
-                <p>Ngày đặt: <span> {formatDateTime(selectedBill.ngay_dat)}</span></p>
-              </div>
-              <div className="right">
-                <h1>Địa chỉ giao hàng</h1>
-                <p>Quốc gia: <span> Việt Nam</span></p>
-                <p>Tỉnh: <span> {selectedBill.tinh}</span></p>
-                <p>Huyện: <span> {selectedBill.huyen}</span></p>
-                <p>Xã: <span> {selectedBill.xa}</span></p>
-                <p>Địa chỉ: <span> {selectedBill.diachi}</span></p>
-                <p>Ghi chú khách: <span> {selectedBill.Ghi_chu}</span></p>
-              </div>
-            </div>
-            <div className="viewbill-bottom">
-              <h1> Chi tiết sản phẩm:</h1>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Sản Phẩm</th>
-                    <th>Mã sản phẩm</th>
-                    <th>Giá</th>
-                    <th>Số lượng</th>
-                    <th>Tổng</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {orderDetails &&
-                    orderDetails.map((detail, index) => (
-                      <tr key={`${detail.id}-${index}`}>
-                        <td id="tl">
-                          <div className="box-product">
-                            <div className="left">
-                              <div className="box-img">
-                                <img src={`http://localhost:4000/chitietsanpham/${detail.hinh_anh_1}`} alt={detail.ten_mau} />
-                              </div>
-                            </div>
-                            <div className="right">
-                              <p>{detail.ten_sanpham}</p>
-                              <p>{detail.ten_mau}</p>
-                              <p>{detail.ten_size}</p>
-                            </div>
-                          </div>
-                        </td>
-                        <td>PM24{detail.id_donhangchitiet}</td>
-                        <td>{formatPrice(detail.gia_ban)}</td>
-                        <td>{detail.so_luong}</td>
-                        <td>{formatPrice(detail.so_luong * detail.gia_ban)}</td>
-                      </tr>
-                    ))}
-                </tbody>
-               
-              </table>
-              <p id='total'>Tổng Tiền: {formatPrice(selectedBill.total)}</p>
-            </div>
-            <div className='nav-button'>
-              <div id='container-button'>
-                {selectedBill.tinh_trang === 1 && (
-                  <>
-                    <button id="default" onClick={handleCancel}>Hủy xác nhận</button>
-                    <button id="primary" onClick={handleConfirm}>Xác Nhận</button>
-                  </>
-                )}
-                {selectedBill.tinh_trang === 2 && (
-                  <>
-                   <button id="default" onClick={handleDeliveryFailed}>Giao hàng không thành công</button>
-                    <button id="primary" onClick={handleComplete}>Hoàn tất đơn hàng</button>
-                   
-                    {deliveryFailed && (
-                      <div style={{ color: 'red' }}>Giao hàng không thành công</div>
-                    )}
-                  </>
-                )}
-                {selectedBill.tinh_trang === 4 && (
-                  <p style={{ color: 'red' }}>Đơn hàng đã bị hủy</p>
-                )}
-                {selectedBill.tinh_trang === 3 && (
-                  <p style={{ color: 'green' }}>Đơn hàng đã được xử lý hoàn tất</p>
-                )}
-              </div>
-            </div>
+            <form className="form-admin-edit" onSubmit={handleSubmit}>
+              <h1> Thay đổi địa chỉ đơn hàng {donhangID}</h1>
+              <label>Địa chỉ:</label>
+              <input
+                type="text"
+                name="diachi"
+                value={address.diachi}
+                onChange={handleInputChange}
+              />
+             <label>Tỉnh/Thành phố:</label>
+<select
+  onChange={handleProvinceChange}
+  value={address.tinh}
+  disabled={loadingProvinces}
+>
+  <option value="" disabled>
+    Chọn Tỉnh/Thành phố
+  </option>
+  {provinces.map((province) => (
+    <option key={province[0]} value={province[1]}>
+      {province[1]}
+    </option>
+  ))}
+</select>
+
+<label>Huyện/Quận:</label>
+<select
+  onChange={handleDistrictChange}
+  value={address.huyen}
+  disabled={loadingDistricts}
+>
+  <option value="" disabled>
+    Chọn Huyện/Quận
+  </option>
+  {districts.map((district) => (
+    <option key={district[0]} value={district[1]}>
+      {district[1]}
+    </option>
+  ))}
+</select>
+
+<label>Phường/Xã:</label>
+<select
+  value={address.xa}
+  disabled={loadingWards}
+>
+  <option value="" disabled>
+    Chọn Phường/Xã
+  </option>
+  {wards.map((ward) => (
+    <option key={ward[0]} value={ward[1]}>
+      {ward[1]}
+    </option>
+  ))}
+</select>
+
+<label>Số điện thoại:</label>
+<input
+  type="text"
+  name="sdt"
+  value={address.sdt}
+  onChange={handleInputChange}
+/>
+
+
+<input type="submit" value="Submit" />
+            </form>
           </div>
         </div>
       )}
@@ -179,4 +212,4 @@ const ChiTietDonHang = ({ showViewModal, closeViewModal, selectedBill, dispatchd
   );
 };
 
-export default ChiTietDonHang;
+export default SuaDonHang;

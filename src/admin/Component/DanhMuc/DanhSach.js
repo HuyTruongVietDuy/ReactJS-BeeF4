@@ -11,8 +11,8 @@ const ListDanhMuc = () => {
   const [showForm, setShowForm] = useState(false);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
-  const [selectedDanhMucId, setSelectedDanhMucId] = useState(null);
-  const [selectedDanhMuc, setSelectedDanhMuc] = useState(null);
+  const [selectedDanhMucId, setSelectedDanhMucId] = useState(null); // nè
+  const [selectedDanhMuc, setSelectedDanhMuc] = useState(null); // nè
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const itemsPerPage = 5;

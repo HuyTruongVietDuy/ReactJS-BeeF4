@@ -11,7 +11,7 @@ const DashBoardRight = () => {
             .then(data => {
                 setMonthlyStatistics(data);
             })
-            .catch(error => console.error('Lỗi khi fetch dữ liệu thống kê:', error));
+           
     }, []);
 
     // Xác định dữ liệu cho biểu đồ

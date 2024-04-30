@@ -73,7 +73,7 @@ function SanPhamNew( ) {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
-      console.log(data);
+    
       // Cập nhật state màu
       setColors(prevColors => ({
         ...prevColors,
@@ -85,7 +85,7 @@ function SanPhamNew( ) {
         [id_sanpham]: data[0] // Chọn màu đầu tiên mặc định
       }));
     } catch (error) {
-      console.error("Error fetching colors:", error);
+
     }
   };
 
@@ -120,7 +120,7 @@ function SanPhamNew( ) {
       message.success('Đã thêm vào sản phẩm yêu thích');
       // Nếu thành công, có thể cập nhật giao diện người dùng hoặc thực hiện các hành động khác nếu cần
     } catch (error) {
-      console.error('Error adding product to favorites:', error);
+    
     }
   };
   
@@ -140,7 +140,7 @@ function SanPhamNew( ) {
       message.success('Đã xóa sản phẩm yêu thích');
       // Nếu thành công, có thể cập nhật giao diện người dùng hoặc thực hiện các hành động khác nếu cần
     } catch (error) {
-      console.error('Error removing product from favorites:', error);
+    
     }
   };
   
@@ -156,9 +156,9 @@ function SanPhamNew( ) {
             <div className="product" key={product.id_sanpham}>
               <div className="product-image">
                 <Link to={`/chitietsanpham/${product.url_product}`}>
-                  <img src={`http://localhost:4000/chitietsanpham/${selectedColor[product.id_sanpham]?.hinh_anh_1}`} alt="" className="main-image" />
+                  <img src={`http://localhost:4000/chitietsanpham/${selectedColor[product.id_sanpham]?.hinh_anh_6}`} alt="" className="main-image" />
                   {selectedColor[product.id_sanpham]?.hinh_anh_2 && (
-                    <img src={`http://localhost:4000/chitietsanpham/${selectedColor[product.id_sanpham]?.hinh_anh_6}`} alt="" className="hover-image" />
+                    <img src={`http://localhost:4000/chitietsanpham/${selectedColor[product.id_sanpham]?.hinh_anh_1}`} alt="" className="hover-image" />
                   )}
                 </Link>
                 <div className="product-button-container">

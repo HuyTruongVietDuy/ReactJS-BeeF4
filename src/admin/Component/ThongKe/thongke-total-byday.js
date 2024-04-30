@@ -34,7 +34,7 @@ const DashBoard = () => {
                 createChart(totalRevenue); // Tạo và vẽ biểu đồ khi nhận được dữ liệu
             })
             .catch(error => {
-                console.error('Lỗi khi lấy dữ liệu thống kê:', error);
+           
             });
     };
 
