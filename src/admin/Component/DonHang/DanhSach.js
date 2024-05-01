@@ -106,6 +106,8 @@ dispatchdata={dispatchdata}
             <option value="2">Đã tiếp nhận</option>
             <option value="3">Hoàn thành</option>
             <option value="4">Đơn hàng bị hủy</option>
+            <option value="5">Không thể xử lý</option>
+            <option value="6">Giao hàng không thành công</option>
           </select>
         </div>
       </div>
@@ -138,15 +140,20 @@ dispatchdata={dispatchdata}
                 </td>
                 <td>
                 {bill.tinh_trang === 1
-    ? <span style={{ color: '#4CAF50' }}>Chờ xử lý</span>
-    : bill.tinh_trang === 2
-    ? <span style={{ color: '#2196F3' }}>Đã tiếp nhận</span>
-    : bill.tinh_trang === 3
-    ? <span style={{ color: '#8BC34A' }}>Hoàn thành</span>
-    : bill.tinh_trang === 4
-    ? <span style={{ color: '#F44336' }}>Đơn hàng bị hủy</span>
-    : <span>Trạng thái không xác định</span>
+  ? <span style={{ color: '#4CAF50' }}>Chờ xử lý</span>  // Màu xanh lá cây, trạng thái chờ xử lý
+  : bill.tinh_trang === 2
+  ? <span style={{ color: '#2196F3' }}>Đã tiếp nhận</span>  // Màu xanh dương, trạng thái đã tiếp nhận
+  : bill.tinh_trang === 3
+  ? <span style={{ color: '#8BC34A' }}>Hoàn thành</span>  // Màu xanh lá cây nhạt, trạng thái hoàn thành
+  : bill.tinh_trang === 4
+  ? <span style={{ color: '#F44336' }}>Đơn hàng bị hủy</span>  // Màu đỏ, trạng thái bị hủy
+  : bill.tinh_trang === 5
+  ? <span style={{ color: '#FF9800' }}>Không thể xử lý đơn hàng</span>  // Màu cam, không thể xử lý đơn hàng
+  : bill.tinh_trang === 6
+  ? <span style={{ color: '#FF5722' }}>Giao hàng không thành công</span>  // Màu đỏ đậm, giao hàng không thành công
+  : <span>Trạng thái không xác định</span>  // Mặc định, trạng thái không xác định
 }
+
 
                 </td>
                 <td>

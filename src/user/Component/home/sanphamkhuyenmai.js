@@ -4,10 +4,10 @@ import ModalProduct from "../modal-addcart";
 import ModalProductBuy from "../modal-buy";
 
 import { useSelector, useDispatch } from 'react-redux';
-import { setNewProducts } from '../../../redux/newProductsSlice';
+import { setSaleProducts  } from '../../../redux/saleProductSlice';
 import { message } from 'antd';
-function SanPhamNew( ) {
-  const productList = useSelector((state) => state.newProducts);
+function SanPhamKhuyenMai( ) {
+  const productList = useSelector((state) => state.saleProducts); 
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
  
@@ -20,12 +20,12 @@ function SanPhamNew( ) {
   const [modalAddCartProductId, setAddCartProductId] = useState(null); 
  
   // Hàm mở modal
-  const [visibleProductsCount, setVisibleProductsCount] = useState(4);
+ // Tạo trạng thái để quản lý số lượng sản phẩm hiển thị
+ const [visibleProductsCount, setVisibleProductsCount] = useState(4);
    
-  const handleViewMoreClick = () => {
-   setVisibleProductsCount((prevCount) => prevCount + 4); // Tăng thêm 8 sản phẩm
- };
-   
+ const handleViewMoreClick = () => {
+  setVisibleProductsCount((prevCount) => prevCount + 4); // Tăng thêm 8 sản phẩm
+};
   const handleBuy = (id_sanpham) => {
     setModalBuyProductId(id_sanpham);
     setShowBuyModal(true);
@@ -51,12 +51,13 @@ function SanPhamNew( ) {
   
   const fetchData = useCallback(async () => {
     try {
-      const response = await fetch("https://api.sqbe.store/sanpham/listnew");
+      const response = await fetch("https://api.sqbe.store/sanpham/list-promotions");
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
-      dispatch(setNewProducts(data)); // Dispatch action để cập nhật danh sách sản phẩm mới
+      console.log(data);
+      dispatch(setSaleProducts(data)); // Dispatch action để cập nhật danh sách sản phẩm mới
       data.forEach(product => {
         fetchColors(product.id_sanpham);
       });
@@ -149,6 +150,8 @@ function SanPhamNew( ) {
   };
   
 
+
+  
   
   return (
     <div className="container-product-show">
@@ -231,4 +234,4 @@ function SanPhamNew( ) {
   
 }
 
-export default SanPhamNew;
+export default SanPhamKhuyenMai;

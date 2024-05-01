@@ -3,7 +3,7 @@ import { message, Button } from 'antd';
 
 const ChiTietDonHang = ({ showViewModal, closeViewModal, selectedBill, dispatchdata }) => {
   const [orderDetails, setOrderDetails] = useState(null);
-  const [deliveryFailed, setDeliveryFailed] = useState(false);
+
 
   useEffect(() => {
     if (showViewModal && selectedBill) {
@@ -36,28 +36,36 @@ const ChiTietDonHang = ({ showViewModal, closeViewModal, selectedBill, dispatchd
           tinh_trang: newStatus,
         }),
       });
-
+  
       if (!response.ok) {
         const responseData = await response.json();
-        if (responseData.message === "Không đủ số lượng trong kho") {
-          // Cảnh báo người dùng về tình trạng không đủ số lượng
-          message.warning("Không đủ số lượng trong kho để xác nhận đơn hàng");
+        
+        if (responseData.message) {
+          // Nếu thông báo là "Sản phẩm không đủ hàng", hiển thị cảnh báo
+          if (responseData.message.includes("Sản phẩm không đủ hàng")) {
+            closeViewModal();
+            dispatchdata();
+            message.warning("Số lượng sản phẩm không đủ để xác nhận đơn hàng."); // Hiển thị cảnh báo
+          } else {
+            message.error(responseData.message); // Hiển thị lỗi khác
+          }
         } else {
-          throw new Error("Failed to update order status");
+          message.error("Failed to update order status."); // Lỗi chung
         }
       } else {
-        // Nếu thành công, tiếp tục xử lý
-        closeViewModal();
-        message.success("Bạn đã cập nhật trạng thái đơn hàng thành công");
-        dispatchdata();
-        fetchOrderDetails(selectedBill.id_donhang);
+        closeViewModal(); // Đóng modal nếu thành công
+        message.success("Bạn đã cập nhật trạng thái đơn hàng thành công."); // Thông báo thành công
+        dispatchdata(); // Cập nhật lại dữ liệu
+        fetchOrderDetails(selectedBill.id_donhang); // Tải lại chi tiết đơn hàng
       }
     } catch (error) {
       console.error('Error updating order status:', error);
-      closeViewModal();
-      message.error("Không đủ số lượng trong kho để xác nhận đơn hàng");
+      message.error("Có lỗi khi cập nhật trạng thái đơn hàng."); // Lỗi chung
+      closeViewModal(); // Đóng modal nếu có lỗi
     }
   };
+  
+  
 
   const handleConfirm = () => {
     updateStatus(2); // Xác nhận đơn hàng: tinh_trang = 2
@@ -72,8 +80,10 @@ const ChiTietDonHang = ({ showViewModal, closeViewModal, selectedBill, dispatchd
   };
 
   const handleDeliveryFailed = () => {
-    setDeliveryFailed(true);
+    updateStatus(6);
   };
+
+  // còn nếu số lượng đơn hàng hết là 5 tinh_trang =5
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
@@ -168,9 +178,7 @@ const ChiTietDonHang = ({ showViewModal, closeViewModal, selectedBill, dispatchd
                    <button id="default" onClick={handleDeliveryFailed}>Giao hàng không thành công</button>
                     <button id="primary" onClick={handleComplete}>Hoàn tất đơn hàng</button>
                    
-                    {deliveryFailed && (
-                      <div style={{ color: 'red' }}>Giao hàng không thành công</div>
-                    )}
+                   
                   </>
                 )}
                 {selectedBill.tinh_trang === 4 && (

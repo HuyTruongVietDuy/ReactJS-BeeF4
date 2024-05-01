@@ -1,20 +1,33 @@
-import React, { useState, useEffect } from 'react';
-
+import React, { useState, useEffect, useCallback } from 'react';
+import Sua from "./Sua";
+import { useSelector, useDispatch } from "react-redux";
 const ListUser = () => {
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const itemsPerPage = 10;
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [selectedUserId, setSelectedUserId] = useState(null);
+  const [selectedUser, setSelectedUser] = useState(null);
 
-  useEffect(() => {
+  const fetchUsers = useCallback(() => {
     fetch('https://api.sqbe.store/taikhoan/listtaikhoan')
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
       .then(data => {
-        setUsers(data);
-        setTotalPages(Math.ceil(data.length / itemsPerPage));
+        setUsers(data); // Cập nhật danh sách người dùng
+        setTotalPages(Math.ceil(data.length / itemsPerPage)); // Cập nhật tổng số trang
       })
       .catch(error => console.error('Error fetching data:', error));
-  }, []);
+  }, [itemsPerPage]); // Chỉ tái tạo khi itemsPerPage thay đổi
+
+  useEffect(() => {
+    fetchUsers(); // Gọi hàm fetchUsers
+  }, [fetchUsers]); // Chỉ tái tạo khi fetchUsers thay đổi
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -31,8 +44,25 @@ const ListUser = () => {
     const vietnamTime = new Date(dateTimeString).toLocaleString('en-US', { timeZone: 'Asia/Ho_Chi_Minh' });
     return vietnamTime;
   };
+
+  const handleEdit = (user) => {
+    setShowEditModal(true);
+    setSelectedUser(user);
+    setSelectedUserId(user.id_user)
+  };
+
+  const closeEditModal = () => {
+    setShowEditModal(false);
+  };
   return (
     <div id="container-main-admin">
+      <Sua
+        showEditModal={showEditModal}
+        closeEditModal={closeEditModal}
+        selectedUserId={selectedUserId}
+        selectedUser={selectedUser}
+        fetchUsers={fetchUsers}
+      />
       <div id="container-nav-admin">
         <div className='nav-left-admin'>
           <h1> Quản lí tài khoản</h1>
@@ -52,6 +82,7 @@ const ListUser = () => {
               <th>Giới tính</th>
               <th>Login in</th>
               <th>Role</th>
+              <th>Action</th>
               {/* Thêm các cột khác tương ứng với dữ liệu người dùng */}
             </tr>
           </thead>
@@ -69,6 +100,7 @@ const ListUser = () => {
         {user.role === 2 && <span className="employee">Nhân viên</span>}
         {user.role === 3 && <span className="admin">Admin</span>}
       </td>
+      <td><button id='button-sua'  onClick={() => handleEdit(user)}>Edit</button></td>
     </tr>
   ))}
 </tbody>

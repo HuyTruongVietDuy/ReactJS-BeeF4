@@ -8,6 +8,7 @@ import authSlice from './authSlice';
 import voucherSlice from './voucherSlice';
 import baivietReducer from './baivietSlice';
 import newProductsReducer from './newProductsSlice';
+import saleProductsReducer from './saleProductSlice';
 
 // Load the auth state from localStorage or use an empty object if it doesn't exist
 const preloadedAuthState = JSON.parse(localStorage.getItem('authState')) || {};
@@ -20,6 +21,7 @@ export default configureStore({
     donhang: donhangReducer,
     voucher: voucherSlice,
     newProducts: newProductsReducer,
+    saleProducts:saleProductsReducer,
     baiviet: baivietReducer,
     cart: cartSlice,
     auth: authSlice,

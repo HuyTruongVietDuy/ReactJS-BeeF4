@@ -105,7 +105,7 @@ const ListDiscountCodes = () => {
                 {discountCode.trang_thai === 1 ? 'Chưa sử dụng' : 'Đã sử dụng'}
               </td>
               <td style={{ color: discountCode.tinh_trang === 1 ? 'green' : 'red' }}>
-                {discountCode.tinh_trang === 1 ? 'đang hoạt động' : 'Khong hoạt động'}
+                {discountCode.tinh_trang === 1 ? 'đang hoạt động' : 'Không hoạt động'}
               </td>
               <td><button id="button-xoa" >Xóa</button></td>
             </tr>

@@ -3,6 +3,19 @@ import { Link, useNavigate    } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { XoaTatCaSP } from "../../redux/cartSlice";
 import { message } from "antd";
+
+// Kiểm tra định dạng email hợp lệ
+const isValidEmail = (email) => {
+  const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+  return emailRegex.test(email);
+};
+
+// Kiểm tra số điện thoại Việt Nam hợp lệ
+const isValidPhoneNumber = (phone) => {
+  const phoneRegex = /^(03|05|07|08|09)\d{8}$/; // Số điện thoại Việt Nam hợp lệ
+  return phoneRegex.test(phone);
+};
+
 function ThanhToan() {
   const dispatch = useDispatch();
   const navigate = useNavigate ();
@@ -47,6 +60,12 @@ function ThanhToan() {
   
 
   const applyVoucher = () => {
+    // Kiểm tra nếu người dùng không phải là thành viên
+    if (!user || !user.id_user) {
+      message.warning("Bạn không phải là thành viên. Vui lòng đăng nhập để sử dụng mã giảm giá.");
+      return; // Dừng lại nếu người dùng không phải là thành viên
+    }
+  
     fetch(`https://api.sqbe.store/voucher`)
       .then((response) => {
         if (!response.ok) {
@@ -57,21 +76,17 @@ function ThanhToan() {
       .then((data) => {
         const matchedVoucher = data.find((voucher) => voucher.ma_giamgia === voucherCode);
         if (matchedVoucher) {
-          console.log("Kết quả từ API:", matchedVoucher);
           if (matchedVoucher.trang_thai === 2 || matchedVoucher.tinh_trang === 2) {
-            message.warning("Mã giảm giá đã được sử dụng & không hoạt động");
+            message.warning("Mã giảm giá đã được sử dụng hoặc không hoạt động");
           } else {
             setDiscountPercent(matchedVoucher.phan_tram);
             setIdGiamGia(matchedVoucher.id_giamgia);
             message.success("Áp dụng mã giảm giá thành công");
           }
         } else {
-          console.log("Không tìm thấy mã giảm giá trùng khớp");
           setDiscountPercent("");
           message.error("Không tìm thấy mã giảm giá phù hợp");
         }
-
-      
       })
       .catch((error) => {
         console.error("Lỗi khi gọi API:", error);
@@ -145,6 +160,17 @@ function ThanhToan() {
       message.error("Vui lòng nhập đầy đủ thông tin trước khi đặt hàng.");
       return; // Không tiếp tục gửi dữ liệu
     }
+ // Kiểm tra tính hợp lệ của email và số điện thoại
+ if (!isValidEmail(emailValue)) {
+  message.error("Email không hợp lệ. Vui lòng kiểm tra lại.");
+  return;
+}
+
+if (!isValidPhoneNumber(sdtValue)) {
+  message.error("Số điện thoại không hợp lệ. Vui lòng nhập số điện thoại Việt Nam.");
+  return;
+}
+
   
     // Tạo object chứa thông tin đơn hàng
     const orderData = {

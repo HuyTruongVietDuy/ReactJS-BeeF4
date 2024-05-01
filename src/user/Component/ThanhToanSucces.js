@@ -53,7 +53,7 @@ const ThanhToanSucces = () => {
   const chuaThue = donHang && donHang.total * (1 + (donHang.phan_tram || 0) / 100);
   return (
     <div id="container-main">
-    <div className="container-bill-succes">
+    <div className="container-bill-succes" >
       <div className="img">
         <img src="./images/logosucces.jpg" alt="" />
       </div>

@@ -281,13 +281,13 @@ function Product({ priceFilter, thutuFilter, loaiFilter, colorFilter  }) {
           </div>
            )
         ))}
-            {visibleProductsCount < sortedAndFilteredProducts.length && (
+           
+      </div>
+      {visibleProductsCount < sortedAndFilteredProducts.length && (
           <div id='view-more-product'>
             <button onClick={handleViewMoreClick}>Xem thêm</button> {/* Thêm sự kiện onClick */}
           </div>
         )}
-      </div>
-     
       <ModalProduct onClose={handleCloseAddToCartModal} show={showAddToCartModal} productId={modalAddCartProductId} />
 <ModalProductBuy onClose={handleCloseBuyModal} show={showBuyModal} productId={modalBuyProductId} />
     </div>

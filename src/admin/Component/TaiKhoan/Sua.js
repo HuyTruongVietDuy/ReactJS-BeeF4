@@ -1,147 +1,158 @@
 import React, { useState, useEffect } from 'react';
 import { message } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
-import {setDanhMucList  } from '../../../redux/danhMucSlice'; 
-const Sua = ({ showEditModal, closeEditModal, selectedDanhMuc, handleEditCategory }) => {
-  const [danhMucData, setDanhMucData] = useState({
-    ten_danhmuc: '',
-    id_danhmuc_cha: '',
-    hinhanh: '',
-    trang_thai: '' // Thêm trạng thái vào state
-  });
-  const [hinhanhCu, setHinhanhCu] = useState('');
-  const dispatch = useDispatch();
-  const danhMucList = useSelector(state => state.danhMuc.danhMucList);
+import {  useSelector } from 'react-redux';
 
+// Hàm kiểm tra định dạng email hợp lệ
+const isValidEmail = (email) => {
+  const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+  return emailRegex.test(email); // Trả về true nếu email hợp lệ
+};
 
-useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const responseDanhMuc = await fetch('https://api.sqbe.store/danhmuc/list');
-        if (!responseDanhMuc.ok) {
-          throw new Error('Failed to fetch danh muc list');
-        }
-        const dataDanhMuc = await responseDanhMuc.json();
+// Hàm kiểm tra số điện thoại Việt Nam hợp lệ
+const isValidPhoneNumber = (phone) => {
+  const phoneRegex = /^(03|05|07|08|09)\d{8}$/; // Mã vùng Việt Nam + 8 chữ số
+  return phoneRegex.test(phone); // Trả về true nếu số điện thoại hợp lệ
+};
 
-        // Sử dụng action creator để cập nhật danhMucList
-        dispatch(setDanhMucList(dataDanhMuc.danhMucList));
-      } catch (error) {
-        console.error('Error fetching danh muc list:', error.message);
-      }
-    };
+const Sua = ({ showEditModal, closeEditModal, selectedUser, fetchUsers }) => {
+  const [role, setRole] = useState(''); // State cho role
+  const [ho_ten, setName] = useState(''); // State cho tên
+  const [email, setEmail] = 
 
-    fetchData();
-  }, [dispatch]);
+useState(''); // State cho email
+  const [sdt, setSdt] = useState(''); // State cho số điện thoại
+  const user = useSelector((state) => state.auth.user); // Lấy thông tin người dùng hiện tại
+  
+  // Cập nhật state khi selectedUser thay đổi
   useEffect(() => {
-    // Nếu có dữ liệu được chọn, gán vào danhMucData
-    if (selectedDanhMuc) {
-      setDanhMucData({
-        ten_danhmuc: selectedDanhMuc.ten_danhmuc,
-        id_danhmuc_cha: selectedDanhMuc.id_danhmuc_cha,
-        hinhanh: '', // Đặt lại hình ảnh để không hiển thị hình cũ
-        trang_thai: selectedDanhMuc.trang_thai // Gán trạng thái hiện tại
-      });
-      // Gán hình ảnh cũ nếu có
-      if (selectedDanhMuc.hinhanh) {
-        setHinhanhCu(`https://api.sqbe.store/danhmuc/uploads/${selectedDanhMuc.hinhanh}`);
-      }
+    if (selectedUser) {
+      setRole(selectedUser.role || '');
+      setName(selectedUser.ho_ten || '');
+      setEmail(selectedUser.email || '');
+      setSdt(selectedUser.sdt || '');
     }
-  }, [selectedDanhMuc]);
+  }, [selectedUser]);
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setDanhMucData((prevState) => ({
-      ...prevState,
-      [name]: value
-    }));
+  // Xử lý sự kiện thay đổi vai trò
+  const handleRoleChange = (e) => {
+    setRole(e.target.value);
   };
 
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    setDanhMucData((prevState) => ({
-      ...prevState,
-      hinhanh: file
-    }));
+  // Xử lý sự kiện thay đổi tên
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
 
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      setHinhanhCu(e.target.result);
+  // Xử lý sự kiện thay đổi email
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  // Xử lý sự kiện thay đổi số điện thoại
+  const handleSdtChange = (e) => {
+    setSdt(e.target.value);
+  };
+
+  // Xử lý gửi dữ liệu cập nhật thông tin người dùng
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Ngăn chặn hành động mặc định của form
+    
+    e.preventDefault(); // Ngăn chặn hành động mặc định của form
+    
+    if (!isValidEmail(email)) { // Kiểm tra email hợp lệ
+      message.error("Email không hợp lệ. Vui lòng kiểm tra lại.");
+      return; // Ngừng xử lý nếu email không hợp lệ
+    }
+
+    if (!isValidPhoneNumber(sdt)) { // Kiểm tra số điện thoại hợp lệ
+      message.error("Số điện thoại không hợp lệ. Phải là số điện thoại Việt Nam.");
+      return; // Ngừng xử lý nếu số điện thoại không hợp lệ
+    }
+    const updatedUser = {
+      id_user: selectedUser.id_user, // ID của người dùng cần cập nhật
+      role,
+      ho_ten,
+      email,
+      sdt,
     };
-    reader.readAsDataURL(file);
-  };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
     try {
-      const formData = new FormData();
-      formData.append('ten_danhmuc', danhMucData.ten_danhmuc);
-      formData.append('trang_thai', danhMucData.trang_thai); // Thêm trạng thái vào FormData
-      // Chỉ thêm id_danhmuc_cha vào FormData nếu nó được cung cấp
-      if (danhMucData.id_danhmuc_cha) {
-        formData.append('id_danhmuc_cha', danhMucData.id_danhmuc_cha);
-      }
-      // Kiểm tra xem tệp hình ảnh có thay đổi không
-      if (danhMucData.hinhanh instanceof File) {
-        formData.append('hinhanh', danhMucData.hinhanh);
+      const response = await fetch(`https://api.sqbe.store/taikhoan/updateNguoiDung/${selectedUser.id_user}`, {
+        method: 'PUT', // Sử dụng PUT hoặc PATCH
+        headers: {
+          'Content-Type': 'application/json', // Xác định định dạng dữ liệu
+        },
+        body: JSON.stringify(updatedUser), // Chuyển đổi dữ liệu thành JSON
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update user'); // Nếu thất bại, báo lỗi
       }
 
-      const response = await fetch(`https://api.sqbe.store/danhmuc/sua/${selectedDanhMuc.id_danhmuc}`, {
-        method: 'PUT',
-        body: formData
-      });
-      if (!response.ok) {
-        throw new Error('Failed to update danh muc');
-      }
-      closeEditModal();
-      message.success('Sửa thành công!');
-      handleEditCategory();
-      // Xử lý sau khi cập nhật thành công, có thể đóng modal hoặc làm gì đó khác
+      message.success('Cập nhật thành công !!'); // Thông báo thành công
+      fetchUsers();
+      closeEditModal(); // Đóng modal sau khi cập nhật
     } catch (error) {
-      console.error('Error updating danh muc:', error.message);
-      closeEditModal();
-      message.error('Lỗi khi sửa danh mục!');
+      message.error('Error updating user information'); // Thông báo lỗi
     }
   };
+
+  const isCurrentUser = user?.id_user === selectedUser?.id_user;
 
   return (
     <>
       {showEditModal && (
         <div className="admin-edit">
           <div className="admin-edit-content">
-            <span id="close" onClick={closeEditModal}>
-              x
-            </span>
-            <form className="form-admin-edit" onSubmit={handleSubmit} encType="multipart/form-data">
-              <h1>Sửa Danh Mục: {selectedDanhMuc.id_danhmuc}</h1>
-              <label htmlFor="ten_danhmuc">Tên danh mục:</label>
-              <br />
-              <input type="text" id="ten_danhmuc" name="ten_danhmuc" value={danhMucData.ten_danhmuc} onChange={handleChange} />
-              <br />
-
-              <label htmlFor="id_danhmuc_cha">Danh mục cha:</label>
-              <br />
-              <select id="id_danhmuc_cha" name="id_danhmuc_cha" value={danhMucData.id_danhmuc_cha || ''} onChange={handleChange}>
-                <option value="">-- Chọn danh mục cha --</option>
-                {danhMucList.map((danhMuc) =>
-                  danhMuc.id_danhmuc !== selectedDanhMuc.id_danhmuc && <option key={danhMuc.id_danhmuc} value={danhMuc.id_danhmuc}>{danhMuc.ten_danhmuc}</option>
-                )}
-              </select>
-
-              <label htmlFor="trang_thai">Trạng thái:</label>
-              <br />
-              <select id="trang_thai" name="trang_thai" value={danhMucData.trang_thai} onChange={handleChange}>
-                <option value="1">Ẩn</option>
-                <option value="2">Hiện</option>
-              </select>
-
-              <label htmlFor="hinhanh">Hình ảnh:</label>
-              <br />
-              {hinhanhCu && <img id="image-preview" src={hinhanhCu} alt="" />}
-              <input type="file" id="hinhanh" name="hinhanh" onChange={handleImageChange} />
-              <br />
-              <br />
-
-              <input type="submit" value="Submit" />
+            <span id="close" onClick={closeEditModal}>x</span>
+            <h2>Edit User</h2>
+            <form onSubmit={handleSubmit} className="form-admin-edit" id='form-admin' style={{padding:'0'}}>
+              <div>
+                <label htmlFor="name">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  value={ho_ten}
+                  onChange={handleNameChange}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="sdt">Phone Number</label>
+                <input
+                  type="text"
+                  id="sdt"
+                  value={sdt}
+                  onChange={handleSdtChange}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={handleEmailChange}
+                  required
+                />
+              </div>
+              {!isCurrentUser && (
+                <div>
+                  <label htmlFor="role">Role</label>
+                  <select
+                    id="role"
+                    value={role}
+                    onChange={handleRoleChange}
+                    required
+                  >
+                    <option value="3">Admin</option>
+                    <option value="2">nhân viên</option>
+                    <option value="1">Khách hàng</option>
+                  </select>
+                </div>
+              )}
+              <input type="submit" value="Submit" /> {/* Nút lưu thay đổi */}
             </form>
           </div>
         </div>

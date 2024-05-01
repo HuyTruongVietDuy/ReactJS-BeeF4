@@ -125,10 +125,10 @@ function Product({ priceFilter, thutuFilter, loaiFilter, colorFilter  }) {
 
   
   return (
-<div>
-<h1 style={{marginLeft:'12%',marginTop:'4%'}}><p style={{fontSize:'1.7vw'}}>Sản phẩm liên quan</p></h1> <br/>
+<div id='container-main'> 
+
     <div className="container-product-show">
-  
+    <h1 style={{marginTop:'2%',marginLeft:'3.2%'}}><p style={{fontSize:'1.7vw'}}>Sản phẩm liên quan</p></h1> <br/>
       <div className="center-layout">
        
         {productList.map((product) => (

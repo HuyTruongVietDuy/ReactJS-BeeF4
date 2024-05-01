@@ -216,8 +216,12 @@ const ChiTietSanPham = () => {
   }
 
   return (
+    <div>
     <div id="container-main">
       <div id="container-chitietv2">
+        <div className="container-mb-ctsp">
+          
+       
         <div className="left-ctsp">
           <div className="box-left">
             {Array.from({ length: 6 }, (_, index) => (
@@ -232,6 +236,13 @@ const ChiTietSanPham = () => {
                 <img src={imageUrl} key={index} alt="" className={selectedImageIndex === index ? 'selected' : ''} />
               ))}
             </div>
+          </div>
+          <div className="box-bottom">
+            {Array.from({ length: 6 }, (_, index) => (
+              <div className={`box-image ${selectedImageIndex === index ? 'selected' : ''}`} key={index} onClick={() => scrollToImage(index)}>
+                <img src={imageList[index]} alt="" />
+              </div>
+            ))}
           </div>
         </div>
         <div className="right-ctsp">
@@ -289,7 +300,16 @@ const ChiTietSanPham = () => {
       </div>
 
      
-      <SanPhamTrongChiTiet/>
+      
+    </div>
+    <div>
+      
+    </div>
+    </div>
+    <div  id='mb-chitietsanpham'>
+    <SanPhamTrongChiTiet/>
+    </div>
+   
     </div>
   );
 };

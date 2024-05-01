@@ -1,18 +1,24 @@
 #container-chitietv2{
-    height: 86vh;
-    width: 70%;
+    min-height: 86vh;
+    width: 96%;
     margin: 0 auto;
-    display: flex;
+    margin-top: 10vh;
  }
+
+ #container-chitietv2 .container-mb-ctsp{
+
+   display: flex;
+ 
+}
  
  #container-chitietv2 .left-ctsp{
-     width: 60%;
+     width: 55%;
      display: flex;
     
  }
  
  #container-chitietv2 .left-ctsp .box-left{
-   margin-left:5%;
+   
     width: 14%;
     height: 85vh;
  }
@@ -22,7 +28,9 @@
   cursor: pointer;
     margin: 0 auto;
    margin-bottom: 14px;
+   margin-top: 20px;
    display: flex;
+  
   }
 
   .left-ctsp .box-left  .box-image.selected {
@@ -31,15 +39,22 @@
  }
  
   #container-chitietv2 .left-ctsp .box-left .box-image img{
-    width: 100%;
+    width: 80%;
+    padding: 2%;
+    margin: 0 auto;
    }
   
    #container-chitietv2 .left-ctsp .box-right{
-     width:70%;
+     width:80%;
      height: 85vh;
 
    
   }
+
+
+  #container-chitietv2 .left-ctsp .box-bottom{
+display: none;
+}
   #container-chitietv2 .left-ctsp .box-right .box-image-main {
    margin: 0 auto;
    max-width: 100%;
@@ -56,9 +71,10 @@
  
  
  #container-chitietv2 .left-ctsp .box-right .box-image-main img{
-     width: 100%;
-  
+     width: 72%;
+     padding: 5%;
      scroll-snap-align: start;
+     text-align: center;
   }
  
  /* Tùy chỉnh kiểu dáng của thanh cuộn trên WebKit */
@@ -90,7 +106,7 @@
  #container-chitietv2 .right-ctsp .name-ctsp,
  #container-chitietv2 .right-ctsp .price-ctsp,
  #container-chitietv2 .right-ctsp .container-loai{
-   margin-bottom: 20px;
+   margin-top: 20px;
   }
   
 
@@ -260,9 +276,82 @@
   }
  
 
+  @media only screen and (max-width:1640px) {
+   #container-chitietv2 .left-ctsp .box-right .box-image-main img{
+      width: 80%;
+    
+   }
+  }
 
+  @media only screen and (max-width:1450px) {
+   #container-chitietv2 .left-ctsp .box-right .box-image-main img{
+      width: 88%;
+    
+   }
+  }
+
+  @media only screen and (max-width:1324px) {
+   #container-chitietv2 .left-ctsp .box-right .box-image-main img{
+      width: 95%;
+     
+   }
+  }
+
+  @media only screen and (max-width:1192px) {
+   #container-chitietv2 .left-ctsp .box-right .box-image-main img{
+      width: 100%;
+      padding: 8% 2%;
+   }
+   #container-chitietv2{
+      position: relative;
+      top: -40px;
+     }
+  }
+
+  @media only screen and (max-width:1020px) {
+   #container-chitietv2 .left-ctsp .box-right .box-image-main img{
+      width: 100%;
+      padding: 20% 0%;
+   }
+   #mb-chitietsanpham{
+      position: relative;
+      top: -90px;
+     }
+  }
+
+  @media only screen and (max-width:810px) {
+   #container-chitietv2 .left-ctsp .box-right .box-image-main {
+      height: 80%; 
+    
+   }
+   
+   #container-chitietv2 .left-ctsp .box-right .box-image-main img{
+      width: 100%;
+      padding: 10% 0%;
+      height: 100vh; 
+   }
+
+   #container-chitietv2 .left-ctsp {
+      padding: 5% 0;
+     }
+     
+     #mb-chitietsanpham{
+      position: relative;
+      top: -130px;
+     }
+
+     #mb-chitietsanpham{
+      position: relative;
+      top: -150px;
+     }
+     #container-chitietv2 .mota-sanpham ul li{
+      font-size: 1.6vw;
+     
+   }
+}
   
-  @media only screen and (max-width:800px) {
+  
+  @media only screen and (max-width:790px) {
    
    #container-chitietv2 .right-ctsp .name-ctsp{
      font-size: 3vw;
@@ -292,9 +381,150 @@
    }
   
    #container-chitietv2 .mota-sanpham ul li{
-      font-size: 2vw;
+      font-size: 1.6vw;
       margin-left: 25px;
       font-weight: 300;
    }
+
+   #mb-chitietsanpham{
+      position: relative;
+      top: -40px;
+     }
   
+  }
+
+  @media only screen and (max-width:790px) {
+   
+   #container-chitietv2 .left-ctsp .box-right .box-image-main {
+      min-height: 70vh;
+    
+   }
+   
+   #container-chitietv2 .left-ctsp .box-right .box-image-main img{
+      width: 100%;
+      padding: 40% 0;
+   }
+
+   #mb-chitietsanpham{
+      position: relative;
+      top: -120px;
+     }
+  }
+
+  @media only screen and (max-width:586px) {
+   #container-chitietv2 .container-mb-ctsp{
+      height: 100%;
+      margin: 0 auto; /* Căn giữa theo chiều ngang */
+    display: flex;  /* Kích hoạt Flexbox */
+    flex-direction: column; /* Đặt phần tử theo chiều dọc */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+   }
+
+   #mb-chitietsanpham{
+      position: relative;
+      top:100px
+     }
+
+     #container-chitietv2 .left-ctsp {
+      display: flex;  /* Sử dụng Flexbox */
+    flex-direction: column;  /* Đặt phần tử theo hàng ngang */
+    justify-content: space-around;  /* Căn giữa và phân bố không gian */
+    align-items: center;  /* Đảm bảo phần tử con căn chỉnh theo chiều ngang */
+  }
+  #container-chitietv2 .box-left {
+display: none;
+}
+
+#container-chitietv2 .left-ctsp .box-bottom{
+   display: block;
+   display: flex;
+   height: 30%;
+   width: 100%;
+   position: relative;
+   top: -100px;
+   }
+
+   #container-chitietv2 .left-ctsp  .box-bottom .box-image{
+      width:65%;
+      cursor: pointer;
+      margin: 0 auto;
+   
+    }
+  
+   
+   
+    #container-chitietv2 .left-ctsp  .box-bottom .box-image img{
+      width: 100%;
+      padding: 10%;
+      margin: 0 auto;
+     }
+    
+     #container-chitietv2 .left-ctsp .box-right{
+       width:70%;
+      height: 80%;
+      position: relative;
+      top: -20px;
+     
+    }
+
+    #container-chitietv2 .left-ctsp{
+      width: 100%;
+      height: 80%;
+      display: flex;
+     
+  }
+
+
+
+#container-chitietv2 .left-ctsp .box-right .box-image-main img{
+   width: 100%;
+   padding: 22% 0%;
+ 
+}
+
+
+
+#container-chitietv2 .right-ctsp {
+   width: 100%;
+   position: relative;
+   top: -100px;
+ }
+
+
+ #container-chitietv2 .mota-sanpham ul li{
+   font-size: 2vw;
+   margin-left: 25px;
+   font-weight: 300;
+}
+
+#container-chitietv2  .button-favorite .icon-container i{
+   font-size: 4vw;
+   color: rgba(0, 0, 0, 0.623);
+}
+
+#container-chitietv2 .button-favorite button{
+   font-size: 2.2vw;
+}
+#container-chitietv2 #muangay{
+font-size: 2.2vw;
+}
+
+#container-chitietv2 .right-ctsp .name-ctsp,
+#container-chitietv2 .right-ctsp .price-ctsp,
+#container-chitietv2 .right-ctsp .container-loai{
+font-size: 4vw;
+ }
+
+ #container-chitietv2 #select-size{
+  
+   padding: 4% 4%;
+   
+}
+
+ 
+#mb-chitietsanpham{
+   position: relative;
+   top: -100px;
+  }
   }

@@ -14,6 +14,7 @@ import { setSanPhamList } from '../../../redux/sanPhamSlice';
     const [showEditModal, setShowEditModal] = useState(false);
     const [selectedSanPhamId, setSelectedSanPhamId] = useState(null);
     const [selectedSanPham, setSelectedSanPham] = useState(null);
+    const [selectedDanhMuc, setSelectedDanhMuc] = useState(null); // Chỉ định ID danh mục
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const itemsPerPage = 6;
@@ -36,31 +37,39 @@ import { setSanPhamList } from '../../../redux/sanPhamSlice';
 
     
       
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    const fetchData = useCallback(async () => {
-      try {
-        const response = await fetch('https://api.sqbe.store/sanpham/list');
-        if (!response.ok) {
-          throw new Error('Failed to fetch sản phẩm list');
-        }
-        const data = await response.json();
-        if (Array.isArray(data)) {
-          dispatch(setSanPhamList(data));
-          setTotalPages(Math.ceil(data.length / itemsPerPage));
-        } else {
-          dispatch(setSanPhamList([]));
-          setTotalPages(1);
-        }
-      } catch (error) {
-        console.error('Error fetching sản phẩm list:', error.message);
+    // Hàm để fetch dữ liệu và lọc sản phẩm theo danh mục
+  const fetchData = useCallback(async () => {
+    try {
+      const response = await fetch('https://api.sqbe.store/sanpham/list');
+      if (!response.ok) {
+        throw new Error('Failed to fetch sản phẩm list');
       }
-    });
-  
-    useEffect(() => {
-      fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []); // Gọi fetchData khi component được render lần đầu tiên
-  
+      const data = await response.json();
+      if (Array.isArray(data)) {
+        // Nếu selectedDanhMuc được chỉ định, chỉ lấy các sản phẩm với ID danh mục tương ứng
+        const filteredData = selectedDanhMuc
+          ? data.filter(sanPham => sanPham.id_danhmuc === selectedDanhMuc)
+          : data;
+        dispatch(setSanPhamList(filteredData));
+        setTotalPages(Math.ceil(filteredData.length / itemsPerPage));
+      } else {
+        dispatch(setSanPhamList([]));
+        setTotalPages(1);
+      }
+    } catch (error) {
+      console.error('Error fetching sản phẩm list:', error.message);
+    }
+  }, [dispatch, selectedDanhMuc, itemsPerPage]); // Cập nhật để tái gọi hàm khi selectedDanhMuc thay đổi
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]); // Tự động gọi hàm fetchData khi component render hoặc khi selectedDanhMuc thay đổi
+
+  const uniqueDanhMucs = Array.from(new Set(SanPhamList.map(sanPham => sanPham.id_danhmuc)));
+
+  const handleDanhMucChange = (event) => {
+    setSelectedDanhMuc(parseInt(event.target.value)); // Cập nhật ID danh mục mới
+  };
     const handleAddProduct = async (ten_sanpham, id_Danhmuc, chatlieu, mota, kieu_dang, url_product) => {
       try {
         const response = await fetch('https://api.sqbe.store/sanpham/them', {
@@ -86,6 +95,7 @@ import { setSanPhamList } from '../../../redux/sanPhamSlice';
       }
     };
     
+
     
     const handleEditProduct = async (sanPhamId, ten_sanpham, id_Danhmuc, chatlieu, trang_thai, mota, kieu_dang, url_product) => {
       try {
@@ -181,14 +191,14 @@ import { setSanPhamList } from '../../../redux/sanPhamSlice';
     };
 
     const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentSanPhamList = SanPhamList.slice(indexOfFirstItem, indexOfLastItem);
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentSanPhamList = SanPhamList.slice(indexOfFirstItem, indexOfLastItem);
 
-    const changePage = (page) => {
-      if (page >= 1 && page <= totalPages) {
-        setCurrentPage(page);
-      }
-    };
+  const changePage = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
 
     
     return (
@@ -201,6 +211,14 @@ import { setSanPhamList } from '../../../redux/sanPhamSlice';
             <h1> Quản lí sản phẩm</h1>
           </div>
           <div className='nav-right-admin'>
+          <select value={selectedDanhMuc || ''} onChange={handleDanhMucChange}>
+      <option value="">Tất cả danh mục</option>
+      {uniqueDanhMucs.map((id, index) => (
+        <option key={index} value={id}>
+          {SanPhamList.find(sanPham => sanPham.id_danhmuc === id)?.ten_danhmuc}
+        </option>
+      ))}
+    </select>
             <button onClick={OpenAdd}> Thêm mới <i className="material-icons">add_circle</i> </button>
           </div>
         </div>

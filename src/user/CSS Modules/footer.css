@@ -4,61 +4,65 @@ footer{
     background-color: #212121;
     min-height: auto;
     width: 100%;
-   
     padding-top: 40px;
     color: white;
-
-   position: relative;
-   transition: right 0.3s ease;
+    position: relative;
 }
 
-footer .container-footer{
-    width: 100%;
+.container-footer {
+    padding: 20px 0;
+    width: 80%;
+    margin: 0 auto;
     display: flex;
-    justify-items: center;
-    align-items: center;
-    margin-bottom: 10px;
+    justify-content: center;
+    text-align: center;
 }
+
 footer p{
     font-weight: bold;
-    font-size: 18px;
-    text-align: center;
+    font-size: 0.8vw;
+    text-align: left;
 }
 
 footer ul,
 footer #FacebookProvider{
-    text-align: center;
+    text-align: left;
     list-style: none;
 }
 
 footer ul li{
-    margin: 10px 0;
+    margin: 20px 0;
+    text-align: left;
+    font-size: 0.7vw;
 }
 footer .footer-left{
- width: 33%;
+ width: 30%;
+text-align: center;
 }
 
 
 footer .footer-center{
-    width: 33%;
+    width: 30%;
 }
 
 
 
 .footer-right{
-  width: 36%;
-text-align: center;
+    width: 30%;
+text-align: left;
 }
 
 .footer-right ul{
-    width: 36%;
-    display: inline-block;
+    width: 30%;
+display: inline-block;
    margin-bottom: 10px;
+   text-align: left;
   }
 
   .footer-right ul li{
     margin: 10px 5px;
    display: inline-flex;
+   font-size: 0.7vw;
   }
   
   
@@ -76,14 +80,14 @@ footer li:hover{
     
     border-top: 1px solid white;
     width: 100%;
-    line-height: 50px;
+    padding: 10px 0;
     display: block;
 }
 
 .footer-bottom p{
-    font-weight: 300;
-    font-size: 15px;
-    text-align: left;
+    font-weight: 100;
+    font-size: 9px;
+    text-align: center;
 }
 
 @media only screen and (max-width: 947px) {
@@ -94,16 +98,18 @@ footer li:hover{
     }
     .container-footer p{
         font-size: 4vw;
-       
+        text-align: center;
     }
     .container-footer li{
         font-size: 3vw;
         margin: 3%;
+        
     }
     footer .footer-left{
         width: 100%;
         border-bottom: 1px solid white;
         padding: 20px 0;
+        text-align: c;
     }
 
     footer .footer-center{

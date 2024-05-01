@@ -61,8 +61,8 @@
       },
       {
         title: "size",
-        dataIndex: "ten_size",
-        key: "ten_size",
+        dataIndex: "size_name",
+        key: "size_name",
       },
       {
         title: "Số lượng",
@@ -161,8 +161,15 @@
               <Table 
   columns={lowStockColumns} 
   dataSource={lowStockProducts} 
-  rowKey={(record) => `${record.product_name}-${record.color_name}-${record.ten_size}`}
+  rowKey={(record) => {
+    const productName = record.product_name || 'unknown-product';
+    const colorName = record.color_name || 'unknown-color';
+    const sizeName = record.size_name || 'unknown-size'; // Sửa tên trường để đảm bảo nó tồn tại
+
+    return `${productName}-${colorName}-${sizeName}`; // Tạo khóa duy nhất
+  }}
 />
+
             </Col>
           </Row>
         </div>

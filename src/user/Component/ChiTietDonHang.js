@@ -53,6 +53,8 @@ const ChiTietDonHang = () => {
     2: 'Đã xác nhận',
     3: 'Hoàn thành',
     4: 'Đã bị hủy',
+    5: 'Không được xác nhận',
+    6: 'Giao hàng không thành công',
   };
   const chuaThue = donHang && donHang.total * (1 + (donHang.phan_tram || 0) / 100);
   return (

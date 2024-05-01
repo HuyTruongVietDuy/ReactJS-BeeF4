@@ -16,12 +16,14 @@
   
   #form-admin input[type="text"],
   #form-admin input[type="number"],
+  #form-admin input[type="email"],
   #form-admin select {
     width: 100%; /* Độ rộng của input và select là 100% */
     padding: 8px; /* Khoảng cách từ nội dung của input và select đến viền */
     border: 1px solid #ccc; /* Định dạng viền của input và select */
     border-radius: 3px; /* Bo tròn các góc của input và select */
     box-sizing: border-box; /* Thiết lập hộp model của input và select */
+    outline: none;
   }
   
   #form-admin button {

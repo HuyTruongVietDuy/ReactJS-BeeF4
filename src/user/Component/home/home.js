@@ -1,6 +1,7 @@
 import React from "react";
 import CategoryShow from "./categoryshow";
 import SanPhamNew from "./sanphamnew";
+import SanPhamKhuyenMai from "./sanphamkhuyenmai";
 import News from './News';
 import { Link } from "react-router-dom";
 function Home() {
@@ -16,18 +17,22 @@ function Home() {
         </div>
       </div>
       <CategoryShow />
+     
+      <h1 style={{fontSize:'3VW', fontWeight:'bold',textAlign:'center', textDecoration:'underline'}}>SALE</h1>
+      <SanPhamKhuyenMai  />
+   
+
+      <News />
       <div className="title-new-product">
       <div className="scroll-wrapper">
-        <div className="scroll-text" >New Arrial</div>
-        <div className="scroll-text" >New Arrial</div>
-        <div className="scroll-text" >New Arrial</div>
-        <div className="scroll-text" >New Arrial</div>
-        <div className="scroll-text" >New Arrial</div>
+        <div className="scroll-text" >New Arrival</div>
+        <div className="scroll-text" >New Arrival</div>
+        <div className="scroll-text" >New Arrival</div>
+        <div className="scroll-text" >New Arrival</div>
+        <div className="scroll-text" >New Arrival</div>
       </div>
     </div>
       <SanPhamNew  />
-      <News />
-      
       <div className="boxfooter1">
           <p>
             <i className="ti-headphone"></i> Hỗ trợ / Mua hàng:{" "}
