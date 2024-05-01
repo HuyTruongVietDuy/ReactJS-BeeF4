@@ -59,7 +59,7 @@ const DangNhap = () => {
       <form onSubmit={handleSubmit} className="user-form-dangnhap">
         <h3 className="">ĐĂNG NHẬP</h3>
        
-        <input type="text" placeholder="Email" ref={emailRef} />
+        <input type="text" placeholder="Email hoặc tên đăng nhập" ref={emailRef} />
         <input type="password" placeholder="Password" ref={passwordRef} />
         <div className="box" style={{marginBottom:"30px"}}>
           <button type="submit">ĐĂNG NHẬP</button>
