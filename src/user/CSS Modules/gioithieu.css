@@ -41,13 +41,24 @@
 .introduce h1 {
     text-align: center;
     margin-bottom: 20px;
-    font-size: 20px;
+    font-size: 2vw;
+}
+
+.introduce h2 {
+    margin-bottom: 20px;
+    font-size: 1.5vw;
 }
 
 .introduce p {
     margin-bottom: 20px;
-    font-size: 2vw;
+    font-size: 1.5vw;
 }
+
+.introduce b,
+.introduce i {
+    font-size: 1.1vw;
+}
+
 
 .introduce .image-1 img {
     width: 33%;

@@ -1,20 +1,20 @@
 import React, { useRef, useState } from 'react';
-import { Link, Navigate } from 'react-router-dom'; // Import Navigate instead of Redirect
+import { Link, Navigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { dalogin } from '../../../redux/authSlice';
 import { message } from 'antd';
 
 const DangNhap = () => {
-  const emailRef = useRef(null);
+  const inputRef = useRef(null); // Updated to a single ref for flexibility
   const passwordRef = useRef(null);
   const dispatch = useDispatch();
-  const [loggedIn, setLoggedIn] = useState(false); // State to track login status
-  const [error, setError] = useState(''); // State to store error message
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const email = emailRef.current.value;
+    const input = inputRef.current.value; // Accepts both email and username
     const password = passwordRef.current.value;
 
     try {
@@ -23,23 +23,17 @@ const DangNhap = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ ten_dangnhap: email, matkhau: password }),
+        body: JSON.stringify({ ten_dangnhap: input, matkhau: password }), // Single input for both email and username
       });
 
       if (response.ok) {
         const data = await response.json();
         dispatch(dalogin(data));
-        console.log('Login successful!');
-        console.log('Authentication data:', data);
-
-        // Display success message
-        message.success('Đăng nhập thành công');
-
-        // Update login status
         setLoggedIn(true);
 
+        message.success('Đăng nhập thành công');
       } else if (response.status === 401) {
-        setError('Tài khoản hoặc mật khẩu không chính xác'); // Set error message
+        setError('Tài khoản hoặc mật khẩu không chính xác');
       } else {
         setError('Đã xảy ra lỗi khi đăng nhập');
       }
@@ -49,31 +43,27 @@ const DangNhap = () => {
     }
   };
 
-  // Redirect if logged in
   if (loggedIn) {
-    return <Navigate to="/user" />; // Use Navigate instead of Redirect
+    return <Navigate to="/user" />;
   }
 
   return (
     <div id="container-main">
       <form onSubmit={handleSubmit} className="user-form-dangnhap">
-        <h3 className="">ĐĂNG NHẬP</h3>
-       
-        <input type="text" placeholder="Email hoặc tên đăng nhập" ref={emailRef} />
+        <h3>ĐĂNG NHẬP</h3>
+        <input type="text" placeholder="Email hoặc Tên đăng nhập" ref={inputRef} /> {/* Updated placeholder */}
         <input type="password" placeholder="Password" ref={passwordRef} />
-        <div className="box" style={{marginBottom:"30px"}}>
+        <div className="box" style={{ marginBottom: "30px" }}>
           <button type="submit">ĐĂNG NHẬP</button>
           <p>
-            <a href="/quenmatkhau">Quên mật khẩu?</a> <br />
+            <a href="/quenmatkhau">Quên mật khẩu?</a>
+            <br />
             <span>hoặc</span>
             <Link to="/dangky">Đăng ký</Link>
           </p>
         </div>
-        
         {error && <div style={{ color: 'red' }}>{error}</div>} {/* Display error message */}
       </form>
-
-      
     </div>
   );
 };
