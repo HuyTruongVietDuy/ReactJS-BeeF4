@@ -135,11 +135,11 @@ const DashBoard = () => {
         <Row gutter={16} style={{ marginTop: "25px" }}>
           <Col span={15}>
             {/* Bảng để hiển thị danh sách sản phẩm */}
-            <h3>Thống kê doanh thu theo sản phẩm</h3>
+            <h3>Đăng nhập gần nhất</h3>
             <Table columns={columns} dataSource={sanPham} rowKey="id_sanpham" />
           </Col>
           <Col span={9}>
-            <h3>Sản phẩm sắp hết hàng & hết hàng</h3>
+            <h3>Admin & nhân viên</h3>
             {/* Bảng để hiển thị sản phẩm sắp hết */}
             <Table columns={lowStockColumns} dataSource={lowStockProducts} rowKey="product_name" />
           </Col>
