@@ -88,7 +88,7 @@ const ThanhToanSucces = () => {
                 <div className="tensanpham">{product.ten_sanpham}</div>
                 <div className="soluong">số lượng: {product.so_luong} / size: {product.ten_size} / màu: {product.ten_mau} </div>
               </div>
-              <div className="giatien">{formatCurrency(product.gia_ban / product.so_luong)}</div>
+              <div className="giatien">{formatCurrency(product.gia_ban)}</div>
             </div>
               ))}
 

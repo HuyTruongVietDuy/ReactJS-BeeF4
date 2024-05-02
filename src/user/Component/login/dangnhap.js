@@ -51,7 +51,7 @@ const DangNhap = () => {
     <div id="container-main">
       <form onSubmit={handleSubmit} className="user-form-dangnhap">
         <h3>ĐĂNG NHẬP</h3>
-        <input type="text" placeholder="Email hoặc Tên đăng nhập" ref={inputRef} /> {/* Updated placeholder */}
+        <input type="text" placeholder="Email hoặc tên đăng nhập" ref={inputRef} /> {/* Updated placeholder */}
         <input type="password" placeholder="Password" ref={passwordRef} />
         <div className="box" style={{ marginBottom: "30px" }}>
           <button type="submit">ĐĂNG NHẬP</button>

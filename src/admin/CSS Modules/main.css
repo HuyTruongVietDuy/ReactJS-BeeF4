@@ -52,6 +52,19 @@ align-items: center;
    
  }
 
+ #container-nav-admin .nav-right-admin input{
+    text-align: center;
+    font-weight: bold;
+    width:80%;
+    padding: 15px 30px;
+    background: none;
+    font-size: 0.7vw;
+    color: #FC8019;
+    border-radius: 6px;
+    font-weight: 400;
+   outline: none;
+ }
+
  #container-nav-admin .nav-right-admin i{
     vertical-align: middle;
  }

@@ -54,7 +54,7 @@ const DangNhapAdmin = () => {
               <input
                 type="text"
                 className="form-control"
-                placeholder="Email"
+                placeholder="Email hoặc tên đăng nhập"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required

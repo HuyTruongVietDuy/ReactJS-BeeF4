@@ -106,7 +106,7 @@ const ListMotChiTiet = () => {
           <h1>Thông tin một chi tiết</h1>
         </div>
         <div className='nav-right-admin'>
-          <button onClick={openAdd}>Thêm mới</button>
+        
         </div>
       </div>
 

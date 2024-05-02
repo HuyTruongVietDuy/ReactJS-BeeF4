@@ -230,7 +230,7 @@ if (!isValidPhoneNumber(sdtValue)) {
         id_size: product.id_size,
         ten_sanpham:product.ten_sanpham,
         so_luong: product.soluong,
-        gia_ban: product.soluong * gia,
+        gia_ban: gia,
       };
 
       // Gửi dữ liệu chi tiết đơn hàng đến backend

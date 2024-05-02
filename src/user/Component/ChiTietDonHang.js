@@ -132,10 +132,10 @@ const ChiTietDonHang = () => {
                     </td>
                     <td>PM24{product.id_donhangchitiet}</td>
                     <td>
-                      {formatCurrency(product.gia_ban / product.so_luong)}
+                      {formatCurrency(product.gia_ban)}
                     </td>
                     <td>{product.so_luong}</td>
-                    <td>{formatCurrency(product.gia_ban)}</td>
+                    <td>{formatCurrency(product.gia_ban * product.so_luong)}</td>
                   </tr>
                 ))}
             </tbody>

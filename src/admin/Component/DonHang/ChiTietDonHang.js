@@ -157,7 +157,7 @@ const ChiTietDonHang = ({ showViewModal, closeViewModal, selectedBill, dispatchd
                         <td>PM24{detail.id_donhangchitiet}</td>
                         <td>{formatPrice(detail.gia_ban)}</td>
                         <td>{detail.so_luong}</td>
-                        <td>{formatPrice(detail.so_luong * detail.gia_ban)}</td>
+                        <td>{formatPrice(detail.gia_ban * detail.so_luong)}</td>
                       </tr>
                     ))}
                 </tbody>
@@ -165,6 +165,7 @@ const ChiTietDonHang = ({ showViewModal, closeViewModal, selectedBill, dispatchd
               </table>
               <p id='total'>Tổng Tiền: {formatPrice(selectedBill.total)}</p>
             </div>
+            
             <div className='nav-button'>
               <div id='container-button'>
                 {selectedBill.tinh_trang === 1 && (
