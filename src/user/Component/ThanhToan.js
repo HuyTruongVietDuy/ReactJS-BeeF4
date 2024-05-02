@@ -170,7 +170,10 @@ if (!isValidPhoneNumber(sdtValue)) {
   message.error("Số điện thoại không hợp lệ. Vui lòng nhập số điện thoại Việt Nam.");
   return;
 }
-
+const user = {
+  id_user: null, // Có thể là giá trị null nếu người dùng chưa đăng nhập
+  // Các thuộc tính khác của người dùng
+};
   
     // Tạo object chứa thông tin đơn hàng
     const orderData = {
@@ -183,7 +186,7 @@ if (!isValidPhoneNumber(sdtValue)) {
       xa: xaValue,
       ghi_chu: ghichuValue, // Ghi chú không bắt buộc
       total: calculateTotal(),
-      id_user: user.id_user,
+      id_user: user.id_user ?? null,
       id_giamgia: idGiamGia,
     };
   
