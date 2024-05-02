@@ -60,6 +60,7 @@ function MainContent({ loading }) {
           <Route path="/sanphamyeuthich/:id_user" element={<SanPhamYeuThich />}/>
           <Route path="/search" element={<Search />}/>
           {/* <Route path="/chitietsanpham/:id_sanpham" element={<ChiTietSanPham />}/> */}
+              {/* <Route path="/chitietsanpham/:id_sanpham" element={<ChiTietSanPham />}/> */}
           <Route path="/chitietsanpham/:url_product" element={<ChiTietSanPham />}/>
           <Route path="/baoloi" element={<BaoLoi />} />
           <Route path="*" element={<Navigate to="/baoloi" />} />
